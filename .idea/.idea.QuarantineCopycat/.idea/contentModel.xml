@@ -145,11 +145,19 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="CinemachineFPExtension.cs" t="Include" />
+          <e p="AI" t="Include">
+            <e p="AIChase.cs" t="Include" />
+          </e>
+          <e p="GameEvent.cs" t="Include" />
+          <e p="GameEventListener.cs" t="Include" />
           <e p="Managers" t="Include">
+            <e p="GameManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
           </e>
-          <e p="PlayerMovement.cs" t="Include" />
+          <e p="Player" t="Include">
+            <e p="CinemachineFPExtension.cs" t="Include" />
+            <e p="PlayerMovement.cs" t="Include" />
+          </e>
           <e p="Singleton.cs" t="Include" />
         </e>
         <e p="Settings" t="Include">
