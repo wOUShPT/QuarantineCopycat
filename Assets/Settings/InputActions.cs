@@ -22,7 +22,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""name"": ""Movement"",
                     ""type"": ""Value"",
                     ""id"": ""9c9aa810-a4f4-44b1-afad-7f21ceddbf89"",
-                    ""expectedControlType"": ""Analog"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -30,7 +30,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""e56ab5a6-ac44-480f-bfd3-0c101972dc99"",
-                    ""expectedControlType"": ""Analog"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -53,7 +53,7 @@ public class @InputActions : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Axis"",
+                    ""name"": ""WASD"",
                     ""id"": ""09827f39-c184-43bb-87a0-747e860d700a"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -108,7 +108,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Axis"",
+                    ""name"": ""LeftStick"",
                     ""id"": ""99e25d95-fbd0-491a-8751-e680bc927f04"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -163,62 +163,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Axis"",
-                    ""id"": ""cf7420d7-f7b8-4927-94d2-407d3def20b5"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""667bb03b-cc34-4666-9445-b4fce1f9ea18"",
-                    ""path"": ""<Mouse>/delta/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""f38595cd-c4a1-446e-b1ab-420e8d9e6480"",
-                    ""path"": ""<Mouse>/delta/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""e0a56a5f-5852-4626-a68a-0c1892c9e65b"",
-                    ""path"": ""<Mouse>/delta/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""ac0f04b6-2d18-468e-b120-8180f7a351d6"",
-                    ""path"": ""<Mouse>/delta/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Axis"",
+                    ""name"": ""RightStick"",
                     ""id"": ""dd7f2e14-17ad-4393-982c-eb0518f3a301"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -271,6 +216,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25511b5f-f38b-4325-a792-82465a60e3ac"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -337,7 +293,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""name"": ""Navigation"",
                     ""type"": ""Value"",
                     ""id"": ""d843aaa3-f9a8-4b64-bc50-dfbc89508cb8"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -360,7 +316,7 @@ public class @InputActions : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Axis"",
+                    ""name"": ""D-Pad"",
                     ""id"": ""cdff0d49-d4f2-4eeb-931c-88abd62d808f"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -415,7 +371,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Axis"",
+                    ""name"": ""LeftStick"",
                     ""id"": ""d2239a55-297f-4844-a52b-20d243158c6a"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -470,7 +426,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Axis"",
+                    ""name"": ""Arrows"",
                     ""id"": ""96b422f5-2927-47cb-856f-77c24984b5de"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -525,7 +481,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Axis"",
+                    ""name"": ""WASD"",
                     ""id"": ""485b9cfd-df8a-4b12-bc6f-179f4d60e904"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
