@@ -11,9 +11,11 @@ public class CinemachineSwitcher : MonoBehaviour
         FirstPerson, SecondPerson
     }
     private CinemachineStateSwitcher cinemachineSwitcher;
+    private CinemachineFPExtension fPExtension;
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        fPExtension = FindObjectOfType<CinemachineFPExtension>();
     }
     private void OnEnable()
     {
@@ -39,9 +41,11 @@ public class CinemachineSwitcher : MonoBehaviour
         {
             case CinemachineStateSwitcher.FirstPerson:
                 animator.Play("FPCameraState");
+                fPExtension.IsFirstPerson = true;
                 break;
             case CinemachineStateSwitcher.SecondPerson:
                 animator.Play("SPCameraState");
+                fPExtension.IsFirstPerson = false;
                 break;
         }
     }

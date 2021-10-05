@@ -14,6 +14,9 @@ public class CinemachineFPExtension : CinemachineExtension
     
     private Vector3 _currentRotation;
 
+    private static bool isFirstPerson = true;
+    public bool IsFirstPerson { get { return isFirstPerson; } set { isFirstPerson = value; } }
+
     protected override void Awake()
     {
         _currentRotation = Vector3.zero;
@@ -22,7 +25,7 @@ public class CinemachineFPExtension : CinemachineExtension
 
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
     {
-        if (vcam.Follow)
+        if (vcam.Follow && IsFirstPerson)
         {
             if (stage == CinemachineCore.Stage.Aim)
             {
