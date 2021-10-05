@@ -23,10 +23,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CinemachineFPExtension.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CinemachineFPExtension.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/DefaultHDRPAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/DefaultHDRPAsset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/DefaultSettingsVolumeProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/DefaultSettingsVolumeProfile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,10 +42,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/HUDReferences.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AnimatorReferences.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SequenceReferences.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/EditorTools/Modules/Components/GameObjectsToggler/GameObjectsToggler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Singleton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleTrack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleTrackMixer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameEventListener.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Singleton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleClip.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Sleep.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interfaces/Interactible.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CA496B8C-9345-4B2F-9B99-24292C19379F/1b/221dc527/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -56,7 +73,21 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Task.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameEvent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameEventListener.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/Interactible.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Sleep.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AnimatorReferences.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameEventHub.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SubtitleTrack.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleClip.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleTrack.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleTrackMixer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HUDReferences.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SequencesReference.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SequencesReferences.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SequenceReferences.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInteraction.cs" />
       </list>
     </option>
   </component>
@@ -109,6 +140,10 @@
       <workItem from="1633190000150" duration="7000" />
       <workItem from="1633190030629" duration="4299000" />
       <workItem from="1633208898260" duration="19000" />
+      <workItem from="1633214255101" duration="1427000" />
+      <workItem from="1633294086242" duration="2716000" />
+      <workItem from="1633296876100" duration="3841000" />
+      <workItem from="1633375182454" duration="8797000" />
     </task>
     <servers />
   </component>
@@ -133,9 +168,9 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1633112243831">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1633378349396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1633112243831" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1633378349396" />
   </component>
 </project>
