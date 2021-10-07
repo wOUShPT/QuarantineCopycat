@@ -28,15 +28,21 @@ public class CinemachineSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputAction.performed += _ => SwitchState(); 
+        inputAction.performed += _ => ChangeToSecond(); 
     }
+    public void ChangeToFirst()
+    {
+        cinemachineSwitcher = CinemachineStateSwitcher.FirstPerson;
+        SwitchState();
+    }
+    public void ChangeToSecond()
+    {
+        cinemachineSwitcher = CinemachineStateSwitcher.SecondPerson;
+        SwitchState();
+    }
+    
     private void SwitchState()
     {
-        cinemachineSwitcher++;
-        if((int)cinemachineSwitcher >= Enum.GetNames(typeof(CinemachineStateSwitcher)).Length) // In case cinemachine is beyond outside of index
-        {
-            cinemachineSwitcher = 0;
-        }
         switch (cinemachineSwitcher)
         {
             case CinemachineStateSwitcher.FirstPerson:
