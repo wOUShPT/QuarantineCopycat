@@ -8,6 +8,7 @@ public class InputManager : Singleton<InputManager>
     private InputActions _inputActions;
     private PlayerInputStruct _playerInput;
     private MenuInputStruct _menuInput;
+    private PhoneInputStruct _phoneInput;
 
 
     private void OnEnable()
@@ -23,8 +24,16 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Player.Interact.canceled += ctx => _playerInput.Interaction = ctx.ReadValue<float>();
             _inputActions.Player.Pause.performed += ctx => _playerInput.Pause = ctx.ReadValue<float>();
             _inputActions.Player.Pause.canceled += ctx => _playerInput.Pause = ctx.ReadValue<float>();
-            
-            
+            _inputActions.Player.UsePhone.performed += ctx => _playerInput.UsePhone = ctx.ReadValue<float>();
+            _inputActions.Player.UsePhone.canceled += ctx => _playerInput.UsePhone = ctx.ReadValue<float>();
+
+            _inputActions.Phone.Movement.performed += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
+            _inputActions.Phone.Movement.canceled += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
+            _inputActions.Phone.Select.performed += ctx => _phoneInput.Select = ctx.ReadValue<float>();
+            _inputActions.Phone.Select.canceled += ctx => _phoneInput.Select = ctx.ReadValue<float>();
+            _inputActions.Phone.Return.performed += ctx => _phoneInput.Return = ctx.ReadValue<float>();
+            _inputActions.Phone.Return.canceled += ctx => _phoneInput.Return = ctx.ReadValue<float>();
+
             _inputActions.Menus.Navigation.performed += ctx => _menuInput.Navigation = ctx.ReadValue<Vector2>();
             _inputActions.Menus.Navigation.canceled += ctx => _menuInput.Navigation = ctx.ReadValue<Vector2>();
             _inputActions.Menus.Confirm.performed += ctx => _menuInput.Confirm = ctx.ReadValue<float>();
@@ -76,6 +85,18 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
+    public void TogglePhoneControls(bool state)
+    {
+        if (state)
+        {
+            _inputActions.Phone.Enable();
+        }
+        else
+        {
+            _inputActions.Phone.Disable();
+        }
+    }
+
 
     public struct PlayerInputStruct
     {
@@ -83,7 +104,15 @@ public class InputManager : Singleton<InputManager>
         public Vector2 Look;
         public float Interaction;
         public float Pause;
+        public float UsePhone;
 
+    }
+
+    public struct PhoneInputStruct
+    {
+        public Vector2 Navigation;
+        public float Select;
+        public float Return;
     }
     
     public struct MenuInputStruct
@@ -96,4 +125,6 @@ public class InputManager : Singleton<InputManager>
     public PlayerInputStruct PlayerInput => _playerInput;
 
     public MenuInputStruct MenuInput => _menuInput;
+
+    public PhoneInputStruct PhoneInput => _phoneInput;
 }

@@ -66,7 +66,6 @@ public class AIChase : MonoBehaviour
         if (other.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement playerMovement))
         {
             //Stop AI Chasing
-            Debug.Log("Gameover");
             agent.isStopped = true;
         }
     }

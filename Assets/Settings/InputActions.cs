@@ -49,6 +49,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""UsePhone"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2190494-9513-4f3a-9518-b08b24895146"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -280,6 +288,126 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e03bc935-f580-400e-a9a5-10dd69b6e20e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""UsePhone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Phone"",
+            ""id"": ""66c4e581-9b11-45a8-92b8-14b40173473b"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""0138aeab-a494-46c9-a420-af294d990225"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Value"",
+                    ""id"": ""5281de8c-3b0c-4d0f-8dea-80c4d915826b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Return"",
+                    ""type"": ""Button"",
+                    ""id"": ""7493cbdc-4f0a-4289-be50-70854b860978"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""97fb26da-8066-40b2-9df0-ba181de8b75d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""831345b5-9984-4269-b149-2e78e8be4663"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""2b4f88af-81d5-48b4-8fb9-e528e63048fe"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ba9cf8ca-1fd6-429b-8f6f-82e31ff185d7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""98365e40-9554-4895-83d5-bb3b87064a0f"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4667d3d8-75c8-411d-aefb-97f98009ff9f"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34bf3001-f88c-4516-b981-f10be95e9636"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Return"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -624,6 +752,12 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_UsePhone = m_Player.FindAction("UsePhone", throwIfNotFound: true);
+        // Phone
+        m_Phone = asset.FindActionMap("Phone", throwIfNotFound: true);
+        m_Phone_Movement = m_Phone.FindAction("Movement", throwIfNotFound: true);
+        m_Phone_Select = m_Phone.FindAction("Select", throwIfNotFound: true);
+        m_Phone_Return = m_Phone.FindAction("Return", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Navigation = m_Menus.FindAction("Navigation", throwIfNotFound: true);
@@ -684,6 +818,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_UsePhone;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -692,6 +827,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @UsePhone => m_Wrapper.m_Player_UsePhone;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -713,6 +849,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @UsePhone.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUsePhone;
+                @UsePhone.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUsePhone;
+                @UsePhone.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUsePhone;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -729,10 +868,62 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @UsePhone.started += instance.OnUsePhone;
+                @UsePhone.performed += instance.OnUsePhone;
+                @UsePhone.canceled += instance.OnUsePhone;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Phone
+    private readonly InputActionMap m_Phone;
+    private IPhoneActions m_PhoneActionsCallbackInterface;
+    private readonly InputAction m_Phone_Movement;
+    private readonly InputAction m_Phone_Select;
+    private readonly InputAction m_Phone_Return;
+    public struct PhoneActions
+    {
+        private @InputActions m_Wrapper;
+        public PhoneActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Phone_Movement;
+        public InputAction @Select => m_Wrapper.m_Phone_Select;
+        public InputAction @Return => m_Wrapper.m_Phone_Return;
+        public InputActionMap Get() { return m_Wrapper.m_Phone; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PhoneActions set) { return set.Get(); }
+        public void SetCallbacks(IPhoneActions instance)
+        {
+            if (m_Wrapper.m_PhoneActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnMovement;
+                @Select.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnSelect;
+                @Return.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnReturn;
+                @Return.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnReturn;
+                @Return.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnReturn;
+            }
+            m_Wrapper.m_PhoneActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @Return.started += instance.OnReturn;
+                @Return.performed += instance.OnReturn;
+                @Return.canceled += instance.OnReturn;
+            }
+        }
+    }
+    public PhoneActions @Phone => new PhoneActions(this);
 
     // Menus
     private readonly InputActionMap m_Menus;
@@ -831,6 +1022,13 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnUsePhone(InputAction.CallbackContext context);
+    }
+    public interface IPhoneActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnReturn(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {
