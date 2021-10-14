@@ -7,7 +7,8 @@ public class PlayerPhone : MonoBehaviour
 {
     private ChangePhoneUI changePhone;
     [SerializeField]private Button primaryButton;
-    [SerializeField] private GameObject phone;
+    //make alpha 1 and 0
+    [SerializeField] private CanvasGroup phoneCanvasGroup;
 
     private delegate void PhoneFunctionDelegate();
     private PhoneFunctionDelegate phoneDelegate;
@@ -20,7 +21,9 @@ public class PlayerPhone : MonoBehaviour
     void Start()
     {
         primaryButton.Select();
-        phone.gameObject.SetActive(false);
+        phoneCanvasGroup.alpha = 0;
+        phoneCanvasGroup.interactable = false;
+        phoneCanvasGroup.blocksRaycasts = false;
         InputManager.Instance.TogglePhoneControls(false);
         phoneDelegate = DisplayPhone;
     }
@@ -36,14 +39,16 @@ public class PlayerPhone : MonoBehaviour
     private void DisplayPhone()
     {
         primaryButton.Select();
-        phone.SetActive(true);
+        phoneCanvasGroup.alpha = 1;
+        phoneCanvasGroup.interactable = true;
         InputManager.Instance.TogglePlayerControls(false);
         InputManager.Instance.TogglePhoneControls(true);
         phoneDelegate = HidePhone;
     }
     public void HidePhone() //Called by Animation as well
     {
-        phone.SetActive(false);
+        phoneCanvasGroup.alpha = 0;
+        phoneCanvasGroup.interactable = false;
         InputManager.Instance.TogglePlayerControls(true);
         InputManager.Instance.TogglePhoneControls(false);
         phoneDelegate = DisplayPhone;
