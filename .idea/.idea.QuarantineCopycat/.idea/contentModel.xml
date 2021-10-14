@@ -149,29 +149,41 @@
             <e p="AIChase.cs" t="Include" />
           </e>
           <e p="AnimatorReferences.cs" t="Include" />
+          <e p="Cinemachine" t="Include">
+            <e p="CameraFunctions.cs" t="Include" />
+            <e p="CinemachineFPExtension.cs" t="Include" />
+            <e p="CinemachineSwitcher.cs" t="Include" />
+          </e>
+          <e p="DartCollision.cs" t="Include" />
+          <e p="DartsBehaviour.cs" t="Include" />
           <e p="GameEvent.cs" t="Include" />
           <e p="GameEventListener.cs" t="Include" />
           <e p="HUDReferences.cs" t="Include" />
+          <e p="InteractionTrigger.cs" t="Include" />
           <e p="Interfaces" t="Include">
             <e p="Interactible.cs" t="Include" />
           </e>
+          <e p="Loader.cs" t="Include" />
           <e p="Managers" t="Include">
             <e p="GameManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
-            <e p="CinemachineFPExtension.cs" t="Include" />
             <e p="PlayerInteraction.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
+            <e p="PlayerPhone.cs" t="Include" />
           </e>
+          <e p="PlayerProperties.cs" t="Include" />
           <e p="SequenceReferences.cs" t="Include" />
           <e p="Singleton.cs" t="Include" />
-          <e p="Sleep.cs" t="Include" />
           <e p="Timeline" t="Include">
             <e p="SubtitleBehaviour.cs" t="Include" />
             <e p="SubtitleClip.cs" t="Include" />
             <e p="SubtitleTrack.cs" t="Include" />
             <e p="SubtitleTrackMixer.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="ChangePhoneUI.cs" t="Include" />
           </e>
         </e>
         <e p="Settings" t="Include">

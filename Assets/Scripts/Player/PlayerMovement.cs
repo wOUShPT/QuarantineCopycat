@@ -10,8 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float gravity;
     private CharacterController _characterController;
-    [SerializeField]
-    private CinemachineVirtualCamera camera;
+    
     void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -19,12 +18,18 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        if (PlayerProperties.FreezeMovement)
+        {
+            return;
+        }
+        
         UpdateRotation();
         UpdateMovement();
     }
 
     void UpdateMovement()
     {
+        
         Vector3 movementDirection = (transform.forward * InputManager.Instance.PlayerInput.Movement.z) + (transform.right * InputManager.Instance.PlayerInput.Movement.x);
         movementDirection += new Vector3(movementDirection.x , gravity, movementDirection.z);
         _characterController.Move(movementDirection * movementSpeed * Time.deltaTime);

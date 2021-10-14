@@ -20,8 +20,12 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Player.Movement.canceled += ctx => _playerInput.Movement = new Vector3(ctx.ReadValue<Vector2>().x, 0, ctx.ReadValue<Vector2>().y);
             _inputActions.Player.Look.performed += ctx => _playerInput.Look = ctx.ReadValue<Vector2>();
             _inputActions.Player.Look.canceled += ctx => _playerInput.Look = ctx.ReadValue<Vector2>();
-            _inputActions.Player.Interact.performed += ctx => _playerInput.Interaction = ctx.ReadValue<float>();
-            _inputActions.Player.Interact.canceled += ctx => _playerInput.Interaction = ctx.ReadValue<float>();
+            _inputActions.Player.Interact.performed += ctx => _playerInput.Interaction = true;
+            _inputActions.Player.Interact.canceled += ctx => _playerInput.Interaction = false;
+            _inputActions.Player.ExitInteraction.performed += ctx => _playerInput.ExitInteraction = true;
+            _inputActions.Player.ExitInteraction.canceled += ctx => _playerInput.ExitInteraction = false;
+            _inputActions.Player.Shoot.performed += ctx => _playerInput.Shoot = true;
+            _inputActions.Player.Shoot.canceled += ctx => _playerInput.Shoot = false;
             _inputActions.Player.Pause.performed += ctx => _playerInput.Pause = ctx.ReadValue<float>();
             _inputActions.Player.Pause.canceled += ctx => _playerInput.Pause = ctx.ReadValue<float>();
             _inputActions.Player.UsePhone.performed += ctx => _playerInput.UsePhone = ctx.ReadValue<float>();
@@ -102,7 +106,9 @@ public class InputManager : Singleton<InputManager>
     {
         public Vector3 Movement;
         public Vector2 Look;
-        public float Interaction;
+        public bool Interaction;
+        public bool ExitInteraction;
+        public bool Shoot;
         public float Pause;
         public float UsePhone;
 

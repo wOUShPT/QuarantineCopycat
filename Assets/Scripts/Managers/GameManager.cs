@@ -7,25 +7,24 @@ using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {
-    private int currentDayIndex;
-    public AnimatorReferences animatorReferences;
+    private int _currentDayIndex;
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        currentDayIndex = 1;
+        _currentDayIndex = 1;
         ChangeDay();
     }
 
     // CurrentDay index property
     public int CurrentDay
     {
-        get => currentDayIndex;
+        get => _currentDayIndex;
         set
         {
             if (value <= 7 && value > 0)
             {
-                currentDayIndex = value;
+                _currentDayIndex = value;
             }
             else
             {

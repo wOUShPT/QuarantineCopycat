@@ -57,6 +57,22 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ExitInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c044b9c-2667-4474-814f-d1aadad8e5f6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""5bc081ab-44c9-4128-8913-7f2085d0c4cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -260,19 +276,8 @@ public class @InputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""14dd00e7-1fa3-49fd-8cd0-f2ff9416bcb1"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""376cef4f-f28f-40dc-bed8-f1476eadf92a"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
@@ -299,6 +304,61 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
                     ""action"": ""UsePhone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""258518b0-9e29-4654-b37e-b5c27425c370"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""UsePhone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb36db3f-40a1-48e2-9c1f-aea7f9c00b3a"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""ExitInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02190c6f-37c9-487e-b43f-efd3d5aad1ad"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""ExitInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c9ab9d7-9861-4129-8041-8dfdbab38a86"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b423c4f4-e3c8-4847-be6c-530519ee2ded"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -753,6 +813,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_UsePhone = m_Player.FindAction("UsePhone", throwIfNotFound: true);
+        m_Player_ExitInteraction = m_Player.FindAction("ExitInteraction", throwIfNotFound: true);
+        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         // Phone
         m_Phone = asset.FindActionMap("Phone", throwIfNotFound: true);
         m_Phone_Movement = m_Phone.FindAction("Movement", throwIfNotFound: true);
@@ -819,6 +881,8 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_UsePhone;
+    private readonly InputAction m_Player_ExitInteraction;
+    private readonly InputAction m_Player_Shoot;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -828,6 +892,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @UsePhone => m_Wrapper.m_Player_UsePhone;
+        public InputAction @ExitInteraction => m_Wrapper.m_Player_ExitInteraction;
+        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -852,6 +918,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @UsePhone.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUsePhone;
                 @UsePhone.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUsePhone;
                 @UsePhone.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUsePhone;
+                @ExitInteraction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExitInteraction;
+                @ExitInteraction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExitInteraction;
+                @ExitInteraction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExitInteraction;
+                @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -871,6 +943,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @UsePhone.started += instance.OnUsePhone;
                 @UsePhone.performed += instance.OnUsePhone;
                 @UsePhone.canceled += instance.OnUsePhone;
+                @ExitInteraction.started += instance.OnExitInteraction;
+                @ExitInteraction.performed += instance.OnExitInteraction;
+                @ExitInteraction.canceled += instance.OnExitInteraction;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -1023,6 +1101,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnUsePhone(InputAction.CallbackContext context);
+        void OnExitInteraction(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
     public interface IPhoneActions
     {
