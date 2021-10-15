@@ -73,6 +73,22 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SwitchChannels"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e7afc56-15de-4323-8583-9acf49d0e18c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SwitchChannelVolume"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a1124c3-78ab-4fae-b16a-0411191b483d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -361,6 +377,204 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""e3afafa4-fc51-4161-baff-0545b0134c3b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchChannels"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fbe98b6a-3b98-46f6-b3ca-1cd46efe2282"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""SwitchChannels"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""bcc85edd-7adf-4f33-b758-15c20af36c17"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""SwitchChannels"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""8e645f8d-849b-4c74-889b-21f490e57e18"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchChannels"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""db5686e7-de24-4a37-b8dc-2201b9331e27"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""SwitchChannels"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""4232de1a-a4be-45ab-9d75-f32b2792324f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""SwitchChannels"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""70a7c50d-7ed6-4766-8cfc-d560b0cb6604"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchChannels"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""e317a802-10ca-45da-81e9-dcafcabd8684"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""SwitchChannels"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""849d59da-529f-40d0-a893-f897fa42b0b8"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""SwitchChannels"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""ba5e8af2-0bfa-4a5f-bf41-e692ae918dd0"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchChannelVolume"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""3f16df53-0035-4ac7-90f2-5448ea6ae5c7"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""SwitchChannelVolume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""a2230f5d-06ed-408c-8889-2f1199f9eba5"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""SwitchChannelVolume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""d5e1c06b-e4e7-49bc-ac7f-67520103b036"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchChannelVolume"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""5d263e0a-c0ca-46ab-8720-70e41ff76c74"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""SwitchChannelVolume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8c65bb31-c219-46ce-90dc-b68a3756c333"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""SwitchChannelVolume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""56214b78-03c8-4a2f-94d0-b63184eacdb8"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchChannelVolume"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""663e948c-e753-4e44-b8b5-b02a4e0411e9"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""SwitchChannelVolume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""0998b213-873d-492f-b38a-f8953bd26fb2"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""SwitchChannelVolume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -815,6 +1029,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_UsePhone = m_Player.FindAction("UsePhone", throwIfNotFound: true);
         m_Player_ExitInteraction = m_Player.FindAction("ExitInteraction", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_SwitchChannels = m_Player.FindAction("SwitchChannels", throwIfNotFound: true);
+        m_Player_SwitchChannelVolume = m_Player.FindAction("SwitchChannelVolume", throwIfNotFound: true);
         // Phone
         m_Phone = asset.FindActionMap("Phone", throwIfNotFound: true);
         m_Phone_Movement = m_Phone.FindAction("Movement", throwIfNotFound: true);
@@ -883,6 +1099,8 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_UsePhone;
     private readonly InputAction m_Player_ExitInteraction;
     private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_SwitchChannels;
+    private readonly InputAction m_Player_SwitchChannelVolume;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -894,6 +1112,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @UsePhone => m_Wrapper.m_Player_UsePhone;
         public InputAction @ExitInteraction => m_Wrapper.m_Player_ExitInteraction;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @SwitchChannels => m_Wrapper.m_Player_SwitchChannels;
+        public InputAction @SwitchChannelVolume => m_Wrapper.m_Player_SwitchChannelVolume;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -924,6 +1144,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @SwitchChannels.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannels;
+                @SwitchChannels.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannels;
+                @SwitchChannels.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannels;
+                @SwitchChannelVolume.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannelVolume;
+                @SwitchChannelVolume.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannelVolume;
+                @SwitchChannelVolume.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannelVolume;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -949,6 +1175,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @SwitchChannels.started += instance.OnSwitchChannels;
+                @SwitchChannels.performed += instance.OnSwitchChannels;
+                @SwitchChannels.canceled += instance.OnSwitchChannels;
+                @SwitchChannelVolume.started += instance.OnSwitchChannelVolume;
+                @SwitchChannelVolume.performed += instance.OnSwitchChannelVolume;
+                @SwitchChannelVolume.canceled += instance.OnSwitchChannelVolume;
             }
         }
     }
@@ -1103,6 +1335,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnUsePhone(InputAction.CallbackContext context);
         void OnExitInteraction(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnSwitchChannels(InputAction.CallbackContext context);
+        void OnSwitchChannelVolume(InputAction.CallbackContext context);
     }
     public interface IPhoneActions
     {

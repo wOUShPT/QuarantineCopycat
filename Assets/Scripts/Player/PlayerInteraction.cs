@@ -47,6 +47,9 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnDisable()
     {
-        _hudReferences.ToggleInteractionPrompt(false);
+        if (_hudReferences.interactionPrompt != null)
+        {
+            _hudReferences.ToggleInteractionPrompt(false);
+        }
     }
 }

@@ -30,6 +30,10 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Player.Pause.canceled += ctx => _playerInput.Pause = ctx.ReadValue<float>();
             _inputActions.Player.UsePhone.performed += ctx => _playerInput.UsePhone = ctx.ReadValue<float>();
             _inputActions.Player.UsePhone.canceled += ctx => _playerInput.UsePhone = ctx.ReadValue<float>();
+            _inputActions.Player.SwitchChannels.performed += ctx => _playerInput.SwitchTvChannel = ctx.ReadValue<float>();
+            _inputActions.Player.SwitchChannels.canceled += ctx => _playerInput.SwitchTvChannel = ctx.ReadValue<float>();
+            _inputActions.Player.SwitchChannelVolume.performed += ctx => _playerInput.SwitchTvVolume = ctx.ReadValue<float>();
+            _inputActions.Player.SwitchChannelVolume.canceled += ctx => _playerInput.SwitchTvVolume= ctx.ReadValue<float>();
 
             _inputActions.Phone.Movement.performed += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
             _inputActions.Phone.Movement.canceled += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
@@ -111,6 +115,8 @@ public class InputManager : Singleton<InputManager>
         public bool Shoot;
         public float Pause;
         public float UsePhone;
+        public float SwitchTvChannel;
+        public float SwitchTvVolume;
 
     }
 
