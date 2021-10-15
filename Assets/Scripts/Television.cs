@@ -100,7 +100,7 @@ public class Television : MonoBehaviour
     {
         _videoPlayer.clip = clips[_currentClipIndex];
         _videoPlayer.time = _clipsCurrentTime[_currentClipIndex];
-        //_videoPlayer.Play();
+        _videoPlayer.Play();
     }
 
 
@@ -109,7 +109,7 @@ public class Television : MonoBehaviour
         for (int i = 0; i < _clipsCurrentTime.Length; i++)
         {
             _clipsCurrentTime[i] = Mathf.Repeat((float)(_clipsCurrentTime[i] + Time.deltaTime), (float)_clipsTotalTime[i]);
-            Debug.Log(clips[i] + " : " + _clipsCurrentTime[i]);
+            //Debug.Log(clips[i] + " : " + _clipsCurrentTime[i]);
         }
     }
 
