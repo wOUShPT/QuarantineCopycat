@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Video;
 
-public class Television : MonoBehaviour
+public class TelevisionBehaviour : MonoBehaviour
 {
     private VideoPlayer _videoPlayer;
     [SerializeField]

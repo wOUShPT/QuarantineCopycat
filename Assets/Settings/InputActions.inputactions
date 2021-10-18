@@ -76,6 +76,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "TapNote",
+                    "type": "Value",
+                    "id": "cd0344bd-45b6-407b-b7b0-e80d4b3a3370",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "HoldNote",
+                    "type": "Button",
+                    "id": "bad3b4a0-a76e-4821-986c-03e3ec3a53bc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -496,6 +512,28 @@
                     "action": "SwitchChannelVolume",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a1fe13a4-490f-40ab-958b-b5a5ff097850",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "TapNote",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6225a83-7f46-4a69-97a6-01314ce07385",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "HoldNote",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

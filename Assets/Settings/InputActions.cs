@@ -89,6 +89,22 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""TapNote"",
+                    ""type"": ""Value"",
+                    ""id"": ""cd0344bd-45b6-407b-b7b0-e80d4b3a3370"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""HoldNote"",
+                    ""type"": ""Button"",
+                    ""id"": ""bad3b4a0-a76e-4821-986c-03e3ec3a53bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -509,6 +525,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""SwitchChannelVolume"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1fe13a4-490f-40ab-958b-b5a5ff097850"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""TapNote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6225a83-7f46-4a69-97a6-01314ce07385"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""HoldNote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -965,6 +1003,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_SwitchChannels = m_Player.FindAction("SwitchChannels", throwIfNotFound: true);
         m_Player_SwitchChannelVolume = m_Player.FindAction("SwitchChannelVolume", throwIfNotFound: true);
+        m_Player_TapNote = m_Player.FindAction("TapNote", throwIfNotFound: true);
+        m_Player_HoldNote = m_Player.FindAction("HoldNote", throwIfNotFound: true);
         // Phone
         m_Phone = asset.FindActionMap("Phone", throwIfNotFound: true);
         m_Phone_Movement = m_Phone.FindAction("Movement", throwIfNotFound: true);
@@ -1035,6 +1075,8 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_SwitchChannels;
     private readonly InputAction m_Player_SwitchChannelVolume;
+    private readonly InputAction m_Player_TapNote;
+    private readonly InputAction m_Player_HoldNote;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -1048,6 +1090,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @SwitchChannels => m_Wrapper.m_Player_SwitchChannels;
         public InputAction @SwitchChannelVolume => m_Wrapper.m_Player_SwitchChannelVolume;
+        public InputAction @TapNote => m_Wrapper.m_Player_TapNote;
+        public InputAction @HoldNote => m_Wrapper.m_Player_HoldNote;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1084,6 +1128,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @SwitchChannelVolume.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannelVolume;
                 @SwitchChannelVolume.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannelVolume;
                 @SwitchChannelVolume.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannelVolume;
+                @TapNote.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTapNote;
+                @TapNote.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTapNote;
+                @TapNote.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTapNote;
+                @HoldNote.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHoldNote;
+                @HoldNote.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHoldNote;
+                @HoldNote.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHoldNote;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1115,6 +1165,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @SwitchChannelVolume.started += instance.OnSwitchChannelVolume;
                 @SwitchChannelVolume.performed += instance.OnSwitchChannelVolume;
                 @SwitchChannelVolume.canceled += instance.OnSwitchChannelVolume;
+                @TapNote.started += instance.OnTapNote;
+                @TapNote.performed += instance.OnTapNote;
+                @TapNote.canceled += instance.OnTapNote;
+                @HoldNote.started += instance.OnHoldNote;
+                @HoldNote.performed += instance.OnHoldNote;
+                @HoldNote.canceled += instance.OnHoldNote;
             }
         }
     }
@@ -1271,6 +1327,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnSwitchChannels(InputAction.CallbackContext context);
         void OnSwitchChannelVolume(InputAction.CallbackContext context);
+        void OnTapNote(InputAction.CallbackContext context);
+        void OnHoldNote(InputAction.CallbackContext context);
     }
     public interface IPhoneActions
     {
