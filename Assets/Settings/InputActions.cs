@@ -105,6 +105,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Inspection"",
+                    ""type"": ""Button"",
+                    ""id"": ""89b1b522-f276-4cc9-81d6-03f439949927"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -547,6 +555,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""HoldNote"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15d2a95d-a923-4ad9-9124-167b2a25f4e3"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Inspection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -960,6 +979,74 @@ public class @InputActions : IInputActionCollection, IDisposable
             ""id"": ""e6fb9caa-6181-4ceb-8ec7-357ab01ab40e"",
             ""actions"": [],
             ""bindings"": []
+        },
+        {
+            ""name"": ""Inspection"",
+            ""id"": ""a9d18b30-5e3e-432d-be04-0e7999cc2d5b"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Button"",
+                    ""id"": ""edcf8fb7-32cf-403d-b921-d386b8094b29"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CancelInspection"",
+                    ""type"": ""Button"",
+                    ""id"": ""3de9ba19-c0c9-43c5-84e9-75a19c615501"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""47551477-4298-42df-9b2b-149d912c5719"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""68b9fa68-88eb-448f-9a41-33aa92c7fcdc"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8894f8e0-9d78-4fef-8fba-28373d400b6e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96054607-882d-4b18-9fde-273e06bc60ec"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""CancelInspection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1005,6 +1092,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_SwitchChannelVolume = m_Player.FindAction("SwitchChannelVolume", throwIfNotFound: true);
         m_Player_TapNote = m_Player.FindAction("TapNote", throwIfNotFound: true);
         m_Player_HoldNote = m_Player.FindAction("HoldNote", throwIfNotFound: true);
+        m_Player_Inspection = m_Player.FindAction("Inspection", throwIfNotFound: true);
         // Phone
         m_Phone = asset.FindActionMap("Phone", throwIfNotFound: true);
         m_Phone_Movement = m_Phone.FindAction("Movement", throwIfNotFound: true);
@@ -1017,6 +1105,10 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Menus_Back = m_Menus.FindAction("Back", throwIfNotFound: true);
         // DEBUG
         m_DEBUG = asset.FindActionMap("DEBUG", throwIfNotFound: true);
+        // Inspection
+        m_Inspection = asset.FindActionMap("Inspection", throwIfNotFound: true);
+        m_Inspection_Movement = m_Inspection.FindAction("Movement", throwIfNotFound: true);
+        m_Inspection_CancelInspection = m_Inspection.FindAction("CancelInspection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1077,6 +1169,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_SwitchChannelVolume;
     private readonly InputAction m_Player_TapNote;
     private readonly InputAction m_Player_HoldNote;
+    private readonly InputAction m_Player_Inspection;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -1092,6 +1185,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @SwitchChannelVolume => m_Wrapper.m_Player_SwitchChannelVolume;
         public InputAction @TapNote => m_Wrapper.m_Player_TapNote;
         public InputAction @HoldNote => m_Wrapper.m_Player_HoldNote;
+        public InputAction @Inspection => m_Wrapper.m_Player_Inspection;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1134,6 +1228,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @HoldNote.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHoldNote;
                 @HoldNote.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHoldNote;
                 @HoldNote.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHoldNote;
+                @Inspection.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInspection;
+                @Inspection.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInspection;
+                @Inspection.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInspection;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1171,6 +1268,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @HoldNote.started += instance.OnHoldNote;
                 @HoldNote.performed += instance.OnHoldNote;
                 @HoldNote.canceled += instance.OnHoldNote;
+                @Inspection.started += instance.OnInspection;
+                @Inspection.performed += instance.OnInspection;
+                @Inspection.canceled += instance.OnInspection;
             }
         }
     }
@@ -1298,6 +1398,47 @@ public class @InputActions : IInputActionCollection, IDisposable
         }
     }
     public DEBUGActions @DEBUG => new DEBUGActions(this);
+
+    // Inspection
+    private readonly InputActionMap m_Inspection;
+    private IInspectionActions m_InspectionActionsCallbackInterface;
+    private readonly InputAction m_Inspection_Movement;
+    private readonly InputAction m_Inspection_CancelInspection;
+    public struct InspectionActions
+    {
+        private @InputActions m_Wrapper;
+        public InspectionActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Inspection_Movement;
+        public InputAction @CancelInspection => m_Wrapper.m_Inspection_CancelInspection;
+        public InputActionMap Get() { return m_Wrapper.m_Inspection; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InspectionActions set) { return set.Get(); }
+        public void SetCallbacks(IInspectionActions instance)
+        {
+            if (m_Wrapper.m_InspectionActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_InspectionActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_InspectionActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_InspectionActionsCallbackInterface.OnMovement;
+                @CancelInspection.started -= m_Wrapper.m_InspectionActionsCallbackInterface.OnCancelInspection;
+                @CancelInspection.performed -= m_Wrapper.m_InspectionActionsCallbackInterface.OnCancelInspection;
+                @CancelInspection.canceled -= m_Wrapper.m_InspectionActionsCallbackInterface.OnCancelInspection;
+            }
+            m_Wrapper.m_InspectionActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @CancelInspection.started += instance.OnCancelInspection;
+                @CancelInspection.performed += instance.OnCancelInspection;
+                @CancelInspection.canceled += instance.OnCancelInspection;
+            }
+        }
+    }
+    public InspectionActions @Inspection => new InspectionActions(this);
     private int m_GamePadSchemeIndex = -1;
     public InputControlScheme GamePadScheme
     {
@@ -1329,6 +1470,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnSwitchChannelVolume(InputAction.CallbackContext context);
         void OnTapNote(InputAction.CallbackContext context);
         void OnHoldNote(InputAction.CallbackContext context);
+        void OnInspection(InputAction.CallbackContext context);
     }
     public interface IPhoneActions
     {
@@ -1344,5 +1486,10 @@ public class @InputActions : IInputActionCollection, IDisposable
     }
     public interface IDEBUGActions
     {
+    }
+    public interface IInspectionActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+        void OnCancelInspection(InputAction.CallbackContext context);
     }
 }

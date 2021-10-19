@@ -9,6 +9,7 @@ public class InputManager : Singleton<InputManager>
     private PlayerInputStruct _playerInput;
     private MenuInputStruct _menuInput;
     private PhoneInputStruct _phoneInput;
+    private InspectionInputStruct _inspectionInput;
 
 
     private void OnEnable()
@@ -35,6 +36,8 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Player.SwitchChannelVolume.performed += ctx => _playerInput.SwitchTvVolume = ctx.ReadValue<float>();
             _inputActions.Player.SwitchChannelVolume.canceled += ctx => _playerInput.SwitchTvVolume= ctx.ReadValue<float>();
             _inputActions.Player.TapNote.performed += ctx => _playerInput.TapNote = ctx.ReadValue<float>();
+            _inputActions.Player.Inspection.performed += ctx => _playerInput.Inspection = true;
+            _inputActions.Player.Inspection.canceled += ctx => _playerInput.Inspection = false;
             //_inputActions.Player.TapNote.canceled += ctx => _playerInput.TapNote = ctx.ReadValue<float>();
 
             _inputActions.Phone.Movement.performed += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
@@ -43,6 +46,11 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Phone.Select.canceled += ctx => _phoneInput.Select = ctx.ReadValue<float>();
             _inputActions.Phone.Return.performed += ctx => _phoneInput.Return = ctx.ReadValue<float>();
             _inputActions.Phone.Return.canceled += ctx => _phoneInput.Return = ctx.ReadValue<float>();
+
+            _inputActions.Inspection.CancelInspection.performed += ctx => _inspectionInput.CancelInspection = true;
+            _inputActions.Inspection.CancelInspection.canceled += ctx => _inspectionInput.CancelInspection = false;
+            _inputActions.Inspection.Movement.performed += ctx => _inspectionInput.TurnPage = ctx.ReadValue<float>();
+            _inputActions.Inspection.Movement.canceled += ctx => _inspectionInput.TurnPage = ctx.ReadValue<float>();
 
             _inputActions.Menus.Navigation.performed += ctx => _menuInput.Navigation = ctx.ReadValue<Vector2>();
             _inputActions.Menus.Navigation.canceled += ctx => _menuInput.Navigation = ctx.ReadValue<Vector2>();
@@ -107,6 +115,18 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
+    public void ToggleInspectionControls( bool state)
+    {
+        if(state)
+        {
+            _inputActions.Inspection.Enable();
+        }
+        else
+        {
+            _inputActions.Inspection.Disable();
+        }
+    }
+
 
     public struct PlayerInputStruct
     {
@@ -114,6 +134,7 @@ public class InputManager : Singleton<InputManager>
         public Vector2 Look;
         public bool Interaction;
         public bool ExitInteraction;
+        public bool Inspection;
         public bool Shoot;
         public float Pause;
         public float UsePhone;
@@ -136,10 +157,17 @@ public class InputManager : Singleton<InputManager>
         public float Confirm;
         public float Back;
     }
+    public struct InspectionInputStruct
+    {
+        public bool CancelInspection;
+        public float TurnPage;
+    }
 
     public PlayerInputStruct PlayerInput => _playerInput;
 
     public MenuInputStruct MenuInput => _menuInput;
 
     public PhoneInputStruct PhoneInput => _phoneInput;
+
+    public InspectionInputStruct InspectionInput => _inspectionInput;
 }
