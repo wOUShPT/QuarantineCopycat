@@ -1,26 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerRaycast : MonoBehaviour
 {
-    private RaycastHit _hit;
-    private Collider _currentCollider;
+    public Action<RaycastHit> raycastCallback;
+    private RaycastHit[] _hitResults;
+    private RaycastHit hit;
     [SerializeField]
     private float range;
-    
-    /*void FixedUpdate()
+
+    private void Awake()
     {
-        _currentCollider = null;
-        Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out _hit, range);
-        if (!_hit.collider)
+        _hitResults = new RaycastHit[1];
+    }
+
+    void FixedUpdate()
+    {
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        
+        int hits = Physics.RaycastNonAlloc(ray, _hitResults, range);
+
+        if (Physics.Raycast(ray, out hit, range))
         {
-            return;
+            raycastCallback(hit);
         }
 
-        _currentCollider = _hit.collider;
-    }*/
+        Debug.DrawRay(ray.origin, ray.direction, Color.green);
+    }
 
-    public Collider CurrentCollider => _currentCollider;
-    
 }
