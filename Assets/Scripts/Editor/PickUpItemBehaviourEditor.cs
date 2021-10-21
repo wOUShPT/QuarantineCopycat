@@ -23,6 +23,9 @@ public class PickUpItemBehaviourEditor : Editor
             case PickUpItemBehaviour.PickUpObjectType.Cloth:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("clothParams"));
                 break;
+            case PickUpItemBehaviour.PickUpObjectType.Disk:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("diskParams"));
+                break;
             case PickUpItemBehaviour.PickUpObjectType.Any:
                 break;
         }

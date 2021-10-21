@@ -6,7 +6,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
 {
     public enum PickUpObjectType
     {
-        Book, Cloth, Any
+        Book, Cloth, Disk, Any
     }
     [SerializeField] private PickUpObjectType objectType;
     public PickUpObjectType ObjectType => objectType;
@@ -20,6 +20,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     public Rigidbody BookRigidbody => bookRigidbody;
     private BoxCollider boxCollider;
     public BoxCollider BookCollider => boxCollider;
+    private bool wasInterected = false;
     //Need initial scale
     private Vector3 initialScale;
     public Vector3 InitialScale => initialScale;
@@ -30,34 +31,22 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     {
         [TextArea(2, 20)] public List<string> textList;
     }
+    public List<string> TextList => bookParams.textList;
     [SerializeField]private ClothParams clothParams;
     // Object Type == cloth
     [System.Serializable]
     public class ClothParams
     {
-        [SerializeField] private bool isClean = false;
+        public bool isClean = false;
     }
-    public List<string> TextList => bookParams.textList;
-
-    
-    public void Interact()
+    //Object Type == disk
+    [SerializeField]private DiskParams diskParams;
+    [System.Serializable]
+    public class DiskParams
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject != this.gameObject)
-            return;
-        if (!pickedUp)
-        {
-            playerPickUp.GetPickedupObject(this.gameObject);
-            Debug.Log("Pick");
-            pickedUp = true;
-        }
-        else if( pickedUp && playerPickUp.CurrentlyPickedUpObject != null)
-        {
-            StopAllCoroutines();
-            Debug.Log("Break");
-            playerPickUp.BreakConnection();
-            pickedUp = false;
-        } 
+        public AudioClip audioClip;
     }
+    public AudioClip AudioClip => diskParams.audioClip;
 
     private void Awake()
     {
@@ -66,6 +55,40 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         boxCollider = GetComponent<BoxCollider>();
         initialScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
     }
+    public void Interact()
+    {
+        if (wasInterected)
+            return;
+        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject != this.gameObject)
+            return;
+        if (!pickedUp)
+        {
+            PickUp();
+        }
+        else if( pickedUp && playerPickUp.CurrentlyPickedUpObject != null)
+        {
+            DropItem();
+        }
+        wasInterected = true;
+    }
+    private void PickUp()
+    {
+        playerPickUp.GetPickedupObject(this.gameObject);
+        pickedUp = true;
+    }
+    private void DropItem()
+    {
+        playerPickUp.BreakConnection();
+        pickedUp = false;
+    }
+    public void InteractExit()
+    {
+        if (wasInterected)
+        {
+            wasInterected = false;
+        }
+    }
+    
     //private void OnCollisionEnter(Collision collision)
     //{
     //    if (pickedUp)
@@ -77,10 +100,5 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     //    }
     //}
 
-    //prevent breaking when the player just pickedUp
-    public IEnumerator PickUp()
-    {
-        yield return new WaitForSeconds(waitOnPickup);
-        pickedUp = true;
-    }
+
 }

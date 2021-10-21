@@ -12,7 +12,7 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     private Rigidbody pickUpRB;
 
     [Header("ObjectFollow")]
-    private PickUpItemBehaviour bookBehaviour;
+    private PickUpItemBehaviour pickUpItem;
 
 
     private BookInspection bookInspection;
@@ -36,7 +36,8 @@ public class PlayerPickUpBehaviour : MonoBehaviour
         pickUpRB.isKinematic = false;
         pickUpRB = null;
         currentlyPickedUpObject = null;
-        bookBehaviour.PickedUp = false;
+        pickUpItem.PickedUp = false;
+        pickUpItem = null;
     }
     public void PickUpObject()
     {
@@ -46,17 +47,17 @@ public class PlayerPickUpBehaviour : MonoBehaviour
         currentlyPickedUpObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
         currentlyPickedUpObject.transform.localScale = currentlyPickedUpObject.GetComponent<PickUpItemBehaviour>().InitialScale;
 
-        bookBehaviour = currentlyPickedUpObject.GetComponent<PickUpItemBehaviour>();
+        pickUpItem = currentlyPickedUpObject.GetComponent<PickUpItemBehaviour>();
         //assign rigidbody and make it kinematic
-        pickUpRB = bookBehaviour.BookRigidbody;
+        pickUpRB = pickUpItem.BookRigidbody;
         pickUpRB.constraints = RigidbodyConstraints.FreezeRotation;
         pickUpRB.isKinematic = true;
     }
     private void Update()
     {
-        if (currentlyPickedUpObject != null && bookBehaviour.ObjectType == PickUpItemBehaviour.PickUpObjectType.Book && InputManager.Instance.PlayerInput.Inspection)
+        if (currentlyPickedUpObject != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Book && InputManager.Instance.PlayerInput.Inspection)
         {
-            bookInspection.SetTextArray(bookBehaviour.TextList);
+            bookInspection.SetTextArray(pickUpItem.TextList);
             bookInspection.DisplayBook();
             InputManager.Instance.ToggleInspectionControls(true);
             InputManager.Instance.TogglePlayerControls(false);

@@ -15,6 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     private LayerMask interactablesLayer;
     private HUDReferences _hudReferences;
     private RaycastHit[] _hitResults;
+    private Transform raycastTransform;
     void Start()
     {
         _hudReferences = FindObjectOfType<HUDReferences>();
@@ -65,14 +66,46 @@ public class PlayerInteraction : MonoBehaviour
         }
         
         _hudReferences.ToggleInteractionPrompt(false);
-
+        
         if (hit.transform.TryGetComponent(out IInteractable interactable) && Vector3.Distance(Camera.main.transform.position, hit.point) <= range)
         {
+            
             _hudReferences.ToggleInteractionPrompt(true);
             if (InputManager.Instance.PlayerInput.Interaction)
             {
+                //Being interactive
+                CheckChangedRaycastTarget(hit.transform);
                 interactable.Interact();
             }
+            else
+            {
+                CheckChangedRaycastTarget(null);
+            }
         }
+        else
+        {
+            CheckChangedRaycastTarget(null);
+        }
+    }
+    private void CheckChangedRaycastTarget(Transform _targetTransform)
+    {
+        
+        if(_targetTransform != raycastTransform && raycastTransform != null)
+        {
+            //Changed target and raycasTransform is not null
+            if (raycastTransform.TryGetComponent(out PickUpItemBehaviour pickUpItem))
+            {
+                pickUpItem.InteractExit();
+            }
+            else if( raycastTransform.TryGetComponent(out ItemSpot bookSpot))
+            {
+                bookSpot.ExitInteract();
+            }
+            else if( raycastTransform.TryGetComponent(out VinylDiskBehaviour vinylDisk))
+            {
+                vinylDisk.ExitInteraction();
+            }
+        }
+        raycastTransform = _targetTransform;
     }
 }
