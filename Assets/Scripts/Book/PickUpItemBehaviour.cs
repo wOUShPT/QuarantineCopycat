@@ -89,7 +89,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         playerPickUp.BreakConnection();
         pickedUp = false;
     }
-    public void InteractExit()
+    public void ExitInteract()
     {
         if (wasInterected)
         {

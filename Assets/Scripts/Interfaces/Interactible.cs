@@ -5,4 +5,6 @@ public interface IInteractable
     float InteractionDistance();
     
     void Interact();
+
+    void ExitInteract();
 }

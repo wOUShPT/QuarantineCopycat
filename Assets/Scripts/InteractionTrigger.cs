@@ -24,4 +24,9 @@ public class InteractionTrigger : MonoBehaviour , IInteractable
         gameEvent.Raise();
         _hudReferences.ToggleInteractionPrompt(false);
     }
+
+    public void ExitInteract()
+    {
+
+    }
 }

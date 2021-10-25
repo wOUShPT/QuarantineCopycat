@@ -11,6 +11,7 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     private Animator rightDoorAnimator;
     private delegate void DoorsInteraction();
     private DoorsInteraction doorsInteraction;
+    private bool wasInteracted = false;
     
     private void Awake()
     {
@@ -27,7 +28,16 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (wasInteracted)
+        {
+            return;
+        }
         doorsInteraction?.Invoke();
+        wasInteracted = true;
+    }
+    public void ExitInteract()
+    {
+        wasInteracted = false;
     }
     private void OpenDoors()
     {

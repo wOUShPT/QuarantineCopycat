@@ -93,17 +93,9 @@ public class PlayerInteraction : MonoBehaviour
         if(_targetTransform != raycastTransform && raycastTransform != null)
         {
             //Changed target and raycasTransform is not null
-            if (raycastTransform.TryGetComponent(out PickUpItemBehaviour pickUpItem))
+            if (raycastTransform.TryGetComponent(out IInteractable interactable))
             {
-                pickUpItem.InteractExit();
-            }
-            else if( raycastTransform.TryGetComponent(out ItemSpot bookSpot))
-            {
-                bookSpot.ExitInteract();
-            }
-            else if( raycastTransform.TryGetComponent(out VinylDiskBehaviour vinylDisk))
-            {
-                vinylDisk.ExitInteraction();
+                interactable.ExitInteract();
             }
         }
         raycastTransform = _targetTransform;
