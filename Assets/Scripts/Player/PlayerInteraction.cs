@@ -67,7 +67,7 @@ public class PlayerInteraction : MonoBehaviour
         
         _hudReferences.ToggleInteractionPrompt(false);
         
-        if (hit.transform.TryGetComponent(out IInteractable interactable) && Vector3.Distance(Camera.main.transform.position, hit.point) <= range)
+        if (hit.transform.TryGetComponent(out IInteractable interactable)  && Vector3.Distance(Camera.main.transform.position, hit.point) <= (interactable.InteractionDistance() == 0 ? range : interactable.InteractionDistance()))
         {
             
             _hudReferences.ToggleInteractionPrompt(true);

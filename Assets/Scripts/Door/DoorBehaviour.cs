@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoorBehaviour : MonoBehaviour, IInteractable
 {
+    [SerializeField] private float interactionDistance;
     [SerializeField] private GameObject leftDoor;
     [SerializeField] private GameObject rightDoor;
     private Animator leftDoorAnimator;
@@ -18,6 +19,12 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
         rightDoorAnimator = rightDoor.GetComponent<Animator>();
         doorsInteraction += OpenDoors;
     }
+
+    public float InteractionDistance()
+    {
+        return interactionDistance;
+    }
+
     public void Interact()
     {
         doorsInteraction?.Invoke();

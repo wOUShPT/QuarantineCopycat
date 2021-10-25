@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PickUpItemBehaviour : MonoBehaviour, IInteractable
 {
+    [SerializeField]
+    private float interactionDistance;
     public enum PickUpObjectType
     {
         Book, Cloth, Disk, Any
@@ -55,6 +57,12 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         boxCollider = GetComponent<BoxCollider>();
         initialScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
     }
+
+    public float InteractionDistance()
+    {
+        return interactionDistance;
+    }
+
     public void Interact()
     {
         if (wasInterected)

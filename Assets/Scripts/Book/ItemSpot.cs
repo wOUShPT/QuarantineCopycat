@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemSpot : MonoBehaviour, IInteractable
 {
+    [SerializeField] private float interactionDistance;
     [SerializeField] private PickUpItemBehaviour.PickUpObjectType dropObjectType;
     public PickUpItemBehaviour.PickUpObjectType DropObjectType => dropObjectType;
     private bool wasInterected = false;
@@ -67,6 +68,11 @@ public class ItemSpot : MonoBehaviour, IInteractable
                 interactDelegate += CheckPlayerHasCloth;
                 break;
         }
+    }
+
+    public float InteractionDistance()
+    {
+        return interactionDistance;
     }
 
     public void Interact()

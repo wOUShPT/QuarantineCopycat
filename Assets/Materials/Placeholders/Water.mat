@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pee
+  m_Name: Water
   m_Shader: {fileID: 4800000, guid: c4edd00ff2db5b24391a4fcb1762e459, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT
     _MATERIAL_FEATURE_TRANSMISSION _NORMALMAP_TANGENT_SPACE _SURFACE_TYPE_TRANSPARENT
@@ -298,7 +298,7 @@ Material:
     - _BaseColor: {r: 0.995689, g: 1, b: 0.61006284, a: 0.5176471}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 1, g: 0.9866037, b: 0.5981132, a: 0.27450982}
+    - _Color: {r: 0.67358494, g: 1, b: 0.9865145, a: 0.27450982}
     - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
@@ -314,6 +314,6 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _UnlitColor: {r: 1, g: 0.98660374, b: 0.5981132, a: 0.27450982}
+    - _UnlitColor: {r: 0.67358494, g: 1, b: 0.9865145, a: 0.27450982}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
