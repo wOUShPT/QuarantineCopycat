@@ -67,12 +67,20 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""ShootIn"",
                     ""type"": ""Button"",
                     ""id"": ""5bc081ab-44c9-4128-8913-7f2085d0c4cc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=1),Hold""
+                },
+                {
+                    ""name"": ""ShootOut"",
+                    ""type"": ""Button"",
+                    ""id"": ""c40ec3ed-cd47-4a2a-803e-1eb175d2d800"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(pressPoint=1,behavior=1)""
                 },
                 {
                     ""name"": ""SwitchChannels"",
@@ -387,7 +395,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootIn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -398,7 +406,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootIn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -549,7 +557,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""f6225a83-7f46-4a69-97a6-01314ce07385"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Tap(duration=3,pressPoint=1)"",
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
                     ""action"": ""HoldNote"",
@@ -564,6 +572,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
                     ""action"": ""Inspection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc614747-3b5c-450c-98bf-8b324ec686f6"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""ShootOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af0685d0-547a-4759-a7e5-1247fc059e04"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""ShootOut"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1087,7 +1117,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_UsePhone = m_Player.FindAction("UsePhone", throwIfNotFound: true);
         m_Player_ExitInteraction = m_Player.FindAction("ExitInteraction", throwIfNotFound: true);
-        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_ShootIn = m_Player.FindAction("ShootIn", throwIfNotFound: true);
+        m_Player_ShootOut = m_Player.FindAction("ShootOut", throwIfNotFound: true);
         m_Player_SwitchChannels = m_Player.FindAction("SwitchChannels", throwIfNotFound: true);
         m_Player_SwitchChannelVolume = m_Player.FindAction("SwitchChannelVolume", throwIfNotFound: true);
         m_Player_TapNote = m_Player.FindAction("TapNote", throwIfNotFound: true);
@@ -1164,7 +1195,8 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_UsePhone;
     private readonly InputAction m_Player_ExitInteraction;
-    private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_ShootIn;
+    private readonly InputAction m_Player_ShootOut;
     private readonly InputAction m_Player_SwitchChannels;
     private readonly InputAction m_Player_SwitchChannelVolume;
     private readonly InputAction m_Player_TapNote;
@@ -1180,7 +1212,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @UsePhone => m_Wrapper.m_Player_UsePhone;
         public InputAction @ExitInteraction => m_Wrapper.m_Player_ExitInteraction;
-        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @ShootIn => m_Wrapper.m_Player_ShootIn;
+        public InputAction @ShootOut => m_Wrapper.m_Player_ShootOut;
         public InputAction @SwitchChannels => m_Wrapper.m_Player_SwitchChannels;
         public InputAction @SwitchChannelVolume => m_Wrapper.m_Player_SwitchChannelVolume;
         public InputAction @TapNote => m_Wrapper.m_Player_TapNote;
@@ -1213,9 +1246,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @ExitInteraction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExitInteraction;
                 @ExitInteraction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExitInteraction;
                 @ExitInteraction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExitInteraction;
-                @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @ShootIn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootIn;
+                @ShootIn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootIn;
+                @ShootIn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootIn;
+                @ShootOut.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootOut;
+                @ShootOut.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootOut;
+                @ShootOut.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootOut;
                 @SwitchChannels.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannels;
                 @SwitchChannels.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannels;
                 @SwitchChannels.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchChannels;
@@ -1253,9 +1289,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @ExitInteraction.started += instance.OnExitInteraction;
                 @ExitInteraction.performed += instance.OnExitInteraction;
                 @ExitInteraction.canceled += instance.OnExitInteraction;
-                @Shoot.started += instance.OnShoot;
-                @Shoot.performed += instance.OnShoot;
-                @Shoot.canceled += instance.OnShoot;
+                @ShootIn.started += instance.OnShootIn;
+                @ShootIn.performed += instance.OnShootIn;
+                @ShootIn.canceled += instance.OnShootIn;
+                @ShootOut.started += instance.OnShootOut;
+                @ShootOut.performed += instance.OnShootOut;
+                @ShootOut.canceled += instance.OnShootOut;
                 @SwitchChannels.started += instance.OnSwitchChannels;
                 @SwitchChannels.performed += instance.OnSwitchChannels;
                 @SwitchChannels.canceled += instance.OnSwitchChannels;
@@ -1465,7 +1504,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnUsePhone(InputAction.CallbackContext context);
         void OnExitInteraction(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
+        void OnShootIn(InputAction.CallbackContext context);
+        void OnShootOut(InputAction.CallbackContext context);
         void OnSwitchChannels(InputAction.CallbackContext context);
         void OnSwitchChannelVolume(InputAction.CallbackContext context);
         void OnTapNote(InputAction.CallbackContext context);

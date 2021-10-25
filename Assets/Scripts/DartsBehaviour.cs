@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Timers;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class DartsBehaviour : MonoBehaviour
@@ -11,6 +12,13 @@ public class DartsBehaviour : MonoBehaviour
     private PlayerMovement _playerMovement;
     [SerializeField]
     private CinemachineVirtualCamera _camera;
+    private float _defaultFOV;
+    private float _currentFOV;
+    private float _defaultNoiseAmp;
+    private float _currentNoiseAmp;
+    private float _defaultNoiseFreq;
+    private float _currentNoiseFreq;
+    private CinemachineBasicMultiChannelPerlin _cameraNoise;
     [SerializeField] 
     private GameObject dartsPoolParent;
     private List<Rigidbody> _dartsPool;
@@ -24,24 +32,40 @@ public class DartsBehaviour : MonoBehaviour
     private RaycastHit[] _hitResults;
     private float _coolDownTime = 1f;
     private float _timer;
+    private float _precisionTimer;
     private bool _canShoot;
+    private bool _isHolding;
+    private float shotVelMultiplier;
     [SerializeField] 
     private GameEvent _exitDarts;
 
     private void Awake()
     {
         _timer = 0;
+        _precisionTimer = 0;
         _canShoot = false;
+        _isHolding = false;
         _hitResults = new RaycastHit[1];
         InitPool();
         _timer = _coolDownTime + 1f;
         enabled = false;
+        _cameraNoise = _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     void OnEnable()
     {
         PlayerProperties.FreezeMovement = true;
+        if (_defaultFOV == 0 || _defaultNoiseAmp == 0 || _defaultNoiseFreq == 0)
+        {
+            _defaultFOV = _camera.m_Lens.FieldOfView;
+            _defaultNoiseAmp = _cameraNoise.m_AmplitudeGain;
+            _defaultNoiseFreq = _cameraNoise.m_FrequencyGain;
+        }
+        _currentFOV = _defaultFOV;
+        _currentNoiseAmp = _defaultNoiseAmp;
+        _currentNoiseFreq = _defaultNoiseFreq;
         _canShoot = false;
+        _isHolding = false;
         _timer = _coolDownTime + 1f;
     }
 
@@ -49,15 +73,35 @@ public class DartsBehaviour : MonoBehaviour
     {
         _timer += Time.deltaTime;
         _timer = Mathf.Clamp(_timer, 0f, _coolDownTime + 1f);
-        if (InputManager.Instance.PlayerInput.Shoot)
+
+        if (InputManager.Instance.PlayerInput.Shoot.hasStarted)
         {
-            if (_timer > _coolDownTime)
-            {
-                _timer = 0;
-                _canShoot = true;
-                return;
-            }
+            _isHolding = true;
+            _precisionTimer += Time.deltaTime;
+            _precisionTimer = Mathf.Clamp(_precisionTimer, 0f, 5f);
+            _currentFOV = Mathf.Lerp(_currentFOV, 10, Time.deltaTime * 1);
+            _currentNoiseAmp = Mathf.Lerp(_currentNoiseAmp, 1f, Time.deltaTime);
+            _currentNoiseFreq = Mathf.Lerp(_currentNoiseFreq, 1f, Time.deltaTime);
+            _cameraNoise.m_AmplitudeGain = _currentNoiseAmp;
+            _cameraNoise.m_FrequencyGain = _currentNoiseFreq;
+            _camera.m_Lens.FieldOfView = _currentFOV;
         }
+        
+        if ((InputManager.Instance.PlayerInput.Shoot.isDone && _isHolding) || _precisionTimer >= 3.5f)
+        {
+            _precisionTimer = 0;
+            _isHolding = false;
+            shotVelMultiplier = MapValue(0, 3, 0.3f, 1, InputManager.Instance.PlayerInput.Shoot.holdTime);
+            _canShoot = true;
+            _currentFOV = _defaultFOV;
+            _currentNoiseAmp = _defaultNoiseAmp;
+            _currentNoiseFreq = _defaultNoiseFreq;
+            _cameraNoise.m_AmplitudeGain = _currentNoiseAmp;
+            _cameraNoise.m_FrequencyGain = _currentNoiseFreq;
+            _camera.m_Lens.FieldOfView = _currentFOV;
+            return;
+        }
+
         if (InputManager.Instance.PlayerInput.ExitInteraction)
         {
            _exitDarts.Raise();
@@ -79,7 +123,7 @@ public class DartsBehaviour : MonoBehaviour
             dart.velocity = Vector3.zero;
             dart.angularDrag = 0;
             dart.angularVelocity = Vector3.zero;
-            dart.AddForce(Camera.main.transform.forward * 50, ForceMode.Impulse);
+            dart.AddForce(Camera.main.transform.forward * 55 * shotVelMultiplier, ForceMode.Impulse);
         }
     }
 
@@ -138,5 +182,15 @@ public class DartsBehaviour : MonoBehaviour
         dart.position = Camera.main.transform.position;
         dart.rotation = Quaternion.identity;
         dart.rotation = Quaternion.Euler(0, 0, 90);
+    }
+    
+    
+    public float MapValue(float oldMin, float oldMax, float newMin, float newMax, float currentValue){
+ 
+        float oldRange = (oldMax - oldMin);
+        float newRange = (newMax - newMin);
+        float newValue = (((currentValue - oldMin) * newRange) / oldRange) + newMin;
+ 
+        return(newValue);
     }
 }

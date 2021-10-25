@@ -9,8 +9,10 @@ public class ItemSpotEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-
+        
         ItemSpot itemSpot = (ItemSpot)target;
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("interactionDistance"));
+        
         EditorGUILayout.PropertyField(serializedObject.FindProperty("dropObjectType"));
 
         switch (itemSpot.DropObjectType)

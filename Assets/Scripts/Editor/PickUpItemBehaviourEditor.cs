@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(PickUpItemBehaviour))]
+[CanEditMultipleObjects]
 public class PickUpItemBehaviourEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -12,6 +13,8 @@ public class PickUpItemBehaviourEditor : Editor
 
         PickUpItemBehaviour pickUpItemBehaviour = (PickUpItemBehaviour)target;
 
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("interactionDistance"));
+        
         EditorGUILayout.PropertyField(serializedObject.FindProperty("objectType"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("waitOnPickup"));
 

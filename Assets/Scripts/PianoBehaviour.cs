@@ -61,7 +61,7 @@ public class PianoBehaviour : MonoBehaviour
 
     void InteractKeyboard(RaycastHit hit)
     {
-        Debug.Log(hit.transform.gameObject);
+        //Debug.Log(hit.transform.gameObject);
         if (InputManager.Instance.PlayerInput.TapNote > 0)
         {
             for (int i = 0; i < _keysColliders.Count; i++)

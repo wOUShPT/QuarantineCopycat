@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : Singleton<InputManager>
 {
@@ -12,7 +14,7 @@ public class InputManager : Singleton<InputManager>
     private InspectionInputStruct _inspectionInput;
 
 
-    private void OnEnable()
+    private void Awake()
     {
         if (_inputActions == null)
         {
@@ -25,8 +27,25 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Player.Interact.canceled += ctx => _playerInput.Interaction = false;
             _inputActions.Player.ExitInteraction.performed += ctx => _playerInput.ExitInteraction = true;
             _inputActions.Player.ExitInteraction.canceled += ctx => _playerInput.ExitInteraction = false;
-            _inputActions.Player.Shoot.performed += ctx => _playerInput.Shoot = true;
-            _inputActions.Player.Shoot.canceled += ctx => _playerInput.Shoot = false;
+            _playerInput.Shoot = new HoldButton();
+            _playerInput.Shoot.phase = _inputActions.Player.ShootIn.phase;
+            _inputActions.Player.ShootIn.started += ctx =>
+            {
+                _playerInput.Shoot.hasStarted = true; ;
+                _playerInput.Shoot.isDone = false;
+                _playerInput.Shoot.startTime = (float)ctx.time;
+                _playerInput.Shoot.holdTime = 0;
+            };
+            _inputActions.Player.ShootIn.performed += ctx => 
+            {
+                _playerInput.Shoot.hasStarted = false;
+                _playerInput.Shoot.isDone = true;
+                _playerInput.Shoot.holdTime = (float) (ctx.time - _playerInput.Shoot.startTime);
+                _playerInput.Shoot.startTime = (float)ctx.time;
+            };
+            
+            
+
             _inputActions.Player.Pause.performed += ctx => _playerInput.Pause = ctx.ReadValue<float>();
             _inputActions.Player.Pause.canceled += ctx => _playerInput.Pause = ctx.ReadValue<float>();
             _inputActions.Player.UsePhone.performed += ctx => _playerInput.UsePhone = ctx.ReadValue<float>();
@@ -38,7 +57,6 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Player.TapNote.performed += ctx => _playerInput.TapNote = ctx.ReadValue<float>();
             _inputActions.Player.Inspection.performed += ctx => _playerInput.Inspection = true;
             _inputActions.Player.Inspection.canceled += ctx => _playerInput.Inspection = false;
-            //_inputActions.Player.TapNote.canceled += ctx => _playerInput.TapNote = ctx.ReadValue<float>();
 
             _inputActions.Phone.Movement.performed += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
             _inputActions.Phone.Movement.canceled += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
@@ -115,9 +133,9 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    public void ToggleInspectionControls( bool state)
+    public void ToggleInspectionControls(bool state)
     {
-        if(state)
+        if (state)
         {
             _inputActions.Inspection.Enable();
         }
@@ -135,7 +153,7 @@ public class InputManager : Singleton<InputManager>
         public bool Interaction;
         public bool ExitInteraction;
         public bool Inspection;
-        public bool Shoot;
+        public HoldButton Shoot;
         public float Pause;
         public float UsePhone;
         public float SwitchTvChannel;
@@ -143,6 +161,16 @@ public class InputManager : Singleton<InputManager>
         public float TapNote;
 
     }
+
+    public struct HoldButton
+    {
+        public bool hasStarted;
+        public InputActionPhase phase;
+        public bool isDone;
+        public float startTime;
+        public float holdTime;
+    }
+    
 
     public struct PhoneInputStruct
     {
@@ -161,6 +189,12 @@ public class InputManager : Singleton<InputManager>
     {
         public bool CancelInspection;
         public float TurnPage;
+    }
+
+    private async Task<bool> SetFalse()
+    {
+        await Task.Delay((int) (0.1f * 1000f));
+        return false;
     }
 
     public PlayerInputStruct PlayerInput => _playerInput;

@@ -31,7 +31,7 @@ public class CinemachineSwitcher : MonoBehaviour
                 {
                     _cameraExtensions[i] = extension;
                     #if UNITY_EDITOR
-                    Debug.Log("Extension Found : " + extension);
+                    //Debug.Log("Extension Found : " + extension);
                     #endif
                 }
                 else
@@ -51,7 +51,7 @@ public class CinemachineSwitcher : MonoBehaviour
     {
         inputAction.Disable();
     }
-    // Start is called before the first frame update
+    
     void Start()
     {
         inputAction.performed += _ => ChangeToDarts(); 

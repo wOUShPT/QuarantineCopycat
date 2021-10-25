@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PickUpItemBehaviour : MonoBehaviour, IInteractable
@@ -8,7 +9,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private float interactionDistance;
     public enum PickUpObjectType
     {
-        Book, Cloth, Disk, Any
+        Book, Cloth, Disk, Bread, Any
     }
     [SerializeField] private PickUpObjectType objectType;
     public PickUpObjectType ObjectType => objectType;

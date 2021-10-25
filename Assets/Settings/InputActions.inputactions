@@ -54,12 +54,20 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Shoot",
+                    "name": "ShootIn",
                     "type": "Button",
                     "id": "5bc081ab-44c9-4128-8913-7f2085d0c4cc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=1),Hold"
+                },
+                {
+                    "name": "ShootOut",
+                    "type": "Button",
+                    "id": "c40ec3ed-cd47-4a2a-803e-1eb175d2d800",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(pressPoint=1,behavior=1)"
                 },
                 {
                     "name": "SwitchChannels",
@@ -374,7 +382,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse&Keyboard",
-                    "action": "Shoot",
+                    "action": "ShootIn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -385,7 +393,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
-                    "action": "Shoot",
+                    "action": "ShootIn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -536,7 +544,7 @@
                     "name": "",
                     "id": "f6225a83-7f46-4a69-97a6-01314ce07385",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold",
+                    "interactions": "Tap(duration=3,pressPoint=1)",
                     "processors": "",
                     "groups": "Mouse&Keyboard",
                     "action": "HoldNote",
@@ -551,6 +559,28 @@
                     "processors": "",
                     "groups": "Mouse&Keyboard",
                     "action": "Inspection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc614747-3b5c-450c-98bf-8b324ec686f6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "ShootOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af0685d0-547a-4759-a7e5-1247fc059e04",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "ShootOut",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
