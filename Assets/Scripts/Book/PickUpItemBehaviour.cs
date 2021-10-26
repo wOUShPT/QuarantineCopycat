@@ -13,16 +13,15 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     [SerializeField] private PickUpObjectType objectType;
     public PickUpObjectType ObjectType => objectType;
-    [SerializeField] private float waitOnPickup = 0.2f;
     //[SerializeField] private float breakForce = 35f;
     private bool pickedUp = false;
     public bool PickedUp { get { return pickedUp; } set { pickedUp = value; } }
     private PlayerPickUpBehaviour playerPickUp;
 
-    private Rigidbody bookRigidbody;
-    public Rigidbody BookRigidbody => bookRigidbody;
-    private BoxCollider boxCollider;
-    public BoxCollider BookCollider => boxCollider;
+    private Rigidbody itemRigidbody;
+    public Rigidbody ItemRigidbody => itemRigidbody;
+    private BoxCollider itemCollider;
+    public BoxCollider ItemCollider => itemCollider;
     private bool wasInterected = false;
     //Need initial scale
     private Vector3 initialScale;
@@ -50,12 +49,23 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         public AudioClip audioClip;
     }
     public AudioClip AudioClip => diskParams.audioClip;
+    //Object type == Beard
+    [SerializeField] private BreadParams breadParams;
+    [System.Serializable]
+    public class BreadParams
+    {
+        public bool isReady = false;
+        public Transform leftToast;
+        public Transform rightToast;
+    }
+    public Transform LeftToast => breadParams.leftToast;
+    public Transform RightToast => breadParams.rightToast;
 
     private void Awake()
     {
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
-        bookRigidbody = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<BoxCollider>();
+        itemRigidbody = GetComponent<Rigidbody>();
+        itemCollider = GetComponent<BoxCollider>();
         initialScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
     }
 

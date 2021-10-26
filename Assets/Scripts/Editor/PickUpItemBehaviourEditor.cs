@@ -16,7 +16,6 @@ public class PickUpItemBehaviourEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("interactionDistance"));
         
         EditorGUILayout.PropertyField(serializedObject.FindProperty("objectType"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("waitOnPickup"));
 
         switch (pickUpItemBehaviour.ObjectType)
         {
@@ -28,6 +27,9 @@ public class PickUpItemBehaviourEditor : Editor
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Disk:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("diskParams"));
+                break;
+            case PickUpItemBehaviour.PickUpObjectType.Bread:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("breadParams"));
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Any:
                 break;

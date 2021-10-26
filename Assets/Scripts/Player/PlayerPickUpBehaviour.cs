@@ -16,7 +16,8 @@ public class PlayerPickUpBehaviour : MonoBehaviour
 
 
     private BookInspection bookInspection;
-    private void Awake()
+
+    private void Start()
     {
         InputManager.Instance.ToggleInspectionControls(false);
         bookInspection = FindObjectOfType<BookInspection>();
@@ -49,9 +50,10 @@ public class PlayerPickUpBehaviour : MonoBehaviour
 
         pickUpItem = currentlyPickedUpObject.GetComponent<PickUpItemBehaviour>();
         //assign rigidbody and make it kinematic
-        pickUpRB = pickUpItem.BookRigidbody;
+        pickUpRB = pickUpItem.ItemRigidbody;
         pickUpRB.constraints = RigidbodyConstraints.FreezeRotation;
         pickUpRB.isKinematic = true;
+        pickUpItem.ItemCollider.isTrigger = false;
     }
     private void Update()
     {

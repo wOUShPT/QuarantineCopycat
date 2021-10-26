@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class ItemSpot : MonoBehaviour, IInteractable
 {
@@ -18,7 +19,7 @@ public class ItemSpot : MonoBehaviour, IInteractable
     private InteractDelegate interactDelegate;
 
     private Stack<ClothParams> clothParamsStack;
-    //Cloth
+    //Object type == Cloth
     [System.Serializable]
     public class ClothParams
     {
@@ -34,6 +35,7 @@ public class ItemSpot : MonoBehaviour, IInteractable
 
     [SerializeField]private Transform[] holderPositionArray;
     [SerializeField] private int maxNumberCloths = 3;
+    //Object type == disk
     [SerializeField]private DiskParams diskParams;
     [System.Serializable]
     public class DiskParams
@@ -41,15 +43,27 @@ public class ItemSpot : MonoBehaviour, IInteractable
         public VinylDiskBehaviour diskBehaviour;
         public AudioClip targetMusic;
     }
+    [SerializeField] private BreadParams breadParams;
+    [System.Serializable]
+    public class BreadParams
+    {
+        public BoxCollider InteractionTriggerCollider;
+        public BoxCollider boxCollider;
+        public Transform LeftToasterPivot;
+        public Transform RightToasterPivot;
+        public Transform LeftToast;
+        public Transform RightToast;
+        public bool IsBreadDoing;
+    }
     // Awake
     private void Awake()
     {
-        clothParamsStack = new Stack<ClothParams>();
         
+        clothParamsStack = new Stack<ClothParams>();
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();      
         switch (dropObjectType)
         {
-            case PickUpItemBehaviour.PickUpObjectType.Any:
+            case PickUpItemBehaviour.PickUpObjectType.Any: //Book or any
             case PickUpItemBehaviour.PickUpObjectType.Book:
                 interactDelegate += CheckPlayerHasBook;
                 if (transform.childCount > 0)
@@ -67,6 +81,12 @@ public class ItemSpot : MonoBehaviour, IInteractable
             case PickUpItemBehaviour.PickUpObjectType.Cloth:
                 interactDelegate += CheckPlayerHasCloth;
                 break;
+            case PickUpItemBehaviour.PickUpObjectType.Bread:
+                breadParams.boxCollider = GetComponent<BoxCollider>();
+                breadParams.InteractionTriggerCollider.enabled = false;
+                breadParams.boxCollider.enabled = true;
+                interactDelegate = CheckPlayerHasBread;
+                break;
         }
     }
 
@@ -83,7 +103,7 @@ public class ItemSpot : MonoBehaviour, IInteractable
             wasInterected = true;
         }
     }
-    private bool CheckCanInteract()
+    private bool CheckCanInteract() //Avoid doing multiple times
     {
         if(!wasInterected)
         {
@@ -98,7 +118,8 @@ public class ItemSpot : MonoBehaviour, IInteractable
             wasInterected = !wasInterected;
         }
     }
-    //Related to book target
+    #region Book or Any
+    //Related to book target or any
     private void CheckPlayerHasBook()
     {
         if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour bookBehaviour)) // it's a book player has picked
@@ -111,53 +132,51 @@ public class ItemSpot : MonoBehaviour, IInteractable
             item.PickedUp = false;
             playerPickUp.BreakConnection(); // Drop book
             PlaceItemToSpot();
-            interactDelegate = DisplayOccupiedWarning;
+            interactDelegate = TakeItemToPlayer;
         }
     }
     private void PlaceItemToSpot()
     {
-        Debug.Log(item.name);
         item.transform.SetParent(childrenItemSpot != null ? childrenItemSpot :this.transform );
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.Euler(Vector3.zero);
         item.transform.localScale = item.InitialScale;
-        item.BookRigidbody.isKinematic = true;
-        item.BookCollider.isTrigger = true;
+        item.ItemRigidbody.isKinematic = true;
+        item.ItemCollider.isTrigger = true;
     }
-    private void DisplayOccupiedWarning()
+    private void TakeItemToPlayer()
     {
         if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour bookBehaviour)) // it's a book player has picked
         {
             //has something
-            Debug.Log("Occupied");
+            return;
         }
-        else // Player took the book
+        // Player took the book or any
+        playerPickUp.GetPickedupObject(item.gameObject);
+        item = null;
+        switch (dropObjectType)
         {
-            playerPickUp.GetPickedupObject(item.gameObject);
-            item.BookRigidbody.isKinematic = true;
-            item.BookCollider.isTrigger = false;
-            item = null;
-            switch (dropObjectType)
-            {
-                case PickUpItemBehaviour.PickUpObjectType.Book:
-                case PickUpItemBehaviour.PickUpObjectType.Any:
-                    interactDelegate = CheckPlayerHasBook;
-                    break;
-                case PickUpItemBehaviour.PickUpObjectType.Disk:                  
-                    //Stop disk vinyl music
-                    diskParams.diskBehaviour.StopVinylDisk();
-                    diskParams.targetMusic = null;
-                    interactDelegate = CheckPlayerHasDisk;
-                    break;
-            }
+            case PickUpItemBehaviour.PickUpObjectType.Book:
+            case PickUpItemBehaviour.PickUpObjectType.Any:
+                interactDelegate = CheckPlayerHasBook;
+                break;
+            case PickUpItemBehaviour.PickUpObjectType.Disk:
+                //Stop disk vinyl music
+                diskParams.diskBehaviour.StopVinylDisk();
+                diskParams.targetMusic = null;
+                interactDelegate = CheckPlayerHasDisk;
+                break;
         }
     }
+    #endregion
+
+    #region Cloth Scripts Related
     //Related Cloth Spot
     private void CheckPlayerHasCloth()
     {
         if( playerPickUp.CurrentlyPickedUpObject == null)
         {
-            if (CheckHasCloths())
+            if (CheckLaundryHasCloths())
             {
                 TakeClothFromChest();
             }
@@ -185,14 +204,14 @@ public class ItemSpot : MonoBehaviour, IInteractable
             }
         }
     }
-    private void PlaceClothToCest(PickUpItemBehaviour _pickUpItem) // Set the item droped and put on the stack
+    private void PlaceClothToCest(PickUpItemBehaviour _pickUpItem) // Set the item droped and put on the stack in the laundry
     {
         _pickUpItem.transform.SetParent(holderPositionArray[clothParamsStack.Count]);
         _pickUpItem.transform.localPosition = Vector3.zero;
         _pickUpItem.transform.localRotation = Quaternion.Euler(Vector3.zero);
         _pickUpItem.transform.localScale = _pickUpItem.InitialScale;
-        _pickUpItem.BookRigidbody.isKinematic = true;
-        _pickUpItem.BookCollider.isTrigger = true;
+        _pickUpItem.ItemRigidbody.isKinematic = true;
+        _pickUpItem.ItemCollider.isTrigger = true;
         clothParamsStack.Push(new ClothParams(holderPositionArray[clothParamsStack.Count],_pickUpItem ));
     }
     
@@ -200,20 +219,17 @@ public class ItemSpot : MonoBehaviour, IInteractable
     {
         if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour pickUpItemBehaviour)) // it's a book player has picked
         {
-            //has something
-            Debug.Log("Occupied: Player has" + playerPickUp.CurrentlyPickedUpObject);
-            Debug.Log(pickUpItemBehaviour.gameObject.name);
             CheckPlayerHasCloth();
         }
         else // Player took cloth
         {
             ClothParams clothParams = clothParamsStack.Pop();
-            clothParams.itemBehaviour.BookCollider.isTrigger = false;
-            clothParams.itemBehaviour.BookRigidbody.isKinematic = true;
+            clothParams.itemBehaviour.ItemCollider.isTrigger = false;
+            clothParams.itemBehaviour.ItemRigidbody.isKinematic = true;
             playerPickUp.GetPickedupObject(clothParams.itemBehaviour.gameObject);
         }
     }
-    private bool CheckHasCloths()
+    private bool CheckLaundryHasCloths() //Check the laundry has cloths
     {
         if(clothParamsStack.Count  > 0)
         {
@@ -221,7 +237,10 @@ public class ItemSpot : MonoBehaviour, IInteractable
         }
         return false; // no cloths
     }
-    //Related to cloth
+    #endregion
+
+    #region Disk
+    //Related to disk
     private void CheckPlayerHasDisk()
     {
         if(playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour pickUpItem))
@@ -234,8 +253,84 @@ public class ItemSpot : MonoBehaviour, IInteractable
                 PlaceItemToSpot();
                 diskParams.targetMusic = pickUpItem.AudioClip;
                 diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
-                interactDelegate = DisplayOccupiedWarning;
+                interactDelegate = TakeItemToPlayer;
             }
         }
     }
+    #endregion
+
+    #region Bread/Toast
+    //Related to bread
+    private void CheckPlayerHasBread()
+    {
+        if( playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour pickUpItem))
+        {
+            if( pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Bread)
+            {
+                item = pickUpItem;
+                item.PickedUp = false;
+                playerPickUp.BreakConnection();
+                PlaceBreadToMachine();
+                //It's doing imediatly maybe needs a courotine
+                StartCoroutine(WaitToMakeToastWork());
+                interactDelegate = TakeBreadToPlayer;
+            }
+        }
+    }
+    private void PlaceBreadToMachine() //Still doing for braid
+    {
+        breadParams.LeftToast = item.LeftToast;
+        breadParams.LeftToast.SetParent(breadParams.LeftToasterPivot);
+        SetBreadValues(breadParams.LeftToast);
+        breadParams.RightToast = item.RightToast;
+        breadParams.RightToast.SetParent(breadParams.RightToasterPivot);
+        SetBreadValues(breadParams.RightToast);
+
+        item.ItemRigidbody.isKinematic = true;
+        item.ItemCollider.isTrigger = true;
+    }
+    private void SetBreadValues(Transform _item) //Set collider to trigger and rb to kinematic
+    {
+        _item.localPosition = Vector3.zero;
+        _item.localRotation = Quaternion.Euler(Vector3.zero);
+    }
+    private void TakeBreadToPlayer()
+    {
+        if (breadParams.IsBreadDoing)
+            return;
+        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour bookBehaviour)) // it's a book player has picked
+        {         
+            return; //player has picked up something
+        }
+        // Player took the book or any
+        breadParams.LeftToast.SetParent(item.transform);
+        SetBreadValues(breadParams.LeftToast);
+        breadParams.LeftToast = null;
+        breadParams.RightToast.SetParent(item.transform);
+        SetBreadValues(breadParams.RightToast);
+        breadParams.RightToast = null;
+        playerPickUp.GetPickedupObject(item.gameObject);
+        
+        item = null;
+
+        interactDelegate = CheckPlayerHasBread;
+    }
+    public void BreadReady() //30 second has passed by timeline
+    {
+        breadParams.IsBreadDoing = false;
+        breadParams.InteractionTriggerCollider.enabled = false;
+    }
+    public void ToasterMakingToasts()
+    {
+        breadParams.IsBreadDoing = true;
+        breadParams.InteractionTriggerCollider.enabled = false;
+        breadParams.boxCollider.enabled = true;
+    }
+    IEnumerator WaitToMakeToastWork()
+    {
+        breadParams.boxCollider.enabled = false;
+        yield return new WaitForSeconds(.6f); //Avoid interact immediatly with the toast
+        breadParams.InteractionTriggerCollider.enabled = true;
+    }
+    #endregion
 }
