@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class ItemSpot : MonoBehaviour, IInteractable
 {
@@ -43,17 +42,29 @@ public class ItemSpot : MonoBehaviour, IInteractable
         public VinylDiskBehaviour diskBehaviour;
         public AudioClip targetMusic;
     }
+    //Object type == Bread
     [SerializeField] private BreadParams breadParams;
     [System.Serializable]
     public class BreadParams
     {
         public BoxCollider InteractionTriggerCollider;
-        public BoxCollider boxCollider;
+        public BoxCollider BoxCollider;
         public Transform LeftToasterPivot;
         public Transform RightToasterPivot;
         public Transform LeftToast;
         public Transform RightToast;
         public bool IsBreadDoing;
+    }
+
+    //Object Type == Coffee Machine
+    [SerializeField] private CoffeeMachineParams coffeeMachineParams;
+    [System.Serializable]
+    public class CoffeeMachineParams
+    {
+        public BoxCollider InteractionTriggerCollider;
+        public BoxCollider BoxCollider;
+        public Transform CoffeePivot;
+        public bool IsCoffeeBeDoing;
     }
     // Awake
     private void Awake()
@@ -82,10 +93,16 @@ public class ItemSpot : MonoBehaviour, IInteractable
                 interactDelegate += CheckPlayerHasCloth;
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Bread:
-                breadParams.boxCollider = GetComponent<BoxCollider>();
+                breadParams.BoxCollider = GetComponent<BoxCollider>();
                 breadParams.InteractionTriggerCollider.enabled = false;
-                breadParams.boxCollider.enabled = true;
+                breadParams.BoxCollider.enabled = true;
                 interactDelegate = CheckPlayerHasBread;
+                break;
+            case PickUpItemBehaviour.PickUpObjectType.Coffee:
+                coffeeMachineParams.BoxCollider = GetComponent<BoxCollider>();
+                coffeeMachineParams.InteractionTriggerCollider.enabled = false;
+                coffeeMachineParams.BoxCollider.enabled = true;
+                interactDelegate = CheckPlayerHasCoffee;
                 break;
         }
     }
@@ -138,11 +155,15 @@ public class ItemSpot : MonoBehaviour, IInteractable
     private void PlaceItemToSpot()
     {
         item.transform.SetParent(childrenItemSpot != null ? childrenItemSpot :this.transform );
-        item.transform.localPosition = Vector3.zero;
-        item.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
         item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.isTrigger = true;
+    }
+    private void SetItemValuesDefault(Transform _item) //Set collider to trigger and rb to kinematic
+    {
+        _item.localPosition = Vector3.zero;
+        _item.localRotation = Quaternion.Euler(Vector3.zero);
     }
     private void TakeItemToPlayer()
     {
@@ -281,19 +302,14 @@ public class ItemSpot : MonoBehaviour, IInteractable
     {
         breadParams.LeftToast = item.LeftToast;
         breadParams.LeftToast.SetParent(breadParams.LeftToasterPivot);
-        SetBreadValues(breadParams.LeftToast);
+        SetItemValuesDefault(breadParams.LeftToast);
         breadParams.RightToast = item.RightToast;
         breadParams.RightToast.SetParent(breadParams.RightToasterPivot);
-        SetBreadValues(breadParams.RightToast);
-
+        SetItemValuesDefault(breadParams.RightToast);
         item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.isTrigger = true;
     }
-    private void SetBreadValues(Transform _item) //Set collider to trigger and rb to kinematic
-    {
-        _item.localPosition = Vector3.zero;
-        _item.localRotation = Quaternion.Euler(Vector3.zero);
-    }
+    
     private void TakeBreadToPlayer()
     {
         if (breadParams.IsBreadDoing)
@@ -304,33 +320,115 @@ public class ItemSpot : MonoBehaviour, IInteractable
         }
         // Player took the book or any
         breadParams.LeftToast.SetParent(item.transform);
-        SetBreadValues(breadParams.LeftToast);
+        SetItemValuesDefault(breadParams.LeftToast);
         breadParams.LeftToast = null;
         breadParams.RightToast.SetParent(item.transform);
-        SetBreadValues(breadParams.RightToast);
+        SetItemValuesDefault(breadParams.RightToast);
         breadParams.RightToast = null;
         playerPickUp.GetPickedupObject(item.gameObject);
-        
         item = null;
-
         interactDelegate = CheckPlayerHasBread;
     }
     public void BreadReady() //30 second has passed by timeline
     {
-        breadParams.IsBreadDoing = false;
-        breadParams.InteractionTriggerCollider.enabled = false;
+        switch(dropObjectType)
+        {
+            case PickUpItemBehaviour.PickUpObjectType.Bread:
+                breadParams.IsBreadDoing = false;
+                breadParams.InteractionTriggerCollider.enabled = false;
+                break;
+            case PickUpItemBehaviour.PickUpObjectType.Coffee:
+                coffeeMachineParams.IsCoffeeBeDoing = false;
+                coffeeMachineParams.InteractionTriggerCollider.enabled = false;
+                break;
+            default:
+                break;
+        }
+        
     }
-    public void ToasterMakingToasts()
+    public void ToasterMakingToasts() //timeline as well
     {
-        breadParams.IsBreadDoing = true;
-        breadParams.InteractionTriggerCollider.enabled = false;
-        breadParams.boxCollider.enabled = true;
+        switch(dropObjectType)
+        {
+            case PickUpItemBehaviour.PickUpObjectType.Bread:
+                breadParams.IsBreadDoing = true;
+                breadParams.InteractionTriggerCollider.enabled = false;
+                breadParams.BoxCollider.enabled = true;
+                break;
+            case PickUpItemBehaviour.PickUpObjectType.Coffee:
+                coffeeMachineParams.IsCoffeeBeDoing = true;
+                coffeeMachineParams.InteractionTriggerCollider.enabled = false;
+                coffeeMachineParams.BoxCollider.enabled = true;
+                break;
+            default:
+                break;
+        }
+        
     }
     IEnumerator WaitToMakeToastWork()
     {
-        breadParams.boxCollider.enabled = false;
+        switch (dropObjectType)
+        {
+            case PickUpItemBehaviour.PickUpObjectType.Bread:
+                breadParams.BoxCollider.enabled = false;
+                break;
+            case PickUpItemBehaviour.PickUpObjectType.Coffee:
+                coffeeMachineParams.BoxCollider.enabled = false;
+                break;
+            default:
+                break;
+        }
+        
         yield return new WaitForSeconds(.6f); //Avoid interact immediatly with the toast
-        breadParams.InteractionTriggerCollider.enabled = true;
+        switch (dropObjectType)
+        {
+            case PickUpItemBehaviour.PickUpObjectType.Bread:
+                breadParams.InteractionTriggerCollider.enabled = true;
+                break;
+            case PickUpItemBehaviour.PickUpObjectType.Coffee:
+                coffeeMachineParams.InteractionTriggerCollider.enabled = true;
+                break;
+            default:
+                break;
+        }
+        
+    }
+    #endregion
+
+    #region CoffeeMachine
+    private void CheckPlayerHasCoffee()
+    {
+        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour pickUpItem))
+        {
+            if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Coffee)
+            {
+                item = pickUpItem;
+                item.PickedUp = false;
+                playerPickUp.BreakConnection(); //Player will drop
+                PlaceCoffeeToMachine();
+                //It's doing imediatly maybe needs a courotine
+                StartCoroutine(WaitToMakeToastWork());
+                interactDelegate = PickedCoffeByPlayer;
+            }
+        }
+    }
+    private void PlaceCoffeeToMachine()
+    {
+        item.transform.SetParent(coffeeMachineParams.CoffeePivot);
+        SetItemValuesDefault(item.transform);
+        item.ItemRigidbody.isKinematic = true;
+        item.ItemCollider.isTrigger = true;
+    }
+    private void PickedCoffeByPlayer()
+    {
+        if (coffeeMachineParams.IsCoffeeBeDoing)
+            return;
+        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour bookBehaviour)) // it's a book player has picked
+            return; //player has picked up something
+        // Player took the coffee
+        playerPickUp.GetPickedupObject(item.gameObject);
+        item = null;
+        interactDelegate = CheckPlayerHasBread;
     }
     #endregion
 }

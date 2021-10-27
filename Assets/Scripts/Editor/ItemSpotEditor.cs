@@ -32,6 +32,9 @@ public class ItemSpotEditor : Editor
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Bread:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("breadParams"));
+                break;           
+            case PickUpItemBehaviour.PickUpObjectType.Coffee:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("coffeeMachineParams"));
                 break;
             default:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("childrenItemSpot"));

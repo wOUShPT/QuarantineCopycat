@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 7400000, guid: 7f9ba73cf52ca234c8696c2c5b673906, type: 2}
+  m_Clip: {fileID: 7400000, guid: 3ca6e8722386e6941b3f10a52d18fb8e, type: 2}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 7400000, guid: 3d32c2a861bf9d147bac48ddfe772a4d, type: 2}
+  m_Clip: {fileID: 7400000, guid: f88266824fdd5c14089fa1ec6f232d69, type: 2}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -194,7 +194,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: 29.833333333333332
     m_PreExtrapolationTime: 0
-    m_DisplayName: BreadIn
+    m_DisplayName: CoffeeIn
   - m_Version: 1
     m_Start: 30
     m_ClipIn: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
     m_PreExtrapolationTime: 0
-    m_DisplayName: BreadIOut
+    m_DisplayName: CoffeeOut
   m_Markers:
     m_Objects: []
   m_InfiniteClipPreExtrapolation: 0

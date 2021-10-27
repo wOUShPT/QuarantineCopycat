@@ -31,6 +31,9 @@ public class PickUpItemBehaviourEditor : Editor
             case PickUpItemBehaviour.PickUpObjectType.Bread:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("breadParams"));
                 break;
+            case PickUpItemBehaviour.PickUpObjectType.Coffee:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("coffeeParams"));
+                break;
             case PickUpItemBehaviour.PickUpObjectType.Any:
                 break;
         }

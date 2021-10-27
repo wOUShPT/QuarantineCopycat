@@ -9,7 +9,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private float interactionDistance;
     public enum PickUpObjectType
     {
-        Book, Cloth, Disk, Bread, Any
+        Book, Cloth, Disk, Bread, Any, Coffee
     }
     [SerializeField] private PickUpObjectType objectType;
     public PickUpObjectType ObjectType => objectType;
@@ -61,6 +61,13 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     public Transform LeftToast => breadParams.leftToast;
     public Transform RightToast => breadParams.rightToast;
 
+    //Object type == Coffee
+    [SerializeField]private CoffeeParams coffeeParams;
+    [System.Serializable]
+    public class CoffeeParams
+    {
+        public bool isReady;
+    }
     private void Awake()
     {
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
