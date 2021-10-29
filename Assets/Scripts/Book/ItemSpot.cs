@@ -68,8 +68,7 @@ public class ItemSpot : MonoBehaviour, IInteractable
     }
     // Awake
     private void Awake()
-    {
-        
+    {        
         clothParamsStack = new Stack<ClothParams>();
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();      
         switch (dropObjectType)
@@ -340,6 +339,7 @@ public class ItemSpot : MonoBehaviour, IInteractable
             case PickUpItemBehaviour.PickUpObjectType.Coffee:
                 coffeeMachineParams.IsCoffeeBeDoing = false;
                 coffeeMachineParams.InteractionTriggerCollider.enabled = false;
+                item.ItemCollider.enabled = true;
                 break;
             default:
                 break;
@@ -404,6 +404,7 @@ public class ItemSpot : MonoBehaviour, IInteractable
             {
                 item = pickUpItem;
                 item.PickedUp = false;
+                item.ItemCollider.enabled = false;
                 playerPickUp.BreakConnection(); //Player will drop
                 PlaceCoffeeToMachine();
                 //It's doing imediatly maybe needs a courotine

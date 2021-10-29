@@ -12,7 +12,7 @@ public class CinemachineSwitcher : MonoBehaviour
     
     public enum CinemachineStateSwitcher
     {
-        FirstPerson, SecondPerson, Darts, Toilet, Bath
+        FirstPerson, SecondPerson, Darts, Toilet, Bath, BrushTeeth
     }
     private CinemachineStateSwitcher cinemachineSwitcher;
     private CinemachineExtension[] _cameraExtensions;
@@ -84,6 +84,11 @@ public class CinemachineSwitcher : MonoBehaviour
         cinemachineSwitcher = CinemachineStateSwitcher.Bath;
         SwitchState();
     }
+    public void ChangeToBrushTeeth()
+    {
+        cinemachineSwitcher = CinemachineStateSwitcher.BrushTeeth;
+        SwitchState();
+    }
 
     public void SwitchCamera(CinemachineStateSwitcher state)
     {
@@ -127,6 +132,11 @@ public class CinemachineSwitcher : MonoBehaviour
                 animator.Play("BathCameraState");
                 StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 //fPExtension.IsFirstPerson = true;
+                break;
+            case CinemachineStateSwitcher.BrushTeeth:
+                ToggleCurrentCinemachineExtension(false);
+                animator.Play("BrushTeethState");
+                StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 break;
         }
     }

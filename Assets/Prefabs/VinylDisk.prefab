@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1212702634666704665}
   - component: {fileID: 1212702634666704664}
   - component: {fileID: 1212702634666704667}
-  - component: {fileID: 1212702634666704677}
+  - component: {fileID: 677869083}
   m_Layer: 0
   m_Name: VinylDisk
   m_TagString: Untagged
@@ -210,7 +210,7 @@ MonoBehaviour:
   audioClipArray:
   - {fileID: 8300000, guid: 056b4c870e07dc548855f0064fd44ef0, type: 3}
   - {fileID: 8300000, guid: 347f3bad0ed54a640815297937b4e83e, type: 3}
---- !u!114 &1212702634666704677
+--- !u!114 &677869083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1212702634666704666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b122ed2aa11784baf7297081d4111a, type: 3}
+  m_Script: {fileID: 11500000, guid: e647e7e83fd65084e9830846f8c5db4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDistance: 0
@@ -228,13 +228,18 @@ MonoBehaviour:
   holderPositionArray: []
   maxNumberCloths: 3
   diskParams:
-    diskBehaviour: {fileID: 0}
+    diskBehaviour: {fileID: 1212702634666704667}
     targetMusic: {fileID: 0}
   breadParams:
     InteractionTriggerCollider: {fileID: 0}
-    boxCollider: {fileID: 0}
+    BoxCollider: {fileID: 0}
     LeftToasterPivot: {fileID: 0}
     RightToasterPivot: {fileID: 0}
     LeftToast: {fileID: 0}
     RightToast: {fileID: 0}
     IsBreadDoing: 0
+  coffeeMachineParams:
+    InteractionTriggerCollider: {fileID: 0}
+    BoxCollider: {fileID: 0}
+    CoffeePivot: {fileID: 0}
+    IsCoffeeBeDoing: 0

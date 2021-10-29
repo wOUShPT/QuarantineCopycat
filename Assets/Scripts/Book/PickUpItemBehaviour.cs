@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
 public class PickUpItemBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField]
     private float interactionDistance;
     public enum PickUpObjectType
     {
-        Book, Cloth, Disk, Bread, Any, Coffee
+        Book, Cloth, Disk, Bread, Any, Coffee, Toothbrush, WateringCan
     }
     [SerializeField] private PickUpObjectType objectType;
     public PickUpObjectType ObjectType => objectType;
@@ -68,6 +69,24 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     {
         public bool isReady;
     }
+    //Object type == Toothbrush
+    [SerializeField] private ToothBrushParams brushParams;
+    [System.Serializable]
+    public class ToothBrushParams
+    {
+        public bool hasToothpaste;
+        public Transform toothBrush;
+    }
+    public Transform ToothBrush => brushParams.toothBrush;
+    public bool HasToothpaste { get { return brushParams.hasToothpaste; } set { brushParams.hasToothpaste = value; } }
+    //Object type == WateringCan
+    [SerializeField] private WateringCanParams wateringCanParams;
+    [System.Serializable]
+    public class WateringCanParams
+    {
+        public ParticleSystem waterParticle;
+    }
+    public ParticleSystem GetWaterParticle => wateringCanParams.waterParticle;
     private void Awake()
     {
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();

@@ -1,15 +1,15 @@
-using UnityEditor;
 
-[CustomEditor(typeof(ItemSpot))]
-public class ItemSpotEditor : Editor
+using UnityEditor;
+[CustomEditor(typeof(ItemSpotBehaviour), true)] //True cause can be for his child as well
+public class ItemSpotBehaviourEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        
-        ItemSpot itemSpot = (ItemSpot)target;
+
+        ItemSpotBehaviour itemSpot = (ItemSpotBehaviour)target;
         EditorGUILayout.PropertyField(serializedObject.FindProperty("interactionDistance"));
-        
+
         EditorGUILayout.PropertyField(serializedObject.FindProperty("dropObjectType"));
 
         switch (itemSpot.DropObjectType)
@@ -29,7 +29,7 @@ public class ItemSpotEditor : Editor
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Bread:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("breadParams"));
-                break;           
+                break;
             case PickUpItemBehaviour.PickUpObjectType.Coffee:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("coffeeMachineParams"));
                 break;
