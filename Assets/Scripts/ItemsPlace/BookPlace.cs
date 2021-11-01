@@ -16,13 +16,14 @@ public class BookPlace : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour bookBehaviour)) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
         {
-            if (bookBehaviour.ObjectType != DropObjectType && DropObjectType != PickUpItemBehaviour.PickUpObjectType.Any)
+            PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
+            if (pickUpItem.ObjectType != DropObjectType && DropObjectType != PickUpItemBehaviour.PickUpObjectType.Any)
             {
                 return; //can't put an cloth on a book spot
             }
-            item = bookBehaviour;
+            item = pickUpItem;
             item.PickedUp = false;
             playerPickUp.BreakConnection(); // Drop book
             PlaceItemToSpot();
@@ -32,13 +33,13 @@ public class BookPlace : ItemSpotBehaviour
 
     protected override void TakeItemToPlayer()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour bookBehaviour)) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject != null) 
         {
-            //has something
+            //player has picked up something
             return;
         }
         // Player took the book or any
-        playerPickUp.GetPickedupObject(item.gameObject);
+        playerPickUp.GetPickedupObject(item);
         item = null;
         interactDelegate = CheckPlayerHasItem;
     }

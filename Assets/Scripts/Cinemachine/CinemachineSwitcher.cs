@@ -5,14 +5,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class CinemachineSwitcher : MonoBehaviour
 {
-    [SerializeField]
-    private InputAction inputAction;
     private Animator animator;
     private CinemachineStateDrivenCamera stateDrivenCamera;
     
     public enum CinemachineStateSwitcher
     {
-        FirstPerson, SecondPerson, Darts, Toilet, Bath, BrushTeeth
+        FirstPerson, SecondPerson, Darts, Toilet, Bath, BrushTeeth, WateringCan
     }
     private CinemachineStateSwitcher cinemachineSwitcher;
     private CinemachineExtension[] _cameraExtensions;
@@ -43,19 +41,7 @@ public class CinemachineSwitcher : MonoBehaviour
         
         animator = GetComponent<Animator>();
     }
-    private void OnEnable()
-    {
-        inputAction.Enable();
-    }
-    private void OnDisable()
-    {
-        inputAction.Disable();
-    }
-    
-    void Start()
-    {
-        inputAction.performed += _ => ChangeToDarts(); 
-    }
+
     public void ChangeToFirst()
     {
         cinemachineSwitcher = CinemachineStateSwitcher.FirstPerson;
@@ -87,6 +73,11 @@ public class CinemachineSwitcher : MonoBehaviour
     public void ChangeToBrushTeeth()
     {
         cinemachineSwitcher = CinemachineStateSwitcher.BrushTeeth;
+        SwitchState();
+    }
+    public void ChangeToWaterinCan()
+    {
+        cinemachineSwitcher = CinemachineStateSwitcher.WateringCan;
         SwitchState();
     }
 
@@ -136,6 +127,11 @@ public class CinemachineSwitcher : MonoBehaviour
             case CinemachineStateSwitcher.BrushTeeth:
                 ToggleCurrentCinemachineExtension(false);
                 animator.Play("BrushTeethState");
+                StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
+                break;
+            case CinemachineStateSwitcher.WateringCan:
+                ToggleCurrentCinemachineExtension(false);
+                animator.Play("WateringCanState");
                 StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 break;
         }

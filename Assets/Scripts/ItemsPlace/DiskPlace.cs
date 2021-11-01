@@ -17,8 +17,9 @@ public class DiskPlace : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour pickUpItem))
+        if (playerPickUp.CurrentlyPickedUpObject != null)
         {
+            PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
             if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Disk)
             {
                 item = pickUpItem;
@@ -43,13 +44,13 @@ public class DiskPlace : ItemSpotBehaviour
 
     protected override void TakeItemToPlayer()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour bookBehaviour)) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
         {
             //has something
             return;
         }
         // Player took the book or any
-        playerPickUp.GetPickedupObject(item.gameObject);
+        playerPickUp.GetPickedupObject(item);
         item = null;
         //Stop disk vinyl music
         diskParams.diskBehaviour.StopVinylDisk();

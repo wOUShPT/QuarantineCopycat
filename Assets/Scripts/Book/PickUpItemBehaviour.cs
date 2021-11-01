@@ -23,6 +23,9 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     public Rigidbody ItemRigidbody => itemRigidbody;
     private BoxCollider itemCollider;
     public BoxCollider ItemCollider => itemCollider;
+
+    private Animator itemAnimator;
+    public Animator ItemAnimator => itemAnimator; 
     private bool wasInterected = false;
     //Need initial scale
     private Vector3 initialScale;
@@ -74,24 +77,29 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     [System.Serializable]
     public class ToothBrushParams
     {
+        public BrushingTeethBehaviour teethBehaviour;
         public bool hasToothpaste;
         public Transform toothBrush;
     }
-    public Transform ToothBrush => brushParams.toothBrush;
+    public BrushingTeethBehaviour GetBrushTeethBehaviour => brushParams.teethBehaviour;
+
     public bool HasToothpaste { get { return brushParams.hasToothpaste; } set { brushParams.hasToothpaste = value; } }
     //Object type == WateringCan
     [SerializeField] private WateringCanParams wateringCanParams;
     [System.Serializable]
     public class WateringCanParams
     {
+        public WaterThePlantsBehaviour plantsBehaviour;
         public ParticleSystem waterParticle;
     }
     public ParticleSystem GetWaterParticle => wateringCanParams.waterParticle;
+    public WaterThePlantsBehaviour WaterPlantsBehaviour => wateringCanParams.plantsBehaviour;
     private void Awake()
     {
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
         itemRigidbody = GetComponent<Rigidbody>();
         itemCollider = GetComponent<BoxCollider>();
+        itemAnimator = GetComponent<Animator>();
         initialScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
     }
 
@@ -104,7 +112,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     {
         if (wasInterected)
             return;
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject != this.gameObject)
+        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject != this)
             return;
         if (!pickedUp)
         {
@@ -118,7 +126,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     private void PickUp()
     {
-        playerPickUp.GetPickedupObject(this.gameObject);
+        playerPickUp.GetPickedupObject(this);
         pickedUp = true;
     }
     private void DropItem()
@@ -128,12 +136,9 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     public void ExitInteract()
     {
-        if (wasInterected)
-        {
-            wasInterected = false;
-        }
+        wasInterected = false;
     }
-    
+
     //private void OnCollisionEnter(Collision collision)
     //{
     //    if (pickedUp)

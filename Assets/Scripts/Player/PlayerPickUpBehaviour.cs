@@ -5,8 +5,7 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     
     [Header("PickUp")]
     [SerializeField] private Transform pickupParent; // holder parent
-    [SerializeField] private GameObject currentlyPickedUpObject;
-    public GameObject CurrentlyPickedUpObject => currentlyPickedUpObject;
+    public PickUpItemBehaviour CurrentlyPickedUpObject => pickUpItem;
     private Rigidbody pickUpRB;
 
     [Header("ObjectFollow")]
@@ -18,45 +17,68 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     private void Start()
     {
         InputManager.Instance.ToggleInspectionControls(false);
+        pickUpItem = null;
         bookInspection = FindObjectOfType<BookInspection>();
         bookInspection.HideBook();
     }
-    public void GetPickedupObject(GameObject pickedupObject)
+    public void GetPickedupObject(PickUpItemBehaviour pickedupObject)
     {
-        currentlyPickedUpObject = pickedupObject;
+        pickUpItem = pickedupObject;
         PickUpObject();
+        CheckIsBrushTeethBehaviour();
     }
 
     public void BreakConnection()
     {
         //Set parent to null
-        currentlyPickedUpObject.transform.SetParent(null);
+        pickUpItem.transform.SetParent(null);
         pickUpRB.constraints = RigidbodyConstraints.None;
         pickUpRB.isKinematic = false;
         pickUpRB = null;
-        currentlyPickedUpObject = null;
         pickUpItem.PickedUp = false;
+        CheckPlayerWillDropToothBrush();
         pickUpItem = null;
     }
     public void PickUpObject()
     {
         //Make book ( or other objct parent to pickup and move it to default position
-        currentlyPickedUpObject.transform.SetParent(pickupParent);
-        currentlyPickedUpObject.transform.localPosition = Vector3.zero;
-        currentlyPickedUpObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        currentlyPickedUpObject.transform.localScale = currentlyPickedUpObject.GetComponent<PickUpItemBehaviour>().InitialScale;
-
-        pickUpItem = currentlyPickedUpObject.GetComponent<PickUpItemBehaviour>();
+        pickUpItem.transform.SetParent(pickupParent);
+        pickUpItem.transform.localPosition = Vector3.zero;
+        pickUpItem.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        pickUpItem.transform.localScale = pickUpItem.InitialScale;
         //assign rigidbody and make it kinematic
         pickUpRB = pickUpItem.ItemRigidbody;
         pickUpRB.constraints = RigidbodyConstraints.FreezeRotation;
         pickUpRB.isKinematic = true;
         pickUpItem.ItemCollider.isTrigger = false;
     }
+    private void CheckIsBrushTeethBehaviour()
+    {
+        if( pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Toothbrush)
+        {
+            pickUpItem.GetBrushTeethBehaviour.CheckPlayeerHasToothSpecificItem();
+        }
+        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.WateringCan)
+        {
+            pickUpItem.WaterPlantsBehaviour.CheckPlayeerHasToothSpecificItem();
+        }
+    }
+    private void CheckPlayerWillDropToothBrush()
+    {
+        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Toothbrush)
+        {
+            pickUpItem.GetBrushTeethBehaviour.CheckPlayerDropSpecificItem();
+        }
+        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.WateringCan)
+        {
+            pickUpItem.WaterPlantsBehaviour.CheckPlayerDropSpecificItem();
+        }
+    }
     private void Update()
     {
-        if (currentlyPickedUpObject != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Book && InputManager.Instance.PlayerInput.Inspection)
+        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Book && InputManager.Instance.PlayerInput.Inspection)
         {
+            // If player has a book
             bookInspection.SetTextArray(pickUpItem.TextList);
             bookInspection.DisplayBook();
             InputManager.Instance.ToggleInspectionControls(true);

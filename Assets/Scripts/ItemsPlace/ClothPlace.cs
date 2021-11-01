@@ -20,8 +20,9 @@ public class ClothPlace : ItemSpotBehaviour
             }
             return;
         }
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour clothBehaviour)) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
         {
+            PickUpItemBehaviour clothBehaviour = playerPickUp.CurrentlyPickedUpObject;
             if (clothParamsStack.Count >= maxNumberCloths)
             {
                 return;
@@ -59,7 +60,7 @@ public class ClothPlace : ItemSpotBehaviour
 
     protected override void TakeItemToPlayer()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour pickUpItemBehaviour)) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
         {
             CheckPlayerHasItem();
         }
@@ -68,7 +69,7 @@ public class ClothPlace : ItemSpotBehaviour
             ClothParams clothParams = clothParamsStack.Pop();
             clothParams.itemBehaviour.ItemCollider.isTrigger = false;
             clothParams.itemBehaviour.ItemRigidbody.isKinematic = true;
-            playerPickUp.GetPickedupObject(clothParams.itemBehaviour.gameObject);
+            playerPickUp.GetPickedupObject(clothParams.itemBehaviour);
         }
     }
 }

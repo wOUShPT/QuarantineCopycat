@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 150712778}
   - component: {fileID: 150712777}
   m_Layer: 0
-  m_Name: PeeEffect
+  m_Name: WaterEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5859,13 +5859,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150712776}
-  m_LocalRotation: {x: 0.40673664, y: -0, z: -0, w: 0.9135455}
-  m_LocalPosition: {x: 14.07, y: 0.99, z: 14.416}
+  m_LocalRotation: {x: 0, y: 0.9135455, z: -0.40673664, w: 0}
+  m_LocalPosition: {x: 0, y: 0.21, z: -0.234}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 36
-  m_LocalEulerAnglesHint: {x: 48, y: 0, z: 0}
+  m_Father: {fileID: 1939610360}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 48, y: 180, z: 0}
 --- !u!1 &213389206
 GameObject:
   m_ObjectHideFlags: 0
@@ -5879,7 +5879,7 @@ GameObject:
   - component: {fileID: 213389208}
   - component: {fileID: 213389207}
   - component: {fileID: 213389211}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ToothbrushPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5913,9 +5913,11 @@ MonoBehaviour:
   coffeeParams:
     isReady: 0
   brushParams:
+    teethBehaviour: {fileID: 1391493266}
     hasToothpaste: 0
     toothBrush: {fileID: 342716567}
   wateringCanParams:
+    plantsBehaviour: {fileID: 0}
     waterParticle: {fileID: 0}
 --- !u!54 &213389208
 Rigidbody:
@@ -5944,8 +5946,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.2844286, y: 0.25365525, z: 0.3027377}
+  m_Center: {x: 0, y: 0.007806167, z: -0.017312765}
 --- !u!4 &213389210
 Transform:
   m_ObjectHideFlags: 0
@@ -5954,12 +5956,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213389206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.86194, y: 4.051095, z: -6.9426284}
+  m_LocalPosition: {x: 14.86194, y: 0.82, z: -6.9426284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 342716567}
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &213389211
 Animator:
@@ -6137,7 +6139,6 @@ GameObject:
   m_Component:
   - component: {fileID: 269551125}
   - component: {fileID: 269551126}
-  - component: {fileID: 269551127}
   m_Layer: 0
   m_Name: BrushingTeethListener
   m_TagString: Untagged
@@ -6181,35 +6182,6 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 301327541}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
-            UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &269551127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 269551124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ad1bbcd5874ce4b91b6ae8587f8fd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 435b8e4429774b7489774c3f41487e16, type: 2}
-  Effect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 621267575}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartSequence
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1979333970}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
             UnityEngine
           m_IntArgument: 0
@@ -6269,6 +6241,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 77499a1a21346354c9ab3af228248e43, type: 2}
     - {fileID: 11400000, guid: 27f7dcab40d2387499281414885bbe7c, type: 2}
     - {fileID: 11400000, guid: d6006ba729af6b94984219df6063e81c, type: 2}
+    - {fileID: 11400000, guid: 70ead730319b4bc4392c83df1bcd6a98, type: 2}
+    - {fileID: 11400000, guid: 4a8d9721ebcb4f14b856ecab1125ced8, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -6354,6 +6328,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1391493266}
+          m_TargetAssemblyTypeName: BrushingTeethBehaviour, Assembly-CSharp
+          m_MethodName: BrushTeethAnimationStart
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1391493266}
+          m_TargetAssemblyTypeName: BrushingTeethBehaviour, Assembly-CSharp
+          m_MethodName: BrushTeethAnimationStop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!320 &301327541
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -6379,6 +6381,8 @@ PlayableDirector:
     value: {fileID: 301327540}
   - key: {fileID: 4134800973641812688, guid: 1cb626b5368269a428564ef25f48e310, type: 2}
     value: {fileID: 1512995134}
+  - key: {fileID: -3505310797534017624, guid: 1cb626b5368269a428564ef25f48e310, type: 2}
+    value: {fileID: 301327540}
   m_ExposedReferences:
     m_References:
     - 60d572ad9012ae24a895e65fe7f9ef38: {fileID: 254797958}
@@ -6420,6 +6424,7 @@ Transform:
   - {fileID: 341638869}
   - {fileID: 1193856655}
   - {fileID: 269551125}
+  - {fileID: 2015486455}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6859,9 +6864,11 @@ MonoBehaviour:
   coffeeParams:
     isReady: 0
   brushParams:
+    teethBehaviour: {fileID: 0}
     hasToothpaste: 0
     toothBrush: {fileID: 0}
   wateringCanParams:
+    plantsBehaviour: {fileID: 0}
     waterParticle: {fileID: 0}
 --- !u!54 &338063876
 Rigidbody:
@@ -6950,10 +6957,7 @@ GameObject:
   - component: {fileID: 342716567}
   - component: {fileID: 342716570}
   - component: {fileID: 342716569}
-  - component: {fileID: 342716568}
-  - component: {fileID: 342716572}
-  - component: {fileID: 342716571}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Toothbrush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6969,42 +6973,11 @@ Transform:
   m_GameObject: {fileID: 342716566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 213389210}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &342716568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342716566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04154b45adfc450459be619ec879dbd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDistance: 0
-  objectType: 0
-  bookParams:
-    textList: []
-  clothParams:
-    isClean: 0
-  diskParams:
-    audioClip: {fileID: 0}
-  breadParams:
-    isReady: 0
-    leftToast: {fileID: 0}
-    rightToast: {fileID: 0}
-  coffeeParams:
-    isReady: 0
-  brushParams:
-    hasToothpaste: 0
-    toothBrush: {fileID: 0}
-  wateringCanParams:
-    waterParticle: {fileID: 0}
 --- !u!23 &342716569
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7054,35 +7027,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342716566}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &342716571
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342716566}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &342716572
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342716566}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &396785246
 GameObject:
   m_ObjectHideFlags: 0
@@ -7557,22 +7501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3e45a32df02064f8bf3519b00c38a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAction:
-    m_Name: Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 67e7d122-1d4f-4504-82c4-ffa413de864b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: e3a6f18c-8bc1-42ad-98fe-ad1d8d9c292e
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
 --- !u!95 &459922962
 Animator:
   serializedVersion: 3
@@ -7619,6 +7547,7 @@ MonoBehaviour:
   - {fileID: 722589773}
   - {fileID: 2082408192}
   - {fileID: 254797958}
+  - {fileID: 1610433482}
   m_Instructions:
   - m_FullHash: -735973463
     m_VirtualCamera: {fileID: 722589773}
@@ -7630,6 +7559,10 @@ MonoBehaviour:
     m_MinDuration: 0
   - m_FullHash: -2122289669
     m_VirtualCamera: {fileID: 254797958}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
+  - m_FullHash: -1457941907
+    m_VirtualCamera: {fileID: 1610433482}
     m_ActivateAfter: 0
     m_MinDuration: 0
   m_DefaultBlend:
@@ -7657,6 +7590,8 @@ MonoBehaviour:
     m_ParentHash: 756556552
   - m_Hash: -2122289669
     m_ParentHash: 756556552
+  - m_Hash: -1457941907
+    m_ParentHash: 756556552
 --- !u!4 &459922964
 Transform:
   m_ObjectHideFlags: 0
@@ -7671,6 +7606,7 @@ Transform:
   - {fileID: 722589772}
   - {fileID: 2082408193}
   - {fileID: 254797959}
+  - {fileID: 1610433483}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7880,9 +7816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 542025580}
   - component: {fileID: 542025584}
-  - component: {fileID: 542025583}
   - component: {fileID: 542025582}
-  - component: {fileID: 542025581}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -7904,33 +7838,6 @@ Transform:
   m_Father: {fileID: 254797959}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &542025581
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542025579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
-  m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.9
-  m_VerticalDamping: 0.5
-  m_ScreenX: 0.5
-  m_ScreenY: 0.5
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
-  m_BiasX: 0
-  m_BiasY: 0
-  m_CenterOnActivate: 1
 --- !u!114 &542025582
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -7948,19 +7855,6 @@ MonoBehaviour:
   m_AmplitudeGain: 1
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
---- !u!114 &542025583
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542025579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d1163fa822e8b418a0a603ec078d5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Damping: 0
 --- !u!114 &542025584
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -8579,6 +8473,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &648672870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 648672871}
+  - component: {fileID: 648672873}
+  - component: {fileID: 648672872}
+  m_Layer: 10
+  m_Name: Toothbrush
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &648672871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648672870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_Children: []
+  m_Father: {fileID: 1939610360}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &648672872
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648672870}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &648672873
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648672870}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &680939266
 GameObject:
   m_ObjectHideFlags: 3
@@ -8786,6 +8761,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8640c9af1632da74d94845e8153c3e61, type: 2}
     - {fileID: 11400000, guid: a355616befef0cd4fb86ef347c46b248, type: 2}
     - {fileID: 11400000, guid: 8edf1cd715e8ab54caca8519b6d52c0c, type: 2}
+    - {fileID: 11400000, guid: 3f63875bda5b83f46849965f3518b5af, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -8838,6 +8814,20 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 459922960}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -9055,9 +9045,11 @@ MonoBehaviour:
   coffeeParams:
     isReady: 0
   brushParams:
+    teethBehaviour: {fileID: 0}
     hasToothpaste: 0
     toothBrush: {fileID: 0}
   wateringCanParams:
+    plantsBehaviour: {fileID: 0}
     waterParticle: {fileID: 0}
 --- !u!65 &706378169
 BoxCollider:
@@ -9970,9 +9962,11 @@ MonoBehaviour:
   coffeeParams:
     isReady: 0
   brushParams:
+    teethBehaviour: {fileID: 0}
     hasToothpaste: 0
     toothBrush: {fileID: 0}
   wateringCanParams:
+    plantsBehaviour: {fileID: 0}
     waterParticle: {fileID: 0}
 --- !u!4 &779242050
 Transform:
@@ -12191,7 +12185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupParent: {fileID: 1605625808}
-  currentlyPickedUpObject: {fileID: 0}
 --- !u!114 &1096276525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12546,9 +12539,11 @@ MonoBehaviour:
   coffeeParams:
     isReady: 0
   brushParams:
+    teethBehaviour: {fileID: 0}
     hasToothpaste: 0
     toothBrush: {fileID: 0}
   wateringCanParams:
+    plantsBehaviour: {fileID: 0}
     waterParticle: {fileID: 0}
 --- !u!65 &1188843192
 BoxCollider:
@@ -12821,6 +12816,67 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1217217007
+GameObject:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1217217008}
+  - component: {fileID: 1217217010}
+  - component: {fileID: 1217217009}
+  m_Layer: 0
+  m_Name: cm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1217217008
+Transform:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217217007}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1610433483}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1217217009
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217217007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &1217217010
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217217007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1222311774
 GameObject:
   m_ObjectHideFlags: 0
@@ -13659,6 +13715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1391493265}
+  - component: {fileID: 1391493266}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Untagged
@@ -13681,8 +13738,21 @@ Transform:
   - {fileID: 1340523720}
   - {fileID: 552582555}
   m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1391493266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391493264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0338c9e236050e42b475f13bd0fec64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionTriggerCollider: {fileID: 1340523721}
 --- !u!1 &1402775345
 GameObject:
   m_ObjectHideFlags: 0
@@ -14633,9 +14703,11 @@ MonoBehaviour:
   coffeeParams:
     isReady: 0
   brushParams:
+    teethBehaviour: {fileID: 0}
     hasToothpaste: 0
     toothBrush: {fileID: 0}
   wateringCanParams:
+    plantsBehaviour: {fileID: 0}
     waterParticle: {fileID: 0}
 --- !u!4 &1476090969
 Transform:
@@ -15044,6 +15116,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572889754}
   m_CullTransparentMesh: 1
+--- !u!1 &1596978591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1596978592}
+  - component: {fileID: 1596978596}
+  - component: {fileID: 1596978595}
+  - component: {fileID: 1596978593}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1596978592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596978591}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.022, z: 0}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2037013801}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1596978593
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596978591}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1596978595
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596978591}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1596978596
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596978591}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1605625807
 GameObject:
   m_ObjectHideFlags: 0
@@ -15208,6 +15376,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610021172}
   m_CullTransparentMesh: 1
+--- !u!1 &1610433481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1610433483}
+  - component: {fileID: 1610433482}
+  - component: {fileID: 1610433484}
+  m_Layer: 0
+  m_Name: WateringCanCam (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1610433482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610433481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: 0
+  m_StandbyUpdate: 2
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
+  m_Lens:
+    FieldOfView: 20
+    OrthographicSize: 10
+    NearClipPlane: 0.1
+    FarClipPlane: 5000
+    Dutch: 0
+    LensShift: {x: 0, y: 0}
+    Iso: 200
+    ShutterSpeed: 0.005
+    Aperture: 16
+    BladeCount: 5
+    Curvature: {x: 2, y: 11}
+    BarrelClipping: 0.25
+    Anamorphism: 0
+  m_Transitions:
+    m_BlendHint: 0
+    m_InheritPosition: 0
+    m_OnCameraLive:
+      m_PersistentCalls:
+        m_Calls: []
+  m_LegacyBlendHint: 0
+  m_ComponentOwner: {fileID: 1217217008}
+--- !u!4 &1610433483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610433481}
+  m_LocalRotation: {x: -0, y: -0.99670434, z: -0, w: -0.081119806}
+  m_LocalPosition: {x: -7.14, y: 3.7, z: -7.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1217217008}
+  m_Father: {fileID: 459922964}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -189.306, z: 0}
+--- !u!114 &1610433484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610433481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627992bd0a24adb4b93f864f3872e478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1649583496
 GameObject:
   m_ObjectHideFlags: 0
@@ -15918,9 +16173,11 @@ MonoBehaviour:
   coffeeParams:
     isReady: 0
   brushParams:
+    teethBehaviour: {fileID: 0}
     hasToothpaste: 0
     toothBrush: {fileID: 0}
   wateringCanParams:
+    plantsBehaviour: {fileID: 0}
     waterParticle: {fileID: 0}
 --- !u!54 &1751900279
 Rigidbody:
@@ -16741,6 +16998,103 @@ Transform:
   m_Father: {fileID: 1859642033}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1939610356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1939610360}
+  - component: {fileID: 1939610359}
+  - component: {fileID: 1939610358}
+  - component: {fileID: 1939610357}
+  m_Layer: 10
+  m_Name: WateringCanPivot (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1939610357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939610356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04154b45adfc450459be619ec879dbd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 0
+  objectType: 7
+  bookParams:
+    textList: []
+  clothParams:
+    isClean: 0
+  diskParams:
+    audioClip: {fileID: 0}
+  breadParams:
+    isReady: 0
+    leftToast: {fileID: 0}
+    rightToast: {fileID: 0}
+  coffeeParams:
+    isReady: 0
+  brushParams:
+    teethBehaviour: {fileID: 1391493266}
+    hasToothpaste: 0
+    toothBrush: {fileID: 648672871}
+  wateringCanParams:
+    plantsBehaviour: {fileID: 2037013802}
+    waterParticle: {fileID: 150712778}
+--- !u!54 &1939610358
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939610356}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1939610359
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939610356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2844286, y: 0.25365525, z: 0.3027377}
+  m_Center: {x: 0, y: 0.007806167, z: -0.017312765}
+--- !u!4 &1939610360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939610356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.97, y: 0.82, z: -9.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 648672871}
+  - {fileID: 150712779}
+  m_Father: {fileID: 0}
+  m_RootOrder: 39
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1947306289
 GameObject:
   m_ObjectHideFlags: 0
@@ -17043,7 +17397,7 @@ GameObject:
   - component: {fileID: 1979333970}
   - component: {fileID: 1979333969}
   m_Layer: 0
-  m_Name: BrushingTeethOutSequence
+  m_Name: WaterSequence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17082,6 +17436,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9e0feb165a49f494dad94db55055b928, type: 2}
     - {fileID: 11400000, guid: 77499a1a21346354c9ab3af228248e43, type: 2}
     - {fileID: 11400000, guid: d6006ba729af6b94984219df6063e81c, type: 2}
+    - {fileID: 11400000, guid: 27f7dcab40d2387499281414885bbe7c, type: 2}
+    - {fileID: 11400000, guid: 53191f038df632b41833f481250d2fe3, type: 2}
+    - {fileID: 11400000, guid: f1ed3bea8b5631645bd2e3514e09715d, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -17109,7 +17466,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
@@ -17123,7 +17480,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
@@ -17145,6 +17502,48 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: PlayerProperties, Assembly-CSharp
           m_MethodName: ToggleFreezeMovement
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1096276526}
+          m_TargetAssemblyTypeName: PlayerProperties, Assembly-CSharp
+          m_MethodName: ToggleFreezeMovement
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2037013802}
+          m_TargetAssemblyTypeName: WaterThePlantsBehaviour, Assembly-CSharp
+          m_MethodName: WaterCanPlay
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2037013802}
+          m_TargetAssemblyTypeName: WaterThePlantsBehaviour, Assembly-CSharp
+          m_MethodName: WaterCanStop
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17189,6 +17588,8 @@ PlayableDirector:
   - key: {fileID: 7467604608137336839, guid: 7e5789ddab1b37640912881856fa8346, type: 2}
     value: {fileID: 1979333969}
   - key: {fileID: -6409744303289614813, guid: 7e5789ddab1b37640912881856fa8346, type: 2}
+    value: {fileID: 1979333969}
+  - key: {fileID: 4764538208067738896, guid: 7e5789ddab1b37640912881856fa8346, type: 2}
     value: {fileID: 1979333969}
   m_ExposedReferences:
     m_References:
@@ -17529,6 +17930,66 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &2015486454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2015486455}
+  - component: {fileID: 2015486456}
+  m_Layer: 0
+  m_Name: WateringCanListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2015486455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015486454}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 311370019}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2015486456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015486454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ad1bbcd5874ce4b91b6ae8587f8fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 435b8e4429774b7489774c3f41487e16, type: 2}
+  Effect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 621267575}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StartSequence
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1979333970}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+            UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2024007348
 GameObject:
   m_ObjectHideFlags: 0
@@ -17745,6 +18206,81 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &2037013800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2037013801}
+  - component: {fileID: 2037013804}
+  - component: {fileID: 2037013803}
+  - component: {fileID: 2037013802}
+  m_Layer: 10
+  m_Name: Tree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2037013801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037013800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.204768, y: 0.434, z: -14.29}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1596978592}
+  m_Father: {fileID: 0}
+  m_RootOrder: 38
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2037013802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037013800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4a8c39ff0a0524890c9e47f203c06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionTriggerCollider: {fileID: 0}
+--- !u!114 &2037013803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037013800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67cbd567f5cbdf9428fac3519b022d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 0
+  gameEvent: {fileID: 11400000, guid: 435b8e4429774b7489774c3f41487e16, type: 2}
+--- !u!136 &2037013804
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037013800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2046079313
 GameObject:
   m_ObjectHideFlags: 0

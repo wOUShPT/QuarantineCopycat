@@ -14,8 +14,9 @@ public class CofeeMachine : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour pickUpItem))
+        if (playerPickUp.CurrentlyPickedUpObject != null)
         {
+            PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
             if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Coffee)
             {
                 item = pickUpItem;
@@ -42,10 +43,10 @@ public class CofeeMachine : ItemSpotBehaviour
     {
         if (coffeeMachineParams.IsCoffeeBeDoing)
             return;
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour bookBehaviour)) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
             return; //player has picked up something
         // Player took the coffee
-        playerPickUp.GetPickedupObject(item.gameObject);
+        playerPickUp.GetPickedupObject(item);
         item = null;
         interactDelegate = CheckPlayerHasItem;
     }

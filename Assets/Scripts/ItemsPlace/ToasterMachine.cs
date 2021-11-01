@@ -15,8 +15,9 @@ public class ToasterMachine : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour pickUpItem))
+        if (playerPickUp.CurrentlyPickedUpObject != null)
         {
+            PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
             if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Bread)
             {
                 item = pickUpItem;
@@ -46,7 +47,7 @@ public class ToasterMachine : ItemSpotBehaviour
     {
         if (breadParams.IsBreadDoing)
             return;
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject.TryGetComponent(out PickUpItemBehaviour bookBehaviour)) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
         {
             return; //player has picked up something
         }
@@ -57,7 +58,7 @@ public class ToasterMachine : ItemSpotBehaviour
         breadParams.RightToast.SetParent(item.transform);
         SetItemValuesDefault(breadParams.RightToast);
         breadParams.RightToast = null;
-        playerPickUp.GetPickedupObject(item.gameObject);
+        playerPickUp.GetPickedupObject(item);
         item = null;
         interactDelegate = CheckPlayerHasItem;
     }

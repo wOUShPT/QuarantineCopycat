@@ -97,6 +97,4 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
 
     protected abstract void TakeItemToPlayer();
 
-    
-
 }

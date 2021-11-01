@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c48c7dd1dc58314da72f41c03939a22, type: 3}
-  m_Name: BrushingTeethOut
+  m_Script: {fileID: 11500000, guid: d6fa2d92fc1b3f34da284357edf89c3b, type: 3}
+  m_Name: StartBrushingTeeth
   m_EditorClassIdentifier: 
