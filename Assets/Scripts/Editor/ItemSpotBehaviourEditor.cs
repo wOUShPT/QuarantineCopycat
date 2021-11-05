@@ -33,6 +33,9 @@ public class ItemSpotBehaviourEditor : Editor
             case PickUpItemBehaviour.PickUpObjectType.Coffee:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("coffeeMachineParams"));
                 break;
+            case PickUpItemBehaviour.PickUpObjectType.Plate:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("maxNumberPlates"));
+                break;
             default:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("childrenItemSpot"));
                 break;

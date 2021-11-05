@@ -31,7 +31,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     }
 
     [SerializeField] protected Transform[] holderPositionArray;
-    [SerializeField] protected int maxNumberCloths = 3;
+    
     //Object type == disk
     [SerializeField] protected DiskParams diskParams;
     [System.Serializable]
@@ -62,6 +62,20 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
         public BoxCollider BoxCollider;
         public Transform CoffeePivot;
         public bool IsCoffeeBeDoing;
+    }
+    //Object type == Plate
+    protected Stack<PlateSpotParams> plateParamsStack;
+    [System.Serializable]
+    public class PlateSpotParams
+    {
+        public Transform holderPosition;
+        public PickUpItemBehaviour itemBehaviour;
+        //Constructor
+        public PlateSpotParams(Transform _holderPosition, PickUpItemBehaviour _itemBehaviour)
+        {
+            holderPosition = _holderPosition;
+            itemBehaviour = _itemBehaviour;
+        }
     }
 
     protected virtual void Awake() //awake

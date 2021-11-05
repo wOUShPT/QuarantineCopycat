@@ -537,7 +537,6 @@ MonoBehaviour:
   dropObjectType: 0
   childrenItemSpot: {fileID: 0}
   holderPositionArray: []
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 0}
     targetMusic: {fileID: 0}
@@ -689,7 +688,7 @@ Transform:
   m_Children:
   - {fileID: 1438978846}
   m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &91935057
 GameObject:
@@ -964,7 +963,6 @@ MonoBehaviour:
   dropObjectType: 0
   childrenItemSpot: {fileID: 0}
   holderPositionArray: []
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 0}
     targetMusic: {fileID: 0}
@@ -8263,7 +8261,6 @@ MonoBehaviour:
   dropObjectType: 4
   childrenItemSpot: {fileID: 1928291119}
   holderPositionArray: []
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 0}
     targetMusic: {fileID: 0}
@@ -8966,13 +8963,13 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 459922960}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+        - m_Target: {fileID: 459922961}
+          m_TargetAssemblyTypeName: CinemachineSwitcher, Assembly-CSharp
+          m_MethodName: ChangeToWaterinCan
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -9388,7 +9385,6 @@ MonoBehaviour:
   dropObjectType: 0
   childrenItemSpot: {fileID: 0}
   holderPositionArray: []
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 0}
     targetMusic: {fileID: 0}
@@ -9855,7 +9851,6 @@ MonoBehaviour:
   dropObjectType: 3
   childrenItemSpot: {fileID: 0}
   holderPositionArray: []
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 0}
     targetMusic: {fileID: 0}
@@ -13238,7 +13233,6 @@ MonoBehaviour:
   dropObjectType: 3
   childrenItemSpot: {fileID: 0}
   holderPositionArray: []
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 0}
     targetMusic: {fileID: 0}
@@ -13595,7 +13589,6 @@ MonoBehaviour:
   dropObjectType: 0
   childrenItemSpot: {fileID: 0}
   holderPositionArray: []
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 0}
     targetMusic: {fileID: 0}
@@ -14273,7 +14266,6 @@ MonoBehaviour:
   dropObjectType: 5
   childrenItemSpot: {fileID: 0}
   holderPositionArray: []
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 0}
     targetMusic: {fileID: 0}
@@ -14377,7 +14369,6 @@ GameObject:
   - component: {fileID: 1438978850}
   - component: {fileID: 1438978849}
   - component: {fileID: 1438978848}
-  - component: {fileID: 1438978847}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -14399,19 +14390,6 @@ Transform:
   m_Father: {fileID: 80138203}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1438978847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438978845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3083a4708f64cd94c9ad24e1d1204b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionTriggerCollider: {fileID: 0}
 --- !u!136 &1438978848
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15449,6 +15427,135 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596978591}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1602614509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1602614514}
+  - component: {fileID: 1602614513}
+  - component: {fileID: 1602614512}
+  - component: {fileID: 1602614511}
+  - component: {fileID: 1602614510}
+  m_Layer: 10
+  m_Name: PlateSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1602614510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602614509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2078af39de701d745bad0d7f1d11060e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 0
+  dropObjectType: 8
+  childrenItemSpot: {fileID: 0}
+  holderPositionArray: []
+  diskParams:
+    diskBehaviour: {fileID: 0}
+    targetMusic: {fileID: 0}
+  breadParams:
+    InteractionTriggerCollider: {fileID: 0}
+    BoxCollider: {fileID: 0}
+    LeftToasterPivot: {fileID: 0}
+    RightToasterPivot: {fileID: 0}
+    LeftToast: {fileID: 0}
+    RightToast: {fileID: 0}
+    IsBreadDoing: 0
+  coffeeMachineParams:
+    InteractionTriggerCollider: {fileID: 0}
+    BoxCollider: {fileID: 0}
+    CoffeePivot: {fileID: 0}
+    IsCoffeeBeDoing: 0
+  maxNumberPlates: 5
+--- !u!65 &1602614511
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602614509}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1602614512
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602614509}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1602614513
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602614509}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1602614514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602614509}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 18.77, y: 2.21, z: 19.69}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 40
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1605625807
 GameObject:
   m_ObjectHideFlags: 0
@@ -16697,7 +16804,6 @@ MonoBehaviour:
   - {fileID: 510850895}
   - {fileID: 1139027498}
   - {fileID: 1276969355}
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 0}
     targetMusic: {fileID: 0}
@@ -16714,6 +16820,7 @@ MonoBehaviour:
     BoxCollider: {fileID: 0}
     CoffeePivot: {fileID: 0}
     IsCoffeeBeDoing: 0
+  maxNumberCloths: 3
 --- !u!4 &1837457669
 Transform:
   m_ObjectHideFlags: 0
@@ -18892,6 +18999,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 53191f038df632b41833f481250d2fe3, type: 2}
     - {fileID: 11400000, guid: f1ed3bea8b5631645bd2e3514e09715d, type: 2}
     - {fileID: 11400000, guid: 914248ab03493094eaf3a3c6a9229afc, type: 2}
+    - {fileID: 11400000, guid: c21a21efc1addcd45b6a6c2fd675b796, type: 2}
+    - {fileID: 11400000, guid: 901798845fadd7a42a4a7443e7cb550b, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -19019,6 +19128,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1096276526}
+          m_TargetAssemblyTypeName: PlayerProperties, Assembly-CSharp
+          m_MethodName: ToggleFreezeAim
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1096276526}
+          m_TargetAssemblyTypeName: PlayerProperties, Assembly-CSharp
+          m_MethodName: ToggleFreezeAim
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!320 &2086495361
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -19066,6 +19203,8 @@ PlayableDirector:
     value: {fileID: 2086495360}
   - key: {fileID: 4056804435313904435, guid: 22fe7433e7c4789468e1a47b46ee1b85, type: 2}
     value: {fileID: 1512995134}
+  - key: {fileID: 5580679363816726087, guid: 22fe7433e7c4789468e1a47b46ee1b85, type: 2}
+    value: {fileID: 2086495360}
   m_ExposedReferences:
     m_References:
     - 60d572ad9012ae24a895e65fe7f9ef38: {fileID: 254797958}

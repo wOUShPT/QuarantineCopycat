@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ClothPlace : ItemSpotBehaviour
 {
+    [SerializeField] protected int maxNumberCloths = 3;
     protected override void Awake()
     {
         clothParamsStack = new Stack<ClothParams>();
