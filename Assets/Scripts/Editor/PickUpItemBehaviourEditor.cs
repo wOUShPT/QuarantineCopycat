@@ -40,6 +40,9 @@ public class PickUpItemBehaviourEditor : Editor
             case PickUpItemBehaviour.PickUpObjectType.WateringCan:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("wateringCanParams"));
                 break;
+            case PickUpItemBehaviour.PickUpObjectType.Plate:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("plateParams"));
+                break;
             case PickUpItemBehaviour.PickUpObjectType.Any:
                 break;
         }

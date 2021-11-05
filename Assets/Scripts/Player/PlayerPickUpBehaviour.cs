@@ -62,6 +62,10 @@ public class PlayerPickUpBehaviour : MonoBehaviour
         {
             pickUpItem.WaterPlantsBehaviour.CheckPlayeerHasToothSpecificItem();
         }
+        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Plate)
+        {
+            pickUpItem.PlateBehaviour.CheckPlayeerHasToothSpecificItem();
+        }
     }
     private void CheckPlayerWillDropToothBrush()
     {
@@ -72,6 +76,10 @@ public class PlayerPickUpBehaviour : MonoBehaviour
         if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.WateringCan)
         {
             pickUpItem.WaterPlantsBehaviour.CheckPlayerDropSpecificItem();
+        }
+        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Plate)
+        {
+            pickUpItem.PlateBehaviour.CheckPlayerDropSpecificItem();
         }
     }
     private void Update()

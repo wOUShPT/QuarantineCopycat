@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterThePlantsBehaviour : ToggleInteractionTrigger
+public class WashPlateBehaviour : ToggleInteractionTrigger
 {
-
     [SerializeField] private CapsuleCollider interactionTriggerCollider;
-    private ParticleSystem wateringcanParticleSystem;
-    // Start is called before the first frame update
+    protected PickUpItemBehaviour itemBehaviour;
     protected override void Start()
     {
         interactionTriggerCollider = GetComponent<CapsuleCollider>();
         interactionTriggerCollider.enabled = false;
         base.Start();
     }
-
     public override void CheckPlayeerHasToothSpecificItem()
     {
         if (pickupBehaviour != null)
@@ -22,9 +19,9 @@ public class WaterThePlantsBehaviour : ToggleInteractionTrigger
             if (pickupBehaviour.CurrentlyPickedUpObject != null)
             {
                 PickUpItemBehaviour pickUpItem = pickupBehaviour.CurrentlyPickedUpObject;
-                if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.WateringCan)
+                if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Plate && !pickUpItem.IsPlateWashed)
                 {
-                    //If has toothBrushPivot
+                    //If has the plate not washed yet
                     AssignAndMakeInteractionTriggerInteraction(pickUpItem);
                 }
             }
@@ -44,24 +41,22 @@ public class WaterThePlantsBehaviour : ToggleInteractionTrigger
 
     protected override void AssignAndMakeInteractionTriggerInteraction(PickUpItemBehaviour pickUpItem)
     {
-        ItemToInteractionTriggerPivot = pickUpItem.transform;
-        wateringcanParticleSystem = pickUpItem.GetWaterParticle;
+        itemBehaviour = pickUpItem;
+        ItemToInteractionTriggerPivot = itemBehaviour.transform;
         interactionTriggerCollider.enabled = true; // now the interaction trigger can be interactable
     }
 
     protected override void MakeTriggerInteractionDisabled()
     {
+        itemBehaviour = null;
         ItemToInteractionTriggerPivot = null;
-        wateringcanParticleSystem = null;
         interactionTriggerCollider.enabled = false; // now the interaction trigger can be interactable
     }
-    //Called by the timeline
-    public void WaterCanPlay()
+    public void PlateIsWashed()
     {
-        wateringcanParticleSystem.Play();
+        itemBehaviour.IsPlateWashed = true;
     }
-    public void WaterCanStop()
-    {
-        wateringcanParticleSystem.Stop();
-    }
+
+    
+
 }

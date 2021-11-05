@@ -21,7 +21,7 @@ public class BrushingTeethBehaviour : ToggleInteractionTrigger
             if(pickupBehaviour.CurrentlyPickedUpObject != null)
             {
                 PickUpItemBehaviour pickUpItem = pickupBehaviour.CurrentlyPickedUpObject;
-                if( pickupBehaviour.CurrentlyPickedUpObject.ObjectType == PickUpItemBehaviour.PickUpObjectType.Toothbrush)
+                if( pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Toothbrush)
                 {
                     //If has toothBrushPivot
                     AssignAndMakeInteractionTriggerInteraction(pickUpItem);

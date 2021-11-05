@@ -10,7 +10,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private float interactionDistance;
     public enum PickUpObjectType
     {
-        Book, Cloth, Disk, Bread, Any, Coffee, Toothbrush, WateringCan
+        Book, Cloth, Disk, Bread, Any, Coffee, Toothbrush, WateringCan, Plate
     }
     [SerializeField] private PickUpObjectType objectType;
     public PickUpObjectType ObjectType => objectType;
@@ -94,6 +94,18 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     public ParticleSystem GetWaterParticle => wateringCanParams.waterParticle;
     public WaterThePlantsBehaviour WaterPlantsBehaviour => wateringCanParams.plantsBehaviour;
+    //Object type == plate
+    [SerializeField] private PlateParams plateParams;
+    [System.Serializable]
+    public class PlateParams
+    {
+        public WashPlateBehaviour plateBehaviour;
+        public bool isWashed;
+        public bool isPlaced;
+    }
+    public WashPlateBehaviour PlateBehaviour => plateParams.plateBehaviour;
+    public bool IsPlateWashed { get { return plateParams.isWashed; } set { plateParams.isWashed = value; } }
+    public bool IsPlatePlaced { get { return plateParams.isPlaced; } set { plateParams.isPlaced = value; } }
     private void Awake()
     {
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
