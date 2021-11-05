@@ -29,6 +29,8 @@ public class DartsBehaviour : MonoBehaviour
     private Rigidbody dartPrefab;
     [SerializeField] 
     private Collider dartBoardCollider;
+
+    private Vector3 dartsBoardCenterPos;
     private RaycastHit[] _hitResults;
     private float _coolDownTime = 1f;
     private float _timer;
@@ -50,6 +52,7 @@ public class DartsBehaviour : MonoBehaviour
         _timer = _coolDownTime + 1f;
         enabled = false;
         _cameraNoise = _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        dartsBoardCenterPos = transform.position;
     }
 
     void OnEnable()
@@ -182,6 +185,31 @@ public class DartsBehaviour : MonoBehaviour
         dart.position = Camera.main.transform.position;
         dart.rotation = Quaternion.identity;
         dart.rotation = Quaternion.Euler(0, 0, 90);
+    }
+
+
+    public void Score(Vector3 contactPoint)
+    {
+        int score = 0;
+        
+        Vector2 contactPointDir = new Vector2(contactPoint.y, contactPoint.z) -
+                                  new Vector2(transform.position.y, transform.position.z);
+        contactPointDir.Normalize();
+        Vector2 rightDir = new Vector2(dartsBoardCenterPos.y + 1, dartsBoardCenterPos.z) -
+                           new Vector2(dartsBoardCenterPos.y, dartsBoardCenterPos.z);
+        rightDir.Normalize();
+        float angle = Vector2.Angle(rightDir, contactPointDir);
+
+        float distance = Vector2.Distance(new Vector2(contactPoint.y, contactPoint.z), dartsBoardCenterPos);
+        
+        switch (angle, distance)
+        {
+            case var _ when angle >= 351:
+
+                score = 6;
+                Debug.Log(score);
+                break;
+        }
     }
     
     

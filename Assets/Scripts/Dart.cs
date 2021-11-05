@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using KevinCastejon.EditorToolbox;
 using UnityEngine;
 
-public class DartCollision : MonoBehaviour
+public class Dart : MonoBehaviour
 {
     private Rigidbody _rb;
     
     [SerializeField, Tag]
     private string dartBoardTag;
+
+    private DartsBehaviour _dartsBehaviour;
     
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _dartsBehaviour = FindObjectOfType<DartsBehaviour>();
     }
     
     private void OnCollisionEnter(Collision other)
@@ -25,6 +28,7 @@ public class DartCollision : MonoBehaviour
             _rb.angularVelocity = Vector3.zero;
             _rb.angularDrag = 0;
             _rb.useGravity = false;
+            Debug.Log(other.GetContact(0).point);
         }
     }
     
