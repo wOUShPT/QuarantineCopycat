@@ -3,39 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CadreBehaviour : MonoBehaviour, IInteractable
+public class CadreBehaviour : MonoBehaviour
 {
-    [SerializeField] private float interactionDistance = 0f;
-    private bool wasInteractable = false;
     [SerializeField]private bool isSeeing;
-
     [SerializeField] private GameEvent exitCadre;
-    private delegate void ActionInteractionDelegate();
-    private ActionInteractionDelegate interactionDelegate;
     void Awake()
     {
-        interactionDelegate = PlayerStartSeeingCadre;
+        this.enabled = false;
     }
-    public void ExitInteract()
+    private void OnEnable()
     {
-        wasInteractable = false;
+        //Player is now viewing the portrait/cadre player is frozen
+        isSeeing = true;
     }
-
-    public void Interact()
-    {
-        if (wasInteractable)
-        {
-            return;
-        }
-        interactionDelegate?.Invoke();
-        wasInteractable = true;
-    }
-
-    public float InteractionDistance()
-    {
-        return interactionDistance;
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -43,27 +23,13 @@ public class CadreBehaviour : MonoBehaviour, IInteractable
             return;
         PlayerSeeingtheCadre();
     }
-
-    private void PlayerStartSeeingCadre()
-    {
-        //Player is now viewing the portrait/cadre
-        isSeeing = true;
-        //Freeze Player
-        PlayerProperties.FreezeAim = true;
-        PlayerProperties.FreezeInteraction = true;
-        PlayerProperties.FreezeMovement = true;
-        interactionDelegate = null;
-    }
     private void PlayerSeeingtheCadre()
     {
         if (InputManager.Instance.PlayerInput.ExitInteraction)
         {
             //Stop viewing the cadre
             isSeeing = false;
-            exitCadre.Raise();
-            PlayerProperties.FreezeAim = false;
-            PlayerProperties.FreezeInteraction = false;
-            PlayerProperties.FreezeMovement = false;
+            exitCadre.Raise(); //Player can resume moving and interact again
         }
     }
 }
