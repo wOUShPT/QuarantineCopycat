@@ -9,10 +9,14 @@ using UnityEngine.Video;
 
 public class TelevisionBehaviour : MonoBehaviour
 {
+    private TVMode mode;
+    private enum TVMode
+    {
+        Manual, Cycle
+    }
     private VideoPlayer _videoPlayer;
     [SerializeField]
     private VideoClip[] clips;
-
     [SerializeField] 
     private MeshRenderer screenMesh;
     [SerializeField]
