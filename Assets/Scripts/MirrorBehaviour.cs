@@ -21,7 +21,8 @@ public class MirrorBehaviour : MonoBehaviour
         Vector3 lookDir = Camera.main.transform.position - _mirrorCameraPivot.position;
         lookDir.Normalize();
         Quaternion lookRotation = Quaternion.LookRotation(lookDir);
-        lookRotation.eulerAngles = _mirrorCameraPivot.eulerAngles - lookRotation.eulerAngles;
+        lookRotation.eulerAngles = _mirrorCameraPivot.eulerAngles + lookRotation.eulerAngles;
+        lookRotation.eulerAngles = new Vector3(0, lookRotation.eulerAngles.y, lookRotation.eulerAngles.z);
         transform.localRotation = lookRotation;
     }
 }
