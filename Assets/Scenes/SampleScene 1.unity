@@ -6132,7 +6132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150712776}
   m_LocalRotation: {x: 0, y: 0.9135455, z: -0.40673664, w: 0}
-  m_LocalPosition: {x: 0, y: 0.21, z: -0.234}
+  m_LocalPosition: {x: 0, y: 0.21, z: 0.234}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1939610360}
@@ -10266,7 +10266,7 @@ GameObject:
   - component: {fileID: 779242048}
   - component: {fileID: 779242047}
   m_Layer: 0
-  m_Name: PairBreads (1)
+  m_Name: Coffee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11094,7 +11094,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907302801}
-  m_LocalRotation: {x: -0.017786236, y: -0.037168976, z: -0.0006616582, w: 0.9991505}
+  m_LocalRotation: {x: -0.01778621, y: -0.03716894, z: -0.0006616566, w: 0.9991505}
   m_LocalPosition: {x: 6.93, y: 4.63, z: -4.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
