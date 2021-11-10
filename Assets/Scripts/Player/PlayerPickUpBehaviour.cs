@@ -12,14 +12,14 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     private PickUpItemBehaviour pickUpItem;
 
 
-    private BookInspection bookInspection;
+    //private BookInspection bookInspection;
 
     private void Start()
     {
         InputManager.Instance.ToggleInspectionControls(false);
         pickUpItem = null;
-        bookInspection = FindObjectOfType<BookInspection>();
-        bookInspection.HideBook();
+        //bookInspection = FindObjectOfType<BookInspection>();
+        //bookInspection.HideBook();
     }
     public void GetPickedupObject(PickUpItemBehaviour pickedupObject)
     {
@@ -84,14 +84,14 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     }
     private void Update()
     {
-        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Book && InputManager.Instance.PlayerInput.Inspection)
-        {
-            // If player has a book
-            bookInspection.SetTextArray(pickUpItem.TextList);
-            bookInspection.DisplayBook();
-            InputManager.Instance.ToggleInspectionControls(true);
-            InputManager.Instance.TogglePlayerControls(false);
-        }
+        //if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Book && InputManager.Instance.PlayerInput.Inspection)
+        //{
+        //    // If player has a book
+        //    //bookInspection.SetTextArray(pickUpItem.TextList);
+        //    bookInspection.DisplayBook();
+        //    InputManager.Instance.ToggleInspectionControls(true);
+        //    InputManager.Instance.TogglePlayerControls(false);
+        //}
     }
     public void DisableInspectionControl()
     {

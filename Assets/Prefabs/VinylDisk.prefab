@@ -226,7 +226,6 @@ MonoBehaviour:
   dropObjectType: 2
   childrenItemSpot: {fileID: 0}
   holderPositionArray: []
-  maxNumberCloths: 3
   diskParams:
     diskBehaviour: {fileID: 1212702634666704667}
     targetMusic: {fileID: 0}

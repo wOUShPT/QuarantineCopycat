@@ -27,7 +27,9 @@ public class DiskPlace : ItemSpotBehaviour
                 playerPickUp.BreakConnection();
                 PlaceItemToSpot();
                 diskParams.targetMusic = pickUpItem.AudioClip;
-                diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
+                //diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
+                diskParams.diskBehaviour.AudiouSourceReference.clip = diskParams.targetMusic;
+                diskParams.diskBehaviour.AudiouSourceReference.Play();
                 interactDelegate = TakeItemToPlayer;
             }
         }

@@ -16,8 +16,14 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     private void Awake()
     {
         //Assign the animators and Open doors to elegate
-        leftDoorAnimator = leftDoor.GetComponent<Animator>();
-        rightDoorAnimator = rightDoor.GetComponent<Animator>();
+        if(leftDoor!= null)
+        {
+            leftDoorAnimator = leftDoor.GetComponent<Animator>();
+        }
+        if(rightDoor != null)
+        {
+            rightDoorAnimator = rightDoor.GetComponent<Animator>();
+        }
         doorsInteraction += OpenDoors;
     }
 
@@ -41,12 +47,16 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     }
     private void OpenDoors()
     {
-        if( AnimatorIsPlaying(rightDoorAnimator) || AnimatorIsPlaying(leftDoorAnimator))
+        if ((rightDoorAnimator != null && AnimatorIsPlaying(rightDoorAnimator)))
         {
             return; //Animators are playing
         }
+        if ((leftDoorAnimator != null && AnimatorIsPlaying(leftDoorAnimator)))
+        {
+            return;
+        }
         //Open both doors
-        if( leftDoorAnimator != null)
+        if ( leftDoorAnimator != null)
         {
             leftDoorAnimator.Play("LeftDoorOpen");
         }
@@ -60,9 +70,13 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     }
     private void CloseDoors()
     {
-        if (AnimatorIsPlaying(rightDoorAnimator) || AnimatorIsPlaying(leftDoorAnimator))
+        if ((rightDoorAnimator != null && AnimatorIsPlaying(rightDoorAnimator)))
         {
             return; //Animators are playing
+        }
+        if((leftDoorAnimator != null && AnimatorIsPlaying(leftDoorAnimator)))
+        {
+            return;
         }
         //Close both doors
         if (leftDoorAnimator != null)
