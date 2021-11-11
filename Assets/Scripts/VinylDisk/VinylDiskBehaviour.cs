@@ -10,13 +10,11 @@ public class VinylDiskBehaviour : MonoBehaviour
     [SerializeField]private float volumeChange = 0.002f;
     [SerializeField]private AudioSource audioSourceReference;
     public AudioSource AudiouSourceReference => audioSourceReference;
-    [SerializeField] private AudioClip[] audioClipArray;
-    private int currentAudioClip = 0;
     private void Awake()
     {
+        
+        audioSourceReference = GetComponent<AudioSource>();
         Debug.Log(audioSourceReference);
-        //audioSource = GetComponent<AudioSource>();
-        audioSourceReference.clip = audioClipArray[currentAudioClip];
     }
     private void Update()
     {

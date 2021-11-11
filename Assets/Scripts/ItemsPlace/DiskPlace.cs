@@ -25,11 +25,9 @@ public class DiskPlace : ItemSpotBehaviour
                 item = pickUpItem;
                 item.PickedUp = false;
                 playerPickUp.BreakConnection();
-                PlaceItemToSpot();
                 diskParams.targetMusic = pickUpItem.AudioClip;
-                //diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
-                diskParams.diskBehaviour.AudiouSourceReference.clip = diskParams.targetMusic;
-                diskParams.diskBehaviour.AudiouSourceReference.Play();
+                diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
+                PlaceItemToSpot();
                 interactDelegate = TakeItemToPlayer;
             }
         }
@@ -41,7 +39,7 @@ public class DiskPlace : ItemSpotBehaviour
         SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
         item.ItemRigidbody.isKinematic = true;
-        item.ItemCollider.isTrigger = true;
+        item.ItemCollider.enabled = false;
     }
 
     protected override void TakeItemToPlayer()

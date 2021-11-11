@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3788210221028888048
+--- !u!1 &4262517558227536335
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3788210221028888052}
-  - component: {fileID: 3788210221028888053}
-  - component: {fileID: 3788210221028888050}
-  - component: {fileID: 3788210221028888051}
-  - component: {fileID: 3788210221028888055}
-  - component: {fileID: 3788210221028888054}
+  - component: {fileID: 4262517558227536334}
+  - component: {fileID: 4262517558227536323}
+  - component: {fileID: 4262517558227536320}
   m_Layer: 10
-  m_Name: Book1
+  m_Name: Toothbrush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3788210221028888052
+--- !u!4 &4262517558227536334
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3788210221028888048}
+  m_GameObject: {fileID: 4262517558227536335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.87, y: 1.49, z: -10.08}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4262517558375216835}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3788210221028888053
+--- !u!33 &4262517558227536323
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3788210221028888048}
+  m_GameObject: {fileID: 4262517558227536335}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3788210221028888050
+--- !u!23 &4262517558227536320
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3788210221028888048}
+  m_GameObject: {fileID: 4262517558227536335}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,42 +81,86 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3788210221028888051
+--- !u!1 &4262517558375216847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4262517558375216835}
+  - component: {fileID: 4262517558375216832}
+  - component: {fileID: 4262517558375216833}
+  - component: {fileID: 4262517558375216846}
+  - component: {fileID: 4262517558375216834}
+  m_Layer: 10
+  m_Name: ToothbrushPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4262517558375216835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4262517558375216847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.86194, y: 0.82, z: -6.9426284}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4262517558227536334}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4262517558375216832
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3788210221028888048}
+  m_GameObject: {fileID: 4262517558375216847}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3788210221028888055
+  m_Size: {x: 0.2844286, y: 0.25365525, z: 0.3027377}
+  m_Center: {x: 0, y: 0.007806167, z: -0.017312765}
+--- !u!54 &4262517558375216833
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4262517558375216847}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4262517558375216846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3788210221028888048}
+  m_GameObject: {fileID: 4262517558375216847}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04154b45adfc450459be619ec879dbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDistance: 0
-  objectType: 0
+  objectType: 6
   bookParams:
-    textList:
-    - Bla bla bla bla bla bla bla Bla bla bla bla bla bla bla Bla bla bla bla bla
-      bla bla Bla bla bla bla bla bla bla Bla bla bla bla bla bla bla Bla bla bla
-      bla bla bla bla Bla bla bla bla bla bla bla
-    - "Louvar o Senhor\nGuiado pela m\xE3o com jesus eu vou,\nsigo como ovelha que
-      encontrou pastor"
-    - "Em nome do pai,\nfilho\ne esp\xEDrito santo!\n\nAm\xE9n!\nNosso cora\xE7\xE3o
-      est\xE1 em deus"
+    textList: []
   clothParams:
     isClean: 0
   diskParams:
@@ -133,7 +174,7 @@ MonoBehaviour:
   brushParams:
     teethBehaviour: {fileID: 0}
     hasToothpaste: 0
-    toothBrush: {fileID: 0}
+    toothBrush: {fileID: 4262517558227536334}
   wateringCanParams:
     plantsBehaviour: {fileID: 0}
     waterParticle: {fileID: 0}
@@ -141,19 +182,22 @@ MonoBehaviour:
     plateBehaviour: {fileID: 0}
     isWashed: 0
     isPlaced: 0
---- !u!54 &3788210221028888054
-Rigidbody:
+--- !u!95 &4262517558375216834
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3788210221028888048}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_GameObject: {fileID: 4262517558375216847}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4aeb293d0fee23147938fa8e8b36e8db, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

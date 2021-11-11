@@ -8,10 +8,6 @@ public class BookPlace : ItemSpotBehaviour
     protected override void Awake()
     {
         base.Awake();
-        if (transform.childCount > 0)
-        {
-            childrenItemSpot = this.transform.GetChild(0);
-        }
     }
 
     protected override void CheckPlayerHasItem()
@@ -48,8 +44,13 @@ public class BookPlace : ItemSpotBehaviour
         item.transform.SetParent(childrenItemSpot != null ? childrenItemSpot : this.transform);
         SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
+        item.transform.localPosition = Vector3.zero;
         item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.isTrigger = true;
+        if (!item.ItemCollider.enabled)
+        {
+            item.ItemCollider.enabled = true;
+        }
     }
 
 }
