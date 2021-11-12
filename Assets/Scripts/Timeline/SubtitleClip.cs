@@ -1,19 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
-public class SubtitleClip : PlayableAsset
+[Serializable]
+public class SubtitleClip : PlayableAsset, ITimelineClipAsset
 {
-    public string subtitleText;
+    public SubtitleBehaviour template = new SubtitleBehaviour();
 
-    public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
+    public ClipCaps clipCaps => ClipCaps.None;
+
+    public override Playable CreatePlayable (PlayableGraph graph, GameObject owner)
     {
-        var playable = ScriptPlayable<SubtitleBehaviour>.Create(graph);
-
-        SubtitleBehaviour subtitleBehaviour = playable.GetBehaviour();
-        subtitleBehaviour.subtitleText = subtitleText;
-
+        var playable = ScriptPlayable<SubtitleBehaviour>.Create (graph, template);
+        
         return playable;
     }
 }

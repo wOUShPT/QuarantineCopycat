@@ -7,11 +7,11 @@ public class InteractionTrigger : MonoBehaviour , IInteractable
 {
     public float interactionDistance;
     public GameEvent gameEvent;
-    private HUDReferences _hudReferences;
+    private UIManager _uiManager;
 
     public void Awake()
     {
-        _hudReferences = FindObjectOfType<HUDReferences>();
+        _uiManager = FindObjectOfType<UIManager>();
     }
 
     public float InteractionDistance()
@@ -22,7 +22,7 @@ public class InteractionTrigger : MonoBehaviour , IInteractable
     public void Interact()
     {
         gameEvent.Raise();
-        _hudReferences.ToggleInteractionPrompt(false);
+        _uiManager.ToggleInteractionPrompt(false);
     }
 
     public void ExitInteract()

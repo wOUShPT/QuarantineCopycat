@@ -83,8 +83,8 @@ public class DartsBehaviour : MonoBehaviour
             _precisionTimer += Time.deltaTime;
             _precisionTimer = Mathf.Clamp(_precisionTimer, 0f, 5f);
             _currentFOV = Mathf.Lerp(_currentFOV, 10, Time.deltaTime * 1);
-            _currentNoiseAmp = Mathf.Lerp(_currentNoiseAmp, 1f, Time.deltaTime);
-            _currentNoiseFreq = Mathf.Lerp(_currentNoiseFreq, 1f, Time.deltaTime);
+            _currentNoiseAmp = Mathf.Lerp(_currentNoiseAmp, 2f, Time.deltaTime);
+            _currentNoiseFreq = Mathf.Lerp(_currentNoiseFreq, 2f, Time.deltaTime);
             _cameraNoise.m_AmplitudeGain = _currentNoiseAmp;
             _cameraNoise.m_FrequencyGain = _currentNoiseFreq;
             _camera.m_Lens.FieldOfView = _currentFOV;

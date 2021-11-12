@@ -8,10 +8,24 @@ using UnityEngine.Serialization;
 public class GameManager : Singleton<GameManager>
 {
     private int _currentDayIndex;
+    [SerializeField]
+    private List<GameEvent> _goalsEntryList;
+    private Queue<GameEvent> _goalsQueue;
+
+    [SerializeField]
+    private PlayableDirector _eventsSequence;
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        _goalsQueue = new Queue<GameEvent>();
+        foreach (var goal in _goalsEntryList)
+        {
+            _goalsQueue.Enqueue(goal);
+        }
+        TimelineManager.Instance.Init(_eventsSequence);
+
         _currentDayIndex = 1;
         ChangeDay();
     }
@@ -48,6 +62,46 @@ public class GameManager : Singleton<GameManager>
     public void IncrementDayCounter()
     {
         CurrentDay++;
+    }
+
+    public void Progress(GameEvent currentEvent)
+    {
+        switch (CurrentDay)
+        {
+            case 1:
+
+                if (currentEvent == _goalsQueue.Peek())
+                {
+                    Debug.Log(currentEvent);
+                    _goalsQueue.Dequeue();
+                    TimelineManager.Instance.Resume(_eventsSequence);
+                }
+                break;
+            
+            case 2:
+
+                break;
+            
+            case 3:
+
+                break;
+            
+            case 4:
+
+                break;
+            
+            case 5:
+
+                break;
+            
+            case 6:
+
+                break;
+            
+            case 7:
+
+                break;
+        }
     }
 
     

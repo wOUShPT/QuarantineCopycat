@@ -13,12 +13,12 @@ public class PlayerInteraction : MonoBehaviour
     private float range;
     [SerializeField]
     private LayerMask interactablesLayer;
-    private HUDReferences _hudReferences;
+    private UIManager _uiManager;
     private RaycastHit[] _hitResults;
     private Transform raycastTransform;
     void Start()
     {
-        _hudReferences = FindObjectOfType<HUDReferences>();
+        _uiManager = FindObjectOfType<UIManager>();
         
         _hitResults = new RaycastHit[1];
 
@@ -52,9 +52,9 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_hudReferences.interactionPrompt != null)
+        if (_uiManager.interactionPrompt != null)
         {
-            _hudReferences.ToggleInteractionPrompt(false);
+            _uiManager.ToggleInteractionPrompt(false);
         }
     }
 
@@ -65,12 +65,12 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
         
-        _hudReferences.ToggleInteractionPrompt(false);
+        _uiManager.ToggleInteractionPrompt(false);
         
         if (hit.transform.TryGetComponent(out IInteractable interactable)  && Vector3.Distance(Camera.main.transform.position, hit.point) <= (interactable.InteractionDistance() == 0 ? range : interactable.InteractionDistance()))
         {
             
-            _hudReferences.ToggleInteractionPrompt(true);
+            _uiManager.ToggleInteractionPrompt(true);
             if (InputManager.Instance.PlayerInput.Interaction)
             {
                 //Being interactive
