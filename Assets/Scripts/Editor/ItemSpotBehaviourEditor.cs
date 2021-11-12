@@ -11,11 +11,10 @@ public class ItemSpotBehaviourEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("interactionDistance"));
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("dropObjectType"));
-
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("childrenItemSpot"));
         switch (itemSpot.DropObjectType)
         {
             case PickUpItemBehaviour.PickUpObjectType.Book:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("childrenItemSpot"));
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Cloth:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("holderPositionArray"));
@@ -40,6 +39,9 @@ public class ItemSpotBehaviourEditor : Editor
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("childrenItemSpot"));
                 break;
         }
+        
+
+
         serializedObject.ApplyModifiedProperties();
 
     }

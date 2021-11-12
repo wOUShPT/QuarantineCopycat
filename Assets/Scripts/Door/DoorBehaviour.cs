@@ -5,26 +5,21 @@ using UnityEngine;
 public class DoorBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField] private float interactionDistance;
-    [SerializeField] private GameObject leftDoor;
-    [SerializeField] private GameObject rightDoor;
-    private Animator leftDoorAnimator;
-    private Animator rightDoorAnimator;
+    [SerializeField] private Transform leftDoor;
+    [SerializeField] private Transform rightDoor;
     private delegate void DoorsInteraction();
     private DoorsInteraction doorsInteraction;
     private bool wasInteracted = false;
-    
+    private enum RotationAxis
+    {
+        XAxis, YAxis, ZAxis
+    }
+    [SerializeField] private RotationAxis rotationAxis;
+    [SerializeField] private float targetRotateGap = 90; // be the target in one axis
+
     private void Awake()
     {
-        //Assign the animators and Open doors to elegate
-        if(leftDoor!= null)
-        {
-            leftDoorAnimator = leftDoor.GetComponent<Animator>();
-        }
-        if(rightDoor != null)
-        {
-            rightDoorAnimator = rightDoor.GetComponent<Animator>();
-        }
-        doorsInteraction += OpenDoors;
+        doorsInteraction = OpenDoorByCode;
     }
 
     public float InteractionDistance()
@@ -45,55 +40,96 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     {
         wasInteracted = false;
     }
-    private void OpenDoors()
+    private void OpenDoorByCode()
     {
-        if ((rightDoorAnimator != null && AnimatorIsPlaying(rightDoorAnimator)))
+        if(leftDoor != null)
         {
-            return; //Animators are playing
+            switch (rotationAxis)
+            {
+                case RotationAxis.XAxis:
+                    RotateDoor(leftDoor, new Vector3(targetRotateGap, 0f, 0f));
+                    break;
+                case RotationAxis.YAxis:
+                    RotateDoor(leftDoor, new Vector3(0f, targetRotateGap, 0f));
+                    break;
+                case RotationAxis.ZAxis:
+                    RotateDoor(leftDoor, new Vector3(0f, 0f, targetRotateGap));
+                    break;
+                default:
+                    break;
+            }
         }
-        if ((leftDoorAnimator != null && AnimatorIsPlaying(leftDoorAnimator)))
+        if( rightDoor != null)
         {
-            return;
+            switch (rotationAxis)
+            {
+                case RotationAxis.XAxis:
+                    RotateDoor(rightDoor, new Vector3(-targetRotateGap, 0f, 0f));
+                    break;
+                case RotationAxis.YAxis:
+                    RotateDoor(rightDoor, new Vector3(0f, -targetRotateGap, 0f));
+                    break;
+                case RotationAxis.ZAxis:
+                    RotateDoor(rightDoor, new Vector3(0f, 0f, -targetRotateGap));
+                    break;
+                default:
+                    break;
+            }
         }
-        //Open both doors
-        if ( leftDoorAnimator != null)
-        {
-            leftDoorAnimator.Play("LeftDoorOpen");
-        }
-        if( rightDoorAnimator != null)
-        {
-            rightDoorAnimator.Play("RightDoorOpen");
-        }
-        //detach delegate to OpenDoors and attach closed doors to delegate
-        doorsInteraction -= OpenDoors;
-        doorsInteraction += CloseDoors;
+        doorsInteraction = CloseDoorByCode;
     }
-    private void CloseDoors()
+    private void CloseDoorByCode()
     {
-        if ((rightDoorAnimator != null && AnimatorIsPlaying(rightDoorAnimator)))
+        if (leftDoor != null)
         {
-            return; //Animators are playing
+            switch (rotationAxis)
+            {
+                case RotationAxis.XAxis:
+                    RotateDoor(leftDoor, new Vector3(-targetRotateGap, 0f, 0f));
+                    break;
+                case RotationAxis.YAxis:
+                    RotateDoor(leftDoor, new Vector3(0f, -targetRotateGap, 0f));
+                    break;
+                case RotationAxis.ZAxis:
+                    RotateDoor(leftDoor, new Vector3(0f, 0f, -targetRotateGap));
+                    break;
+                default:
+                    break;
+            }
         }
-        if((leftDoorAnimator != null && AnimatorIsPlaying(leftDoorAnimator)))
+        if(rightDoor != null)
         {
-            return;
+            switch (rotationAxis)
+            {
+                case RotationAxis.XAxis:
+                    RotateDoor(rightDoor, new Vector3(targetRotateGap, 0f, 0f));
+                    break;
+                case RotationAxis.YAxis:
+                    RotateDoor(rightDoor, new Vector3(0f, targetRotateGap, 0f));
+                    break;
+                case RotationAxis.ZAxis:
+                    RotateDoor(rightDoor, new Vector3(0f, 0f, targetRotateGap));
+                    break;
+                default:
+                    break;
+            }
         }
-        //Close both doors
-        if (leftDoorAnimator != null)
-        {
-            leftDoorAnimator.Play("LeftDoorClose");
-        }
-        if (rightDoorAnimator != null)
-        {
-            rightDoorAnimator.Play("RightDoorClose");
-        }
-        //detach delegate to CloseDoors and attach open doors to delegate
-        doorsInteraction -= CloseDoors;
-        doorsInteraction += OpenDoors;
+        doorsInteraction = OpenDoorByCode;
     }
-    private bool AnimatorIsPlaying( Animator animator)
+    private void RotateDoor(Transform _rotate, Vector3 _rotationVector)
     {
-        return animator.GetCurrentAnimatorStateInfo(0).length > animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        StartCoroutine(Rotating( _rotate, _rotationVector, 1));
     }
-
+    IEnumerator Rotating(Transform _rotate, Vector3 targetVector, float _time)
+    {
+        float timerCounter = 0.0f;
+        Quaternion to = _rotate.rotation * Quaternion.Euler(targetVector);
+        while ( timerCounter < _time)
+        {
+            _rotate.rotation = Quaternion.Slerp(_rotate.rotation, to, timerCounter / _time);
+            timerCounter += Time.deltaTime;
+            yield return null;
+        }
+        _rotate.rotation = to;
+    }
 }

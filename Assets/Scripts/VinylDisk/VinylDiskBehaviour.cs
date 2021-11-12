@@ -37,7 +37,6 @@ public class VinylDiskBehaviour : MonoBehaviour
         {
             wasInterected = false;
         }
-        wasInterected = false;
     }
     public void PlayVinylDisk(AudioClip _audioclip)
     {

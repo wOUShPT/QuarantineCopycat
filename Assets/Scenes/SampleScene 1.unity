@@ -7812,7 +7812,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 533747599}
-  - component: {fileID: 533747600}
   m_Layer: 0
   m_Name: RightDoorPivot
   m_TagString: Untagged
@@ -7835,25 +7834,6 @@ Transform:
   m_Father: {fileID: 2046079316}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!95 &533747600
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 533747598}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b7879181f4fb0bb47b519aa3b794a9e3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &542025579
 GameObject:
   m_ObjectHideFlags: 3
@@ -8227,6 +8207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc77d9314030541479fad0ed85b04763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _goalsEntryList: []
+  _eventsSequence: {fileID: 0}
 --- !u!4 &621267576
 Transform:
   m_ObjectHideFlags: 0
@@ -13030,6 +13012,9 @@ MonoBehaviour:
   reticle: {fileID: 1976584825}
   crosshair: {fileID: 776466615}
   interactionPrompt: {fileID: 313560504}
+  subtitle:
+    text: {fileID: 0}
+    canvasGroup: {fileID: 0}
 --- !u!114 &1512995130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14841,7 +14826,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1859642033}
-  - component: {fileID: 1859642034}
   m_Layer: 0
   m_Name: LeftDoorPivot
   m_TagString: Untagged
@@ -14864,25 +14848,6 @@ Transform:
   m_Father: {fileID: 2046079316}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!95 &1859642034
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859642032}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b7879181f4fb0bb47b519aa3b794a9e3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1875025309
 GameObject:
   m_ObjectHideFlags: 0
@@ -16434,8 +16399,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDistance: 0
-  leftDoor: {fileID: 1859642032}
-  rightDoor: {fileID: 0}
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 533747599}
+  isItAnimation: 0
+  rotationAxis: 1
+  targetRotateGap: 90
 --- !u!65 &2046079315
 BoxCollider:
   m_ObjectHideFlags: 0
