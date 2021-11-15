@@ -10,12 +10,14 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     private delegate void DoorsInteraction();
     private DoorsInteraction doorsInteraction;
     private bool wasInteracted = false;
+    [SerializeField] private AnimationCurve animationCurve;
     private enum RotationAxis
     {
         XAxis, YAxis, ZAxis
     }
     [SerializeField] private RotationAxis rotationAxis;
     [SerializeField] private float targetRotateGap = 90; // be the target in one axis
+    private bool isBeingAnimated = false;
 
     private void Awake()
     {
@@ -29,7 +31,7 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (wasInteracted)
+        if (wasInteracted || isBeingAnimated)
         {
             return;
         }
@@ -118,18 +120,21 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     }
     private void RotateDoor(Transform _rotate, Vector3 _rotationVector)
     {
-        StartCoroutine(Rotating( _rotate, _rotationVector, 1));
+        StartCoroutine(Rotating( _rotate, _rotationVector, 3f));
     }
     IEnumerator Rotating(Transform _rotate, Vector3 targetVector, float _time)
     {
-        float timerCounter = 0.0f;
+        float elapsed = 0.0f; //elaped
+        isBeingAnimated = true;
         Quaternion to = _rotate.rotation * Quaternion.Euler(targetVector);
-        while ( timerCounter < _time)
+        while ( elapsed < _time)
         {
-            _rotate.rotation = Quaternion.Slerp(_rotate.rotation, to, timerCounter / _time);
-            timerCounter += Time.deltaTime;
+            float percentage = (float)elapsed / _time;
+            _rotate.rotation = Quaternion.Lerp(_rotate.rotation, to, animationCurve.Evaluate( percentage)); // Call evaluate
+            elapsed += Time.deltaTime;
             yield return null;
         }
         _rotate.rotation = to;
+        isBeingAnimated = false;
     }
 }

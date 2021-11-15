@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
     private Resolution[] resolutions;
 
-    [SerializeField]private Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
     private void Start()
     {
         resolutions = Screen.resolutions;
