@@ -22,7 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Window_Glass
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_ShaderKeywords: _NORMALMAP_TANGENT_SPACE _REFRACTION_PLANE _SURFACE_TYPE_TRANSPARENT
+  m_ShaderKeywords: _ENABLE_FOG_ON_TRANSPARENT _NORMALMAP_TANGENT_SPACE _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -31,9 +31,9 @@ Material:
     RenderType: Transparent
   disabledShaderPasses:
   - RayTracingPrepass
-  - TransparentDepthPostpass
-  - MOTIONVECTORS
   - TransparentBackface
+  - MOTIONVECTORS
+  - TransparentDepthPostpass
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -167,7 +167,7 @@ Material:
     - _EmissiveIntensity: 1
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
-    - _EnableFogOnTransparent: 0
+    - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _HeightAmplitude: 0.02
@@ -185,7 +185,7 @@ Material:
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
     - _MaterialID: 1
-    - _Metallic: 0.449
+    - _Metallic: 0.509
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
     - _NormalMapSpace: 0
@@ -199,7 +199,7 @@ Material:
     - _RayTracing: 0
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 1
-    - _RefractionModel: 1
+    - _RefractionModel: 0
     - _Smoothness: 1
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
@@ -239,9 +239,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 0.19607843}
+    - _BaseColor: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 0.1764706}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 0.19607843}
+    - _Color: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 0.1764706}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
