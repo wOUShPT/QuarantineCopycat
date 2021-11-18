@@ -63,7 +63,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
         public Transform CoffeePivot;
         public bool IsCoffeeBeDoing;
     }
-    //Object type == Plate
+    //Object type == Plate //clean plates
     protected Stack<PlateSpotParams> plateParamsStack;
     [System.Serializable]
     public class PlateSpotParams
@@ -76,6 +76,14 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
             holderPosition = _holderPosition;
             itemBehaviour = _itemBehaviour;
         }
+    }
+    //Object Type == Fridge
+    [SerializeField]protected FridgeParams fridgeParams;
+    [System.Serializable]
+    public class FridgeParams
+    {
+        public Transform[] foodTransform;
+        public List<PickUpItemBehaviour> foodPickUps;
     }
 
     protected virtual void Awake() //awake

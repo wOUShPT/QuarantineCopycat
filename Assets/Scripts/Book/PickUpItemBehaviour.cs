@@ -10,7 +10,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private float interactionDistance;
     public enum PickUpObjectType
     {
-        Book, Cloth, Disk, Bread, Any, Coffee, Toothbrush, WateringCan, Plate
+        Book, Cloth, Disk, Bread, Any, Coffee, Toothbrush, WateringCan, Plate, Food
     }
     [SerializeField] private PickUpObjectType objectType;
     public PickUpObjectType ObjectType => objectType;
@@ -106,6 +106,16 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     public WashPlateBehaviour PlateBehaviour => plateParams.plateBehaviour;
     public bool IsPlateWashed { get { return plateParams.isWashed; } set { plateParams.isWashed = value; } }
     public bool IsPlatePlaced { get { return plateParams.isPlaced; } set { plateParams.isPlaced = value; } }
+    //Object type == food
+    [SerializeField] private FoodParams foodParams;
+    [System.Serializable]
+    public class FoodParams
+    {
+        public bool isPickable;
+        public bool hasEaten;
+    }
+    public bool IsPickable { get { return foodParams.isPickable; } set { foodParams.isPickable = value; } }
+    public bool HasEaten { get { return foodParams.hasEaten; } set { foodParams.hasEaten = value; } }
     private void Awake()
     {
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
@@ -161,6 +171,4 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     //        }
     //    }
     //}
-
-
 }

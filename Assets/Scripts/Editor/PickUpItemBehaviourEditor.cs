@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(PickUpItemBehaviour))]
+[CustomEditor(typeof(PickUpItemBehaviour), true)]
 [CanEditMultipleObjects]
 public class PickUpItemBehaviourEditor : Editor
 {
@@ -42,6 +42,9 @@ public class PickUpItemBehaviourEditor : Editor
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Plate:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("plateParams"));
+                break;
+            case PickUpItemBehaviour.PickUpObjectType.Food:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("foodParams"));
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Any:
                 break;

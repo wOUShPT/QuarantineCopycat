@@ -19,9 +19,23 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     [SerializeField] private float targetRotateGap = 90; // be the target in one axis
     private bool isBeingAnimated = false;
 
+    private enum DoorType
+    {
+        Cabinet, Fridge
+    }
+    [SerializeField] private DoorType doorType;
+    private FridgePlace fridgePlace;
     private void Awake()
     {
         doorsInteraction = OpenDoorByCode;
+    }
+    private void Start()
+    {
+        if(doorType == DoorType.Fridge)
+        {
+            fridgePlace = GetComponentInChildren<FridgePlace>();
+            fridgePlace.enabled = false;
+        }
     }
 
     public float InteractionDistance()
@@ -78,6 +92,7 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
                     break;
             }
         }
+        CheckIsFridgeOpen();
         doorsInteraction = CloseDoorByCode;
     }
     private void CloseDoorByCode()
@@ -136,5 +151,17 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
         }
         _rotate.rotation = to;
         isBeingAnimated = false;
+    }
+    private void CheckIsFridgeOpen()
+    {
+        if(doorType != DoorType.Fridge)
+        {
+            return;
+        }
+        fridgePlace.enabled = true;
+        //foreach( PickUpItemBehaviour pickups in foodPickUps)
+        //{
+        //    pickups.IsPickable = true;
+        //}
     }
 }
