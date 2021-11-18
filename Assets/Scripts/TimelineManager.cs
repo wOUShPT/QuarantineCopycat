@@ -26,6 +26,7 @@ public class TimelineManager : Singleton<TimelineManager>
     {
         director.time = director.time;
         UIManager.Instance.ToggleSubtitle(false);
+        Debug.Log("Timeline resumed");
         director.playableGraph.GetRootPlayable(0).SetSpeed(1d);
     }
 
@@ -34,9 +35,15 @@ public class TimelineManager : Singleton<TimelineManager>
         director.playableGraph.GetRootPlayable(0).SetSpeed(0d);
     }
 
-    IEnumerator WaitForEndOfClip()
+    public void DelayedResume(PlayableDirector director, float seconds)
     {
-        yield return new WaitForSeconds(currentClipDuration);
+        StartCoroutine(DelayResumeCoroutine(director, seconds));
+    }
+
+    IEnumerator DelayResumeCoroutine(PlayableDirector director, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Resume(director);
         
     }
 }

@@ -11,7 +11,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private List<GameEvent> _goalsEntryList;
     private Queue<GameEvent> _goalsQueue;
-
     [SerializeField]
     private PlayableDirector _eventsSequence;
     void Awake()
@@ -25,6 +24,7 @@ public class GameManager : Singleton<GameManager>
             _goalsQueue.Enqueue(goal);
         }
         TimelineManager.Instance.Init(_eventsSequence);
+        TimelineManager.Instance.DelayedResume(_eventsSequence, 2);
 
         _currentDayIndex = 1;
         ChangeDay();
