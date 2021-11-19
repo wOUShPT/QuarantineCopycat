@@ -24,7 +24,6 @@ public class ItemSpotBehaviourEditor : Editor
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("diskParams"));
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Any:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("childrenItemSpot"));
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Bread:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("breadParams"));
@@ -39,13 +38,8 @@ public class ItemSpotBehaviourEditor : Editor
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("fridgeParams"));
                 break;
             default:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("childrenItemSpot"));
                 break;
         }
-        
-
-
         serializedObject.ApplyModifiedProperties();
-
     }
 }

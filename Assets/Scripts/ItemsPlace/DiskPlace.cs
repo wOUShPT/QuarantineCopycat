@@ -20,7 +20,7 @@ public class DiskPlace : ItemSpotBehaviour
         if (playerPickUp.CurrentlyPickedUpObject != null)
         {
             PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
-            if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Disk)
+            if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Disk || AreSpotsFull())
             {
                 item = pickUpItem;
                 item.PickedUp = false;
@@ -35,11 +35,13 @@ public class DiskPlace : ItemSpotBehaviour
 
     protected override void PlaceItemToSpot()
     {
-        item.transform.SetParent(childrenItemSpot != null ? childrenItemSpot : this.transform);
+        item.transform.SetParent(childrenItemSpot.Length != 0 ? GetAvailableSpot() : this.transform);
         SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
         item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.enabled = false;
+        // Attach item to this itemspotbehaviour
+        item.ItemSpotBehaviour = this;
     }
 
     protected override void TakeItemToPlayer()

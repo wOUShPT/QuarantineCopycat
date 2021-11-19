@@ -11,7 +11,8 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     protected PlayerPickUpBehaviour playerPickUp;
     //Book
     protected PickUpItemBehaviour item;
-    [SerializeField] protected Transform childrenItemSpot;
+    public PickUpItemBehaviour Item { get { return item; } set { item = value; } }
+    [SerializeField] protected Transform[] childrenItemSpot;
     //delegate
     protected delegate void InteractDelegate();
     protected InteractDelegate interactDelegate;
@@ -118,5 +119,38 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     protected abstract void CheckPlayerHasItem();
 
     protected abstract void TakeItemToPlayer();
+
+    protected Transform GetAvailableSpot()
+    {
+        Transform chosenSpot = null;
+        if(AreSpotsFull())
+        {
+            return chosenSpot; ;
+        }
+        foreach (Transform spot in childrenItemSpot)
+        {
+            if(spot.childCount == 0)
+            {
+                chosenSpot = spot;
+                break;
+            }
+        }
+        return chosenSpot;
+    }
+    protected bool AreSpotsFull()
+    {
+        if(childrenItemSpot.Length == 0)
+        {
+            return false; // If there's not spots
+        }
+        foreach(Transform spot in childrenItemSpot)
+        {
+            if( spot.childCount == 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

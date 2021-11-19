@@ -7,7 +7,9 @@ using UnityEngine;
 public class PickUpItemBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField]
-    private float interactionDistance;
+    private float interactionDistance = 0f;
+    protected ItemSpotBehaviour itemSpotBehaviour;
+    public ItemSpotBehaviour ItemSpotBehaviour { get { return itemSpotBehaviour; } set { itemSpotBehaviour = value; } }
     public enum PickUpObjectType
     {
         Book, Cloth, Disk, Bread, Any, Coffee, Toothbrush, WateringCan, Plate, Food
@@ -150,6 +152,12 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     {
         playerPickUp.GetPickedupObject(this);
         pickedUp = true;
+        //Desattach itemspot to this item and vice versa
+        if(ItemSpotBehaviour != null)
+        {
+            itemSpotBehaviour.Item = null;
+            itemSpotBehaviour = null;
+        }
     }
     private void DropItem()
     {

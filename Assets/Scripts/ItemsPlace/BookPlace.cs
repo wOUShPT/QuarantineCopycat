@@ -12,19 +12,21 @@ public class BookPlace : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject == null && !AreSpotsFull())
         {
-            PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
-            if (pickUpItem.ObjectType != DropObjectType && DropObjectType != PickUpItemBehaviour.PickUpObjectType.Any)
-            {
-                return; //can't put an cloth on a book spot
-            }
-            item = pickUpItem;
-            item.PickedUp = false;
-            playerPickUp.BreakConnection(); // Drop book
-            PlaceItemToSpot();
-            interactDelegate = TakeItemToPlayer;
+            TakeItemToPlayer();
+            return;
         }
+        // it's a book player has picked
+        PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
+        if ((pickUpItem.ObjectType != DropObjectType && DropObjectType != PickUpItemBehaviour.PickUpObjectType.Any) || AreSpotsFull())
+        {
+            return; //can't put an cloth on a book spot
+        }
+        item = pickUpItem;
+        item.PickedUp = false;
+        playerPickUp.BreakConnection(); // Drop book
+        PlaceItemToSpot();
     }
 
     protected override void TakeItemToPlayer()
@@ -37,20 +39,21 @@ public class BookPlace : ItemSpotBehaviour
         // Player took the book or any
         playerPickUp.GetPickedupObject(item);
         item = null;
-        interactDelegate = CheckPlayerHasItem;
     }
     protected override void PlaceItemToSpot()
     {
-        item.transform.SetParent(childrenItemSpot != null ? childrenItemSpot : this.transform);
+        item.transform.SetParent(childrenItemSpot.Length != 0 ? GetAvailableSpot() : this.transform);
         SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
         item.transform.localPosition = Vector3.zero;
         item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.isTrigger = true;
-        if (!item.ItemCollider.enabled)
+        if (item.ItemCollider.enabled)
         {
-            item.ItemCollider.enabled = true;
+            item.ItemCollider.enabled = false;
         }
+        // Attach item to this itemspotbehaviour
+        item.ItemSpotBehaviour = this;
     }
 
 }

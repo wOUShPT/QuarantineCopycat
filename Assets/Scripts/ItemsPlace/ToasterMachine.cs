@@ -33,6 +33,9 @@ public class ToasterMachine : ItemSpotBehaviour
 
     protected override void PlaceItemToSpot()
     {
+        item.transform.position = breadParams.LeftToasterPivot.position;
+        item.transform.SetParent(breadParams.LeftToasterPivot);
+        SetItemValuesDefault(item.transform);
         breadParams.LeftToast = item.LeftToast;
         breadParams.LeftToast.SetParent(breadParams.LeftToasterPivot);
         SetItemValuesDefault(breadParams.LeftToast);
