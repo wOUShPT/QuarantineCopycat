@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerPhone : MonoBehaviour
 {
-    private ChangePhoneUI changePhone;
+    private ChangePhoneUI phoneUI;
     [SerializeField]private Button primaryButton;
     //make alpha 1 and 0
     [SerializeField] private CanvasGroup phoneCanvasGroup;
@@ -14,8 +14,8 @@ public class PlayerPhone : MonoBehaviour
     private PhoneFunctionDelegate phoneDelegate;
     private void Awake()
     {
-        changePhone = FindObjectOfType<ChangePhoneUI>();
-        changePhone.ResetPhoneLayers();
+        phoneUI = FindObjectOfType<ChangePhoneUI>();
+        phoneUI.ResetPhoneLayers();
     }
     // Start is called before the first frame update
     void Start()
@@ -52,6 +52,6 @@ public class PlayerPhone : MonoBehaviour
         InputManager.Instance.TogglePlayerControls(true);
         InputManager.Instance.TogglePhoneControls(false);
         phoneDelegate = DisplayPhone;
-        changePhone.ResetPhoneLayers();
+        phoneUI.ResetPhoneLayers();
     }
 }

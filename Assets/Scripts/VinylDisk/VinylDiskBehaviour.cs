@@ -14,7 +14,6 @@ public class VinylDiskBehaviour : MonoBehaviour
     {
         
         audioSourceReference = GetComponent<AudioSource>();
-        Debug.Log(audioSourceReference);
     }
     private void Update()
     {
