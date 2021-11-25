@@ -20,22 +20,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37ff6665-f7b8-42b5-9b81-dfd008e24b54" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/.idea.QuarantineCopycat.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bathroom/Walls/BathroomTiles.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bathroom/Walls/BathroomTiles.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bathroom/Walls/BathroomTiles2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bathroom/Walls/BathroomTiles2.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bed/BedFrame/BedFrame.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bed/BedFrame/BedFrame.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bed/BedSheets/BedSheets3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bed/BedSheets/BedSheets3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bookcase/BookcaseFrame.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bookcase/BookcaseFrame.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bed/BedSheets/BedSheets4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bed/BedSheets/BedSheets4.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Floor/Floor3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Floor/Floor3.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Floor/Floor4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Floor/Floor4.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Floor/Floor5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Floor/Floor5.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Kitchen&amp;LivingRoom/Counter/CounterTop.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Kitchen&amp;LivingRoom/Counter/CounterTop.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Mat/Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Mat/Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Mat/Mat2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Mat/Mat2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/OfficeChair/OfficeChair.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/OfficeChair/OfficeChair.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Piano/PianoKeyboardWhite.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Piano/PianoKeyboardWhite.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/TV.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/TV.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/DoorFrame/DoorFrame.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/DoorFrame/DoorFrame.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/WallInterior.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/WallInterior.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Water.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Water.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/TVScreenOff.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/TVScreenOff.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/TVScreenOn.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/TVScreenOn.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Table/Table.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Table/Table.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/DoorFrame/Materials/Wood_Plywood_Front_001_basecolor.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/DoorFrame/Materials/Wood_Plywood_Front_001_basecolor.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/WallInterior02.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/WallInterior02.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/WallInterior03.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/WallInterior03.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/WallInterior04.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Wall/WallInterior/WallInterior04.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/cenario (1) 1.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/cenario (1) 1.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/cenario (1).fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/cenario (1).fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/cenario (2).fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/cenario (2).fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/cenario.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/cenario.fbx.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene/LightingData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene/LightingData.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene/Lightmap-0_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene/Lightmap-0_comp_dir.png" afterDir="false" />
@@ -58,10 +71,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene/Lightmap-8_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene/Lightmap-8_comp_light.exr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene/Lightmap-9_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene/Lightmap-9_comp_dir.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene/Lightmap-9_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene/Lightmap-9_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene/PostProcessing Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene/PostProcessing Profile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TimelineManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TimelineManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/EventsTimelineSequence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/EventsTimelineSequence.playable" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/Lightning/LightingSettings3High.lighting" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Lightning/LightingSettings3High.lighting" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +119,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.2/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractionTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/GetSelectedMeshInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -116,6 +127,7 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/TimelineManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Editor/GetSelectedMeshInfo.cs" />
       </list>
     </option>
   </component>
@@ -207,6 +219,7 @@
       <workItem from="1636675728717" duration="8077000" />
       <workItem from="1636689145548" duration="3079000" />
       <workItem from="1637247561406" duration="1227000" />
+      <workItem from="1637856665700" duration="631000" />
     </task>
     <servers />
   </component>

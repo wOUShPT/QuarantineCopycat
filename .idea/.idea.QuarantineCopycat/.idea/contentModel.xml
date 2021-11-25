@@ -176,6 +176,7 @@
             <e p="DoorBehaviour.cs" t="Include" />
           </e>
           <e p="Editor" t="Include">
+            <e p="GetSelectedMeshInfo.cs" t="Include" />
             <e p="ItemSpotBehaviourEditor.cs" t="Include" />
             <e p="MaskMaker.cs" t="Include" />
             <e p="PickUpItemBehaviourEditor.cs" t="Include" />
@@ -226,6 +227,7 @@
           <e p="TimelineManager.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="ChangePhoneUI.cs" t="Include" />
+            <e p="ChatBubble.cs" t="Include" />
             <e p="MainMenuBehaviour.cs" t="Include" />
             <e p="SettingsMenu.cs" t="Include" />
           </e>
@@ -236,6 +238,13 @@
         </e>
         <e p="Settings" t="Include">
           <e p="InputActions.cs" t="Include" />
+        </e>
+        <e p="Shaders" t="Include">
+          <e p="OutlineSelection" t="Include">
+            <e p="02_Selection_Fullscreen.shader" t="Include" />
+            <e p="02_Selection_Objects.shader" t="Include" />
+            <e p="SelectionColor.cs" t="Include" />
+          </e>
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
