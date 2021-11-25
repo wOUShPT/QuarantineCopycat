@@ -58,12 +58,15 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Player.Inspection.performed += ctx => _playerInput.Inspection = true;
             _inputActions.Player.Inspection.canceled += ctx => _playerInput.Inspection = false;
 
+            //Phone
             _inputActions.Phone.Movement.performed += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
             _inputActions.Phone.Movement.canceled += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
             _inputActions.Phone.Select.performed += ctx => _phoneInput.Select = ctx.ReadValue<float>();
             _inputActions.Phone.Select.canceled += ctx => _phoneInput.Select = ctx.ReadValue<float>();
             _inputActions.Phone.Return.performed += ctx => _phoneInput.Return = ctx.ReadValue<float>();
             _inputActions.Phone.Return.canceled += ctx => _phoneInput.Return = ctx.ReadValue<float>();
+            _inputActions.Phone.RecieveMessageDebug.performed += ctx => _phoneInput.clickedDebug = true;
+            _inputActions.Phone.RecieveMessageDebug.canceled += ctx => _phoneInput.clickedDebug = false;
 
             _inputActions.Inspection.CancelInspection.performed += ctx => _inspectionInput.CancelInspection = true;
             _inputActions.Inspection.CancelInspection.canceled += ctx => _inspectionInput.CancelInspection = false;
@@ -177,6 +180,7 @@ public class InputManager : Singleton<InputManager>
         public Vector2 Navigation;
         public float Select;
         public float Return;
+        public bool clickedDebug;
     }
     
     public struct MenuInputStruct

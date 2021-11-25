@@ -36,7 +36,7 @@ public class PlayerPhone : MonoBehaviour
             phoneDelegate?.Invoke();
         }
     }
-    private void DisplayPhone()
+    private void DisplayPhone() //Display immeadiatly for now, but in the future it will be an IK handle animation
     {
         primaryButton.Select();
         phoneCanvasGroup.alpha = 1;

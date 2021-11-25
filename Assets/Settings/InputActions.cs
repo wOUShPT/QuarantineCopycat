@@ -626,6 +626,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""RecieveMessageDebug"",
+                    ""type"": ""Button"",
+                    ""id"": ""d9a2a558-ee70-44fd-abe3-7e8d21266c4e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -703,6 +711,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
                     ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2480cdb-d3a2-40a0-91d1-5be19b736160"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""RecieveMessageDebug"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1129,6 +1148,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Phone_Movement = m_Phone.FindAction("Movement", throwIfNotFound: true);
         m_Phone_Select = m_Phone.FindAction("Select", throwIfNotFound: true);
         m_Phone_Return = m_Phone.FindAction("Return", throwIfNotFound: true);
+        m_Phone_RecieveMessageDebug = m_Phone.FindAction("RecieveMessageDebug", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Navigation = m_Menus.FindAction("Navigation", throwIfNotFound: true);
@@ -1321,6 +1341,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Phone_Movement;
     private readonly InputAction m_Phone_Select;
     private readonly InputAction m_Phone_Return;
+    private readonly InputAction m_Phone_RecieveMessageDebug;
     public struct PhoneActions
     {
         private @InputActions m_Wrapper;
@@ -1328,6 +1349,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Phone_Movement;
         public InputAction @Select => m_Wrapper.m_Phone_Select;
         public InputAction @Return => m_Wrapper.m_Phone_Return;
+        public InputAction @RecieveMessageDebug => m_Wrapper.m_Phone_RecieveMessageDebug;
         public InputActionMap Get() { return m_Wrapper.m_Phone; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1346,6 +1368,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Return.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnReturn;
                 @Return.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnReturn;
                 @Return.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnReturn;
+                @RecieveMessageDebug.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnRecieveMessageDebug;
+                @RecieveMessageDebug.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnRecieveMessageDebug;
+                @RecieveMessageDebug.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnRecieveMessageDebug;
             }
             m_Wrapper.m_PhoneActionsCallbackInterface = instance;
             if (instance != null)
@@ -1359,6 +1384,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Return.started += instance.OnReturn;
                 @Return.performed += instance.OnReturn;
                 @Return.canceled += instance.OnReturn;
+                @RecieveMessageDebug.started += instance.OnRecieveMessageDebug;
+                @RecieveMessageDebug.performed += instance.OnRecieveMessageDebug;
+                @RecieveMessageDebug.canceled += instance.OnRecieveMessageDebug;
             }
         }
     }
@@ -1517,6 +1545,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnReturn(InputAction.CallbackContext context);
+        void OnRecieveMessageDebug(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

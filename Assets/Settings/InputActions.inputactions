@@ -613,6 +613,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "RecieveMessageDebug",
+                    "type": "Button",
+                    "id": "d9a2a558-ee70-44fd-abe3-7e8d21266c4e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -690,6 +698,17 @@
                     "processors": "",
                     "groups": "Mouse&Keyboard",
                     "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2480cdb-d3a2-40a0-91d1-5be19b736160",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "RecieveMessageDebug",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
