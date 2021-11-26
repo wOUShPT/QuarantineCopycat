@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     private PlayableDirector _eventsSequence;
     void Awake()
     {
+        QualitySettings.vSyncCount = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
