@@ -35,10 +35,11 @@ public class CinemachineFPExtension : CinemachineExtension
     protected override void OnEnable()
     {
         base.OnEnable();
-        _currentRotation = Vector3.zero;
         CinemachineVirtualCameraBase vCam = GetComponent<CinemachineVirtualCameraBase>();
-        vCam.ForceCameraPosition(vCam.Follow.position, vCam.Follow.rotation);
-        _currentRawOrientation = vCam.State.RawOrientation;
+        //vCam.ForceCameraPosition(vCam.Follow.position, vCam.Follow.rotation);
+        _currentRotation.x = vCam.Follow.rotation.eulerAngles.y;
+        _currentRotation.y = vCam.Follow.rotation.eulerAngles.x;
+        _currentRawOrientation = vCam.Follow.rotation;
     }
 
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vCam, CinemachineCore.Stage stage,
@@ -70,7 +71,9 @@ public class CinemachineFPExtension : CinemachineExtension
         }
         else
         {
-
+            _currentRawOrientation = vCam.Follow.rotation;
+            _currentRotation.x = vCam.Follow.rotation.eulerAngles.y;
+            _currentRotation.y = vCam.Follow.rotation.eulerAngles.x;
             state.RawOrientation = _currentRawOrientation;
 
         }
