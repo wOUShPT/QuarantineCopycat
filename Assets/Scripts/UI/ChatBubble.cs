@@ -12,17 +12,19 @@ public class ChatBubble : MonoBehaviour
         chatBubbleTransform.localPosition = localPosition;
         chatBubbleTransform.GetComponent<ChatBubble>().Setup(text);
     }
+    [SerializeField] private RectTransform pivotRectTransform;
     [SerializeField]private RectTransform backgroundrectTransform;
     [SerializeField] private TextMeshProUGUI textMeshPro;
 
     private void Setup(string text)
     {
-        //Setuo bubble
+        //Setup bubble
         textMeshPro.SetText(text);
         textMeshPro.ForceMeshUpdate();
         Vector2 textSize = textMeshPro.GetRenderedValues(true);
 
         Vector2 padding = new Vector2(0f, 0.015f);
         backgroundrectTransform.sizeDelta = new Vector2(backgroundrectTransform.sizeDelta.x, textSize.y + padding.y);
+        pivotRectTransform.sizeDelta = backgroundrectTransform.sizeDelta;
     }
 }

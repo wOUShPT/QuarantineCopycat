@@ -9,6 +9,7 @@ public class ChangePhoneUI : MonoBehaviour
     public Transform ElseBubbleCharPrefab => someoneelseBubbleChatPrefab;
     [SerializeField]private CanvasGroup[] menus;
     [SerializeField] private VerticalLayoutGroup[] verticalLayoutGroupsArray;
+
     public void RecieveMessageOnThePhone(PhoneChatInfo phoneChats) //Recieve message\\\\\\\\\\\\\\\
     {
         string value = phoneChats.OtherMessageArray.Dequeue();
