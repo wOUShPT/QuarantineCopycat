@@ -15,9 +15,6 @@ public class ChatBubble : MonoBehaviour
     [SerializeField]private RectTransform backgroundrectTransform;
     [SerializeField] private TextMeshProUGUI textMeshPro;
 
-    private void Awake()
-    {
-    }
     private void Setup(string text)
     {
         //Setuo bubble

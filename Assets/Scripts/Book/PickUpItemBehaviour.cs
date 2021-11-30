@@ -63,9 +63,13 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         public bool isReady = false;
         public Transform leftToast;
         public Transform rightToast;
+        public Transform leftPivot;
+        public Transform rightPivot;
     }
     public Transform LeftToast => breadParams.leftToast;
     public Transform RightToast => breadParams.rightToast;
+    public Transform LeftBreadPivot => breadParams.leftPivot;
+    public Transform RightBreadPivot => breadParams.rightPivot;
 
     //Object type == Coffee
     [SerializeField]private CoffeeParams coffeeParams;
@@ -73,7 +77,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     public class CoffeeParams
     {
         public bool isReady;
-    }
+    }   
     //Object type == Toothbrush
     [SerializeField] private ToothBrushParams brushParams;
     [System.Serializable]

@@ -8,49 +8,20 @@ public class ChangePhoneUI : MonoBehaviour
     [SerializeField] private Transform someoneelseBubbleChatPrefab;
     public Transform ElseBubbleCharPrefab => someoneelseBubbleChatPrefab;
     [SerializeField]private CanvasGroup[] menus;
-    [SerializeField] private PhoneChatInfos[] phoneChats;
-    [System.Serializable]
-    public class PhoneChatInfos
+    [SerializeField] private VerticalLayoutGroup[] verticalLayoutGroupsArray;
+    public void RecieveMessageOnThePhone(PhoneChatInfo phoneChats) //Recieve message\\\\\\\\\\\\\\\
     {
-        public PhoneChatInfo chatInfo;
-        public VerticalLayoutGroup layoutGroupParent;
-        public int messageIndex;
-
+        string value = phoneChats.OtherMessageArray.Dequeue();
+        ChatBubble.Create(this, verticalLayoutGroupsArray[phoneChats.ChatIndex].transform, Vector3.zero, value, false);
+        phoneChats.CanReply = true;
     }
-    protected void Start()
+    public void SendMessageOnThePhone(PhoneChatInfo phoneChats)
     {
-        ChatBubble.Create(this, phoneChats[0].layoutGroupParent.transform, Vector3.zero, "Hello World \r\n how are you? \r\n how was your day?  \r\n mine was awful", false);
-    }
-    private void Update()
-    {
-        if (InputManager.Instance.PhoneInput.clickedDebug)
-        {
-            RecieveMessageOnThePhone(0);
-        }
-    }
-    private void RecieveMessageOnThePhone(int _chatsindex) //For debug propose only xd
-    {
-        switch (_chatsindex)
-        {
-            case 0:
-                ChatBubble.Create(this, phoneChats[_chatsindex].layoutGroupParent.transform, Vector3.zero, phoneChats[_chatsindex].chatInfo.OtherMessages[phoneChats[_chatsindex].messageIndex], false);
-                
-                break;
-            default:
-                break;
-        }
-    }
-    private void SendMessageOnThePhone(int _chatsindex)
-    {
-        switch (_chatsindex)
-        {
-            case 0:
-                ChatBubble.Create(this, phoneChats[_chatsindex].layoutGroupParent.transform, Vector3.zero, phoneChats[_chatsindex].chatInfo.BrainMessages[phoneChats[_chatsindex].messageIndex], true);
-
-                break;
-            default:
-                break;
-        }
+        if (!phoneChats.CanReply)
+            return; // don't send if the person didn't send you anything
+        string text = phoneChats.BrainMessages.Dequeue();
+        ChatBubble.Create(this, verticalLayoutGroupsArray[phoneChats.ChatIndex].transform, Vector3.zero, text, true);
+        phoneChats.CanReply = false;
     }
     public void SetSelectButton(Button primaryButton)
     {

@@ -43,22 +43,22 @@ public class ToasterMachine : ItemSpotBehaviour
         breadParams.RightToast.SetParent(breadParams.RightToasterPivot);
         SetItemValuesDefault(breadParams.RightToast);
         item.ItemRigidbody.isKinematic = true;
-        item.ItemCollider.isTrigger = true;
+        item.ItemCollider.enabled = false;
     }
 
     protected override void TakeItemToPlayer()
     {
         if (breadParams.IsBreadDoing)
             return;
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject != null) // it's an object player has picked
         {
             return; //player has picked up something
         }
         // Player took the book or any
-        breadParams.LeftToast.SetParent(item.transform);
+        breadParams.LeftToast.SetParent(item.LeftBreadPivot.transform);
         SetItemValuesDefault(breadParams.LeftToast);
         breadParams.LeftToast = null;
-        breadParams.RightToast.SetParent(item.transform);
+        breadParams.RightToast.SetParent(item.RightBreadPivot.transform);
         SetItemValuesDefault(breadParams.RightToast);
         breadParams.RightToast = null;
         playerPickUp.GetPickedupObject(item);

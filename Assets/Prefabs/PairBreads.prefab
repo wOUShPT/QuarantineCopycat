@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4499081879016335946}
   - component: {fileID: 1840569718847217280}
   m_Layer: 10
-  m_Name: Bread02 (1)
+  m_Name: BreadLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 183512993455488853}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.042}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 75, y: 75, z: 100}
   m_Children: []
   m_Father: {fileID: 1029795760456299237}
   m_RootOrder: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4499081878643577613}
   - component: {fileID: 1840569718740772807}
   m_Layer: 10
-  m_Name: Bread02 (2)
+  m_Name: BreadRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 183512993870235154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 75, y: 75, z: 100}
   m_Children: []
   m_Father: {fileID: 1029795760456299237}
   m_RootOrder: 1
@@ -194,6 +194,8 @@ Transform:
   m_Children:
   - {fileID: 702606299592222191}
   - {fileID: 702606299220516008}
+  - {fileID: 8521983867379062485}
+  - {fileID: 9183471205873678984}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -221,6 +223,8 @@ MonoBehaviour:
     isReady: 0
     leftToast: {fileID: 702606299592222191}
     rightToast: {fileID: 702606299220516008}
+    leftPivot: {fileID: 9183471205873678984}
+    rightPivot: {fileID: 8521983867379062485}
   coffeeParams:
     isReady: 0
   brushParams:
@@ -234,6 +238,9 @@ MonoBehaviour:
     plateBehaviour: {fileID: 0}
     isWashed: 0
     isPlaced: 0
+  foodParams:
+    isPickable: 0
+    hasEaten: 0
 --- !u!65 &1029795760456299243
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -245,7 +252,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.21347713, y: 0.22596121, z: 0.09779549}
+  m_Size: {x: 0.17483807, y: 0.1623931, z: 0.09779549}
   m_Center: {x: 0, y: 0, z: -0.022936821}
 --- !u!54 &1029795760456299242
 Rigidbody:
@@ -259,7 +266,67 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1354869101004154784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8521983867379062485}
+  m_Layer: 0
+  m_Name: BreadRightPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8521983867379062485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354869101004154784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1029795760456299237}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6296272690876773258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9183471205873678984}
+  m_Layer: 10
+  m_Name: BreadLeftPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 1
+  m_IsActive: 1
+--- !u!4 &9183471205873678984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6296272690876773258}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.042}
+  m_LocalScale: {x: 75, y: 75, z: 100}
+  m_Children: []
+  m_Father: {fileID: 1029795760456299237}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
