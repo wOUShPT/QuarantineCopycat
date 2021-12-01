@@ -206,6 +206,7 @@
           <e p="Managers" t="Include">
             <e p="GameManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
+            <e p="PhoneMessageManager.cs" t="Include" />
           </e>
           <e p="MirrorBehaviour.cs" t="Include" />
           <e p="PianoBehaviour.cs" t="Include" />

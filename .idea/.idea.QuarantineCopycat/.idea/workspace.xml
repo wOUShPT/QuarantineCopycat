@@ -20,24 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37ff6665-f7b8-42b5-9b81-dfd008e24b54" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/.idea.QuarantineCopycat.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameEvents/CoffeeSeuence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameEvents/CoffeeSeuence.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bookcase/BookcaseFrame.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Bookcase/BookcaseFrame.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Floor/Floor2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Placeholders/Floor/Floor2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Painting/Painting.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Placeholders/Painting/Painting.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Apartment.fbx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Apartment.fbx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Apartment.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Apartment.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameEvents/ToasterSequence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameEvents/ToasterSequence.playable" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineFPExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineFPExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Sleep/WakeSequence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Sleep/WakeSequence.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +70,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Book/PickUpItemBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleTrack.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineFPExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ToasterMachine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.2/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractionTrigger.cs" root0="FORCE_HIGHLIGHTING" />
@@ -194,6 +182,7 @@
       <workItem from="1637922366623" duration="2830000" />
       <workItem from="1637937606993" duration="2484000" />
       <workItem from="1637940510232" duration="620000" />
+      <workItem from="1638275635462" duration="680000" />
     </task>
     <servers />
   </component>
