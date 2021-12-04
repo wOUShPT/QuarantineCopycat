@@ -1,12 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PhoneMessageManager : MonoBehaviour
 {
     public int currentDay = 0;
     private ChangePhoneUI phoneUI;
     [SerializeField] private MessagePerDay[] messageperdayArray;
+    private UnityEngine.Events.UnityAction buttonCalback;
+    public Action SentMessageFromDoctor;
+    public Action SentMessageFromAgent;
+    public Action SentMessageFromMister;
+
     [System.Serializable]
     public class MessagePerDay
     {
@@ -17,15 +24,50 @@ public class PhoneMessageManager : MonoBehaviour
 
     }
 
+    public enum MessageGuys
+    {
+        Doctor, Agent,Mister
+    }
     private void Awake()
     {
         phoneUI = FindObjectOfType<ChangePhoneUI>();
     }
     private void Start()
     {
-        SetMessageAndDay(0);
-        SetMessageAndDay(0);
-        SetMessageAndDay(0);
+        AddListenersToSendButtonListeners();
+    }
+    public void RemoveSendButtonListeners() //make the callback buttons empty
+    {
+        for (int i = 0; i < phoneUI.ButtonsSendArray.Length; i++)
+        {
+            phoneUI.ButtonsSendArray[i].onClick.RemoveAllListeners();
+        }
+    }
+    public void AddListenersToSendButtonListeners() // add send listener to the specific day to send it
+    {
+        for (int i = 0; i < phoneUI.ButtonsSendArray.Length; i++)
+        {
+            int x = i;
+            switch (x) //Define new callback
+            {
+                case 0:
+                    buttonCalback = () => phoneUI.SendMessageOnThePhone(messageperdayArray[currentDay].Doctor);
+                    SentMessageFromDoctor= () => phoneUI.SendMessageOnThePhone(messageperdayArray[currentDay].Doctor);
+                    break;
+                case 1:
+                    buttonCalback = () => phoneUI.SendMessageOnThePhone(messageperdayArray[currentDay].Agent);
+                    SentMessageFromAgent = () => phoneUI.SendMessageOnThePhone(messageperdayArray[currentDay].Agent);
+                    break;
+                case 2:
+                    buttonCalback = () => phoneUI.SendMessageOnThePhone(messageperdayArray[currentDay].Mister);
+                    SentMessageFromMister = () => phoneUI.SendMessageOnThePhone(messageperdayArray[currentDay].Mister);
+                    break;
+                default:
+                    break;
+            }
+            //Add calback to button
+            phoneUI.ButtonsSendArray[i].onClick.AddListener(buttonCalback);
+        }
     }
     public void SetMessageAndDay( int personIndex)
     {

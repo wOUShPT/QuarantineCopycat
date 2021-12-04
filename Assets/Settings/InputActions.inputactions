@@ -621,6 +621,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Send",
+                    "type": "Button",
+                    "id": "3baef10e-5ab6-450e-ac90-71dc3a8cd62c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -692,6 +700,17 @@
                 },
                 {
                     "name": "",
+                    "id": "379d5f29-9c9f-4528-8536-ffaebe8dd8c0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "34bf3001-f88c-4516-b981-f10be95e9636",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -709,6 +728,17 @@
                     "processors": "",
                     "groups": "Mouse&Keyboard",
                     "action": "RecieveMessageDebug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "143822a5-f7e4-4d0f-8e94-8ddff5f7d4c6",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "Send",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

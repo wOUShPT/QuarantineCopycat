@@ -86,7 +86,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
         public Transform[] foodTransform;
         public List<PickUpItemBehaviour> foodPickUps;
     }
-
+    protected bool isHavingChildMatters;
     protected virtual void Awake() //awake
     {        
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
@@ -139,6 +139,10 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     }
     protected bool AreSpotsFull()
     {
+        if (!isHavingChildMatters)
+        {
+            return false;
+        }
         if(childrenItemSpot.Length == 0)
         {
             return false; // If there's not spots

@@ -65,6 +65,9 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Phone.Select.canceled += ctx => _phoneInput.Select = ctx.ReadValue<float>();
             _inputActions.Phone.Return.performed += ctx => _phoneInput.Return = ctx.ReadValue<float>();
             _inputActions.Phone.Return.canceled += ctx => _phoneInput.Return = ctx.ReadValue<float>();
+            _inputActions.Phone.Send.performed += ctx => _phoneInput.Send = true;
+            
+            _inputActions.Phone.Send.canceled += ctx => _phoneInput.Send = false;
             _inputActions.Phone.RecieveMessageDebug.performed += ctx => _phoneInput.clickedDebug = true;
             _inputActions.Phone.RecieveMessageDebug.canceled += ctx => _phoneInput.clickedDebug = false;
 
@@ -180,6 +183,7 @@ public class InputManager : Singleton<InputManager>
         public Vector2 Navigation;
         public float Select;
         public float Return;
+        public bool Send;
         public bool clickedDebug;
     }
     

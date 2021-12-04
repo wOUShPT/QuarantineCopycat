@@ -28,7 +28,7 @@ public class PhoneChatInfo : ScriptableObject
         }
         foreach (string stringFromArray in brainMessageArray)
         {
-            otherMessageQueu.Enqueue(stringFromArray);
+            brainMessagequeue.Enqueue(stringFromArray);
         }
     }
     private void OnDisable()

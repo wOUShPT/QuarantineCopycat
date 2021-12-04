@@ -122,6 +122,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     public bool IsPickable { get { return foodParams.isPickable; } set { foodParams.isPickable = value; } }
     public bool HasEaten { get { return foodParams.hasEaten; } set { foodParams.hasEaten = value; } }
+
     private void Awake()
     {
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();

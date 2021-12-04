@@ -634,6 +634,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Send"",
+                    ""type"": ""Button"",
+                    ""id"": ""3baef10e-5ab6-450e-ac90-71dc3a8cd62c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -705,6 +713,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""379d5f29-9c9f-4528-8536-ffaebe8dd8c0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""34bf3001-f88c-4516-b981-f10be95e9636"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -722,6 +741,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
                     ""action"": ""RecieveMessageDebug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""143822a5-f7e4-4d0f-8e94-8ddff5f7d4c6"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Send"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1149,6 +1179,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Phone_Select = m_Phone.FindAction("Select", throwIfNotFound: true);
         m_Phone_Return = m_Phone.FindAction("Return", throwIfNotFound: true);
         m_Phone_RecieveMessageDebug = m_Phone.FindAction("RecieveMessageDebug", throwIfNotFound: true);
+        m_Phone_Send = m_Phone.FindAction("Send", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Navigation = m_Menus.FindAction("Navigation", throwIfNotFound: true);
@@ -1342,6 +1373,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Phone_Select;
     private readonly InputAction m_Phone_Return;
     private readonly InputAction m_Phone_RecieveMessageDebug;
+    private readonly InputAction m_Phone_Send;
     public struct PhoneActions
     {
         private @InputActions m_Wrapper;
@@ -1350,6 +1382,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Select => m_Wrapper.m_Phone_Select;
         public InputAction @Return => m_Wrapper.m_Phone_Return;
         public InputAction @RecieveMessageDebug => m_Wrapper.m_Phone_RecieveMessageDebug;
+        public InputAction @Send => m_Wrapper.m_Phone_Send;
         public InputActionMap Get() { return m_Wrapper.m_Phone; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1371,6 +1404,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @RecieveMessageDebug.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnRecieveMessageDebug;
                 @RecieveMessageDebug.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnRecieveMessageDebug;
                 @RecieveMessageDebug.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnRecieveMessageDebug;
+                @Send.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnSend;
+                @Send.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnSend;
+                @Send.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnSend;
             }
             m_Wrapper.m_PhoneActionsCallbackInterface = instance;
             if (instance != null)
@@ -1387,6 +1423,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @RecieveMessageDebug.started += instance.OnRecieveMessageDebug;
                 @RecieveMessageDebug.performed += instance.OnRecieveMessageDebug;
                 @RecieveMessageDebug.canceled += instance.OnRecieveMessageDebug;
+                @Send.started += instance.OnSend;
+                @Send.performed += instance.OnSend;
+                @Send.canceled += instance.OnSend;
             }
         }
     }
@@ -1546,6 +1585,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnReturn(InputAction.CallbackContext context);
         void OnRecieveMessageDebug(InputAction.CallbackContext context);
+        void OnSend(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

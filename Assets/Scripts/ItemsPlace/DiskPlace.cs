@@ -13,6 +13,7 @@ public class DiskPlace : ItemSpotBehaviour
         {
             diskParams.diskBehaviour = GetComponent<VinylDiskBehaviour>();
         }
+        isHavingChildMatters = false;
     }
 
     protected override void CheckPlayerHasItem()
