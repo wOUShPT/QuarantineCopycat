@@ -86,10 +86,11 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator MoveToTargetCoroutine(Transform target, float distanceThreshold)
     {
         _agent.SetDestination(target.position);
+        _currentRotation.y = transform.rotation.eulerAngles.y;
         yield return new WaitUntil(() => Vector3.Distance(transform.position, target.position) <= _agent.stoppingDistance + distanceThreshold);
-        while (Mathf.Abs(_currentRotation.y - target.rotation.eulerAngles.y) >= 0.005f)
+        while (Mathf.Abs(_currentRotation.y - target.rotation.eulerAngles.y) >= 0.01f)
         {
-            _currentRotation.y = Mathf.Lerp(_currentRotation.y, target.rotation.eulerAngles.y, Time.deltaTime * 3f);
+            _currentRotation.y = Mathf.Lerp(_currentRotation.y, target.rotation.eulerAngles.y, Time.deltaTime * 5f);
             transform.rotation = Quaternion.Euler(_currentRotation);
             yield return null;
         }

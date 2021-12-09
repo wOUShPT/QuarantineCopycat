@@ -23,7 +23,7 @@ public class OnPivotInteractionTrigger : MonoBehaviour , IInteractable
 
     public void Interact()
     {
-        _playerMovement.MoveToTarget(interactionPivot, 0.01f);
+        _playerMovement.MoveToTarget(interactionPivot, 0.02f);
         _playerMovement.isOnActionPivot = false;
         StartCoroutine(WaitAndRaise());
     }
