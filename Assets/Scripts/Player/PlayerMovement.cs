@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     private Transform cameraPivot;
     [SerializeField] 
     private NavMeshAgent _agent;
+    [SerializeField, Range(0,1.5f)] 
+    private float headBobIntensity;
+    [SerializeField] 
+    private float headBobSpeed;
     public bool isOnActionPivot;
     private Vector3 _currentMoveDirection;
     private Vector3 _currentRotation;
@@ -68,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_currentMoveDirection.x != 0 || _currentMoveDirection.z != 0)
         {
-            _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * 0.5f, 0.15f);
+            _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * headBobSpeed, headBobIntensity*0.1f);
         }
         else
         {
