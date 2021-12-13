@@ -9,6 +9,8 @@ using UnityEngine.Video;
 
 public class TelevisionBehaviour : MonoBehaviour
 {
+    [SerializeField]
+    private GameEvent _gameEvent;
     private TVMode mode;
     private enum TVMode
     {
@@ -58,6 +60,16 @@ public class TelevisionBehaviour : MonoBehaviour
         _zappingTimer += Time.deltaTime;
         _zappingTimer = Mathf.Clamp(_zappingTimer, 0,_zappingTimeInterval);
 
+        if (_isOn)
+        {
+            if (InputManager.Instance.PlayerInput.Movement.z > 0)
+            {
+                Debug.Log("Raised");
+                _gameEvent.Raise();
+            }
+        }
+            
+        
         if (_videoPlayer.isPlaying)
         {
             if (_zappingTimer >= _zappingTimeInterval)
