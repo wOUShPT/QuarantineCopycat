@@ -16,6 +16,7 @@ public class PlayerPhone : MonoBehaviour
     private PhoneFunctionDelegate phoneDelegate;
     private bool hasPhone = false;
     private bool hasClicked = false;
+    
     private void Awake()
     {
         phoneUI = FindObjectOfType<ChangePhoneUI>();
@@ -34,7 +35,7 @@ public class PlayerPhone : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         CheckTurnedPhone();
     }
@@ -48,8 +49,10 @@ public class PlayerPhone : MonoBehaviour
         {
             phoneDelegate?.Invoke();
         }
-        if( InputManager.Instance.PhoneInput.Return > 0 && !hasClicked)
+        if( InputManager.Instance.PhoneInput.Return && !hasClicked)
         {
+            if (phoneUI.IsTyping)
+                return;
             if(phoneUI.Menus[0].Menu.alpha == 1f)
             {
                 phoneDelegate?.Invoke(); // Turn Of
@@ -57,37 +60,48 @@ public class PlayerPhone : MonoBehaviour
             }
             RetrocedeMenu();
         }
-        if( InputManager.Instance.PhoneInput.Return == 0 && !InputManager.Instance.PhoneInput.Send)
+        
+        if (InputManager.Instance.PhoneInput.Send && !hasClicked)
+        {
+            hasClicked = true;
+            if (phoneUI.IsTyping)
+            {
+                phoneUI.WriteAllText();
+                return;
+            }
+            SendMessage();
+        }
+        if (!InputManager.Instance.PhoneInput.Return && !InputManager.Instance.PhoneInput.Send)
         {
             if (hasClicked)
             {
                 hasClicked = !hasClicked;
             }
         }
-        if (InputManager.Instance.PhoneInput.Send)
+    }
+    private void SendMessage()
+    {
+        if (phoneUI.CurrentMenu != null && phoneUI.CurrentMenu.IsChatMessage)
         {
-            if (phoneUI.CurrenMenu != null && phoneUI.CurrenMenu.IsChatMessage)
+            if (EventSystem.current.currentSelectedGameObject.TryGetComponent(out Scrollbar scrollbar) && EventSystem.current.currentSelectedGameObject.transform.parent.TryGetComponent(out ScrollRect scrollRect))
             {
-                if (EventSystem.current.currentSelectedGameObject.TryGetComponent(out Scrollbar scrollbar) && EventSystem.current.currentSelectedGameObject.transform.parent.TryGetComponent(out ScrollRect scrollRect))
+                //Send Message
+                switch (phoneUI.CurrentMenu.whoMessages)
                 {
-                    //Send Message
-                    switch (phoneUI.CurrenMenu.whoMessages)
-                    {
-                        case PhoneMessageManager.MessageGuys.Doctor:
-                            messageManager.SentMessageFromDoctor?.Invoke();
-                            break;
-                        case PhoneMessageManager.MessageGuys.Agent:
-                            messageManager.SentMessageFromAgent?.Invoke();
-                            break;
-                        case PhoneMessageManager.MessageGuys.Mister:
-                            messageManager.SentMessageFromMister?.Invoke();
-                            break;
-                        default:
-                            break;
-                    }
-                    //Change Scrollbar thing
-                    phoneUI.ScrollbarToTop(scrollRect);
+                    case PhoneMessageManager.MessageGuys.Doctor:
+                        messageManager.SentMessageFromDoctor?.Invoke();
+                        break;
+                    case PhoneMessageManager.MessageGuys.Agent:
+                        messageManager.SentMessageFromAgent?.Invoke();
+                        break;
+                    case PhoneMessageManager.MessageGuys.Mister:
+                        messageManager.SentMessageFromMister?.Invoke();
+                        break;
+                    default:
+                        break;
                 }
+                //Change Scrollbar thing
+                phoneUI.ScrollbarToTop(scrollRect);
             }
         }
     }

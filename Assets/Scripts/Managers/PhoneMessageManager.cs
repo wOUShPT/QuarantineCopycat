@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhoneMessageManager : MonoBehaviour
+public class PhoneMessageManager : MonoBehaviour // Messagee manager
 {
     public int currentDay = 0;
     private ChangePhoneUI phoneUI;
@@ -13,7 +13,6 @@ public class PhoneMessageManager : MonoBehaviour
     public Action SentMessageFromDoctor;
     public Action SentMessageFromAgent;
     public Action SentMessageFromMister;
-
     [System.Serializable]
     public class MessagePerDay
     {
@@ -21,9 +20,7 @@ public class PhoneMessageManager : MonoBehaviour
         public PhoneChatInfo Doctor;
         public PhoneChatInfo Agent;
         public PhoneChatInfo Mister;
-
     }
-
     public enum MessageGuys
     {
         Doctor, Agent,Mister
@@ -38,14 +35,14 @@ public class PhoneMessageManager : MonoBehaviour
     }
     public void RemoveSendButtonListeners() //make the callback buttons empty
     {
-        for (int i = 0; i < phoneUI.ButtonsSendArray.Length; i++)
+        for (int i = 0; i < phoneUI.MessageComponentsArray.Length; i++)
         {
-            phoneUI.ButtonsSendArray[i].onClick.RemoveAllListeners();
+            phoneUI.MessageComponentsArray[i].ButtonSend.onClick.RemoveAllListeners();
         }
     }
     public void AddListenersToSendButtonListeners() // add send listener to the specific day to send it
     {
-        for (int i = 0; i < phoneUI.ButtonsSendArray.Length; i++)
+        for (int i = 0; i < phoneUI.MessageComponentsArray.Length; i++)
         {
             int x = i;
             switch (x) //Define new callback
@@ -66,7 +63,7 @@ public class PhoneMessageManager : MonoBehaviour
                     break;
             }
             //Add calback to button
-            phoneUI.ButtonsSendArray[i].onClick.AddListener(buttonCalback);
+            phoneUI.MessageComponentsArray[i].ButtonSend.onClick.AddListener(buttonCalback);
         }
     }
     public void SetMessageAndDay( int personIndex)
@@ -94,10 +91,6 @@ public class PhoneMessageManager : MonoBehaviour
                 }
                 phoneUI.RecieveMessageOnThePhone(messageperdayArray[currentDay].Mister);
                 break;
-            default:
-                break;
         }
     }
-
-    
 }

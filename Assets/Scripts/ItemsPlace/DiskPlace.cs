@@ -23,12 +23,14 @@ public class DiskPlace : ItemSpotBehaviour
             PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
             if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Disk || AreSpotsFull())
             {
+                //Player has a disk in his hands
                 item = pickUpItem;
                 item.PickedUp = false;
                 playerPickUp.BreakConnection();
                 PlaceItemToSpot();
                 diskParams.targetMusic = pickUpItem.AudioClip;
                 diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
+                PlayRotateDisk();
                 interactDelegate = TakeItemToPlayer;
             }
         }
@@ -47,18 +49,34 @@ public class DiskPlace : ItemSpotBehaviour
 
     protected override void TakeItemToPlayer()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
+        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a disk player has picked
         {
             //has something
             return;
         }
-        // Player took the book or any
+        // Player took the disk or any
+        StopRotateDisk();
         playerPickUp.GetPickedupObject(item);
         item = null;
         //Stop disk vinyl music
         diskParams.diskBehaviour.StopVinylDisk();
         diskParams.targetMusic = null;
         interactDelegate = CheckPlayerHasItem;
+    }
+
+    public void PlayRotateDisk()
+    {
+        if(item.ItemAnimator != null)
+        {
+            item.ItemAnimator.Play("RotateDisk"); //Rotate disk by animator
+        }
+    }
+    public void StopRotateDisk()
+    {
+        if(item.ItemAnimator != null)
+        {
+            item.ItemAnimator.Play("Empty"); //Stop disk rotating by animator
+        }
     }
 
 }

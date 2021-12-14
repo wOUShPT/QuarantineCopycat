@@ -8603,7 +8603,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591002511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1096276520}
@@ -9045,7 +9045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694214589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9893,7 +9893,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722589771}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.454493, y: 4.0887604, z: 4.548818}
+  m_LocalPosition: {x: -18.454493, y: 4.0887604, z: 4.588818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 790064369}
@@ -10831,7 +10831,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907302801}
-  m_LocalRotation: {x: -0.017786236, y: -0.037168976, z: -0.0006616582, w: 0.9991505}
+  m_LocalRotation: {x: -0.01778621, y: -0.03716894, z: -0.0006616566, w: 0.9991505}
   m_LocalPosition: {x: 6.93, y: 4.63, z: -4.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12165,6 +12165,7 @@ GameObject:
   - component: {fileID: 1096276524}
   - component: {fileID: 1096276525}
   - component: {fileID: 1096276526}
+  - component: {fileID: 1096276527}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -12272,6 +12273,10 @@ MonoBehaviour:
   gravity: -9.8
   _characterController: {fileID: 1096276517}
   cameraPivot: {fileID: 591002512}
+  _agent: {fileID: 1096276527}
+  headBobIntensity: 0.066
+  headBobSpeed: 0.09
+  isOnActionPivot: 0
 --- !u!114 &1096276522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12341,6 +12346,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e476031f701131418692be0abef4799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &1096276527
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096276516}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.2
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 280
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1104634467
 GameObject:
   m_ObjectHideFlags: 0
@@ -13146,6 +13173,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1236596893 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1212702634666704676, guid: 40e4959fdc911c348b03ad3f748a2f2c, type: 3}
+  m_PrefabInstance: {fileID: 1212702632804843974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1250225899
 GameObject:
   m_ObjectHideFlags: 0
@@ -18400,6 +18432,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 677869083, guid: 40e4959fdc911c348b03ad3f748a2f2c, type: 3}
+      propertyPath: childrenItemSpot.Array.data[0]
+      value: 
+      objectReference: {fileID: 1236596893}
     - target: {fileID: 1212702634666704666, guid: 40e4959fdc911c348b03ad3f748a2f2c, type: 3}
       propertyPath: m_Name
       value: VinylDisk
@@ -18950,6 +18986,10 @@ PrefabInstance:
     - target: {fileID: 6166943614776148079, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351836507629988103, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: timePerCharacter
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7256598240720541296, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
       propertyPath: m_Value
