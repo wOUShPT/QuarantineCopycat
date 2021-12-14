@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CofeeMachine : ItemSpotBehaviour
+public class CoffeeMachine : ItemSpotBehaviour
 {
     protected override void Awake()
     {

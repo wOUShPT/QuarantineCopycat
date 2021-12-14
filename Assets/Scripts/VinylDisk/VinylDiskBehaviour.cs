@@ -10,6 +10,8 @@ public class VinylDiskBehaviour : MonoBehaviour
     [SerializeField]private float volumeChange = 0.002f;
     [SerializeField]private AudioSource audioSourceReference;
     public AudioSource AudiouSourceReference => audioSourceReference;
+    [SerializeField]
+    private Animator _animator;
     private void Awake()
     {
         
@@ -43,6 +45,7 @@ public class VinylDiskBehaviour : MonoBehaviour
         Debug.Log(audioSourceReference);
         audioSourceReference.clip = _audioclip;
         audioSourceReference.Play();
+        _animator.Play("VinylRotation");
         Debug.Log("Play");
     }
     public void StopVinylDisk()
@@ -50,6 +53,7 @@ public class VinylDiskBehaviour : MonoBehaviour
         //Stop audiosource
         audioSourceReference.Stop();
         audioSourceReference.clip = null;
+        _animator.StopPlayback();
         Debug.Log("Stop");
     }
 }
