@@ -12,6 +12,13 @@ public class PickUpPhone : MonoBehaviour, IInteractable
     private InteractionTrigger interactionTrigger;
     private int interactionLayer;
     [SerializeField] private int outlineLayer = 11;
+    private bool isOutline;
+    [SerializeField] private OtherGameobjectOutline[] otherGameobjectOutlineArray;
+    public class OtherGameobjectOutline
+    {
+        public GameObject outlineObject;
+        public int interactionTrigger;
+    }
     private void Awake()
     {
         playerPhone = FindObjectOfType<PlayerPhone>();
@@ -22,11 +29,25 @@ public class PickUpPhone : MonoBehaviour, IInteractable
     void Start()
     {
         phoneAction = PickPhone;
+        if (otherGameobjectOutlineArray.Length != 0)
+        {
+            foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+            {
+                outlineObject.interactionTrigger = outlineObject.outlineObject.layer;
+            }
+        }
+        
     }
     public void ExitInteract()
     {
         wasInteraction = false;
         gameObject.layer = interactionLayer;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineObject.interactionTrigger;
+        }
     }
 
     public void Interact()
@@ -55,6 +76,12 @@ public class PickUpPhone : MonoBehaviour, IInteractable
         if (this.gameObject.layer == outlineLayer)
             return;
         gameObject.layer = outlineLayer;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach(OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineLayer;
+        }
     }
 
 }
