@@ -124,6 +124,13 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     public bool IsPickable { get { return foodParams.isPickable; } set { foodParams.isPickable = value; } }
     public bool HasEaten { get { return foodParams.hasEaten; } set { foodParams.hasEaten = value; } }
+    [SerializeField] protected OtherGameobjectOutline[] otherGameobjectOutlineArray;
+    [System.Serializable]
+    public class OtherGameobjectOutline
+    {
+        public GameObject outlineObject;
+        public int interactionTrigger;
+    }
 
     private void Awake()
     {
@@ -133,6 +140,13 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         itemAnimator = GetComponent<Animator>();
         initialScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
         interactionLayer = this.gameObject.layer;
+        if (otherGameobjectOutlineArray.Length != 0)
+        {
+            foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+            {
+                outlineObject.interactionTrigger = outlineObject.outlineObject.layer;
+            }
+        }
     }
 
     public float InteractionDistance()
@@ -144,6 +158,12 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         if (this.gameObject.layer == outlineLayer)
             return;
         gameObject.layer = outlineLayer;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineLayer;
+        }
     }
 
     public void Interact()
@@ -182,6 +202,12 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     {
         this.gameObject.layer = interactionLayer;
         wasInterected = false;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineObject.interactionTrigger;
+        }
     }
 
     //private void OnCollisionEnter(Collision collision)

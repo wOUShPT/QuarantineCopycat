@@ -49,6 +49,7 @@ public class PickUpItemBehaviourEditor : Editor
             case PickUpItemBehaviour.PickUpObjectType.Any:
                 break;
         }
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("otherGameobjectOutlineArray"));
         serializedObject.ApplyModifiedProperties();
     }
 }

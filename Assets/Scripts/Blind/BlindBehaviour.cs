@@ -19,7 +19,13 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
     {
         return interactionDistance;
     }
-
+    [SerializeField] private OtherGameobjectOutline[] otherGameobjectOutlineArray;
+    [System.Serializable]
+    public class OtherGameobjectOutline
+    {
+        public GameObject outlineObject;
+        public int interactionTrigger;
+    }
     void Awake()
     {
         animatorchildArray = new List<Animator>(); //assign list
@@ -28,12 +34,25 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
             animatorchildArray.Add(child.GetComponent<Animator>());
         }
         interactionLayer = gameObject.layer;
+        if (otherGameobjectOutlineArray.Length != 0)
+        {
+            foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+            {
+                outlineObject.interactionTrigger = outlineObject.outlineObject.layer;
+            }
+        }
     }
 
     public void ExitInteract()
     {
         wasInteracted = false;
         gameObject.layer = interactionLayer;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineObject.interactionTrigger;
+        }
     }
 
     public void Interact()
@@ -83,6 +102,12 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
         if (gameObject.layer == outlineLayer)
             return;
         gameObject.layer = outlineLayer;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineLayer;
+        }
     }
 
 }

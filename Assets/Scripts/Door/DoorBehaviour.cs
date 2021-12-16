@@ -27,10 +27,24 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     private FridgePlace fridgePlace;
     protected int interactionLayer;
     [SerializeField] protected int outlineLayer = 11;
+    [SerializeField] protected OtherGameobjectOutline[] otherGameobjectOutlineArray;
+    [System.Serializable]
+    public class OtherGameobjectOutline
+    {
+        public GameObject outlineObject;
+        public int interactionTrigger;
+    }
     private void Awake()
     {
         doorsInteraction = OpenDoorByCode;
         interactionLayer = gameObject.layer;
+        if (otherGameobjectOutlineArray.Length != 0)
+        {
+            foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+            {
+                outlineObject.interactionTrigger = outlineObject.outlineObject.layer;
+            }
+        }
     }
     private void Start()
     {
@@ -59,6 +73,12 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     {
         wasInteracted = false;
         gameObject.layer = interactionLayer;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineObject.interactionTrigger;
+        }
     }
     private void OpenDoorByCode()
     {
@@ -173,5 +193,11 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
         if (gameObject.layer == outlineLayer)
             return;
         gameObject.layer = outlineLayer;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineLayer;
+        }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4087.8887, g: 2839.1055, b: 2553.504, a: 1}
+  m_IndirectSpecularColor: {r: 4086.7188, g: 2835.75, b: 2547.3398, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -211,7 +211,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1029795760456299237, guid: 5efa6a43c1938d644acff727ac483846, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1029795760456299237, guid: 5efa6a43c1938d644acff727ac483846, type: 3}
       propertyPath: m_LocalPosition.x
@@ -356,7 +356,7 @@ RectTransform:
   - {fileID: 680723935}
   - {fileID: 230705258}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -527,6 +527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   objectType: 2
+  outlineLayer: 11
   bookParams:
     textList: []
   clothParams:
@@ -555,6 +556,7 @@ MonoBehaviour:
   foodParams:
     isPickable: 0
     hasEaten: 0
+  otherGameobjectOutlineArray: []
 --- !u!54 &82653228
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -584,6 +586,67 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0050000073, y: 0.31000006, z: 0.31000012}
   m_Center: {x: 0.00000047452747, y: -0.0000004779185, z: 0.15500024}
+--- !u!1001 &106981850
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.244
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.244
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363131, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_Name
+      value: OutlineCustomPassVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 419703426838363134, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
 --- !u!1001 &136586515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -593,7 +656,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1085970945389169472, guid: e8baa1a16b137354ea3cfff9007abd2c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1085970945389169472, guid: e8baa1a16b137354ea3cfff9007abd2c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -714,6 +777,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   gameEvent: {fileID: 11400000, guid: 6b0e27c81313a8f41a91362d4cb9d7fd, type: 2}
+  outlineLayer: 11
+  otherGameobjectOutlineArray: []
 --- !u!1 &169482856
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +813,7 @@ Transform:
   - {fileID: 725095726}
   - {fileID: 1142619605}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &171304181
 GameObject:
@@ -1304,7 +1369,7 @@ Transform:
   - {fileID: 939329496}
   - {fileID: 816196540}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &230705257
 GameObject:
@@ -1383,7 +1448,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &297463785
 GameObject:
@@ -1755,6 +1820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   gameEvent: {fileID: 11400000, guid: ff287b542bbf8d749adc86a56db5169d, type: 2}
+  outlineLayer: 11
+  otherGameobjectOutlineArray: []
 --- !u!225 &358933111 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 6002515586746294946, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
@@ -7673,7 +7740,7 @@ Transform:
   - {fileID: 51665636}
   - {fileID: 1537581361}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508891399
 GameObject:
@@ -7703,7 +7770,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &517047144
 GameObject:
@@ -7754,6 +7821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   objectType: 2
+  outlineLayer: 11
   bookParams:
     textList: []
   clothParams:
@@ -7782,6 +7850,7 @@ MonoBehaviour:
   foodParams:
     isPickable: 0
     hasEaten: 0
+  otherGameobjectOutlineArray: []
 --- !u!54 &518324423
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7972,7 +8041,7 @@ Transform:
   m_Children:
   - {fileID: 339036590}
   m_Father: {fileID: 8838870444467660390}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &564753990
 MonoBehaviour:
@@ -8870,7 +8939,7 @@ Transform:
   m_Children:
   - {fileID: 1306186649}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &638394373
 GameObject:
@@ -8915,7 +8984,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &672303853
 GameObject:
@@ -9406,6 +9475,7 @@ MonoBehaviour:
   dropObjectType: 6
   childrenItemSpot:
   - {fileID: 572815689}
+  outlineLayer: 11
   holderPositionArray: []
   diskParams:
     diskBehaviour: {fileID: 0}
@@ -9426,6 +9496,7 @@ MonoBehaviour:
   fridgeParams:
     foodTransform: []
     foodPickUps: []
+  otherGameobjectOutlineArray: []
 --- !u!1 &694214589
 GameObject:
   m_ObjectHideFlags: 0
@@ -9486,7 +9557,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1847
+    m_Bits: 3895
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -9681,7 +9752,7 @@ MonoBehaviour:
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
-    m_Bits: 2147483649
+    m_Bits: 2049
   volumeAnchorOverride: {fileID: 0}
   antialiasing: 2
   SMAAQuality: 2
@@ -10026,7 +10097,7 @@ Transform:
   - {fileID: 1417023405}
   - {fileID: 2132804000}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &751970155
 GameObject:
@@ -10513,7 +10584,7 @@ Transform:
   - {fileID: 1947009771}
   - {fileID: 1748216302}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &797154584
 GameObject:
@@ -10855,7 +10926,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &816055101
 MonoBehaviour:
@@ -11764,6 +11835,11 @@ MonoScript:
   m_ExecutionOrder: 0
   m_ClassName: SceneObjectIDMapSceneAsset
   m_Namespace: UnityEngine.Rendering.HighDefinition
+--- !u!1 &852636333 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2503996515853799358, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
+  m_PrefabInstance: {fileID: 1415779943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &853246415 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 64614e151da58de45a30844cff9aa140, type: 3}
@@ -16938,6 +17014,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &906494749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2575831883280871865, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
+  m_PrefabInstance: {fileID: 1415779943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &914322508
 GameObject:
   m_ObjectHideFlags: 0
@@ -17300,7 +17381,7 @@ Transform:
   - {fileID: 1319424366}
   - {fileID: 1935563577}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &939329494
 GameObject:
@@ -17427,6 +17508,8 @@ MonoBehaviour:
   interactionPivot: {fileID: 517047145}
   interactionDistance: 0
   gameEvent: {fileID: 11400000, guid: c421b11868f0f6b409b51f4aa54ae328, type: 2}
+  outlineLayer: 11
+  otherGameobjectOutlineArray: []
 --- !u!1 &945161456
 GameObject:
   m_ObjectHideFlags: 0
@@ -17771,6 +17854,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 1
   gameEvent: {fileID: 11400000, guid: 33e57c0e53544d441ada50f2ef072c9b, type: 2}
+  outlineLayer: 11
+  otherGameobjectOutlineArray: []
 --- !u!1 &982077275
 GameObject:
   m_ObjectHideFlags: 0
@@ -18706,6 +18791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   objectType: 6
+  outlineLayer: 11
   bookParams:
     textList: []
   clothParams:
@@ -18734,6 +18820,7 @@ MonoBehaviour:
   foodParams:
     isPickable: 0
     hasEaten: 0
+  otherGameobjectOutlineArray: []
 --- !u!54 &1036116059
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18795,7 +18882,7 @@ Transform:
   - {fileID: 409716486}
   - {fileID: 396279273}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1044166086
 GameObject:
@@ -18869,7 +18956,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1061657294
 PrefabInstance:
@@ -18932,7 +19019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002515588090789069, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6002515588090789069, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
       propertyPath: m_AnchorMax.x
@@ -19294,7 +19381,7 @@ Transform:
   - {fileID: 853246416}
   - {fileID: 1063295797}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1096276521
 MonoBehaviour:
@@ -19404,6 +19491,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1117125052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8513859187771203891, guid: e64214b232ae45a46a9e78a55563fdb1, type: 3}
+  m_PrefabInstance: {fileID: 195855588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1142619604
 GameObject:
   m_ObjectHideFlags: 0
@@ -24437,7 +24529,7 @@ Transform:
   - {fileID: 2125174726}
   - {fileID: 813263777}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1298719927
 GameObject:
@@ -30626,6 +30718,7 @@ MonoBehaviour:
   dropObjectType: 3
   childrenItemSpot:
   - {fileID: 0}
+  outlineLayer: 11
   holderPositionArray: []
   diskParams:
     diskBehaviour: {fileID: 0}
@@ -30646,6 +30739,11 @@ MonoBehaviour:
   fridgeParams:
     foodTransform: []
     foodPickUps: []
+  otherGameobjectOutlineArray:
+  - outlineObject: {fileID: 906494749}
+    interactionTrigger: 0
+  - outlineObject: {fileID: 2146883215}
+    interactionTrigger: 0
 --- !u!1 &1415779947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1854033003893308964, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
@@ -30667,6 +30765,7 @@ MonoBehaviour:
   dropObjectType: 5
   childrenItemSpot:
   - {fileID: 0}
+  outlineLayer: 11
   holderPositionArray: []
   diskParams:
     diskBehaviour: {fileID: 0}
@@ -30687,6 +30786,7 @@ MonoBehaviour:
   fridgeParams:
     foodTransform: []
     foodPickUps: []
+  otherGameobjectOutlineArray: []
 --- !u!65 &1415779949
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46688,7 +46788,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1594451773 stripped
 GameObject:
@@ -46709,6 +46809,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   gameEvent: {fileID: 11400000, guid: cf4c6b8265c93c94a9ce080978d037b9, type: 2}
+  outlineLayer: 11
+  otherGameobjectOutlineArray: []
 --- !u!114 &1606211200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46723,6 +46825,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 3
   gameEvent: {fileID: 11400000, guid: 6b0e27c81313a8f41a91362d4cb9d7fd, type: 2}
+  outlineLayer: 11
+  otherGameobjectOutlineArray: []
 --- !u!1 &1613511402
 GameObject:
   m_ObjectHideFlags: 0
@@ -46926,7 +47030,7 @@ Transform:
   - {fileID: 1468788362}
   - {fileID: 1962087644}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687887359
 GameObject:
@@ -47181,6 +47285,7 @@ MonoBehaviour:
   dropObjectType: 2
   childrenItemSpot:
   - {fileID: 1814282270}
+  outlineLayer: 11
   holderPositionArray: []
   diskParams:
     diskBehaviour: {fileID: 1722953798}
@@ -47201,6 +47306,7 @@ MonoBehaviour:
   fridgeParams:
     foodTransform: []
     foodPickUps: []
+  otherGameobjectOutlineArray: []
 --- !u!1 &1743999037
 GameObject:
   m_ObjectHideFlags: 0
@@ -47608,7 +47714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 64614e151da58de45a30844cff9aa140, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 64614e151da58de45a30844cff9aa140, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52772,6 +52878,7 @@ MonoBehaviour:
   - {fileID: 899922750}
   - {fileID: 835186130}
   - {fileID: 1743999038}
+  outlineLayer: 11
   holderPositionArray: []
   diskParams:
     diskBehaviour: {fileID: 0}
@@ -52792,6 +52899,7 @@ MonoBehaviour:
   fridgeParams:
     foodTransform: []
     foodPickUps: []
+  otherGameobjectOutlineArray: []
 --- !u!1 &1867919193
 GameObject:
   m_ObjectHideFlags: 0
@@ -58321,6 +58429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   objectType: 0
+  outlineLayer: 11
   bookParams:
     textList:
     - Bla bla bla bla bla bla bla Bla bla bla bla bla bla bla Bla bla bla bla bla
@@ -58356,6 +58465,7 @@ MonoBehaviour:
   foodParams:
     isPickable: 0
     hasEaten: 0
+  otherGameobjectOutlineArray: []
 --- !u!54 &1962304730
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -58515,7 +58625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2024007348
 GameObject:
@@ -58908,6 +59018,7 @@ MonoBehaviour:
   dropObjectType: 0
   childrenItemSpot:
   - {fileID: 297463786}
+  outlineLayer: 11
   holderPositionArray: []
   diskParams:
     diskBehaviour: {fileID: 0}
@@ -58928,6 +59039,7 @@ MonoBehaviour:
   fridgeParams:
     foodTransform: []
     foodPickUps: []
+  otherGameobjectOutlineArray: []
 --- !u!1 &2061959994 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8564169622290524593, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
@@ -58957,6 +59069,7 @@ MonoBehaviour:
   - {fileID: 672303854}
   - {fileID: 2096007066}
   - {fileID: 1337147591}
+  outlineLayer: 11
   holderPositionArray: []
   diskParams:
     diskBehaviour: {fileID: 0}
@@ -58977,6 +59090,7 @@ MonoBehaviour:
   fridgeParams:
     foodTransform: []
     foodPickUps: []
+  otherGameobjectOutlineArray: []
 --- !u!1 &2062186020
 GameObject:
   m_ObjectHideFlags: 0
@@ -59630,6 +59744,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   gameEvent: {fileID: 11400000, guid: 682893acbe2a5924fb90d801766673d0, type: 2}
+  outlineLayer: 11
+  otherGameobjectOutlineArray:
+  - outlineObject: {fileID: 1117125052}
+    interactionTrigger: 0
+  - outlineObject: {fileID: 1412759807}
+    interactionTrigger: 0
+  - outlineObject: {fileID: 1655308008}
+    interactionTrigger: 0
 --- !u!1 &2132803999
 GameObject:
   m_ObjectHideFlags: 0
@@ -64446,6 +64568,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2146883215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1066117944230058852, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
+  m_PrefabInstance: {fileID: 1415779943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3501641760866988
 Transform:
   m_ObjectHideFlags: 0
@@ -64528,6 +64655,10 @@ MonoBehaviour:
   rotationAxis: 2
   targetRotateGap: 90
   doorType: 0
+  outlineLayer: 11
+  otherGameobjectOutlineArray:
+  - outlineObject: {fileID: 852636333}
+    interactionTrigger: 0
 --- !u!4 &206698696027500326
 Transform:
   m_ObjectHideFlags: 0
@@ -64671,7 +64802,7 @@ Transform:
   m_Children:
   - {fileID: 4927947972067185769}
   m_Father: {fileID: 543450652292837772}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549679568283743314
 GameObject:
@@ -65440,6 +65571,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 1.5
   gameEvent: {fileID: 11400000, guid: 2521aa5a164327e4d8b0b5432a35f63a, type: 2}
+  outlineLayer: 11
+  otherGameobjectOutlineArray: []
 --- !u!1 &2445923679875510618
 GameObject:
   m_ObjectHideFlags: 0
@@ -67127,7 +67260,7 @@ Transform:
   m_Children:
   - {fileID: 2445923679875510616}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -52.704, z: 0}
 --- !u!1 &8178822413241822803
 GameObject:

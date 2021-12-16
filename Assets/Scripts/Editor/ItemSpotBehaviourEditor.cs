@@ -40,6 +40,7 @@ public class ItemSpotBehaviourEditor : Editor
             default:
                 break;
         }
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("otherGameobjectOutlineArray"));
         serializedObject.ApplyModifiedProperties();
     }
 }

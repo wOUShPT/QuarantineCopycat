@@ -89,16 +89,36 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
         public List<PickUpItemBehaviour> foodPickUps;
     }
     protected bool isHavingChildMatters;
+    [SerializeField] protected OtherGameobjectOutline[] otherGameobjectOutlineArray;
+    [System.Serializable]
+    public class OtherGameobjectOutline
+    {
+        public GameObject outlineObject;
+        public int interactionTrigger;
+    }
     protected virtual void Awake() //awake
     {        
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
         interactDelegate = CheckPlayerHasItem;
         interactionLayer = gameObject.layer;
+        if (otherGameobjectOutlineArray.Length != 0)
+        {
+            foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+            {
+                outlineObject.interactionTrigger = outlineObject.outlineObject.layer;
+            }
+        }
     }
     public void ExitInteract()
     {
         wasInterected = false;
         gameObject.layer = interactionLayer;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineObject.interactionTrigger;
+        }
     }
 
     public void Interact()
@@ -165,6 +185,12 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
         if (gameObject.layer == outlineLayer)
             return;
         gameObject.layer = outlineLayer;
+        if (otherGameobjectOutlineArray.Length == 0)
+            return;
+        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
+        {
+            outlineObject.outlineObject.layer = outlineLayer;
+        }
     }
 
 }

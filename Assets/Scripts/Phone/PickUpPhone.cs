@@ -14,6 +14,7 @@ public class PickUpPhone : MonoBehaviour, IInteractable
     [SerializeField] private int outlineLayer = 11;
     private bool isOutline;
     [SerializeField] private OtherGameobjectOutline[] otherGameobjectOutlineArray;
+    [System.Serializable]
     public class OtherGameobjectOutline
     {
         public GameObject outlineObject;
