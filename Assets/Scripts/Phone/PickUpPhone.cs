@@ -10,10 +10,13 @@ public class PickUpPhone : MonoBehaviour, IInteractable
     private delegate void PickPhoneAction();
     private PickPhoneAction phoneAction;
     private InteractionTrigger interactionTrigger;
+    private int interactionLayer;
+    [SerializeField] private int outlineLayer = 11;
     private void Awake()
     {
         playerPhone = FindObjectOfType<PlayerPhone>();
         interactionTrigger = GetComponentInChildren<InteractionTrigger>();
+        interactionLayer = gameObject.layer;
     }
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,7 @@ public class PickUpPhone : MonoBehaviour, IInteractable
     public void ExitInteract()
     {
         wasInteraction = false;
+        gameObject.layer = interactionLayer;
     }
 
     public void Interact()
@@ -45,6 +49,12 @@ public class PickUpPhone : MonoBehaviour, IInteractable
     public float InteractionDistance()
     {
         return interactionDistance;
+    }
+    public void DisplayOutline()
+    {
+        if (this.gameObject.layer == outlineLayer)
+            return;
+        gameObject.layer = outlineLayer;
     }
 
 }

@@ -13,6 +13,8 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     protected PickUpItemBehaviour item;
     public PickUpItemBehaviour Item { get { return item; } set { item = value; } }
     [SerializeField] protected Transform[] childrenItemSpot;
+    protected int interactionLayer;
+    [SerializeField] protected int outlineLayer = 11;
     //delegate
     protected delegate void InteractDelegate();
     protected InteractDelegate interactDelegate;
@@ -91,10 +93,12 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     {        
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
         interactDelegate = CheckPlayerHasItem;
+        interactionLayer = gameObject.layer;
     }
     public void ExitInteract()
     {
         wasInterected = false;
+        gameObject.layer = interactionLayer;
     }
 
     public void Interact()
@@ -155,6 +159,12 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
             }
         }
         return true;
+    }
+    public void DisplayOutline()
+    {
+        if (gameObject.layer == outlineLayer)
+            return;
+        gameObject.layer = outlineLayer;
     }
 
 }

@@ -9,7 +9,9 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
     private bool isClosed = true;
     private bool wasInteracted = false;
     private List<Animator> animatorchildArray;
-
+    //Layer
+    protected int interactionLayer;
+    [SerializeField] protected int outlineLayer = 11;
     //delegate
     private delegate void BlindAction();
     private BlindAction blindAction;
@@ -25,11 +27,13 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
         {
             animatorchildArray.Add(child.GetComponent<Animator>());
         }
+        interactionLayer = gameObject.layer;
     }
 
     public void ExitInteract()
     {
         wasInteracted = false;
+        gameObject.layer = interactionLayer;
     }
 
     public void Interact()
@@ -73,6 +77,12 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
             animator.Play("StackClose");
         }
         isClosed = true;
+    }
+    public void DisplayOutline()
+    {
+        if (gameObject.layer == outlineLayer)
+            return;
+        gameObject.layer = outlineLayer;
     }
 
 }

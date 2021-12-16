@@ -25,13 +25,16 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     }
     [SerializeField] private DoorType doorType;
     private FridgePlace fridgePlace;
+    protected int interactionLayer;
+    [SerializeField] protected int outlineLayer = 11;
     private void Awake()
     {
         doorsInteraction = OpenDoorByCode;
+        interactionLayer = gameObject.layer;
     }
     private void Start()
     {
-        if(doorType == DoorType.Fridge)
+        if(doorType == DoorType.Fridge) //If it's a fridge
         {
             fridgePlace = GetComponentInChildren<FridgePlace>();
             fridgePlace.enabled = false;
@@ -55,6 +58,7 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     public void ExitInteract()
     {
         wasInteracted = false;
+        gameObject.layer = interactionLayer;
     }
     private void OpenDoorByCode()
     {
@@ -163,5 +167,11 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
         //{
         //    pickups.IsPickable = true;
         //}
+    }
+    public void DisplayOutline()
+    {
+        if (gameObject.layer == outlineLayer)
+            return;
+        gameObject.layer = outlineLayer;
     }
 }

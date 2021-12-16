@@ -9,11 +9,14 @@ public class OnPivotInteractionTrigger : MonoBehaviour , IInteractable
     public float interactionDistance;
     public GameEvent gameEvent;
     private UIManager _uiManager;
+    private int interactionLayer;
+    [SerializeField] private int outlineLayer = 11;
 
     public void Awake()
     {
         _uiManager = FindObjectOfType<UIManager>();
         _playerMovement = FindObjectOfType<PlayerMovement>();
+        interactionLayer = gameObject.layer;
     }
 
     public float InteractionDistance()
@@ -30,7 +33,7 @@ public class OnPivotInteractionTrigger : MonoBehaviour , IInteractable
 
     public void ExitInteract()
     {
-
+        gameObject.layer = interactionLayer;
     }
 
     IEnumerator WaitAndRaise()
@@ -39,5 +42,12 @@ public class OnPivotInteractionTrigger : MonoBehaviour , IInteractable
         yield return new WaitUntil(() => _playerMovement.isOnActionPivot);
         gameEvent.Raise();
         _playerMovement.isOnActionPivot = false;
+    }
+
+    public void DisplayOutline()
+    {
+        if (gameObject.layer == outlineLayer)
+            return;
+        gameObject.layer = outlineLayer;
     }
 }

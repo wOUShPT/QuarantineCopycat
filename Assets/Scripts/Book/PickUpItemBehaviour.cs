@@ -29,6 +29,8 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private Animator itemAnimator;
     public Animator ItemAnimator => itemAnimator; 
     private bool wasInterected = false;
+    private int interactionLayer;
+    [SerializeField] private int outlineLayer = 11;
     //Need initial scale
     private Vector3 initialScale;
     public Vector3 InitialScale => initialScale;
@@ -130,11 +132,18 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         itemCollider = GetComponent<BoxCollider>();
         itemAnimator = GetComponent<Animator>();
         initialScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
+        interactionLayer = this.gameObject.layer;
     }
 
     public float InteractionDistance()
     {
         return interactionDistance;
+    }
+    public void DisplayOutline()
+    {
+        if (this.gameObject.layer == outlineLayer)
+            return;
+        gameObject.layer = outlineLayer;
     }
 
     public void Interact()
@@ -171,6 +180,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     public void ExitInteract()
     {
+        this.gameObject.layer = interactionLayer;
         wasInterected = false;
     }
 

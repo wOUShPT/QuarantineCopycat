@@ -7,4 +7,6 @@ public interface IInteractable
     void Interact();
 
     void ExitInteract();
+
+    void DisplayOutline();
 }
