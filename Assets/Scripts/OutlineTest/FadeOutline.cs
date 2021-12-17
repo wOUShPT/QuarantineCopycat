@@ -8,9 +8,7 @@ public class FadeOutline : Singleton<FadeOutline>
     private static Material OutlineMaterial;
     private float minvalue = 0f;
     [SerializeField]private float maxValue = 5f;
-    //private float timeElapsed = 0f;
     [SerializeField]private float lerpDuration = .5f;
-    //private float valueToLerp;
     private IEnumerator FadeInCourotine;
     private static IEnumerator FadeOutCourotine;
     private delegate void FadeAction(float startvalue, float endvalue);
@@ -22,15 +20,8 @@ public class FadeOutline : Singleton<FadeOutline>
         outlineMaterial.SetFloat("_OutlineWidth", 3f);
         FadeOutCourotine = FadeOutlineInObject(maxValue, minvalue); // to fade out
     }
-    private void Update()
-    {
-        Debug.Log(FadeInCourotine);
-    }
-
     public void FadeInOUtline()
     {
-        Debug.Log("Fade In");
-
         if(FadeInCourotine != null)
         {
             StopCoroutine(FadeInCourotine);
@@ -44,7 +35,6 @@ public class FadeOutline : Singleton<FadeOutline>
     private IEnumerator FadeOutlineInObject(float startValue, float endValue)
     {
         
-        Debug.Log("Courotine");
         float timeElapsed = 0f;
         float valueToLerp = startValue;
         OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);

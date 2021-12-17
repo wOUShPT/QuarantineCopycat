@@ -196,7 +196,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4397498153711169943}
   m_HandleRect: {fileID: 632021717301295688}
   m_Direction: 3
-  m_Value: 0.88745487
+  m_Value: 0.8868696
   m_Size: 0.6413434
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1483,8 +1483,8 @@ RectTransform:
   m_Father: {fileID: 2975770563913367496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.04036504}
-  m_AnchorMax: {x: 1, y: 0.68170846}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1905,7 +1905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5303011394656103622
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2098,7 +2098,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 880669295227396319}
   m_HandleRect: {fileID: 811792957657175058}
   m_Direction: 3
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2300,7 +2300,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6002515586746294969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.275}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6002515587319472783}
@@ -2420,6 +2420,7 @@ MonoBehaviour:
     ButtonSend: {fileID: 6523227857019553495}
     Text: {fileID: 5147427991745978662}
   timePerCharacter: 0.15
+  invisibleCharacters: 0
 --- !u!1 &6002515586968603761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,8 +4275,8 @@ RectTransform:
   m_Father: {fileID: 8378859612095251522}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.35860512}
-  m_AnchorMax: {x: 1, y: 0.9999485}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4454,7 +4455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9215224453446881938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5172,7 +5173,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8292238956242181776}
   m_HandleRect: {fileID: 6166943614776148079}
   m_Direction: 3
-  m_Value: 0.00014352475
+  m_Value: -0.00062924187
   m_Size: 0.6413434
   m_NumberOfSteps: 0
   m_OnValueChanged:
