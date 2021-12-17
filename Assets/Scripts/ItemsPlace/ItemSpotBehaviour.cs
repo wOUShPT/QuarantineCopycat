@@ -15,6 +15,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     [SerializeField] protected Transform[] childrenItemSpot;
     protected int interactionLayer;
     [SerializeField] protected int outlineLayer = 11;
+    [SerializeField] protected int fakeShaderOutlineLayer = 12;
     //delegate
     protected delegate void InteractDelegate();
     protected InteractDelegate interactDelegate;
@@ -95,6 +96,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     {
         public GameObject outlineObject;
         public int interactionTrigger;
+        public bool isFakeshader;
     }
     protected virtual void Awake() //awake
     {        
@@ -111,6 +113,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     }
     public void ExitInteract()
     {
+        FadeOutline.FadeeOutOutline();
         wasInterected = false;
         gameObject.layer = interactionLayer;
         if (otherGameobjectOutlineArray.Length == 0)
@@ -184,12 +187,13 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     {
         if (gameObject.layer == outlineLayer)
             return;
+        FadeOutline.Instance.FadeInOUtline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;
         foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
         {
-            outlineObject.outlineObject.layer = outlineLayer;
+            outlineObject.outlineObject.layer = !outlineObject.isFakeshader ? outlineLayer : fakeShaderOutlineLayer;
         }
     }
 

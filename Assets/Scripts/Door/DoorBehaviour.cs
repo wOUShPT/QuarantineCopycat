@@ -71,6 +71,7 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     }
     public void ExitInteract()
     {
+        FadeOutline.FadeeOutOutline();
         wasInteracted = false;
         gameObject.layer = interactionLayer;
         if (otherGameobjectOutlineArray.Length == 0)
@@ -192,6 +193,7 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
     {
         if (gameObject.layer == outlineLayer)
             return;
+        FadeOutline.Instance.FadeInOUtline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;

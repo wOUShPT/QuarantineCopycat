@@ -10,12 +10,14 @@ public class InteractionTrigger : MonoBehaviour , IInteractable
     private UIManager _uiManager;
     private int interactionLayer;
     [SerializeField] private int outlineLayer = 11;
-    [SerializeField] protected OtherGameobjectOutline[] otherGameobjectOutlineArray;
+    [SerializeField] private int fakeMashOutlineLayer = 12;
+    [SerializeField] private OtherGameobjectOutline[] otherGameobjectOutlineArray;
     [System.Serializable]
     public class OtherGameobjectOutline
     {
-        public GameObject outlineObject;
-        public int interactionTrigger;
+        public GameObject OutlineObject;
+        public int InteractionTrigger;
+        public bool IsFakeMaterial;
     }
 
     public void Awake()
@@ -26,7 +28,7 @@ public class InteractionTrigger : MonoBehaviour , IInteractable
         {
             foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
             {
-                outlineObject.interactionTrigger = outlineObject.outlineObject.layer;
+                outlineObject.InteractionTrigger = outlineObject.OutlineObject.layer;
             }
         }
     }
@@ -44,12 +46,13 @@ public class InteractionTrigger : MonoBehaviour , IInteractable
 
     public void ExitInteract()
     {
+        FadeOutline.FadeeOutOutline();
         gameObject.layer = interactionLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;
         foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
         {
-            outlineObject.outlineObject.layer = outlineObject.interactionTrigger;
+            outlineObject.OutlineObject.layer = outlineObject.InteractionTrigger;
         }
     }
 
@@ -57,12 +60,13 @@ public class InteractionTrigger : MonoBehaviour , IInteractable
     {
         if (gameObject.layer == outlineLayer)
             return;
+        FadeOutline.Instance.FadeInOUtline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;
         foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
         {
-            outlineObject.outlineObject.layer = outlineLayer;
+            outlineObject.OutlineObject.layer = !outlineObject.IsFakeMaterial ? outlineLayer : fakeMashOutlineLayer;
         }
     }
 }

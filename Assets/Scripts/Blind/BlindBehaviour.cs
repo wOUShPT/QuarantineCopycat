@@ -45,6 +45,7 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
 
     public void ExitInteract()
     {
+        //FadeOutline.Instance.FadeeOutOutline();
         wasInteracted = false;
         gameObject.layer = interactionLayer;
         if (otherGameobjectOutlineArray.Length == 0)
@@ -101,6 +102,7 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
     {
         if (gameObject.layer == outlineLayer)
             return;
+        FadeOutline.Instance.FadeInOUtline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;

@@ -41,6 +41,7 @@ public class PickUpPhone : MonoBehaviour, IInteractable
     }
     public void ExitInteract()
     {
+        FadeOutline.FadeeOutOutline();
         wasInteraction = false;
         gameObject.layer = interactionLayer;
         if (otherGameobjectOutlineArray.Length == 0)
@@ -76,6 +77,7 @@ public class PickUpPhone : MonoBehaviour, IInteractable
     {
         if (this.gameObject.layer == outlineLayer)
             return;
+        FadeOutline.Instance.FadeInOUtline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;

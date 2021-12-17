@@ -47,6 +47,7 @@ public class OnPivotInteractionTrigger : MonoBehaviour , IInteractable
 
     public void ExitInteract()
     {
+        FadeOutline.FadeeOutOutline();
         gameObject.layer = interactionLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;
@@ -68,6 +69,7 @@ public class OnPivotInteractionTrigger : MonoBehaviour , IInteractable
     {
         if (gameObject.layer == outlineLayer)
             return;
+        FadeOutline.Instance.FadeInOUtline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;

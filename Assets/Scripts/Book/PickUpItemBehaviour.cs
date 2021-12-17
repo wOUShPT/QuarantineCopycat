@@ -31,6 +31,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private bool wasInterected = false;
     private int interactionLayer;
     [SerializeField] private int outlineLayer = 11;
+    private int invisibleOutlineLayer = 12;
     //Need initial scale
     private Vector3 initialScale;
     public Vector3 InitialScale => initialScale;
@@ -130,6 +131,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     {
         public GameObject outlineObject;
         public int interactionTrigger;
+        public bool isFakeMaterial;
     }
 
     private void Awake()
@@ -157,12 +159,13 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     {
         if (this.gameObject.layer == outlineLayer)
             return;
+        FadeOutline.Instance.FadeInOUtline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;
         foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
         {
-            outlineObject.outlineObject.layer = outlineLayer;
+            outlineObject.outlineObject.layer = !outlineObject.isFakeMaterial ? outlineLayer : invisibleOutlineLayer;
         }
     }
 
@@ -200,6 +203,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     public void ExitInteract()
     {
+        FadeOutline.FadeeOutOutline();
         this.gameObject.layer = interactionLayer;
         wasInterected = false;
         if (otherGameobjectOutlineArray.Length == 0)
