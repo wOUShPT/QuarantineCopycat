@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: 
-    dialogueLine: JESUS! IM HUNGRY...
+    dialogueLine: 
     pauseWhenDone: 0
 --- !u!114 &-5546667496421744494
 MonoBehaviour:
@@ -30,7 +30,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: 
-    dialogueLine: I THINKING OF A NICE TOASTED BREAD
+    dialogueLine: 
     pauseWhenDone: 0
 --- !u!114 &-4121678054517944194
 MonoBehaviour:
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: 
-    dialogueLine: I SHOULD GET A SHOWER
+    dialogueLine: 
     pauseWhenDone: 0
 --- !u!114 &2089403093800253469
 MonoBehaviour:
@@ -552,5 +552,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: 
-    dialogueLine: OH MAN I SMELL AWFUL
+    dialogueLine: 
     pauseWhenDone: 0

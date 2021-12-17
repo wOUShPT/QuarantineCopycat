@@ -9,7 +9,7 @@ public class FadeOutline : Singleton<FadeOutline>
     private float minvalue = 0f;
     [SerializeField]private float maxValue = 5f;
     //private float timeElapsed = 0f;
-    [SerializeField]private static float lerpDuration = .5f;
+    [SerializeField]private float lerpDuration = .5f;
     //private float valueToLerp;
     private IEnumerator FadeInCourotine;
     private static IEnumerator FadeOutCourotine;
