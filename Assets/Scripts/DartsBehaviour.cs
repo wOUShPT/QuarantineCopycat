@@ -27,9 +27,6 @@ public class DartsBehaviour : MonoBehaviour
     private int poolSize;
     [SerializeField]
     private Rigidbody dartPrefab;
-    [SerializeField] 
-    private Collider dartBoardCollider;
-
     private Vector3 dartsBoardCenterPos;
     private RaycastHit[] _hitResults;
     private float _coolDownTime = 1f;
@@ -184,7 +181,7 @@ public class DartsBehaviour : MonoBehaviour
     {
         dart.position = Camera.main.transform.position;
         dart.rotation = Quaternion.identity;
-        dart.rotation = Quaternion.Euler(0, 0, 90);
+        dart.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y + 180, 0);
     }
 
 

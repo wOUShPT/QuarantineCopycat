@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private float headBobIntensity;
     [SerializeField] 
     private float headBobSpeed;
+    [SerializeField] 
+    private CinemachineFPExtension _cinemachineFpExtension;
     public bool isOnActionPivot;
     private Vector3 _currentMoveDirection;
     private Vector3 _currentRotation;
@@ -103,5 +105,10 @@ public class PlayerMovement : MonoBehaviour
         PlayerProperties.FreezeAim = true;
         PlayerProperties.FreezeInteraction = true;
         StartCoroutine(MoveToTargetCoroutine(target, distanceThreshold));
+    }
+
+    public void CenterCameraOnYAxis()
+    {
+        _cinemachineFpExtension.RecenterYAxis();
     }
 }

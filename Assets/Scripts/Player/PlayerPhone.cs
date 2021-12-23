@@ -11,22 +11,26 @@ public class PlayerPhone : MonoBehaviour
     [SerializeField]private Button primaryButton;
     //make alpha 1 and 0
     [SerializeField] private CanvasGroup phoneCanvasGroup;
+    [SerializeField] private GameObject phoneModel;
 
     private delegate void PhoneFunctionDelegate();
     private PhoneFunctionDelegate phoneDelegate;
     private bool hasPhone = false;
     private bool hasClicked = false;
+    private PlayerMovement _playerMovement;
     
     private void Awake()
     {
         phoneUI = FindObjectOfType<ChangePhoneUI>();
         phoneUI.ResetPhoneLayers();
         messageManager = FindObjectOfType<PhoneMessageManager>();
+        _playerMovement = FindObjectOfType<PlayerMovement>();
     }
     // Start is called before the first frame update
     void Start()
     {
         primaryButton.Select();
+        phoneModel.SetActive(false);
         phoneCanvasGroup.alpha = 0;
         phoneCanvasGroup.interactable = false;
         phoneCanvasGroup.blocksRaycasts = false;
@@ -121,9 +125,11 @@ public class PlayerPhone : MonoBehaviour
     }
     private void DisplayPhone() //Display immeadiatly for now, but in the future it will be an IK handle animation
     {
+        _playerMovement.CenterCameraOnYAxis();
         primaryButton.Select();
         phoneCanvasGroup.alpha = 1;
         phoneCanvasGroup.interactable = true;
+        phoneModel.SetActive(true);
         InputManager.Instance.TogglePlayerControls(false);
         InputManager.Instance.TogglePhoneControls(true);
         phoneDelegate = HidePhone;
@@ -132,6 +138,7 @@ public class PlayerPhone : MonoBehaviour
     {
         phoneCanvasGroup.alpha = 0;
         phoneCanvasGroup.interactable = false;
+        phoneModel.SetActive(false);
         InputManager.Instance.TogglePlayerControls(true);
         InputManager.Instance.TogglePhoneControls(false);
         phoneDelegate = DisplayPhone;

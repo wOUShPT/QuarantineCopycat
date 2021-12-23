@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class CinemachineFPExtension : CinemachineExtension
 {
@@ -16,8 +17,9 @@ public class CinemachineFPExtension : CinemachineExtension
     [SerializeField]
     private float clampYViewAngle;
 
-    [SerializeField]
-    private bool isCameraFixed;
+    [SerializeField] private CameraMode mode;
+
+    private CinemachineVirtualCameraBase vCam;
 
     private Vector3 _currentRotation;
 
@@ -35,7 +37,7 @@ public class CinemachineFPExtension : CinemachineExtension
     protected override void OnEnable()
     {
         base.OnEnable();
-        CinemachineVirtualCameraBase vCam = GetComponent<CinemachineVirtualCameraBase>();
+        vCam = GetComponent<CinemachineVirtualCameraBase>();
         //vCam.ForceCameraPosition(vCam.Follow.position, vCam.Follow.rotation);
         _currentRotation.x = vCam.Follow.rotation.eulerAngles.y;
         _currentRotation.y = vCam.Follow.rotation.eulerAngles.x;
@@ -58,7 +60,7 @@ public class CinemachineFPExtension : CinemachineExtension
 
             _currentRotation.y = Mathf.Clamp(_currentRotation.y, -clampYViewAngle, clampYViewAngle);
 
-            if (isCameraFixed)
+            if (mode == CameraMode.Static)
             {
                 state.RawOrientation = Quaternion.Euler(vCam.Follow.rotation.eulerAngles.x - _currentRotation.y, vCam.Follow.rotation.eulerAngles.y + _currentRotation.x, 0);
             }
@@ -75,7 +77,19 @@ public class CinemachineFPExtension : CinemachineExtension
             _currentRotation.x = vCam.Follow.rotation.eulerAngles.y;
             _currentRotation.y = vCam.Follow.rotation.eulerAngles.x;
             state.RawOrientation = _currentRawOrientation;
-
         }
+    }
+
+    public void RecenterYAxis()
+    {
+        CameraState state = vCam.State;
+        state.RawOrientation = Quaternion.Euler(_currentRotation.y, 0, 0);
+    }
+
+    enum CameraMode
+    {
+        Dynamic,
+        Cutscene,
+        Static
     }
 }
