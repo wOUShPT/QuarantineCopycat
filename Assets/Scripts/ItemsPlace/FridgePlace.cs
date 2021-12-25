@@ -9,7 +9,7 @@ public class FridgePlace : ItemSpotBehaviour
     {
         dropObjectType = PickUpItemBehaviour.PickUpObjectType.Food;
         base.Awake();
-        for (int i = 0; i < fridgeParams.foodTransform.Length; i++)
+        for (int i = 0; i < fridgeParams.foodTransform.Length; i++) //There is food at the fridge
         {
             if(i >= fridgeParams.foodPickUps.Count)
             {

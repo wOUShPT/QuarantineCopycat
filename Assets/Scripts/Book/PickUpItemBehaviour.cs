@@ -35,6 +35,8 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     //Need initial scale
     private Vector3 initialScale;
     public Vector3 InitialScale => initialScale;
+    private Quaternion initialQuaternion;
+    public Quaternion InitialQuaternion => initialQuaternion;
     [SerializeField]private BookParams bookParams;
     // Object Type == Book
     [System.Serializable]
@@ -141,6 +143,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         itemCollider = GetComponent<BoxCollider>();
         itemAnimator = GetComponent<Animator>();
         initialScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
+        initialQuaternion = transform.rotation;
         interactionLayer = this.gameObject.layer;
         if (otherGameobjectOutlineArray.Length != 0)
         {

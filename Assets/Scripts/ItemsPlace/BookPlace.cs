@@ -8,8 +8,19 @@ public class BookPlace : ItemSpotBehaviour
     protected override void Awake()
     {
         base.Awake();
+        if(CheckHasItemChildrenSpot())
+        {
+            //it's not empty
+            itemStack = new Stack<PickUpItemBehaviour>();
+        }
     }
-
+    //protected override void Start()
+    //{
+    //    if (CheckHasItemSpotBeginning())
+    //    {
+    //        PlaceItemToSpot();
+    //    }
+    //}
     protected override void CheckPlayerHasItem()
     {
         if (playerPickUp.CurrentlyPickedUpObject == null && !AreSpotsFull())
@@ -33,17 +44,30 @@ public class BookPlace : ItemSpotBehaviour
     {
         if (playerPickUp.CurrentlyPickedUpObject != null) 
         {
-            //player has picked up something
+            //player has picked up something previously and didn't drop it until now...
             return;
         }
-        // Player took the book or any
+        if(item == null)
+        {
+            if(childrenItemSpot.Length == 0 || itemStack.Count == 0)
+            {
+                return;
+            }
+            GetIem(ref item);
+        }
+        // Player took the book or anything
         playerPickUp.GetPickedupObject(item);
         item = null;
     }
+    private void GetIem(ref PickUpItemBehaviour item)
+    {
+        PickUpItemBehaviour itemSpot = itemStack.Pop();
+        item = itemSpot;
+    }
     protected override void PlaceItemToSpot()
     {
-        item.transform.SetParent(childrenItemSpot.Length != 0 ? GetAvailableSpot() : this.transform);
-        SetItemValuesDefault(item.transform);
+        item.transform.SetParent(CheckHasItemChildrenSpot() ? GetAvailableSpot() : this.transform);
+        SetItemValuesDefault(item);
         item.transform.localScale = item.InitialScale;
         item.transform.localPosition = Vector3.zero;
         item.ItemRigidbody.isKinematic = true;
@@ -54,6 +78,11 @@ public class BookPlace : ItemSpotBehaviour
         }
         // Attach item to this itemspotbehaviour
         item.ItemSpotBehaviour = this;
+        if (CheckHasItemChildrenSpot())
+        {
+            itemStack.Push(item); //Save item on the stack
+            item = null;
+        }
     }
 
 }

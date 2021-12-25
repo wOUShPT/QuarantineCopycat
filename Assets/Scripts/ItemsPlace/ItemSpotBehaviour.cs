@@ -9,8 +9,9 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     public PickUpItemBehaviour.PickUpObjectType DropObjectType => dropObjectType;
     private bool wasInterected = false;
     protected PlayerPickUpBehaviour playerPickUp;
-    //Book
-    protected PickUpItemBehaviour item;
+    //Book or Any
+    protected Stack<PickUpItemBehaviour> itemStack;
+    [SerializeField]protected PickUpItemBehaviour item;
     public PickUpItemBehaviour Item { get { return item; } set { item = value; } }
     [SerializeField] protected Transform[] childrenItemSpot;
     protected int interactionLayer;
@@ -19,8 +20,8 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     //delegate
     protected delegate void InteractDelegate();
     protected InteractDelegate interactDelegate;
-    protected Stack<ClothParams> clothParamsStack;
     //Object type == Cloth
+    protected Stack<ClothParams> clothParamsStack;
     [System.Serializable]
     public class ClothParams
     {
@@ -111,6 +112,22 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
             }
         }
     }
+    protected virtual void Start()
+    {
+        if (CheckHasItemSpotBeginning())
+        {
+            PlaceItemToSpot();
+        }
+    }
+    protected bool CheckHasItemSpotBeginning()
+    {
+        if(item != null && childrenItemSpot.Length == 0)
+        {
+            //It has item when running
+            return true;
+        }
+        return false;
+    }
     public void ExitInteract()
     {
         FadeOutline.FadeeOutOutline();
@@ -142,6 +159,11 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     {
         _item.localPosition = Vector3.zero;
         _item.localRotation = Quaternion.Euler(Vector3.zero);
+    }
+    protected void SetItemValuesDefault(PickUpItemBehaviour _item) //Set collider to trigger and rb to kinematic
+    {
+        _item.transform.localPosition = Vector3.zero;
+        _item.transform.rotation = Quaternion.Euler(Vector3.zero) * _item.InitialQuaternion;
     }
     protected abstract void CheckPlayerHasItem();
 
@@ -182,6 +204,15 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
             }
         }
         return true;
+    }
+    protected bool CheckHasItemChildrenSpot()
+    {
+        if(childrenItemSpot.Length > 0)
+        {
+            return true;
+
+        }
+        return false;
     }
     public void DisplayOutline()
     {

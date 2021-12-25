@@ -729,6 +729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 0
+  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
   outlineLayer: 11
@@ -1432,6 +1433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 0
+  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
   outlineLayer: 11
@@ -8557,6 +8559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 4
+  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
   outlineLayer: 11
@@ -9447,7 +9450,7 @@ Transform:
   - {fileID: 1250225900}
   - {fileID: 254957902}
   m_Father: {fileID: 0}
-  m_RootOrder: 45
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &700359560
 MonoBehaviour:
@@ -9728,6 +9731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 0
+  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
   outlineLayer: 11
@@ -10046,7 +10050,7 @@ MonoBehaviour:
   verticalSpeed: 10
   clampXViewAngle: 0
   clampYViewAngle: 70
-  isCameraFixed: 0
+  mode: 0
 --- !u!1 &732457269
 GameObject:
   m_ObjectHideFlags: 0
@@ -10093,6 +10097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 9
+  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
   outlineLayer: 11
@@ -10224,7 +10229,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   rotationAxis: 1
   targetRotateGap: 90
-  doorType: 0
+  doorType: 1
   outlineLayer: 11
   otherGameobjectOutlineArray: []
 --- !u!1 &776466614
@@ -10924,7 +10929,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907302801}
-  m_LocalRotation: {x: -0.017786236, y: -0.037168976, z: -0.0006616582, w: 0.9991505}
+  m_LocalRotation: {x: -0.01778621, y: -0.03716894, z: -0.0006616566, w: 0.9991505}
   m_LocalPosition: {x: 6.93, y: 4.63, z: -4.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11406,7 +11411,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 47
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &992266671
 GameObject:
@@ -12330,6 +12335,7 @@ MonoBehaviour:
   _agent: {fileID: 1096276527}
   headBobIntensity: 0.066
   headBobSpeed: 0.09
+  _cinemachineFpExtension: {fileID: 0}
   isOnActionPivot: 0
 --- !u!114 &1096276522
 MonoBehaviour:
@@ -12345,6 +12351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryButton: {fileID: 1370790678}
   phoneCanvasGroup: {fileID: 1999412080}
+  phoneModel: {fileID: 0}
 --- !u!114 &1096276523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13983,6 +13990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 0
+  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
   outlineLayer: 11
@@ -14628,6 +14636,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1513220705 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 419703426838363131, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
+  m_PrefabInstance: {fileID: 419703428685388904}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513220711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513220705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7e944c3f1321f43862a4e20d87f45d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: a0028204a7b449441b53ea68221eaff7, type: 2}
+  maxValue: 5
+  lerpDuration: 0.5
 --- !u!1 &1532629087
 GameObject:
   m_ObjectHideFlags: 0
@@ -15031,6 +15059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 8
+  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
   outlineLayer: 11
@@ -15928,6 +15957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 1
+  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
   outlineLayer: 11
@@ -18404,7 +18434,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
       propertyPath: m_RootOrder
-      value: 46
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 419703426838363120, guid: 3625b708e67c0c64db30ca0869ee8832, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19194,79 +19224,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
---- !u!1001 &7321107864180372313
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_RootOrder
-      value: 44
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649260, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864645649270, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_Name
-      value: PhonePhysically
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321107864661745052, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6d18f12c017867c40b6b98963d47c69b, type: 3}
 --- !u!1001 &9018066578365618554
 PrefabInstance:
   m_ObjectHideFlags: 0

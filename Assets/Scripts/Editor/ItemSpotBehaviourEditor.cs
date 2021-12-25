@@ -11,6 +11,7 @@ public class ItemSpotBehaviourEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("interactionDistance"));
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("dropObjectType"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("item"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("childrenItemSpot"));
         switch (itemSpot.DropObjectType)
         {
