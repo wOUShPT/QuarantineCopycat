@@ -11,9 +11,10 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     protected PlayerPickUpBehaviour playerPickUp;
     //Book or Any
     protected Stack<PickUpItemBehaviour> itemStack;
-    [SerializeField]protected PickUpItemBehaviour item;
+    protected PickUpItemBehaviour item;
     public PickUpItemBehaviour Item { get { return item; } set { item = value; } }
     [SerializeField] protected Transform[] childrenItemSpot;
+    [SerializeField] protected PickUpItemBehaviour [] beginningItemSpoted; //if needed items at the start
     protected int interactionLayer;
     [SerializeField] protected int outlineLayer = 11;
     [SerializeField] protected int fakeShaderOutlineLayer = 12;
@@ -90,7 +91,6 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
         public Transform[] foodTransform;
         public List<PickUpItemBehaviour> foodPickUps;
     }
-    protected bool isHavingChildMatters;
     [SerializeField] protected OtherGameobjectOutline[] otherGameobjectOutlineArray;
     [System.Serializable]
     public class OtherGameobjectOutline
@@ -116,14 +116,25 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     {
         if (CheckHasItemSpotBeginning())
         {
-            PlaceItemToSpot();
+            if( beginningItemSpoted.Length > 1 && beginningItemSpoted.Length > childrenItemSpot.Length)
+            {
+                Debug.LogWarning("There is more item than spots!!");
+                return;
+            }
+            // There are enough spots for the item spoted at the start ( or it's a single one)
+            foreach (PickUpItemBehaviour beginningItem in beginningItemSpoted)
+            {
+                item = beginningItem;
+                PlaceItemToSpot();
+            }
+            
         }
     }
-    protected bool CheckHasItemSpotBeginning()
+    protected bool CheckHasItemSpotBeginning() // Used only at the start
     {
-        if(item != null && childrenItemSpot.Length == 0)
+        if(beginningItemSpoted.Length > 0)
         {
-            //It has item when running
+            //It has item when the game begins
             return true;
         }
         return false;
@@ -174,7 +185,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
         Transform chosenSpot = null;
         if(AreSpotsFull())
         {
-            return chosenSpot; ;
+            return chosenSpot;
         }
         foreach (Transform spot in childrenItemSpot)
         {
@@ -188,10 +199,6 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     }
     protected bool AreSpotsFull()
     {
-        if (!isHavingChildMatters)
-        {
-            return false;
-        }
         if(childrenItemSpot.Length == 0)
         {
             return false; // If there's not spots

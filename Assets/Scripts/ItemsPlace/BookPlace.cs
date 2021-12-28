@@ -10,29 +10,23 @@ public class BookPlace : ItemSpotBehaviour
         base.Awake();
         if(CheckHasItemChildrenSpot())
         {
-            //it's not empty
+            //it's not empty            
             itemStack = new Stack<PickUpItemBehaviour>();
         }
     }
-    //protected override void Start()
-    //{
-    //    if (CheckHasItemSpotBeginning())
-    //    {
-    //        PlaceItemToSpot();
-    //    }
-    //}
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject == null && !AreSpotsFull())
+        if (playerPickUp.CurrentlyPickedUpObject == null)
         {
             TakeItemToPlayer();
             return;
         }
         // it's a book player has picked
         PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
-        if ((pickUpItem.ObjectType != DropObjectType && DropObjectType != PickUpItemBehaviour.PickUpObjectType.Any) || AreSpotsFull())
+        if ((pickUpItem != null && pickUpItem.ObjectType != DropObjectType && DropObjectType != PickUpItemBehaviour.PickUpObjectType.Any) 
+            || AreSpotsFull())
         {
-            return; //can't put an cloth on a book spot
+            return; 
         }
         item = pickUpItem;
         item.PickedUp = false;
@@ -84,5 +78,4 @@ public class BookPlace : ItemSpotBehaviour
             item = null;
         }
     }
-
 }

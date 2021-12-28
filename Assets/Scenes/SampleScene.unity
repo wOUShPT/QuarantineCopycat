@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3985.7617, g: 2737.3281, b: 2312.9062, a: 1}
+  m_IndirectSpecularColor: {r: 3273.541, g: 2170.748, b: 1667.7188, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -147,8 +147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 6
-  item: {fileID: 1036116058}
   childrenItemSpot: []
+  beginningItemSpoted:
+  - {fileID: 1036116058}
   outlineLayer: 11
   fakeShaderOutlineLayer: 12
   holderPositionArray: []
@@ -9783,9 +9784,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 6
-  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 572815689}
+  beginningItemSpoted: []
   outlineLayer: 11
   fakeShaderOutlineLayer: 12
   holderPositionArray: []
@@ -9862,7 +9863,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.05
-  far clip plane: 5000
+  far clip plane: 4000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -10345,7 +10346,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 10
     NearClipPlane: 0.05
-    FarClipPlane: 5000
+    FarClipPlane: 4000
     Dutch: 0
     LensShift: {x: 0, y: 0}
     Iso: 200
@@ -10869,11 +10870,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 4
-  item: {fileID: 518324422}
   childrenItemSpot:
   - {fileID: 1766199661}
   - {fileID: 1880479994}
   - {fileID: 736742300}
+  beginningItemSpoted:
+  - {fileID: 518324422}
   outlineLayer: 11
   fakeShaderOutlineLayer: 12
   holderPositionArray: []
@@ -31423,9 +31425,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 1.5
   dropObjectType: 3
-  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
+  beginningItemSpoted: []
   outlineLayer: 11
   fakeShaderOutlineLayer: 12
   holderPositionArray: []
@@ -31474,9 +31476,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 5
-  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 0}
+  beginningItemSpoted: []
   outlineLayer: 11
   fakeShaderOutlineLayer: 12
   holderPositionArray: []
@@ -48148,9 +48150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 2
-  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 1814282270}
+  beginningItemSpoted: []
   outlineLayer: 11
   fakeShaderOutlineLayer: 12
   holderPositionArray: []
@@ -53870,7 +53872,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 0
-  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 797154585}
   - {fileID: 526607867}
@@ -53878,6 +53879,7 @@ MonoBehaviour:
   - {fileID: 899922750}
   - {fileID: 835186130}
   - {fileID: 1743999038}
+  beginningItemSpoted: []
   outlineLayer: 11
   fakeShaderOutlineLayer: 12
   holderPositionArray: []
@@ -60052,9 +60054,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 0
-  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 297463786}
+  beginningItemSpoted: []
   outlineLayer: 11
   fakeShaderOutlineLayer: 12
   holderPositionArray: []
@@ -60102,12 +60104,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   dropObjectType: 4
-  item: {fileID: 0}
   childrenItemSpot:
   - {fileID: 1764557495}
   - {fileID: 672303854}
   - {fileID: 2096007066}
   - {fileID: 1337147591}
+  beginningItemSpoted: []
   outlineLayer: 11
   fakeShaderOutlineLayer: 12
   holderPositionArray: []
