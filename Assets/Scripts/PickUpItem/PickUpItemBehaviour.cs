@@ -190,18 +190,19 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     private void PickUp()
     {
-        playerPickUp.GetPickedupObject(this);
-        pickedUp = true;
         //Desattach itemspot to this item and vice versa
-        if(ItemSpotBehaviour != null)
+        if(ItemSpotBehaviour != null) // a way for stack/list items
         {
             itemSpotBehaviour.Item = null;
+            itemSpotBehaviour.CheckItemIsOnTheList(this);
             itemSpotBehaviour = null;
         }
+        playerPickUp.GetPickedupObject(this);
+        pickedUp = true;
     }
     private void DropItem()
     {
-        playerPickUp.BreakConnection();
+        //playerPickUp.BreakConnection();
         pickedUp = false;
     }
     public void ExitInteract()

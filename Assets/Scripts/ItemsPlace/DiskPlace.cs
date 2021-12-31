@@ -17,21 +17,18 @@ public class DiskPlace : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null)
+        PickUpItemBehaviour pickUpItem = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
+        if (pickUpItem != null)
         {
-            PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
-            if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Disk || AreSpotsFull())
-            {
-                //Player has a disk in his hands
-                item = pickUpItem;
-                item.PickedUp = false;
-                playerPickUp.BreakConnection();
-                PlaceItemToSpot();
-                diskParams.targetMusic = pickUpItem.AudioClip;
-                diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
-                PlayRotateDisk();
-                interactDelegate = TakeItemToPlayer;
-            }
+            //Player has a disk in his hands
+            item = pickUpItem;
+            item.PickedUp = false;
+            playerPickUp.BreakConnection(item);
+            PlaceItemToSpot();
+            diskParams.targetMusic = pickUpItem.AudioClip;
+            diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
+            PlayRotateDisk();
+            interactDelegate = TakeItemToPlayer;
         }
     }
 
@@ -41,7 +38,6 @@ public class DiskPlace : ItemSpotBehaviour
         SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
         item.ItemRigidbody.isKinematic = true;
-        item.ItemCollider.enabled = false;
         // Attach item to this itemspotbehaviour
         item.ItemSpotBehaviour = this;
     }

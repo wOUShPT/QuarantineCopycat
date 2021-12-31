@@ -14,6 +14,14 @@ public class PlayerPickUpBehaviour : MonoBehaviour
 
     private BookInspection bookInspection;
 
+    private Inventory inventory;
+    private UI_Inventory uiInventory;
+    private void Awake()
+    {
+        inventory = new Inventory();
+        uiInventory = FindObjectOfType<UI_Inventory>();
+        uiInventory.SetInventory(inventory);
+    }
     private void Start()
     {
         InputManager.Instance.ToggleInspectionControls(false);
@@ -25,18 +33,18 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     {
         pickUpItem = pickedupObject;
         PickUpObject();
-        CheckIsBrushTeethBehaviour();
+        CheckIsBrushTeethBehaviour(pickedupObject);
     }
 
-    public void BreakConnection()
+    public void BreakConnection(PickUpItemBehaviour item)
     {
         //Set parent to null
-        pickUpItem.transform.SetParent(null);
-        pickUpRB.constraints = RigidbodyConstraints.None;
-        pickUpRB.isKinematic = false;
-        pickUpRB = null;
-        pickUpItem.PickedUp = false;
-        CheckPlayerWillDropToothBrush();
+        item.transform.SetParent(null);
+        Rigidbody rb = item.ItemRigidbody;
+        rb.constraints = RigidbodyConstraints.None;
+        rb.isKinematic = false;
+        item.PickedUp = false;
+        CheckPlayerWillDropToothBrush(item);
         pickUpItem = null;
     }
     public void PickUpObject()
@@ -46,40 +54,73 @@ public class PlayerPickUpBehaviour : MonoBehaviour
         pickUpItem.transform.localPosition = Vector3.zero;
         pickUpItem.transform.localRotation = Quaternion.Euler(Vector3.zero);
         pickUpItem.transform.localScale = pickUpItem.InitialScale;
+        pickUpItem.gameObject.SetActive(false);
+        inventory.AddItem(pickUpItem);
+        pickUpItem = null;
+    }
+    public void SetPickUpRigidbody()
+    {
         //assign rigidbody and make it kinematic
-        pickUpRB = pickUpItem.ItemRigidbody;
-        pickUpRB.constraints = RigidbodyConstraints.FreezeRotation;
-        pickUpRB.isKinematic = true;
-        pickUpItem.ItemCollider.isTrigger = false;
+        //pickUpRB = pickUpItem.ItemRigidbody;
+        //pickUpRB.constraints = RigidbodyConstraints.FreezeRotation;
+        //pickUpRB.isKinematic = true;
+        //pickUpItem.ItemCollider.isTrigger = false;
     }
-    private void CheckIsBrushTeethBehaviour()
+    private void CheckIsBrushTeethBehaviour(PickUpItemBehaviour item)
     {
-        if( pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Toothbrush)
+        if(item != null)
         {
-            pickUpItem.GetBrushTeethBehaviour.CheckPlayeerHasToothSpecificItem();
-        }
-        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.WateringCan)
-        {
-            pickUpItem.WaterPlantsBehaviour.CheckPlayeerHasToothSpecificItem();
-        }
-        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Plate)
-        {
-            pickUpItem.PlateBehaviour.CheckPlayeerHasToothSpecificItem();
+            switch (item.ObjectType)
+            {
+                case PickUpItemBehaviour.PickUpObjectType.Book:
+                case PickUpItemBehaviour.PickUpObjectType.Cloth:
+                case PickUpItemBehaviour.PickUpObjectType.Disk:
+                case PickUpItemBehaviour.PickUpObjectType.Bread:
+                case PickUpItemBehaviour.PickUpObjectType.Any:
+                case PickUpItemBehaviour.PickUpObjectType.Coffee:
+                case PickUpItemBehaviour.PickUpObjectType.Food:
+                    break;
+                case PickUpItemBehaviour.PickUpObjectType.Toothbrush:
+                    item.GetBrushTeethBehaviour.CheckPlayeerHasToothSpecificItem();
+                    break;
+                case PickUpItemBehaviour.PickUpObjectType.WateringCan:
+                    item.WaterPlantsBehaviour.CheckPlayeerHasToothSpecificItem();
+                    break;
+                case PickUpItemBehaviour.PickUpObjectType.Plate:
+                    item.PlateBehaviour.CheckPlayeerHasToothSpecificItem();
+                    break;
+                default:
+                    break;
+            }
         }
     }
-    private void CheckPlayerWillDropToothBrush()
+    private void CheckPlayerWillDropToothBrush(PickUpItemBehaviour item)
     {
-        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Toothbrush)
+        if (item != null)
         {
-            pickUpItem.GetBrushTeethBehaviour.CheckPlayerDropSpecificItem();
-        }
-        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.WateringCan)
-        {
-            pickUpItem.WaterPlantsBehaviour.CheckPlayerDropSpecificItem();
-        }
-        if (pickUpItem != null && pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Plate)
-        {
-            pickUpItem.PlateBehaviour.CheckPlayerDropSpecificItem();
+            switch (item.ObjectType)
+            {
+                case PickUpItemBehaviour.PickUpObjectType.Book:
+                case PickUpItemBehaviour.PickUpObjectType.Cloth:
+                case PickUpItemBehaviour.PickUpObjectType.Disk:
+                case PickUpItemBehaviour.PickUpObjectType.Bread:
+                case PickUpItemBehaviour.PickUpObjectType.Any:
+                case PickUpItemBehaviour.PickUpObjectType.Coffee:
+                case PickUpItemBehaviour.PickUpObjectType.Food:
+                    break;
+                case PickUpItemBehaviour.PickUpObjectType.Toothbrush:
+                    item.GetBrushTeethBehaviour.CheckPlayerDropSpecificItem();
+                    break;
+                case PickUpItemBehaviour.PickUpObjectType.WateringCan:
+                    item.WaterPlantsBehaviour.CheckPlayerDropSpecificItem();
+                    break;
+                case PickUpItemBehaviour.PickUpObjectType.Plate:
+                    item.PlateBehaviour.CheckPlayerDropSpecificItem();
+                    break;
+                default:
+                    break;
+            }
+            
         }
     }
     private void Update()
@@ -97,6 +138,10 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     {
         InputManager.Instance.TogglePlayerControls(true);
         InputManager.Instance.ToggleInspectionControls(false);
+    }
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 
 

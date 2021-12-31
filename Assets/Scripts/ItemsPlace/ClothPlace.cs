@@ -9,34 +9,29 @@ public class ClothPlace : ItemSpotBehaviour
     {
         clothParamsStack = new Stack<ClothParams>();
         base.Awake();
+        dropObjectType = PickUpItemBehaviour.PickUpObjectType.Cloth;
     }
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject == null)
+        if (CheckLaundryHasCloths())
         {
-            if (CheckLaundryHasCloths())
-            {
-                TakeItemToPlayer();
-            }
+            TakeItemToPlayer();
             return;
         }
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
+        PickUpItemBehaviour clothBehaviour = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
+        if (clothParamsStack.Count >= maxNumberCloths)
         {
-            PickUpItemBehaviour clothBehaviour = playerPickUp.CurrentlyPickedUpObject;
-            if (clothParamsStack.Count >= maxNumberCloths)
-            {
-                return;
-            }
-            if (clothBehaviour.ObjectType != DropObjectType && DropObjectType != PickUpItemBehaviour.PickUpObjectType.Any)
-            {
-                return; //can't put an cloth on a book spot
-            }
-            item = clothBehaviour;
-            clothBehaviour.PickedUp = false;
-            playerPickUp.BreakConnection(); // Drop book
-            PlaceItemToSpot();
+            return;
         }
+        if (clothBehaviour == null)
+        {
+            return; //can't put an cloth on a book spot
+        }
+        item = clothBehaviour;
+        clothBehaviour.PickedUp = false;
+        playerPickUp.BreakConnection(item); // Drop book
+        PlaceItemToSpot();
     }
     private bool CheckLaundryHasCloths() //Check the laundry has cloths
     {

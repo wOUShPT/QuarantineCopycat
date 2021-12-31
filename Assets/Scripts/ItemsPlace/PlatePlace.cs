@@ -15,26 +15,20 @@ public class PlatePlace : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject == null)
+        if (CheckLaundryHasPlates())
         {
-            if (CheckLaundryHasPlates())
-            {
-                TakeItemToPlayer();
-            }
+            TakeItemToPlayer();
             return;
         }
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
+        PickUpItemBehaviour plateBehaviour = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
+        if (plateBehaviour == null || !CheckCanPlaceItem(plateBehaviour))
         {
-            PickUpItemBehaviour plateBehaviour = playerPickUp.CurrentlyPickedUpObject;
-            if (!CheckCanPlaceItem(plateBehaviour))
-            {
-                return;
-            }
-            item = plateBehaviour;
-            item.PickedUp = false;
-            playerPickUp.BreakConnection(); // Drop book
-            PlaceItemToSpot();
+            return;
         }
+        item = plateBehaviour;
+        item.PickedUp = false;
+        playerPickUp.BreakConnection(item); // Drop book
+        PlaceItemToSpot();
     }
     private bool CheckLaundryHasPlates() //Check the laundry has cloths
     {

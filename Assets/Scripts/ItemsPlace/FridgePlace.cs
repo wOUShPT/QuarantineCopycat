@@ -22,19 +22,19 @@ public class FridgePlace : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if( playerPickUp.CurrentlyPickedUpObject == null && !IsFridgeEmpty()) // Player doesn't have an item
+        if( !IsFridgeEmpty()) // Player doesn't have an item
         {
             TakeItemToPlayer();
             return;
         }
         //Has an item
-        PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
+        PickUpItemBehaviour pickUpItem = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
         if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Food && !IsFridgeFull())
         {
             item = pickUpItem;
             item.PickedUp = false;
             fridgeParams.foodPickUps.Add(item);
-            playerPickUp.BreakConnection();
+            playerPickUp.BreakConnection(item);
             PlaceItemToSpot();
         }
     }
@@ -74,7 +74,6 @@ public class FridgePlace : ItemSpotBehaviour
         SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
         item.ItemRigidbody.isKinematic = true;
-        item.ItemCollider.enabled = false;
     }
 
     protected override void TakeItemToPlayer()

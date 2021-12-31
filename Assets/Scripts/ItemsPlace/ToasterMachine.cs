@@ -15,19 +15,16 @@ public class ToasterMachine : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null)
+        PickUpItemBehaviour pickUpItem = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
+        if (pickUpItem != null)
         {
-            PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
-            if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Bread)
-            {
-                item = pickUpItem;
-                item.PickedUp = false;
-                playerPickUp.BreakConnection();
-                PlaceItemToSpot();
-                //It's doing imediatly maybe needs a courotine
-                StartCoroutine(WaitToMakeToastWork());
-                interactDelegate = TakeItemToPlayer;
-            }
+            item = pickUpItem;
+            item.PickedUp = false;
+            playerPickUp.BreakConnection(item);
+            PlaceItemToSpot();
+            //It's doing imediatly maybe needs a courotine
+            StartCoroutine(WaitToMakeToastWork());
+            interactDelegate = TakeItemToPlayer;
         }
     }
 
@@ -43,7 +40,6 @@ public class ToasterMachine : ItemSpotBehaviour
         breadParams.RightToast.SetParent(breadParams.RightToasterPivot);
         SetItemValuesDefault(breadParams.RightToast);
         item.ItemRigidbody.isKinematic = true;
-        item.ItemCollider.enabled = false;
     }
 
     protected override void TakeItemToPlayer()

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField] protected float interactionDistance;
@@ -10,7 +10,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     private bool wasInterected = false;
     protected PlayerPickUpBehaviour playerPickUp;
     //Book or Any
-    protected Stack<PickUpItemBehaviour> itemStack;
+    protected List<PickUpItemBehaviour> itemList;
     protected PickUpItemBehaviour item;
     public PickUpItemBehaviour Item { get { return item; } set { item = value; } }
     [SerializeField] protected Transform[] childrenItemSpot;
@@ -102,7 +102,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     protected virtual void Awake() //awake
     {        
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
-        interactDelegate = CheckPlayerHasItem;
+        
         interactionLayer = gameObject.layer;
         if (otherGameobjectOutlineArray.Length != 0)
         {
@@ -114,6 +114,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     }
     protected virtual void Start()
     {
+        interactDelegate = CheckPlayerHasItem;
         if (CheckHasItemSpotBeginning())
         {
             if( beginningItemSpoted.Length > 1 && beginningItemSpoted.Length > childrenItemSpot.Length)
@@ -127,7 +128,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
                 item = beginningItem;
                 PlaceItemToSpot();
             }
-            
+            interactDelegate = TakeItemToPlayer;
         }
     }
     protected bool CheckHasItemSpotBeginning() // Used only at the start
@@ -234,5 +235,12 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
             outlineObject.outlineObject.layer = !outlineObject.isFakeshader ? outlineLayer : fakeShaderOutlineLayer;
         }
     }
-
+    public void CheckItemIsOnTheList(PickUpItemBehaviour item)
+    {
+        if(itemList != null && itemList.Count > 0)
+        {
+            PickUpItemBehaviour result = itemList.Single(t => t == item);
+            itemList.Remove(result);
+        }
+    }
 }

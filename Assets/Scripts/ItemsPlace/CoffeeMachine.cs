@@ -14,20 +14,16 @@ public class CoffeeMachine : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null)
+        PickUpItemBehaviour pickUpItem = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
+        if (pickUpItem != null)
         {
-            PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
-            if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Coffee)
-            {
-                item = pickUpItem;
-                item.PickedUp = false;
-                item.ItemCollider.enabled = false;
-                playerPickUp.BreakConnection(); //Player will drop
-                PlaceItemToSpot();
-                //It's doing imediatly maybe needs a courotine
-                StartCoroutine(WaitToMakeToastWork());
-                interactDelegate = TakeItemToPlayer;
-            }
+            item = pickUpItem;
+            item.PickedUp = false;
+            playerPickUp.BreakConnection(item); //Player will drop
+            PlaceItemToSpot();
+            //It's doing imediatly maybe needs a courotine
+            StartCoroutine(WaitToMakeToastWork());
+            interactDelegate = TakeItemToPlayer;
         }
     }
 

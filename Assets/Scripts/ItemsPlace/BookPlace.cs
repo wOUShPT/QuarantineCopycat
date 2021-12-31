@@ -11,39 +11,29 @@ public class BookPlace : ItemSpotBehaviour
         if(CheckHasItemChildrenSpot())
         {
             //it's not empty            
-            itemStack = new Stack<PickUpItemBehaviour>();
+            itemList = new List<PickUpItemBehaviour>();
         }
     }
     protected override void CheckPlayerHasItem()
     {
-        if (playerPickUp.CurrentlyPickedUpObject == null)
-        {
-            TakeItemToPlayer();
-            return;
-        }
-        // it's a book player has picked
-        PickUpItemBehaviour pickUpItem = playerPickUp.CurrentlyPickedUpObject;
-        if ((pickUpItem != null && pickUpItem.ObjectType != DropObjectType && DropObjectType != PickUpItemBehaviour.PickUpObjectType.Any) 
-            || AreSpotsFull())
+        // it's something on the inventory
+        PickUpItemBehaviour pickUpItem = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
+        if (pickUpItem == null)
         {
             return; 
         }
         item = pickUpItem;
         item.PickedUp = false;
-        playerPickUp.BreakConnection(); // Drop book
+        playerPickUp.BreakConnection(item); // Drop book
         PlaceItemToSpot();
+        interactDelegate = TakeItemToPlayer;
     }
 
     protected override void TakeItemToPlayer()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null) 
-        {
-            //player has picked up something previously and didn't drop it until now...
-            return;
-        }
         if(item == null)
         {
-            if(childrenItemSpot.Length == 0 || itemStack.Count == 0)
+            if(childrenItemSpot.Length == 0 || itemList.Count == 0)
             {
                 return;
             }
@@ -52,29 +42,28 @@ public class BookPlace : ItemSpotBehaviour
         // Player took the book or anything
         playerPickUp.GetPickedupObject(item);
         item = null;
+        interactDelegate = CheckPlayerHasItem;
     }
     private void GetIem(ref PickUpItemBehaviour item)
     {
-        PickUpItemBehaviour itemSpot = itemStack.Pop();
+        PickUpItemBehaviour itemSpot = itemList[0];
+        itemList.RemoveAt(0);
         item = itemSpot;
     }
     protected override void PlaceItemToSpot()
     {
+        item.gameObject.SetActive(true);
         item.transform.SetParent(CheckHasItemChildrenSpot() ? GetAvailableSpot() : this.transform);
         SetItemValuesDefault(item);
         item.transform.localScale = item.InitialScale;
         item.transform.localPosition = Vector3.zero;
         item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.isTrigger = true;
-        if (item.ItemCollider.enabled)
-        {
-            item.ItemCollider.enabled = false;
-        }
         // Attach item to this itemspotbehaviour
         item.ItemSpotBehaviour = this;
         if (CheckHasItemChildrenSpot())
         {
-            itemStack.Push(item); //Save item on the stack
+            itemList.Add(item); //Save item on the stack
             item = null;
         }
     }
