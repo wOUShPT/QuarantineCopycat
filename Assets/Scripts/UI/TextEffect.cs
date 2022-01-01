@@ -4,26 +4,26 @@ using UnityEngine;
 using TMPro;
 public class TextEffect : MonoBehaviour
 {
-    private TextMeshProUGUI textMesh;
+    private TextMeshPro textMesh;
     private Mesh mesh;
     private Vector3[] vertices;
     [SerializeField]private  float NOISE_MAGNITUDE_ADJUSTMENT = 0.06f;
-    [SerializeField]private float NOISE_FREQUENCY_ADJUSTMENT = 15f;
+    [SerializeField]private float NOISE_FREQUENCY_ADJUSTMENT = 1.2f;
     private Camera m_Camera;
-    private CanvasGroup canvasGroup;
+    private MeshRenderer meshRenderer;
     private RectTransform rectTransform;
     [SerializeField]private LayerMask layerMask;
     private void Awake()
     {
         m_Camera = Camera.main;
-        canvasGroup = GetComponent<CanvasGroup>();
+        meshRenderer = GetComponent<MeshRenderer>();
         rectTransform = GetComponent<RectTransform>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        textMesh = GetComponent<TextMeshProUGUI>();
-        DisableCanvasGroup();
+        textMesh = GetComponent<TextMeshPro>();
+        DisableRenderer();
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class TextEffect : MonoBehaviour
         else
         {
             //Not Visible
-            DisableCanvasGroup();
+            DisableRenderer();
         }
     }
     private void VisibleTextBehaviour()
@@ -60,24 +60,24 @@ public class TextEffect : MonoBehaviour
         }
 
         mesh.vertices = vertices;
-        textMesh.canvasRenderer.SetMesh(mesh);
+        //textMesh.canvasRenderer.SetMesh(mesh);
     }
     private Vector2 Wobble(float time) // per vertex wobble effect
     {
         float scaledAdjust = textMesh.fontSize * NOISE_MAGNITUDE_ADJUSTMENT;
         return new Vector2((Mathf.PerlinNoise(time * NOISE_FREQUENCY_ADJUSTMENT, 0) - 0.5f) * scaledAdjust, (Mathf.PerlinNoise(time * NOISE_FREQUENCY_ADJUSTMENT, 100) - 0.5f) * scaledAdjust);
     }
-    private void DisableCanvasGroup()
+    private void DisableRenderer()
     {
-        if(canvasGroup.alpha == 0f)
+        if(!meshRenderer.enabled)
             return;
-        canvasGroup.alpha = 0f;
+        meshRenderer.enabled = false;
     }
     private void EnableCanvasGroup()
     {
-        if (canvasGroup.alpha == 1f)
+        if (meshRenderer.enabled)
             return;
-        canvasGroup.alpha = 1f;
+        meshRenderer.enabled = true;
     }
     private bool IsVisibleInAnyCorner() //Determines if this recttransform is at least partially visible
     {
