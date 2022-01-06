@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
 
@@ -9,17 +11,28 @@ public class GameManager : Singleton<GameManager>
 {
     private int _currentDayIndex;
     [SerializeField]
-    private List<GameEvent> _goalsEntryList;
-    private Queue<GameEvent> _goalsQueue;
+    private List<Goal> _goalsEntryList;
+    private Queue<Goal> _goalsQueue;
     [SerializeField]
     private PlayableDirector _eventsSequence;
+
+    [Serializable]
+    private class Goal
+    {
+        public GameEvent goalEvent;
+        public float preEffectDelay;
+        public UnityEvent preEffect;
+        public float effectDelay;
+        public UnityEvent effect;
+    }
+    
     void Awake()
     {
         QualitySettings.vSyncCount = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        _goalsQueue = new Queue<GameEvent>();
+        _goalsQueue = new Queue<Goal>();
         foreach (var goal in _goalsEntryList)
         {
             _goalsQueue.Enqueue(goal);
@@ -65,16 +78,19 @@ public class GameManager : Singleton<GameManager>
         CurrentDay++;
     }
 
-    public void Progress(GameEvent currentEvent)
+    public void Progress(GameEvent currentGoal)
     {
+        
         switch (CurrentDay)
         {
             case 1:
 
-                if (currentEvent == _goalsQueue.Peek())
+                if (currentGoal == _goalsQueue.Peek().goalEvent)
                 {
-                    Debug.Log(currentEvent);
+                    Debug.Log(currentGoal);
+                    
                     _goalsQueue.Dequeue();
+                    _goalsQueue.Peek().preEffect.Invoke();
                     TimelineManager.Instance.Resume(_eventsSequence);
                 }
                 break;
@@ -140,5 +156,10 @@ public class GameManager : Singleton<GameManager>
                 break;
         }
     }
-        
+
+    private IEnumerator StartEvent(UnityEvent currentEvent, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        currentEvent.Invoke();
+    }
 }

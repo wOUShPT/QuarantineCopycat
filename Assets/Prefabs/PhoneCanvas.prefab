@@ -196,7 +196,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4397498153711169943}
   m_HandleRect: {fileID: 632021717301295688}
   m_Direction: 3
-  m_Value: 0.88686866
+  m_Value: 0.886869
   m_Size: 0.6413435
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2301,8 +2301,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6002515586746294969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.13494}
-  m_LocalScale: {x: 1.08, y: 1.08, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1343}
+  m_LocalScale: {x: 1.08, y: 1.1, z: 1}
   m_Children:
   - {fileID: 6002515587319472783}
   - {fileID: 6002515587003869075}
@@ -2314,8 +2314,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.00030000135, y: -0.001500003}
+  m_SizeDelta: {x: -0.000599999, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6002515586746294972
 CanvasRenderer:
@@ -2353,7 +2353,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!225 &6002515586746294946
 CanvasGroup:
@@ -5188,7 +5188,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8292238956242181776}
   m_HandleRect: {fileID: 6166943614776148079}
   m_Direction: 3
-  m_Value: -0.0006321443
+  m_Value: -0.00063083007
   m_Size: 0.6413435
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5304,6 +5304,10 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: e2dd177803e99a94f92e6d39a494491f, type: 3}
       propertyPath: m_ReceiveGI
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2dd177803e99a94f92e6d39a494491f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: e2dd177803e99a94f92e6d39a494491f, type: 3}
       propertyPath: m_Materials.Array.data[0]

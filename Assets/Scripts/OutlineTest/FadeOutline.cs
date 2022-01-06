@@ -20,7 +20,7 @@ public class FadeOutline : Singleton<FadeOutline>
         outlineMaterial.SetFloat("_OutlineWidth", 3f);
         FadeOutCourotine = FadeOutlineInObject(maxValue, minvalue); // to fade out
     }
-    public void FadeInOUtline()
+    public void FadeInOutline()
     {
         if(FadeInCourotine != null)
         {

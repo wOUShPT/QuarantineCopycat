@@ -66,7 +66,11 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateRotation()
     {
-        _currentRotation = new Vector3(0, Camera.main.transform.localRotation.eulerAngles.y, 0);
+        if (_cinemachineFpExtension.Mode == CinemachineFPExtension.CameraMode.Cutscene)
+        {
+            return;
+        }
+        _currentRotation = new Vector3(0, _cinemachineFpExtension.CurrentRotation.x, 0);
         transform.localEulerAngles = _currentRotation;
     }
 

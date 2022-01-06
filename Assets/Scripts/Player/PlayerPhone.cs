@@ -17,6 +17,7 @@ public class PlayerPhone : MonoBehaviour
     private PhoneFunctionDelegate phoneDelegate;
     private bool hasPhone = false;
     private bool hasClicked = false;
+    [SerializeField] private CinemachineFPExtension _cinemachineFpExtension;
     private PlayerMovement _playerMovement;
     
     private void Awake()
@@ -39,7 +40,7 @@ public class PlayerPhone : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         CheckTurnedPhone();
     }
@@ -123,16 +124,9 @@ public class PlayerPhone : MonoBehaviour
         }
         phoneUI.BackFromCurrentMenu(currentMenuIndex);
     }
-    private void DisplayPhone() //Display immeadiatly for now, but in the future it will be an IK handle animation
+    private void DisplayPhone() //Display immediately for now, but in the future it will be an IK handle animation
     {
-        _playerMovement.CenterCameraOnYAxis();
-        primaryButton.Select();
-        phoneCanvasGroup.alpha = 1;
-        phoneCanvasGroup.interactable = true;
-        phoneModel.SetActive(true);
-        InputManager.Instance.TogglePlayerControls(false);
-        InputManager.Instance.TogglePhoneControls(true);
-        phoneDelegate = HidePhone;
+        StartCoroutine(DisplayPhoneSequence());
     }
     public void HidePhone() //Called by Animation as well
     {
@@ -140,12 +134,30 @@ public class PlayerPhone : MonoBehaviour
         phoneCanvasGroup.interactable = false;
         phoneModel.SetActive(false);
         InputManager.Instance.TogglePlayerControls(true);
+        _cinemachineFpExtension.Mode = CinemachineFPExtension.CameraMode.Dynamic;
+        PlayerProperties.FreezeAim = false;
         InputManager.Instance.TogglePhoneControls(false);
         phoneDelegate = DisplayPhone;
         phoneUI.ResetPhoneLayers();
     }
-    public void ToogleHasPhoneToTrue()
+    public void ToggleHasPhoneToTrue()
     {
         hasPhone = true;
+    }
+
+    IEnumerator DisplayPhoneSequence()
+    {
+        InputManager.Instance.TogglePlayerControls(false);
+        _cinemachineFpExtension.Mode = CinemachineFPExtension.CameraMode.Cutscene;
+        PlayerProperties.FreezeAim = true;
+        yield return new WaitForSeconds(1f);
+        _playerMovement.CenterCameraOnYAxis();
+        primaryButton.Select();
+        phoneCanvasGroup.alpha = 1;
+        phoneCanvasGroup.interactable = true;
+        phoneModel.SetActive(true);
+        InputManager.Instance.TogglePhoneControls(true);
+        phoneDelegate = HidePhone;
+        yield return null;
     }
 }

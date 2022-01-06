@@ -162,7 +162,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     {
         if (this.gameObject.layer == outlineLayer)
             return;
-        FadeOutline.Instance.FadeInOUtline();
+        FadeOutline.Instance.FadeInOutline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;

@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419703426838363131}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -132,14 +132,14 @@ MonoBehaviour:
         renderQueueType: 2
         layerMask:
           serializedVersion: 2
-          m_Bits: 2048
+          m_Bits: 6144
         sortingCriteria: 59
         overrideMaterial: {fileID: 2100000, guid: 000d4267ba87cea41b8cd982f82709aa, type: 2}
         overrideMaterialPassIndex: 0
         overrideMaterialPassName: FirstPass
         overrideDepthState: 1
         depthCompareFunction: 4
-        depthWrite: 0
+        depthWrite: 1
         shaderPass: 0
     00000001:
       type: {class: FullScreenCustomPass, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}

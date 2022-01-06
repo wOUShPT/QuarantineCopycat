@@ -8,7 +8,8 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
     [SerializeField] private float interactionDistance = 0f;
     private bool isClosed = true;
     private bool wasInteracted = false;
-    private List<Animator> animatorchildArray;
+
+    private Animator _animator;
     //Layer
     protected int interactionLayer;
     [SerializeField] protected int outlineLayer = 11;
@@ -28,11 +29,7 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
     }
     void Awake()
     {
-        animatorchildArray = new List<Animator>(); //assign list
-        foreach( Transform child in transform)
-        {
-            animatorchildArray.Add(child.GetComponent<Animator>());
-        }
+        _animator = GetComponent<Animator>();
         interactionLayer = gameObject.layer;
         if (otherGameobjectOutlineArray.Length != 0)
         {
@@ -84,25 +81,19 @@ public class BlindBehaviour : MonoBehaviour, IInteractable
     }
     private void OpenBlind()
     {
-        foreach( Animator animator in animatorchildArray)
-        {
-            animator.Play("StackOpen");
-        }
+        _animator.Play("StackOpen");
         isClosed = false;
     }
     private void CloseBlind()
     {
-        foreach (Animator animator in animatorchildArray)
-        {
-            animator.Play("StackClose");
-        }
+        _animator.Play("StackClose");
         isClosed = true;
     }
     public void DisplayOutline()
     {
         if (gameObject.layer == outlineLayer)
             return;
-        FadeOutline.Instance.FadeInOUtline();
+        FadeOutline.Instance.FadeInOutline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;

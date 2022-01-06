@@ -6,6 +6,7 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
 public class DartsBehaviour : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class DartsBehaviour : MonoBehaviour
     private Rigidbody dartPrefab;
     private Vector3 dartsBoardCenterPos;
     private RaycastHit[] _hitResults;
-    private float _coolDownTime = 1f;
+    [FormerlySerializedAs("_coolDownTime")] public float coolDownTime = 1f;
     private float _timer;
     private float _precisionTimer;
     private bool _canShoot;
@@ -46,7 +47,7 @@ public class DartsBehaviour : MonoBehaviour
         _isHolding = false;
         _hitResults = new RaycastHit[1];
         InitPool();
-        _timer = _coolDownTime + 1f;
+        _timer = coolDownTime + 1f;
         enabled = false;
         _cameraNoise = _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         dartsBoardCenterPos = transform.position;
@@ -66,37 +67,38 @@ public class DartsBehaviour : MonoBehaviour
         _currentNoiseFreq = _defaultNoiseFreq;
         _canShoot = false;
         _isHolding = false;
-        _timer = _coolDownTime + 1f;
+        _timer = coolDownTime + 1f;
     }
 
     private void Update()
     {
         _timer += Time.deltaTime;
-        _timer = Mathf.Clamp(_timer, 0f, _coolDownTime + 1f);
+        _timer = Mathf.Clamp(_timer, 0f, coolDownTime + 1f);
 
-        if (InputManager.Instance.PlayerInput.Shoot.hasStarted)
+        if (InputManager.Instance.PlayerInput.Shoot.hasStarted && _timer >= coolDownTime)
         {
             _isHolding = true;
             _precisionTimer += Time.deltaTime;
             _precisionTimer = Mathf.Clamp(_precisionTimer, 0f, 5f);
             _currentFOV = Mathf.Lerp(_currentFOV, 10, Time.deltaTime * 1);
-            _currentNoiseAmp = Mathf.Lerp(_currentNoiseAmp, 2f, Time.deltaTime);
+            //_currentNoiseAmp = Mathf.Lerp(_currentNoiseAmp, 2f, Time.deltaTime);
             _currentNoiseFreq = Mathf.Lerp(_currentNoiseFreq, 2f, Time.deltaTime);
-            _cameraNoise.m_AmplitudeGain = _currentNoiseAmp;
+            //_cameraNoise.m_AmplitudeGain = _currentNoiseAmp;
             _cameraNoise.m_FrequencyGain = _currentNoiseFreq;
             _camera.m_Lens.FieldOfView = _currentFOV;
         }
         
         if ((InputManager.Instance.PlayerInput.Shoot.isDone && _isHolding) || _precisionTimer >= 3.5f)
         {
+            _timer = 0;
             _precisionTimer = 0;
             _isHolding = false;
             shotVelMultiplier = MapValue(0, 3, 0.3f, 1, InputManager.Instance.PlayerInput.Shoot.holdTime);
             _canShoot = true;
-            _currentFOV = _defaultFOV;
-            _currentNoiseAmp = _defaultNoiseAmp;
+            StartCoroutine(ResetFOVOvertime(0.6f));
+            //_currentNoiseAmp = _defaultNoiseAmp;
             _currentNoiseFreq = _defaultNoiseFreq;
-            _cameraNoise.m_AmplitudeGain = _currentNoiseAmp;
+            //_cameraNoise.m_AmplitudeGain = _currentNoiseAmp;
             _cameraNoise.m_FrequencyGain = _currentNoiseFreq;
             _camera.m_Lens.FieldOfView = _currentFOV;
             return;
@@ -181,7 +183,7 @@ public class DartsBehaviour : MonoBehaviour
     {
         dart.position = Camera.main.transform.position;
         dart.rotation = Quaternion.identity;
-        dart.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y + 180, 0);
+        dart.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y + 180, UnityEngine.Random.Range(0f,180f));
     }
 
 
@@ -217,5 +219,21 @@ public class DartsBehaviour : MonoBehaviour
         float newValue = (((currentValue - oldMin) * newRange) / oldRange) + newMin;
  
         return(newValue);
+    }
+
+    IEnumerator ResetFOVOvertime(float time)
+    {
+        float timer = 0;
+        float vel = Mathf.Abs(_defaultFOV - _currentFOV) / time;
+        while (_currentFOV != _defaultFOV)
+        {
+            timer += Time.deltaTime;
+            _currentFOV += Time.deltaTime * vel;
+            _currentFOV = Mathf.Clamp(_currentFOV, 0, _defaultFOV);
+            _camera.m_Lens.FieldOfView = _currentFOV;
+            yield return null;
+        }
+        Debug.Log(timer);
+        yield return null;
     }
 }

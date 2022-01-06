@@ -226,7 +226,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     {
         if (gameObject.layer == outlineLayer)
             return;
-        FadeOutline.Instance.FadeInOUtline();
+        FadeOutline.Instance.FadeInOutline();
         gameObject.layer = outlineLayer;
         if (otherGameobjectOutlineArray.Length == 0)
             return;

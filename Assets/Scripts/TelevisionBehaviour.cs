@@ -5,20 +5,24 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 using UnityEngine.Video;
 
 public class TelevisionBehaviour : MonoBehaviour
 {
+    [FormerlySerializedAs("_gameEvent")] [SerializeField]
+    private GameEvent _sofaOutGameEvent;
     [SerializeField]
-    private GameEvent _gameEvent;
     private TVMode mode;
     private enum TVMode
     {
-        Manual, Cycle
+        Manual, Scripted
     }
     private VideoPlayer _videoPlayer;
+    [FormerlySerializedAs("clips")] [SerializeField]
+    private VideoClip[] manualVideos;
     [SerializeField]
-    private VideoClip[] clips;
+    private ScriptedVideoClass[] scriptedVideos;
     [SerializeField] 
     private MeshRenderer screenMesh;
     [SerializeField]
@@ -27,27 +31,136 @@ public class TelevisionBehaviour : MonoBehaviour
     private Material _offMaterial;
     private MaterialPropertyBlock _onMpb;
     private MaterialPropertyBlock _offMpb;
-    private int _currentClipIndex;
-    private double[] _clipsTotalTime;
-    private double[] _clipsCurrentTime;
+    private int _currentManualClipIndex;
+    private int _currentScriptedClipIndex;
+    private double[] _manualClipsTimeElapsed;
+    private double[] _manualClipsTotalTime;
+    private double _currentscriptedClipTotalTime;
+    private double _currentScriptedClipTimeElapsed;
+    private int _loopCounter;
     private float _zappingTimer;
     private float _zappingTimeInterval;
     private bool _isOn;
+
+    [Serializable]
+    public class ScriptedVideoClass
+    {
+        public VideoClip clip;
+        public bool isLooping;
+        public int numberOfLoops;
+    }
     
 
     private void Start()
     {
         _videoPlayer = GetComponent<VideoPlayer>();
-        _clipsTotalTime = new double[clips.Length];
-        _clipsCurrentTime = new double[clips.Length];
 
-        for (int i = 0; i < clips.Length; i++)
+        if (mode == TVMode.Manual)
         {
-            _clipsTotalTime[i] = clips[i].length;
-            _clipsCurrentTime[i] = 0;
+            InitManualTv();
+        }
+        else
+        {
+            InitScriptedTv();
+        }
+       
+    }
+
+    private void Update()
+    {
+        switch (mode)
+        {
+            case TVMode.Manual:
+
+                _zappingTimer += Time.deltaTime;
+                _zappingTimer = Mathf.Clamp(_zappingTimer, 0,_zappingTimeInterval);
+
+                if (_isOn)
+                {
+                    if (InputManager.Instance.PlayerInput.Movement.z > 0)
+                    {
+                        _sofaOutGameEvent.Raise();
+                    }
+                }
+                
+                if (_videoPlayer.isPlaying)
+                {
+                    if (_zappingTimer >= _zappingTimeInterval)
+                    {
+                        if (InputManager.Instance.PlayerInput.SwitchTvChannel < 0)
+                        {
+                            _currentManualClipIndex--;
+                            if (_currentManualClipIndex < 0)
+                            {
+                                _currentManualClipIndex = manualVideos.Length - 1;
+                            }
+                
+                            _zappingTimer = 0;
+                            SwitchChannel();
+                        }
+
+                        if (InputManager.Instance.PlayerInput.SwitchTvChannel > 0)
+                        {
+                            _currentManualClipIndex++;
+                            if (_currentManualClipIndex == manualVideos.Length) 
+                            { 
+                                _currentManualClipIndex = 0;
+                            } 
+                            
+                            _zappingTimer = 0; 
+                            SwitchChannel();
+                        }
+                    }
+            
+                    if (InputManager.Instance.PlayerInput.SwitchTvVolume < 0)
+                    {
+                        _videoPlayer.GetTargetAudioSource(0).volume -= 0.002f;
+                    }
+
+                    if (InputManager.Instance.PlayerInput.SwitchTvVolume > 0)
+                    {
+                        _videoPlayer.GetTargetAudioSource(0).volume += 0.002f;
+                    }
+                }
+
+                UpdateChannelsTime();
+                
+                break;
+        }
+    }
+
+    private void SwitchChannel()
+    {
+        _videoPlayer.clip = manualVideos[_currentManualClipIndex];
+        _videoPlayer.time = _manualClipsTotalTime[_currentManualClipIndex];
+        _videoPlayer.Play();
+    }
+
+
+    private void UpdateChannelsTime()
+    {
+        if (mode == TVMode.Manual)
+        {
+            for (int i = 0; i < _manualClipsTotalTime.Length; i++)
+            {
+                _manualClipsTotalTime[i] = Mathf.Repeat((float)(_manualClipsTotalTime[i] + Time.deltaTime), (float)_manualClipsTimeElapsed[i]);
+            }
+        }
+    }
+
+
+    public void InitManualTv()
+    {
+        _manualClipsTimeElapsed = new double[manualVideos.Length];
+        _manualClipsTotalTime = new double[manualVideos.Length];
+
+        for (int i = 0; i < manualVideos.Length; i++)
+        {
+            _manualClipsTimeElapsed[i] = manualVideos[i].frameCount;
+            _manualClipsTotalTime[i] = 0;
         }
 
-        _currentClipIndex = 0;
+        _currentManualClipIndex = 0;
         _zappingTimeInterval = 1;
         _zappingTimer = _zappingTimeInterval;
         _isOn = false;
@@ -55,78 +168,14 @@ public class TelevisionBehaviour : MonoBehaviour
         ToggleTvPower();
     }
 
-    private void Update()
+    public void InitScriptedTv()
     {
-        _zappingTimer += Time.deltaTime;
-        _zappingTimer = Mathf.Clamp(_zappingTimer, 0,_zappingTimeInterval);
-
-        if (_isOn)
-        {
-            if (InputManager.Instance.PlayerInput.Movement.z > 0)
-            {
-                Debug.Log("Raised");
-                _gameEvent.Raise();
-            }
-        }
-            
-        
-        if (_videoPlayer.isPlaying)
-        {
-            if (_zappingTimer >= _zappingTimeInterval)
-            {
-                if (InputManager.Instance.PlayerInput.SwitchTvChannel < 0)
-                {
-                    _currentClipIndex--;
-                    if (_currentClipIndex < 0)
-                    {
-                        _currentClipIndex = clips.Length - 1;
-                    }
-                
-                    _zappingTimer = 0;
-                    SwitchChannel();
-                }
-
-                if (InputManager.Instance.PlayerInput.SwitchTvChannel > 0)
-                {
-                    _currentClipIndex++;
-                    if (_currentClipIndex == clips.Length) 
-                    { 
-                        _currentClipIndex = 0;
-                    } 
-                    _zappingTimer = 0; 
-                    SwitchChannel();
-                }
-            }
-            
-            if (InputManager.Instance.PlayerInput.SwitchTvVolume < 0)
-            {
-                _videoPlayer.GetTargetAudioSource(0).volume -= 0.002f;
-            }
-
-            if (InputManager.Instance.PlayerInput.SwitchTvVolume > 0)
-            {
-                _videoPlayer.GetTargetAudioSource(0).volume += 0.002f;
-            }
-        }
-
-        UpdateChannelsTime();
-    }
-
-    private void SwitchChannel()
-    {
-        _videoPlayer.clip = clips[_currentClipIndex];
-        _videoPlayer.time = _clipsCurrentTime[_currentClipIndex];
-        _videoPlayer.Play();
-    }
-
-
-    private void UpdateChannelsTime()
-    {
-        for (int i = 0; i < _clipsCurrentTime.Length; i++)
-        {
-            _clipsCurrentTime[i] = Mathf.Repeat((float)(_clipsCurrentTime[i] + Time.deltaTime), (float)_clipsTotalTime[i]);
-            //Debug.Log(clips[i] + " : " + _clipsCurrentTime[i]);
-        }
+        _videoPlayer.loopPointReached += HandleLoopCount;
+        _currentScriptedClipIndex = 0;
+        _currentScriptedClipTimeElapsed = 0;
+        _currentscriptedClipTotalTime = scriptedVideos[_currentScriptedClipIndex].clip.length;
+        _videoPlayer.clip = scriptedVideos[_currentScriptedClipIndex].clip;
+        _videoPlayer.time = 0;
     }
 
     public void ToggleTvPower()
@@ -137,8 +186,12 @@ public class TelevisionBehaviour : MonoBehaviour
         {
             screenMesh.material = _onMaterial;
             _videoPlayer.Play();
-            SwitchChannel();
-            _zappingTimer = _zappingTimeInterval;
+            if(mode == TVMode.Manual)
+            {
+                SwitchChannel();
+                _zappingTimer = _zappingTimeInterval;
+            }
+
 
         }
         else
@@ -146,6 +199,31 @@ public class TelevisionBehaviour : MonoBehaviour
             _videoPlayer.Stop();
             screenMesh.material = _offMaterial;
         }
+    }
+
+
+    private void HandleLoopCount(VideoPlayer vp)
+    {
+        if (_currentScriptedClipIndex == scriptedVideos.Length - 1)
+        {
+            _sofaOutGameEvent.Raise();
+            return;
+        }
+        
+        if (_loopCounter == scriptedVideos[_currentScriptedClipIndex].numberOfLoops)
+        {
+            _loopCounter = 0;
+            SkipToNextVideo();
+        }
+        _loopCounter++;
+        Mathf.Clamp(_loopCounter, 0, scriptedVideos[_currentScriptedClipIndex].numberOfLoops);
+    }
+
+    private void SkipToNextVideo()
+    {
+        _currentScriptedClipIndex++;
+        _videoPlayer.clip = scriptedVideos[_currentScriptedClipIndex].clip;
+        _videoPlayer.Play();
     }
 
    /*IEnumerator PowerOn()
@@ -176,5 +254,4 @@ public class TelevisionBehaviour : MonoBehaviour
 
         screenMesh.material = _offMaterial;
     }*/
-        
 }
