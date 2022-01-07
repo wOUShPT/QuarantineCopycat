@@ -26,7 +26,6 @@ public class BookPlace : ItemSpotBehaviour
         item.PickedUp = false;
         playerPickUp.BreakConnection(item); // Drop book
         PlaceItemToSpot();
-        interactDelegate = TakeItemToPlayer;
     }
 
     protected override void TakeItemToPlayer()
@@ -42,7 +41,6 @@ public class BookPlace : ItemSpotBehaviour
         // Player took the book or anything
         playerPickUp.GetPickedupObject(item);
         item = null;
-        interactDelegate = CheckPlayerHasItem;
     }
     private void GetIem(ref PickUpItemBehaviour item)
     {

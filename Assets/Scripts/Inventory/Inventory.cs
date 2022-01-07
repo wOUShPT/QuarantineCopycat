@@ -20,9 +20,9 @@ public class Inventory
     }
     public PickUpItemBehaviour CheckHasItem(PickUpItemBehaviour.PickUpObjectType objectType)
     {
-        if(itemList != null)
+        if(itemList != null && itemList.Count > 0)
         {
-            PickUpItemBehaviour item = objectType == PickUpItemBehaviour.PickUpObjectType.Any ? itemList.First()  : itemList.Where( t=> t.ObjectType == objectType).First();
+            PickUpItemBehaviour item = objectType == PickUpItemBehaviour.PickUpObjectType.Any ? itemList.Where(t => t.ObjectType != PickUpItemBehaviour.PickUpObjectType.Toothbrush).First()  : itemList.Where( t=> t.ObjectType == objectType).First();
             if(item != null)
             {
                 RemoveItem(item);

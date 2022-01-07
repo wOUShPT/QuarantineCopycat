@@ -12,7 +12,7 @@ public class TextEffect : MonoBehaviour
     private Camera m_Camera;
     private MeshRenderer meshRenderer;
     private RectTransform rectTransform;
-    [SerializeField]private LayerMask layerMask;
+    [SerializeField] private float minDistance = 5.7f;
     private void Awake()
     {
         m_Camera = Camera.main;
@@ -30,7 +30,7 @@ public class TextEffect : MonoBehaviour
     void Update()
     {
         //Check visibility
-        if (IsVisibleInAnyCorner() && CanSeeOnFrustom())
+        if (IsVisibleInAnyCorner() && IsCameraOnRange())
         {
             //Visible
             EnableCanvasGroup();
@@ -60,7 +60,6 @@ public class TextEffect : MonoBehaviour
         }
 
         mesh.vertices = vertices;
-        //textMesh.canvasRenderer.SetMesh(mesh);
     }
     private Vector2 Wobble(float time) // per vertex wobble effect
     {
@@ -99,25 +98,13 @@ public class TextEffect : MonoBehaviour
         }
         return visibleCorners;
     }
-    private bool CanSeeOnFrustom()
+
+    private bool IsCameraOnRange()
     {
-        Vector3 textPos = m_Camera.WorldToViewportPoint(transform.position);
-        if(textPos.z > 0)
+        if(Vector3.Distance(m_Camera.transform.position, transform.position) < minDistance)
         {
-            RaycastHit hit;
-            if(Physics.Linecast(m_Camera.transform.position, transform.position, out hit, layerMask))
-            {
-                Debug.Log(hit.collider.gameObject.name);
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-            //return !Physics.Linecast(m_Camera.transform.position, transform.position, out hit);
+            return true;
         }
         return false;
     }
-
-
 }
