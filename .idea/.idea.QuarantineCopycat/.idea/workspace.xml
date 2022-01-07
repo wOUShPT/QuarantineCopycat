@@ -20,16 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37ff6665-f7b8-42b5-9b81-dfd008e24b54" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Bathroom/Fake_ShowerGlass.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Bathroom/Fake_ShowerGlass.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Bathroom/Walls/BathroomTiles2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Bathroom/Walls/BathroomTiles2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bed/BedSheets.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bed/BedSheets.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bed/cama_tex-01.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bed/cama_tex-01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bed/cama_tex-01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bed/cama_tex-01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Coffee/GlassCup.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Coffee/GlassCup.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TelevisionBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TelevisionBehaviour.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +233,7 @@
       <workItem from="1641407859316" duration="5174000" />
       <workItem from="1641426983688" duration="8718000" />
       <workItem from="1641466208946" duration="3652000" />
-      <workItem from="1641552288509" duration="2300000" />
+      <workItem from="1641552288509" duration="3104000" />
     </task>
     <servers />
   </component>
