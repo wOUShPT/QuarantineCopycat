@@ -71,7 +71,7 @@ public class TelevisionBehaviour : MonoBehaviour
         switch (mode)
         {
             case TVMode.Manual:
-
+                
                 _zappingTimer += Time.deltaTime;
                 _zappingTimer = Mathf.Clamp(_zappingTimer, 0,_zappingTimeInterval);
 
@@ -85,7 +85,7 @@ public class TelevisionBehaviour : MonoBehaviour
                 
                 if (_videoPlayer.isPlaying)
                 {
-                    if (_zappingTimer >= _zappingTimeInterval)
+                    if (_zappingTimer >= _zappingTimeInterval && manualVideos.Length > 1)
                     {
                         if (InputManager.Instance.PlayerInput.SwitchTvChannel < 0)
                         {
@@ -129,6 +129,7 @@ public class TelevisionBehaviour : MonoBehaviour
         }
     }
 
+    // Switch the channel
     private void SwitchChannel()
     {
         _videoPlayer.clip = manualVideos[_currentManualClipIndex];
@@ -137,6 +138,7 @@ public class TelevisionBehaviour : MonoBehaviour
     }
 
 
+    // Keep track of programs timestamp on manual mode
     private void UpdateChannelsTime()
     {
         if (mode == TVMode.Manual)
@@ -170,6 +172,7 @@ public class TelevisionBehaviour : MonoBehaviour
 
     public void InitScriptedTv()
     {
+        _isOn = false;
         _videoPlayer.loopPointReached += HandleLoopCount;
         _currentScriptedClipIndex = 0;
         _currentScriptedClipTimeElapsed = 0;
@@ -177,7 +180,7 @@ public class TelevisionBehaviour : MonoBehaviour
         _videoPlayer.clip = scriptedVideos[_currentScriptedClipIndex].clip;
         _videoPlayer.time = 0;
     }
-
+    
     public void ToggleTvPower()
     {
         _isOn = !_isOn;
@@ -202,6 +205,7 @@ public class TelevisionBehaviour : MonoBehaviour
     }
 
 
+    // Handle the videoclips loop count, called on the end of a loop
     private void HandleLoopCount(VideoPlayer vp)
     {
         if (_currentScriptedClipIndex == scriptedVideos.Length - 1)
@@ -214,11 +218,13 @@ public class TelevisionBehaviour : MonoBehaviour
         {
             _loopCounter = 0;
             SkipToNextVideo();
+            Debug.Log("Video skiped");
         }
         _loopCounter++;
         Mathf.Clamp(_loopCounter, 0, scriptedVideos[_currentScriptedClipIndex].numberOfLoops);
     }
 
+    //skip to the next video clip
     private void SkipToNextVideo()
     {
         _currentScriptedClipIndex++;

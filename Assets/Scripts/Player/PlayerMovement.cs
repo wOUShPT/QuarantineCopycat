@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localEulerAngles = _currentRotation;
     }
 
+    // update head bobbing
     void UpdateHeadPosition()
     {
         if (_currentMoveDirection.x != 0 || _currentMoveDirection.z != 0)
@@ -103,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         isOnActionPivot = true;
     }
 
+    // call the navmeshagent to move the player to a target position
     public void MoveToTarget(Transform target, float distanceThreshold)
     {
         PlayerProperties.FreezeMovement = true;
@@ -111,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(MoveToTargetCoroutine(target, distanceThreshold));
     }
 
+    // call cinemachine custom extension to recenter the camera on the Y Axis
     public void CenterCameraOnYAxis()
     {
         _cinemachineFpExtension.RecenterYAxis();

@@ -78,21 +78,22 @@ public class GameManager : Singleton<GameManager>
         CurrentDay++;
     }
 
-    public void Progress(GameEvent currentGoal)
+    public void Progress(GameEvent currentGoal1, GameEvent currentGoal2)
     {
         
         switch (CurrentDay)
         {
             case 1:
 
-                if (currentGoal == _goalsQueue.Peek().goalEvent)
+                if (currentGoal1 == _goalsQueue.Peek().goalEvent)
                 {
-                    Debug.Log(currentGoal);
+                    Debug.Log(currentGoal1);
                     
                     _goalsQueue.Dequeue();
                     _goalsQueue.Peek().preEffect.Invoke();
                     TimelineManager.Instance.Resume(_eventsSequence);
                 }
+                
                 break;
             
             case 2:

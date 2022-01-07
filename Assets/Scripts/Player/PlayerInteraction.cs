@@ -96,7 +96,7 @@ public class PlayerInteraction : MonoBehaviour
         
         if(_targetTransform != raycastTransform && raycastTransform != null)
         {
-            //Changed target and raycasTransform is not null
+            //Changed target and raycastTransform is not null
             if (raycastTransform.TryGetComponent(out IInteractable interactable))
             {
                 interactable.ExitInteract();
