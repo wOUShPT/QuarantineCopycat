@@ -11,6 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 0ba4cb1f0df954c478baf740bac0744b, type: 3}
   m_ShaderKeywords: _ADVANCED_DISSOLVE_ENABLED _AD_CUTOUT_STANDARD_SOURCE_TWO_CUSTOM_MAPS
     _AD_EDGE_BASE_SOURCE_CUTOUT_STANDARD _AD_GLOBAL_CONTROL_ID_NONE _AD_STATE_ENABLED
+    _ALPHATEST_ON _DOUBLESIDED_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
@@ -277,6 +278,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &6724039819652240116
 MonoBehaviour:
   m_ObjectHideFlags: 11

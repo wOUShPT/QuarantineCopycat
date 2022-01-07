@@ -22,7 +22,7 @@ public class Inventory
     {
         if(itemList != null && itemList.Count > 0)
         {
-            PickUpItemBehaviour item = objectType == PickUpItemBehaviour.PickUpObjectType.Any ? itemList.Where(t => t.ObjectType != PickUpItemBehaviour.PickUpObjectType.Toothbrush).First()  : itemList.Where( t=> t.ObjectType == objectType).First();
+            PickUpItemBehaviour item = objectType == PickUpItemBehaviour.PickUpObjectType.Any ? itemList.Where(t => t.ObjectType != PickUpItemBehaviour.PickUpObjectType.Toothbrush).FirstOrDefault()  : itemList.Where( t=> t.ObjectType == objectType).FirstOrDefault();
             if(item != null)
             {
                 RemoveItem(item);

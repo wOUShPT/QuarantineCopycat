@@ -81,8 +81,9 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     [System.Serializable]
     public class CoffeeParams
     {
-        public bool isReady;
-    }   
+        public InteractionTrigger interactionTrigger;
+    }
+    public InteractionTrigger CoffeeInteractionTrigger => coffeeParams.interactionTrigger;
     //Object type == Toothbrush
     [SerializeField] private ToothBrushParams brushParams;
     [System.Serializable]
@@ -153,7 +154,14 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
             }
         }
     }
-
+    private void Start()
+    {
+        if(objectType == PickUpObjectType.Coffee)
+        {
+            coffeeParams.interactionTrigger = GetComponent<InteractionTrigger>();
+            coffeeParams.interactionTrigger.enabled = false;
+        }
+    }
     public float InteractionDistance()
     {
         return interactionDistance;
@@ -174,6 +182,8 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (!this.enabled)
+            return;
         if (wasInterected)
             return;
         if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject != this)
@@ -217,15 +227,4 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
             outlineObject.outlineObject.layer = outlineObject.interactionTrigger;
         }
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (pickedUp)
-    //    {
-    //        if(collision.relativeVelocity.magnitude > breakForce)
-    //        {
-    //            playerPickUp.BreakConnection(); 
-    //        }
-    //    }
-    //}
 }

@@ -67,4 +67,11 @@ public class ToasterMachine : ItemSpotBehaviour
         yield return new WaitForSeconds(.6f); //Avoid interact immediatly with the toast
         breadParams.InteractionTriggerCollider.enabled = true;
     }
+    public void AreBreadReady()
+    {
+        item.ItemCollider.enabled = true;
+        item.CoffeeInteractionTrigger.enabled = true;
+        item.enabled = false;
+        Destroy(item);
+    }
 }

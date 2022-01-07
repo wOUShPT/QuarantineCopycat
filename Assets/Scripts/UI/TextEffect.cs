@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using AmazingAssets.AdvancedDissolve;
 public class TextEffect : MonoBehaviour
 {
     private TextMeshPro textMesh;
@@ -13,17 +14,26 @@ public class TextEffect : MonoBehaviour
     private MeshRenderer meshRenderer;
     private RectTransform rectTransform;
     [SerializeField] private float minDistance = 5.7f;
+    private readonly int propDissolveCutOffID = Shader.PropertyToID("_AdvancedDissolveCutoutStandardClip");
+    private MaterialPropertyBlock mpb;
+    [SerializeField] private float clipValue = 0.5f;
+    private IEnumerator changeClipCourotine;
     private void Awake()
     {
         m_Camera = Camera.main;
         meshRenderer = GetComponent<MeshRenderer>();
         rectTransform = GetComponent<RectTransform>();
+        textMesh = GetComponent<TextMeshPro>();
+        mpb = new MaterialPropertyBlock();
+        Debug.Log(meshRenderer.HasPropertyBlock());
+        meshRenderer.GetPropertyBlock(mpb);
+        changeClipCourotine = UpdateMaterialClip();
     }
     // Start is called before the first frame update
     void Start()
     {
-        textMesh = GetComponent<TextMeshPro>();
         DisableRenderer();
+        StartCoroutine(changeClipCourotine);
     }
 
     // Update is called once per frame
@@ -33,6 +43,7 @@ public class TextEffect : MonoBehaviour
         if (IsVisibleInAnyCorner() && IsCameraOnRange())
         {
             //Visible
+            AdvancedDissolveProperties.Cutout.Standard.UpdateLocalProperty(textMesh.material, AdvancedDissolveProperties.Cutout.Standard.Property.Clip, 5);
             EnableCanvasGroup();
             VisibleTextBehaviour();
         }
@@ -106,5 +117,17 @@ public class TextEffect : MonoBehaviour
             return true;
         }
         return false;
+    }
+    IEnumerator UpdateMaterialClip()
+    {
+        while (true)
+        {
+            clipValue = Mathf.PingPong(Time.unscaledTime * .25f, 1);
+            clipValue = Mathf.Clamp(clipValue, 0.2f, 0.8f);
+            yield return null;
+            mpb.SetFloat(propDissolveCutOffID, clipValue);
+            meshRenderer.SetPropertyBlock(mpb);
+        }
+        
     }
 }

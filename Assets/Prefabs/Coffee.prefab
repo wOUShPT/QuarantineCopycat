@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9125172198531294507}
   - component: {fileID: 9125172198531294504}
+  - component: {fileID: 5571243990825610501}
   - component: {fileID: 9125172198531294505}
   - component: {fileID: 9125172198531294550}
   m_Layer: 0
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 0
   objectType: 5
+  outlineLayer: 11
   bookParams:
     textList: []
   clothParams:
@@ -139,8 +141,10 @@ MonoBehaviour:
     isReady: 0
     leftToast: {fileID: 8730692667619408808}
     rightToast: {fileID: 0}
+    leftPivot: {fileID: 0}
+    rightPivot: {fileID: 0}
   coffeeParams:
-    isReady: 0
+    interactionTrigger: {fileID: 0}
   brushParams:
     teethBehaviour: {fileID: 0}
     hasToothpaste: 0
@@ -152,6 +156,27 @@ MonoBehaviour:
     plateBehaviour: {fileID: 0}
     isWashed: 0
     isPlaced: 0
+  foodParams:
+    isPickable: 0
+    hasEaten: 0
+  otherGameobjectOutlineArray: []
+--- !u!114 &5571243990825610501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9125172198531294551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67cbd567f5cbdf9428fac3519b022d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 0
+  gameEvent: {fileID: 11400000, guid: cd5ca5739c128d14b9742bcab111bcc5, type: 2}
+  outlineLayer: 11
+  fakeMashOutlineLayer: 12
+  otherGameobjectOutlineArray: []
 --- !u!65 &9125172198531294505
 BoxCollider:
   m_ObjectHideFlags: 0

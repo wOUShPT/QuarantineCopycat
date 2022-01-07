@@ -23,7 +23,6 @@ public class CoffeeMachine : ItemSpotBehaviour
             PlaceItemToSpot();
             //It's doing imediatly maybe needs a courotine
             StartCoroutine(WaitToMakeToastWork());
-            interactDelegate = TakeItemToPlayer;
         }
     }
 
@@ -32,7 +31,8 @@ public class CoffeeMachine : ItemSpotBehaviour
         item.transform.SetParent(coffeeMachineParams.CoffeePivot);
         SetItemValuesDefault(item.transform);
         item.ItemRigidbody.isKinematic = true;
-        item.ItemCollider.isTrigger = true;
+        item.ItemCollider.enabled = false;
+        item.gameObject.SetActive(true);
     }
 
     protected override void TakeItemToPlayer()
@@ -51,5 +51,12 @@ public class CoffeeMachine : ItemSpotBehaviour
         coffeeMachineParams.BoxCollider.enabled = false;
         yield return new WaitForSeconds(.6f); //Avoid interact immediatly with the toast
         coffeeMachineParams.InteractionTriggerCollider.enabled = true;
+    }
+    public void CoffeIsReady()
+    {
+        item.ItemCollider.enabled = true;
+        item.CoffeeInteractionTrigger.enabled = true;
+        item.enabled = false;
+        Destroy(item);
     }
 }
