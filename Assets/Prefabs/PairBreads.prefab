@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1029795760456299237}
   - component: {fileID: 1029795760456299236}
+  - component: {fileID: 493115260068916588}
   - component: {fileID: 1029795760456299243}
   - component: {fileID: 1029795760456299242}
   m_Layer: 0
@@ -65,7 +66,7 @@ MonoBehaviour:
     leftPivot: {fileID: 9183471205873678984}
     rightPivot: {fileID: 8521983867379062485}
   coffeeParams:
-    isReady: 0
+    interactionTrigger: {fileID: 0}
   brushParams:
     teethBehaviour: {fileID: 0}
     hasToothpaste: 0
@@ -80,7 +81,36 @@ MonoBehaviour:
   foodParams:
     isPickable: 0
     hasEaten: 0
-  otherGameobjectOutlineArray: []
+  otherGameobjectOutlineArray:
+  - outlineObject: {fileID: 5339713573594656876}
+    interactionTrigger: 0
+    isFakeMaterial: 0
+  - outlineObject: {fileID: 616215912259931978}
+    interactionTrigger: 0
+    isFakeMaterial: 0
+--- !u!114 &493115260068916588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029795760456299241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67cbd567f5cbdf9428fac3519b022d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 0
+  gameEvent: {fileID: 11400000, guid: 309a0e22a662b184d9acd57c60219293, type: 2}
+  outlineLayer: 11
+  fakeMashOutlineLayer: 12
+  otherGameobjectOutlineArray:
+  - OutlineObject: {fileID: 5339713573594656876}
+    InteractionTrigger: 0
+    IsFakeMaterial: 0
+  - OutlineObject: {fileID: 616215912259931978}
+    InteractionTrigger: 0
+    IsFakeMaterial: 0
 --- !u!65 &1029795760456299243
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -231,6 +261,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dd445b70403aad4fbec226b4a06a9af, type: 3}
+--- !u!1 &616215912259931978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0dd445b70403aad4fbec226b4a06a9af, type: 3}
+  m_PrefabInstance: {fileID: 309715703613583899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &272166201520690672 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0dd445b70403aad4fbec226b4a06a9af, type: 3}
@@ -297,6 +332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dd445b70403aad4fbec226b4a06a9af, type: 3}
+--- !u!1 &5339713573594656876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0dd445b70403aad4fbec226b4a06a9af, type: 3}
+  m_PrefabInstance: {fileID: 5105693180980743485}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4706729559616170710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0dd445b70403aad4fbec226b4a06a9af, type: 3}

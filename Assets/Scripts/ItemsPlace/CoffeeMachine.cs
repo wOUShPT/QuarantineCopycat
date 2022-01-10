@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CoffeeMachine : ItemSpotBehaviour
 {
+    
     protected override void Awake()
     {
         coffeeMachineParams.BoxCollider = GetComponent<BoxCollider>();
@@ -52,11 +53,16 @@ public class CoffeeMachine : ItemSpotBehaviour
         yield return new WaitForSeconds(.6f); //Avoid interact immediatly with the toast
         coffeeMachineParams.InteractionTriggerCollider.enabled = true;
     }
+    //Called by the timeline
     public void CoffeIsReady()
     {
         item.ItemCollider.enabled = true;
         item.CoffeeInteractionTrigger.enabled = true;
         item.enabled = false;
         Destroy(item);
+    }
+    public void PlaceCaffeAfterDrink(Transform coffeTransform)
+    {
+        coffeTransform.position = coffeeMachineParams.afterDrinkCoffeeTransform.position;
     }
 }

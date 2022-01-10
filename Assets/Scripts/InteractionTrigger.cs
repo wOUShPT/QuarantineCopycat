@@ -40,6 +40,8 @@ public class InteractionTrigger : MonoBehaviour , IInteractable
 
     public void Interact()
     {
+        if (!this.enabled)
+            return;
         gameEvent.Raise();
         _uiManager.ToggleInteractionPrompt(false);
     }
@@ -58,6 +60,8 @@ public class InteractionTrigger : MonoBehaviour , IInteractable
 
     public void DisplayOutline()
     {
+        if (!this.enabled)
+            return;
         if (gameObject.layer == outlineLayer)
             return;
         FadeOutline.Instance.FadeInOutline();

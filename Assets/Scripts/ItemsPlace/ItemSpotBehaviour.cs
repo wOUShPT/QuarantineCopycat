@@ -68,6 +68,7 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
         public BoxCollider BoxCollider;
         public Transform CoffeePivot;
         public bool IsCoffeeBeDoing;
+        public Transform afterDrinkCoffeeTransform;
     }
     //Object type == Plate //clean plates
     protected Stack<PlateSpotParams> plateParamsStack;

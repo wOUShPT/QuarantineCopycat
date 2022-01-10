@@ -25,7 +25,6 @@ public class TextEffect : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         textMesh = GetComponent<TextMeshPro>();
         mpb = new MaterialPropertyBlock();
-        Debug.Log(meshRenderer.HasPropertyBlock());
         meshRenderer.GetPropertyBlock(mpb);
         changeClipCourotine = UpdateMaterialClip();
     }
@@ -128,6 +127,5 @@ public class TextEffect : MonoBehaviour
             mpb.SetFloat(propDissolveCutOffID, clipValue);
             meshRenderer.SetPropertyBlock(mpb);
         }
-        
     }
 }

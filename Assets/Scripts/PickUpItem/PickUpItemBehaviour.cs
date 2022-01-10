@@ -16,7 +16,6 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     }
     [SerializeField] private PickUpObjectType objectType;
     public PickUpObjectType ObjectType => objectType;
-    //[SerializeField] private float breakForce = 35f;
     private bool pickedUp = false;
     public bool PickedUp { get { return pickedUp; } set { pickedUp = value; } }
     private PlayerPickUpBehaviour playerPickUp;
@@ -70,12 +69,13 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         public Transform rightToast;
         public Transform leftPivot;
         public Transform rightPivot;
+        public InteractionTrigger interactionTrigger;
     }
     public Transform LeftToast => breadParams.leftToast;
     public Transform RightToast => breadParams.rightToast;
     public Transform LeftBreadPivot => breadParams.leftPivot;
     public Transform RightBreadPivot => breadParams.rightPivot;
-
+    public InteractionTrigger BreadInteractionTrigger => breadParams.interactionTrigger;
     //Object type == Coffee
     [SerializeField]private CoffeeParams coffeeParams;
     [System.Serializable]

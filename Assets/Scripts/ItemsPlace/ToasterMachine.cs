@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ToasterMachine : ItemSpotBehaviour
 {
-    // Start is called before the first frame update
+    
     protected override void Awake()
     {
         breadParams.BoxCollider = GetComponent<BoxCollider>();
@@ -24,13 +24,12 @@ public class ToasterMachine : ItemSpotBehaviour
             PlaceItemToSpot();
             //It's doing imediatly maybe needs a courotine
             StartCoroutine(WaitToMakeToastWork());
-            interactDelegate = TakeItemToPlayer;
         }
     }
 
     protected override void PlaceItemToSpot()
     {
-        item.transform.position = breadParams.LeftToasterPivot.position;
+        item.transform.position = breadParams.RightToasterPivot.position;
         item.transform.SetParent(breadParams.LeftToasterPivot);
         SetItemValuesDefault(item.transform);
         breadParams.LeftToast = item.LeftToast;
@@ -51,15 +50,17 @@ public class ToasterMachine : ItemSpotBehaviour
             return; //player has picked up something
         }
         // Player took the book or any
-        breadParams.LeftToast.SetParent(item.LeftBreadPivot.transform);
+        BreadsReturnPreviousParent();
         SetItemValuesDefault(breadParams.LeftToast);
-        breadParams.LeftToast = null;
-        breadParams.RightToast.SetParent(item.RightBreadPivot.transform);
         SetItemValuesDefault(breadParams.RightToast);
-        breadParams.RightToast = null;
         playerPickUp.GetPickedupObject(item);
+
         item = null;
-        interactDelegate = CheckPlayerHasItem;
+    }
+    private void BreadsReturnPreviousParent() //Make both breads return to the previous parent
+    {
+        breadParams.LeftToast.SetParent(item.LeftBreadPivot.transform);
+        breadParams.RightToast.SetParent(item.RightBreadPivot.transform);                
     }
     IEnumerator WaitToMakeToastWork()
     {
@@ -67,10 +68,12 @@ public class ToasterMachine : ItemSpotBehaviour
         yield return new WaitForSeconds(.6f); //Avoid interact immediatly with the toast
         breadParams.InteractionTriggerCollider.enabled = true;
     }
-    public void AreBreadReady()
+    public void BreadIsReady() //Called by timeline
     {
+        item.gameObject.SetActive(true);
         item.ItemCollider.enabled = true;
-        item.CoffeeInteractionTrigger.enabled = true;
+        //BreadsReturnPreviousParent();
+        item.BreadInteractionTrigger.enabled = true;
         item.enabled = false;
         Destroy(item);
     }
