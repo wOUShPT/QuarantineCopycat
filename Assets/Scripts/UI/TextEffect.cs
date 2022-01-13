@@ -17,7 +17,13 @@ public class TextEffect : MonoBehaviour
     private readonly int propDissolveCutOffID = Shader.PropertyToID("_AdvancedDissolveCutoutStandardClip");
     private MaterialPropertyBlock mpb;
     [SerializeField] private float clipValue = 0.5f;
-    private IEnumerator changeClipCourotine;
+    private float endValue = 0f;
+    [SerializeField] private float minEndValue = 0.2f;
+    [SerializeField] private float maxEndValue = 1f;
+    [SerializeField] private float mediumEndValue = 0.8f;
+    private delegate void DissolveBehaviour();
+    private DissolveBehaviour dissolveBehaviour;
+    private bool isDoingCourotine = false;
     private void Awake()
     {
         m_Camera = Camera.main;
@@ -26,30 +32,28 @@ public class TextEffect : MonoBehaviour
         textMesh = GetComponent<TextMeshPro>();
         mpb = new MaterialPropertyBlock();
         meshRenderer.GetPropertyBlock(mpb);
-        changeClipCourotine = UpdateMaterialClip();
     }
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        DisableRenderer();
-        StartCoroutine(changeClipCourotine);
+        DissolveText(minEndValue);
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
+    {
+        VisibleTextBehaviour();
+    }
+    private void TextBehaviour()
     {
         //Check visibility
-        if (IsVisibleInAnyCorner() && IsCameraOnRange())
+        if (IsCameraOnRange())
         {
-            //Visible
-            AdvancedDissolveProperties.Cutout.Standard.UpdateLocalProperty(textMesh.material, AdvancedDissolveProperties.Cutout.Standard.Property.Clip, 5);
-            EnableCanvasGroup();
-            VisibleTextBehaviour();
+            //Dissappear text
+            DissolveText(maxEndValue);
         }
         else
         {
             //Not Visible
-            DisableRenderer();
+            DissolveText(mediumEndValue);
+            
         }
     }
     private void VisibleTextBehaviour()
@@ -68,7 +72,6 @@ public class TextEffect : MonoBehaviour
             vertices[index + 2] += offset;
             vertices[index + 3] += offset;
         }
-
         mesh.vertices = vertices;
     }
     private Vector2 Wobble(float time) // per vertex wobble effect
@@ -76,17 +79,14 @@ public class TextEffect : MonoBehaviour
         float scaledAdjust = textMesh.fontSize * NOISE_MAGNITUDE_ADJUSTMENT;
         return new Vector2((Mathf.PerlinNoise(time * NOISE_FREQUENCY_ADJUSTMENT, 0) - 0.5f) * scaledAdjust, (Mathf.PerlinNoise(time * NOISE_FREQUENCY_ADJUSTMENT, 100) - 0.5f) * scaledAdjust);
     }
-    private void DisableRenderer()
+    private void DissolveText(float _endValue)
     {
-        if(!meshRenderer.enabled)
+        if (endValue ==_endValue)
             return;
-        meshRenderer.enabled = false;
-    }
-    private void EnableCanvasGroup()
-    {
-        if (meshRenderer.enabled)
-            return;
-        meshRenderer.enabled = true;
+        StopAllCoroutines();
+        endValue = _endValue;
+        StartCoroutine(UpdateMaterialClip(endValue));
+        isDoingCourotine = true;
     }
     private bool IsVisibleInAnyCorner() //Determines if this recttransform is at least partially visible
     {
@@ -111,21 +111,39 @@ public class TextEffect : MonoBehaviour
 
     private bool IsCameraOnRange()
     {
+        Debug.Log(Vector3.Distance(m_Camera.transform.position, transform.position));
         if(Vector3.Distance(m_Camera.transform.position, transform.position) < minDistance)
         {
             return true;
         }
         return false;
     }
-    IEnumerator UpdateMaterialClip()
+    IEnumerator UpdateMaterialClip(float _endValue)
     {
-        while (true)
+        float time = 0;
+        while (time < 1.0f)
         {
-            clipValue = Mathf.PingPong(Time.unscaledTime * .25f, 1);
-            clipValue = Mathf.Clamp(clipValue, 0.2f, 0.8f);
+            clipValue = Mathf.Lerp(mpb.GetFloat(propDissolveCutOffID), endValue, time);
+            time += 0.5f * Time.deltaTime;
             yield return null;
             mpb.SetFloat(propDissolveCutOffID, clipValue);
             meshRenderer.SetPropertyBlock(mpb);
         }
+        isDoingCourotine = false;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            TextBehaviour();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            DissolveText(minEndValue);
+        }
+        
     }
 }

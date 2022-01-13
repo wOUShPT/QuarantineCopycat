@@ -51,16 +51,17 @@ public class ToasterMachine : ItemSpotBehaviour
         }
         // Player took the book or any
         BreadsReturnPreviousParent();
-        SetItemValuesDefault(breadParams.LeftToast);
-        SetItemValuesDefault(breadParams.RightToast);
+        
         playerPickUp.GetPickedupObject(item);
 
         item = null;
     }
-    private void BreadsReturnPreviousParent() //Make both breads return to the previous parent
+    public void BreadsReturnPreviousParent() //Make both breads return to the previous parent
     {
         breadParams.LeftToast.SetParent(item.LeftBreadPivot.transform);
-        breadParams.RightToast.SetParent(item.RightBreadPivot.transform);                
+        breadParams.RightToast.SetParent(item.RightBreadPivot.transform);
+        SetItemValuesDefault(breadParams.LeftToast);
+        SetItemValuesDefault(breadParams.RightToast);
     }
     IEnumerator WaitToMakeToastWork()
     {

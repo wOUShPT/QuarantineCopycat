@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1382133254546677518}
   - component: {fileID: 1382133254546677517}
   - component: {fileID: 1382133254546677516}
+  - component: {fileID: 1486742053271114955}
   m_Layer: 0
   m_Name: WoobleText
   m_TagString: Untagged
@@ -187,4 +188,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NOISE_MAGNITUDE_ADJUSTMENT: 0.02
   NOISE_FREQUENCY_ADJUSTMENT: 0.64
-  minDistance: 5.5
+  minDistance: 0.9
+  clipValue: 0.5
+  minEndValue: 0.2
+  maxEndValue: 1
+  mediumEndValue: 0.8
+--- !u!65 &1486742053271114955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382133254546677515}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4228368, y: 0.3211165, z: 1.5444963}
+  m_Center: {x: -0.5664755, y: -0.56, z: 0}
