@@ -13,8 +13,7 @@ public class VinylDiskBehaviour : MonoBehaviour
     [SerializeField]
     private Animator _animator;
     private void Awake()
-    {
-        
+    {       
         audioSourceReference = GetComponent<AudioSource>();
     }
     private void Update()
@@ -41,12 +40,9 @@ public class VinylDiskBehaviour : MonoBehaviour
     }
     public void PlayVinylDisk(AudioClip _audioclip)
     {
-        Debug.Log(_audioclip);
-        Debug.Log(audioSourceReference);
         audioSourceReference.clip = _audioclip;
         audioSourceReference.Play();
         _animator.Play("VinylRotation");
-        Debug.Log("Play");
     }
     public void StopVinylDisk()
     {
@@ -54,6 +50,5 @@ public class VinylDiskBehaviour : MonoBehaviour
         audioSourceReference.Stop();
         audioSourceReference.clip = null;
         _animator.StopPlayback();
-        Debug.Log("Stop");
     }
 }

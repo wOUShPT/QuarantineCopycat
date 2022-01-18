@@ -18,15 +18,12 @@ public class BrushingTeethBehaviour : ToggleInteractionTrigger
     {
         if(pickupBehaviour != null)
         {
-            if(pickupBehaviour.CurrentlyPickedUpObject != null)
-            {
-                PickUpItemBehaviour pickUpItem = pickupBehaviour.CurrentlyPickedUpObject;
-                if( pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Toothbrush)
+                PickUpItemBehaviour pickUpItem = pickupBehaviour.GetInventory().CheckHasItem(PickUpItemBehaviour.PickUpObjectType.Toothbrush);
+                if( pickUpItem != null)
                 {
                     //If has toothBrushPivot
                     AssignAndMakeInteractionTriggerInteraction(pickUpItem);
                 }
-            }
         }
     }
     protected override void AssignAndMakeInteractionTriggerInteraction(PickUpItemBehaviour pickUpItem)
@@ -39,7 +36,7 @@ public class BrushingTeethBehaviour : ToggleInteractionTrigger
     {
         if( pickupBehaviour != null)
         {
-            if( pickupBehaviour.CurrentlyPickedUpObject == null && ItemToInteractionTriggerPivot != null)
+            if(ItemToInteractionTriggerPivot != null)
             {
                 MakeTriggerInteractionDisabled();
             }

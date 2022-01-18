@@ -48,7 +48,6 @@ public class ClothPlace : ItemSpotBehaviour
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.Euler(Vector3.zero);
         item.transform.localScale = item.InitialScale;
-        item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.isTrigger = true;
         clothParamsStack.Push(new ClothParams(holderPositionArray[clothParamsStack.Count], item));
         item = null;
@@ -56,16 +55,9 @@ public class ClothPlace : ItemSpotBehaviour
 
     protected override void TakeItemToPlayer()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
-        {
-            CheckPlayerHasItem();
-        }
-        else // Player took cloth
-        {
-            ClothParams clothParams = clothParamsStack.Pop();
-            clothParams.itemBehaviour.ItemCollider.isTrigger = false;
-            clothParams.itemBehaviour.ItemRigidbody.isKinematic = true;
-            playerPickUp.GetPickedupObject(clothParams.itemBehaviour);
-        }
+        // Player took cloth
+        ClothParams clothParams = clothParamsStack.Pop();
+        clothParams.itemBehaviour.ItemCollider.isTrigger = false;
+        playerPickUp.GetPickedupObject(clothParams.itemBehaviour);
     }
 }

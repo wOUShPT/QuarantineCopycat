@@ -16,14 +16,11 @@ public class WashPlateBehaviour : ToggleInteractionTrigger
     {
         if (pickupBehaviour != null)
         {
-            if (pickupBehaviour.CurrentlyPickedUpObject != null)
+            PickUpItemBehaviour pickUpItem = pickupBehaviour.GetInventory().CheckHasItem(PickUpItemBehaviour.PickUpObjectType.Plate);
+            if (pickUpItem != null && !pickUpItem.IsPlateWashed)
             {
-                PickUpItemBehaviour pickUpItem = pickupBehaviour.CurrentlyPickedUpObject;
-                if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Plate && !pickUpItem.IsPlateWashed)
-                {
-                    //If has the plate not washed yet
-                    AssignAndMakeInteractionTriggerInteraction(pickUpItem);
-                }
+                //If has the plate not washed yet
+                AssignAndMakeInteractionTriggerInteraction(pickUpItem);
             }
         }
     }
@@ -32,7 +29,7 @@ public class WashPlateBehaviour : ToggleInteractionTrigger
     {
         if (pickupBehaviour != null)
         {
-            if (pickupBehaviour.CurrentlyPickedUpObject == null && ItemToInteractionTriggerPivot != null)
+            if (ItemToInteractionTriggerPivot != null)
             {
                 MakeTriggerInteractionDisabled();
             }

@@ -5,8 +5,6 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     
     [Header("PickUp")]
     [SerializeField] private Transform pickupParent; // holder parent
-    public PickUpItemBehaviour CurrentlyPickedUpObject => pickUpItem;
-    private Rigidbody pickUpRB;
 
     [Header("ObjectFollow")]
     private PickUpItemBehaviour pickUpItem;
@@ -40,9 +38,6 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     {
         //Set parent to null
         item.transform.SetParent(null);
-        Rigidbody rb = item.ItemRigidbody;
-        rb.constraints = RigidbodyConstraints.None;
-        rb.isKinematic = false;
         item.PickedUp = false;
         CheckPlayerWillDropToothBrush(item);
         pickUpItem = null;
@@ -58,14 +53,6 @@ public class PlayerPickUpBehaviour : MonoBehaviour
         inventory.AddItem(pickUpItem);
         pickUpItem = null;
     }
-    public void SetPickUpRigidbody()
-    {
-        //assign rigidbody and make it kinematic
-        //pickUpRB = pickUpItem.ItemRigidbody;
-        //pickUpRB.constraints = RigidbodyConstraints.FreezeRotation;
-        //pickUpRB.isKinematic = true;
-        //pickUpItem.ItemCollider.isTrigger = false;
-    }
     private void CheckIsBrushTeethBehaviour(PickUpItemBehaviour item)
     {
         if(item != null)
@@ -79,9 +66,7 @@ public class PlayerPickUpBehaviour : MonoBehaviour
                 case PickUpItemBehaviour.PickUpObjectType.Any:
                 case PickUpItemBehaviour.PickUpObjectType.Coffee:
                 case PickUpItemBehaviour.PickUpObjectType.Food:
-                    break;
                 case PickUpItemBehaviour.PickUpObjectType.Toothbrush:
-                    item.GetBrushTeethBehaviour.CheckPlayeerHasToothSpecificItem();
                     break;
                 case PickUpItemBehaviour.PickUpObjectType.WateringCan:
                     item.WaterPlantsBehaviour.CheckPlayeerHasToothSpecificItem();
@@ -107,9 +92,7 @@ public class PlayerPickUpBehaviour : MonoBehaviour
                 case PickUpItemBehaviour.PickUpObjectType.Any:
                 case PickUpItemBehaviour.PickUpObjectType.Coffee:
                 case PickUpItemBehaviour.PickUpObjectType.Food:
-                    break;
                 case PickUpItemBehaviour.PickUpObjectType.Toothbrush:
-                    item.GetBrushTeethBehaviour.CheckPlayerDropSpecificItem();
                     break;
                 case PickUpItemBehaviour.PickUpObjectType.WateringCan:
                     item.WaterPlantsBehaviour.CheckPlayerDropSpecificItem();

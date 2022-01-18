@@ -111,7 +111,6 @@ public class TextEffect : MonoBehaviour
 
     private bool IsCameraOnRange()
     {
-        Debug.Log(Vector3.Distance(m_Camera.transform.position, transform.position));
         if(Vector3.Distance(m_Camera.transform.position, transform.position) < minDistance)
         {
             return true;

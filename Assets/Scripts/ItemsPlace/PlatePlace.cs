@@ -61,7 +61,6 @@ public class PlatePlace : ItemSpotBehaviour
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.Euler(Vector3.zero);
         item.transform.localScale = item.InitialScale;
-        item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.isTrigger = true;
         plateParamsStack.Push(new PlateSpotParams(transform, item));
         item = null;
@@ -69,16 +68,9 @@ public class PlatePlace : ItemSpotBehaviour
 
     protected override void TakeItemToPlayer()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
-        {
-            CheckPlayerHasItem();
-        }
-        else // Player took a plate
-        {
-            PlateSpotParams platesParams = plateParamsStack.Pop();
-            platesParams.itemBehaviour.ItemCollider.isTrigger = false;
-            platesParams.itemBehaviour.ItemRigidbody.isKinematic = true;
-            playerPickUp.GetPickedupObject(platesParams.itemBehaviour);
-        }
+        // Player took a plate
+        PlateSpotParams platesParams = plateParamsStack.Pop();
+        platesParams.itemBehaviour.ItemCollider.isTrigger = false;
+        playerPickUp.GetPickedupObject(platesParams.itemBehaviour);
     }
 }

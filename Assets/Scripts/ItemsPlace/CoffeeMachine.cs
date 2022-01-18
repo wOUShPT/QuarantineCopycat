@@ -31,7 +31,6 @@ public class CoffeeMachine : ItemSpotBehaviour
     {
         item.transform.SetParent(coffeeMachineParams.CoffeePivot);
         SetItemValuesDefault(item.transform);
-        item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.enabled = false;
         item.gameObject.SetActive(true);
     }
@@ -40,8 +39,6 @@ public class CoffeeMachine : ItemSpotBehaviour
     {
         if (coffeeMachineParams.IsCoffeeBeDoing)
             return;
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a book player has picked
-            return; //player has picked up something
         // Player took the coffee
         playerPickUp.GetPickedupObject(item);
         item = null;

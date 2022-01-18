@@ -73,7 +73,6 @@ public class FridgePlace : ItemSpotBehaviour
         }
         SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
-        item.ItemRigidbody.isKinematic = true;
     }
 
     protected override void TakeItemToPlayer()

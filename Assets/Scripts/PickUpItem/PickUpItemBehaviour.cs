@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
 public class PickUpItemBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField]
@@ -19,9 +19,6 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private bool pickedUp = false;
     public bool PickedUp { get { return pickedUp; } set { pickedUp = value; } }
     private PlayerPickUpBehaviour playerPickUp;
-
-    private Rigidbody itemRigidbody;
-    public Rigidbody ItemRigidbody => itemRigidbody;
     private BoxCollider itemCollider;
     public BoxCollider ItemCollider => itemCollider;
 
@@ -140,7 +137,6 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private void Awake()
     {
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
-        itemRigidbody = GetComponent<Rigidbody>();
         itemCollider = GetComponent<BoxCollider>();
         itemAnimator = GetComponent<Animator>();
         initialScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
@@ -186,13 +182,11 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
             return;
         if (wasInterected)
             return;
-        if (playerPickUp.CurrentlyPickedUpObject != null && playerPickUp.CurrentlyPickedUpObject != this)
-            return;
         if (!pickedUp)
         {
             PickUp();
         }
-        else if( pickedUp && playerPickUp.CurrentlyPickedUpObject != null)
+        else if (pickedUp)
         {
             DropItem();
         }

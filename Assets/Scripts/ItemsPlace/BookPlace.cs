@@ -55,7 +55,6 @@ public class BookPlace : ItemSpotBehaviour
         SetItemValuesDefault(item);
         item.transform.localScale = item.InitialScale;
         item.transform.localPosition = Vector3.zero;
-        item.ItemRigidbody.isKinematic = true;
         item.ItemCollider.isTrigger = true;
         // Attach item to this itemspotbehaviour
         item.ItemSpotBehaviour = this;

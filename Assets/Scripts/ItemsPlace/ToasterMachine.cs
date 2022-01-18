@@ -38,17 +38,12 @@ public class ToasterMachine : ItemSpotBehaviour
         breadParams.RightToast = item.RightToast;
         breadParams.RightToast.SetParent(breadParams.RightToasterPivot);
         SetItemValuesDefault(breadParams.RightToast);
-        item.ItemRigidbody.isKinematic = true;
     }
 
     protected override void TakeItemToPlayer()
     {
         if (breadParams.IsBreadDoing)
             return;
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's an object player has picked
-        {
-            return; //player has picked up something
-        }
         // Player took the book or any
         BreadsReturnPreviousParent();
         

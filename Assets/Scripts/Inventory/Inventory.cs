@@ -10,19 +10,18 @@ public class Inventory
     public Inventory()
     {
         itemList = new List<PickUpItemBehaviour>();
-
     }
     public void AddItem(PickUpItemBehaviour item)
     {
         itemList.Add(item);
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
-
     }
     public PickUpItemBehaviour CheckHasItem(PickUpItemBehaviour.PickUpObjectType objectType)
     {
         if(itemList != null && itemList.Count > 0)
         {
-            PickUpItemBehaviour item = objectType == PickUpItemBehaviour.PickUpObjectType.Any ? itemList.Where(t => t.ObjectType != PickUpItemBehaviour.PickUpObjectType.Toothbrush).FirstOrDefault()  : itemList.Where( t=> t.ObjectType == objectType).FirstOrDefault();
+            PickUpItemBehaviour item = itemList.Where( t=> t.ObjectType == objectType).FirstOrDefault();
+            //See if there is a item
             if(item != null)
             {
                 RemoveItem(item);

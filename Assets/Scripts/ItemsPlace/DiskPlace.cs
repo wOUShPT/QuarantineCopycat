@@ -22,13 +22,14 @@ public class DiskPlace : ItemSpotBehaviour
         {
             //Player has a disk in his hands
             item = pickUpItem;
+            item.gameObject.SetActive(true);
             item.PickedUp = false;
             playerPickUp.BreakConnection(item);
             PlaceItemToSpot();
             diskParams.targetMusic = pickUpItem.AudioClip;
             diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
             PlayRotateDisk();
-            interactDelegate = TakeItemToPlayer;
+            //interactDelegate = TakeItemToPlayer;
         }
     }
 
@@ -37,26 +38,22 @@ public class DiskPlace : ItemSpotBehaviour
         item.transform.SetParent(childrenItemSpot.Length != 0 ? GetAvailableSpot() : this.transform);
         SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
-        item.ItemRigidbody.isKinematic = true;
         // Attach item to this itemspotbehaviour
         item.ItemSpotBehaviour = this;
     }
 
     protected override void TakeItemToPlayer()
     {
-        if (playerPickUp.CurrentlyPickedUpObject != null) // it's a disk player has picked
-        {
-            //has something
-            return;
-        }
         // Player took the disk or any
+        if (item != null)
+            return;
         StopRotateDisk();
         playerPickUp.GetPickedupObject(item);
         item = null;
         //Stop disk vinyl music
         diskParams.diskBehaviour.StopVinylDisk();
         diskParams.targetMusic = null;
-        interactDelegate = CheckPlayerHasItem;
+        //interactDelegate = CheckPlayerHasItem;
     }
 
     public void PlayRotateDisk()

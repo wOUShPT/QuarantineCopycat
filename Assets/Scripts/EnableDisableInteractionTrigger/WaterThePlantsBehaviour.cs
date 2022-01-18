@@ -19,14 +19,11 @@ public class WaterThePlantsBehaviour : ToggleInteractionTrigger
     {
         if (pickupBehaviour != null)
         {
-            if (pickupBehaviour.CurrentlyPickedUpObject != null)
+            PickUpItemBehaviour pickUpItem = pickupBehaviour.GetInventory().CheckHasItem(PickUpItemBehaviour.PickUpObjectType.WateringCan);
+            if (pickUpItem != null)
             {
-                PickUpItemBehaviour pickUpItem = pickupBehaviour.CurrentlyPickedUpObject;
-                if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.WateringCan)
-                {
-                    //If has toothBrushPivot
-                    AssignAndMakeInteractionTriggerInteraction(pickUpItem);
-                }
+                //If has toothBrushPivot
+                AssignAndMakeInteractionTriggerInteraction(pickUpItem);
             }
         }
     }
@@ -35,7 +32,7 @@ public class WaterThePlantsBehaviour : ToggleInteractionTrigger
     {
         if (pickupBehaviour != null)
         {
-            if (pickupBehaviour.CurrentlyPickedUpObject == null && ItemToInteractionTriggerPivot != null)
+            if (ItemToInteractionTriggerPivot != null)
             {
                 MakeTriggerInteractionDisabled();
             }
