@@ -233,7 +233,6 @@ public class DartsBehaviour : MonoBehaviour
             _camera.m_Lens.FieldOfView = _currentFOV;
             yield return null;
         }
-        Debug.Log(timer);
         yield return null;
     }
 }

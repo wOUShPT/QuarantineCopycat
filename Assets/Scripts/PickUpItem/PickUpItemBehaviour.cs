@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Collider))]
 public class PickUpItemBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField]
@@ -19,8 +19,8 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private bool pickedUp = false;
     public bool PickedUp { get { return pickedUp; } set { pickedUp = value; } }
     private PlayerPickUpBehaviour playerPickUp;
-    private BoxCollider itemCollider;
-    public BoxCollider ItemCollider => itemCollider;
+    private Collider itemCollider;
+    public Collider ItemCollider => itemCollider;
 
     private Animator itemAnimator;
     public Animator ItemAnimator => itemAnimator; 
@@ -137,7 +137,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     private void Awake()
     {
         playerPickUp = FindObjectOfType<PlayerPickUpBehaviour>();
-        itemCollider = GetComponent<BoxCollider>();
+        itemCollider = GetComponent<Collider>();
         itemAnimator = GetComponent<Animator>();
         initialScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
         initialQuaternion = transform.rotation;

@@ -10,18 +10,23 @@ using UnityEngine.Serialization;
 public class GameManager : Singleton<GameManager>
 {
     private int _currentDayIndex;
+    [SerializeField] 
+    private UnityEvent preEffect;
     [SerializeField]
     private List<Goal> _goalsEntryList;
     private Queue<Goal> _goalsQueue;
     [SerializeField]
     private PlayableDirector _eventsSequence;
+    private List<bool> _currentGoalsMet;
+    private bool _canProgress;
+    private int _goalsMetCounter;
+
 
     [Serializable]
     private class Goal
     {
-        public GameEvent goalEvent;
-        public float preEffectDelay;
-        public UnityEvent preEffect;
+        public List<GameEvent> goalEvents;
+        public List<bool> goalsMet;
         public float effectDelay;
         public UnityEvent effect;
     }
@@ -37,11 +42,14 @@ public class GameManager : Singleton<GameManager>
         {
             _goalsQueue.Enqueue(goal);
         }
-        TimelineManager.Instance.Init(_eventsSequence);
-        TimelineManager.Instance.DelayedResume(_eventsSequence, 2);
-
+        
+        //TimelineManager.Instance.Init(_eventsSequence);
+        //TimelineManager.Instance.DelayedResume(_eventsSequence, 2);
+        
         _currentDayIndex = 1;
-        ChangeDay();
+        _goalsMetCounter = 0;
+        _canProgress = false;
+        preEffect.Invoke();
     }
 
     // CurrentDay index property
@@ -78,83 +86,22 @@ public class GameManager : Singleton<GameManager>
         CurrentDay++;
     }
 
-    public void Progress(GameEvent currentGoal1, GameEvent currentGoal2)
+    public void Progress(GameEvent currentGoal)
     {
-        
-        switch (CurrentDay)
+        for (int i = 0; i < _goalsQueue.Peek().goalEvents.Count; i++)
         {
-            case 1:
-
-                if (currentGoal1 == _goalsQueue.Peek().goalEvent)
+            if (currentGoal == _goalsQueue.Peek().goalEvents[i])
+            {
+                _goalsQueue.Peek().goalsMet[i] = true;
+                _goalsMetCounter++;
+                if (_goalsMetCounter == _goalsQueue.Peek().goalEvents.Count)
                 {
-                    Debug.Log(currentGoal1);
-                    
+                    _goalsMetCounter = 0;
+                    _canProgress = false;
+                    _goalsQueue.Peek().effect.Invoke();
                     _goalsQueue.Dequeue();
-                    _goalsQueue.Peek().preEffect.Invoke();
-                    TimelineManager.Instance.Resume(_eventsSequence);
                 }
-                
-                break;
-            
-            case 2:
-
-                break;
-            
-            case 3:
-
-                break;
-            
-            case 4:
-
-                break;
-            
-            case 5:
-
-                break;
-            
-            case 6:
-
-                break;
-            
-            case 7:
-
-                break;
-        }
-    }
-
-    
-    //Change level properties based on the current day index
-    public void ChangeDay()
-    {
-        switch (CurrentDay)
-        {
-            case 1:
-
-                break;
-            
-            case 2:
-
-                break;
-            
-            case 3:
-
-                break;
-            
-            case 4:
-
-                break;
-            
-            case 5:
-
-                break;
-            
-            case 6:
-
-                break;
-            
-            case 7:
-
-                break;
+            }
         }
     }
 

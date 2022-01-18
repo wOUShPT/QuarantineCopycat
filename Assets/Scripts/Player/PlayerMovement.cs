@@ -9,6 +9,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Timeline;
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _startHeadPosition;
     private Vector3 _currentHeadPosition;
     private float _headBobTimeCounter;
+
+    public float currentVelocity => new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
     
     void Awake()
     {
@@ -66,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateRotation()
     {
-        if (_cinemachineFpExtension.Mode == CinemachineFPExtension.CameraMode.Cutscene)
+        if (PlayerProperties.Mode == PlayerProperties.State.Cutscene)
         {
             return;
         }
@@ -112,6 +115,12 @@ public class PlayerMovement : MonoBehaviour
         PlayerProperties.FreezeInteraction = true;
         StartCoroutine(MoveToTargetCoroutine(target, distanceThreshold));
     }
+
+    public void ToggleCollision(bool state)
+    {
+        _characterController.enableOverlapRecovery = state;
+    }
+
 
     // call cinemachine custom extension to recenter the camera on the Y Axis
     public void CenterCameraOnYAxis()

@@ -134,7 +134,7 @@ public class PlayerPhone : MonoBehaviour
         phoneCanvasGroup.interactable = false;
         phoneModel.SetActive(false);
         InputManager.Instance.TogglePlayerControls(true);
-        _cinemachineFpExtension.Mode = CinemachineFPExtension.CameraMode.Dynamic;
+        PlayerProperties.Mode = PlayerProperties.State.Dynamic;
         PlayerProperties.FreezeAim = false;
         InputManager.Instance.TogglePhoneControls(false);
         phoneDelegate = DisplayPhone;
@@ -148,7 +148,7 @@ public class PlayerPhone : MonoBehaviour
     IEnumerator DisplayPhoneSequence()
     {
         InputManager.Instance.TogglePlayerControls(false);
-        _cinemachineFpExtension.Mode = CinemachineFPExtension.CameraMode.Cutscene;
+        PlayerProperties.Mode = PlayerProperties.State.Cutscene;
         PlayerProperties.FreezeAim = true;
         yield return new WaitForSeconds(1f);
         _playerMovement.CenterCameraOnYAxis();

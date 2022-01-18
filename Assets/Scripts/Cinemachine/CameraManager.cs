@@ -1,16 +1,19 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class CinemachineSwitcher : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
     private Animator animator;
     private CinemachineStateDrivenCamera stateDrivenCamera;
-    
+
+    public List<IInteractable> Interactables;
+
     public enum CinemachineStateSwitcher
     {
-        FirstPerson, SecondPerson, Darts, Toilet, Bath, BrushTeeth, WateringCan, Cadre, Sofa
+        FirstPerson, Cinematic, SecondPerson, Darts, Toilet, Bath, BrushTeeth, WateringCan, Cadre, Sofa
     }
     private CinemachineStateSwitcher cinemachineSwitcher;
     private CinemachineExtension[] _cameraExtensions;
@@ -47,6 +50,13 @@ public class CinemachineSwitcher : MonoBehaviour
         cinemachineSwitcher = CinemachineStateSwitcher.FirstPerson;
         SwitchState();
     }
+    
+    public void ChangeToCinematic()
+    {
+        cinemachineSwitcher = CinemachineStateSwitcher.Cinematic;
+        SwitchState();
+    }
+    
     public void ChangeToSecond()
     {
         cinemachineSwitcher = CinemachineStateSwitcher.SecondPerson;
@@ -104,11 +114,19 @@ public class CinemachineSwitcher : MonoBehaviour
         switch (cinemachineSwitcher)
         {
             case CinemachineStateSwitcher.FirstPerson:
-                ToggleCurrentCinemachineExtension(false);
+                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("FPCameraState");
-                StartCoroutine(WaitToToToggleCinemachineExtension(true,0f));
+                //StartCoroutine(WaitToToToggleCinemachineExtension(true,0f));
                 //fPExtension.IsFirstPerson = true;
                 break;
+            
+            case CinemachineStateSwitcher.Cinematic:
+                //ToggleCurrentCinemachineExtension(false);
+                animator.Play("FPCameraState");
+                //StartCoroutine(WaitToToToggleCinemachineExtension(true,0f));
+                //fPExtension.IsFirstPerson = true;
+                break;
+
             case CinemachineStateSwitcher.SecondPerson:
                 ToggleCurrentCinemachineExtension(false);
                 animator.Play("SPCameraState");
@@ -117,29 +135,29 @@ public class CinemachineSwitcher : MonoBehaviour
                 break;
             
             case CinemachineStateSwitcher.Darts:
-                ToggleCurrentCinemachineExtension(false);
+                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("DartsCameraState");
-                StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
+                //StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 //fPExtension.IsFirstPerson = true;
                 break;
             
             case CinemachineStateSwitcher.Toilet:
-                ToggleCurrentCinemachineExtension(false);
+                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("ToiletCameraState");
-                StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
+                //StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 //fPExtension.IsFirstPerson = true;
                 break;
             
             case CinemachineStateSwitcher.Bath:
-                ToggleCurrentCinemachineExtension(false);
+                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("BathCameraState");
-                StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
+                //StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 //fPExtension.IsFirstPerson = true;
                 break;
             case CinemachineStateSwitcher.BrushTeeth:
-                ToggleCurrentCinemachineExtension(false);
+                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("BrushTeethState");
-                StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
+                //StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 break;
             case CinemachineStateSwitcher.WateringCan:
                 ToggleCurrentCinemachineExtension(false);

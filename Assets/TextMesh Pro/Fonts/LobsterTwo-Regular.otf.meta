@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: a5c0e686b3422984890e647b1d371a35
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Lobster Two
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: cb034d8083be2ef4bb8f9cb517201d71, type: 3}
+  - {fileID: 12800000, guid: 85abb81bf9b92734b97484bd0be0d081, type: 3}
+  - {fileID: 12800000, guid: ae5718dec65357247862d8eca7587e3b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

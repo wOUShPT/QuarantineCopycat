@@ -29,6 +29,10 @@ public class VinylDiskBehaviour : MonoBehaviour
                 audioSourceReference.volume += volumeChange;
             }
         }
+        else
+        {
+            _animator.StopPlayback();
+        }
     }
 
     public void ExitInteraction()

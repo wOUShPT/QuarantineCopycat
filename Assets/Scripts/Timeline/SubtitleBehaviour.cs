@@ -43,6 +43,10 @@ public class SubtitleBehaviour : PlayableBehaviour
 
     public override void OnBehaviourPause(Playable playable, FrameData info)
     {
+        if (UIManager.Instance == null)
+        {
+            return;
+        }
         if(_pauseScheduled)
         {
             _pauseScheduled = false;
