@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PickUpPhone : MonoBehaviour, IInteractable
 {
     [SerializeField] private float interactionDistance = 0f;
+    public UnityEvent effect;
     private bool wasInteraction = false;
     private PlayerPhone playerPhone;
     private delegate void PickPhoneAction();
@@ -66,6 +68,7 @@ public class PickUpPhone : MonoBehaviour, IInteractable
         interactionTrigger.Interact();
         phoneAction = null;
         wasInteraction = true;
+        effect.Invoke();
         this.gameObject.SetActive(false);
     }
 

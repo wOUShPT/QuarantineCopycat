@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CinemachineStaticFPExtension : CinemachineExtension
 {
+    public MouseSettings mouseSettingsData;
+    
+    public bool overrideMouseSense;
+    
     public float horizontalSpeed;
  
     public float verticalSpeed;
@@ -22,13 +27,31 @@ public class CinemachineStaticFPExtension : CinemachineExtension
     [SerializeField]
     private Vector3 _currentRotation;
 
+    private CinemachineVirtualCameraBase vCam;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        vCam = GetComponent<CinemachineVirtualCameraBase>();
+        _currentRotation = vCam.Follow.localRotation.eulerAngles;
+    }
+
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vCameraBase, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
     {
         if (!PlayerProperties.FreezeAim)
         {
-            _currentRotation.x += InputManager.Instance.PlayerInput.Look.x * verticalSpeed * deltaTime;
-            _currentRotation.y += InputManager.Instance.PlayerInput.Look.y * horizontalSpeed * deltaTime;
-            _currentRotation.z = 0;
+            if (overrideMouseSense || mouseSettingsData == null)
+            {
+                _currentRotation.x += InputManager.Instance.PlayerInput.Look.x * verticalSpeed * deltaTime;
+                _currentRotation.y += InputManager.Instance.PlayerInput.Look.y * horizontalSpeed * deltaTime;
+                _currentRotation.z = 0;
+            }
+            else
+            {
+                _currentRotation.x += InputManager.Instance.PlayerInput.Look.x * mouseSettingsData.mouseSensitivity * deltaTime;
+                _currentRotation.y += InputManager.Instance.PlayerInput.Look.y * mouseSettingsData.mouseSensitivity * deltaTime;
+                _currentRotation.z = 0;
+            }
         }
         else
         {

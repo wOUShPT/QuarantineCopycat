@@ -8,6 +8,13 @@ public class MainMenuBehaviour : MonoBehaviour
 {
     [SerializeField] private Animator transitionAnimator;
 
+    void Awake()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+
     public void StartNewMainGame()
     {
         StartCoroutine(TransitionToNewScene());

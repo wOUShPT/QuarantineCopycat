@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
@@ -88,18 +89,21 @@ public class GameManager : Singleton<GameManager>
 
     public void Progress(GameEvent currentGoal)
     {
-        for (int i = 0; i < _goalsQueue.Peek().goalEvents.Count; i++)
+        if (_goalsQueue.Count != 0)
         {
-            if (currentGoal == _goalsQueue.Peek().goalEvents[i])
+            for (int i = 0; i < _goalsQueue.Peek().goalEvents.Count; i++)
             {
-                _goalsQueue.Peek().goalsMet[i] = true;
-                _goalsMetCounter++;
-                if (_goalsMetCounter == _goalsQueue.Peek().goalEvents.Count)
+                if (currentGoal == _goalsQueue.Peek().goalEvents[i])
                 {
-                    _goalsMetCounter = 0;
-                    _canProgress = false;
-                    _goalsQueue.Peek().effect.Invoke();
-                    _goalsQueue.Dequeue();
+                    _goalsMetCounter++;
+                    if (_goalsMetCounter == _goalsQueue.Peek().goalEvents.Count)
+                    {
+                        _goalsMetCounter = 0;
+                        _canProgress = false;
+                        _goalsQueue.Peek().effect.Invoke();
+                        _goalsQueue.Dequeue();
+                        return;
+                    }
                 }
             }
         }
@@ -109,5 +113,10 @@ public class GameManager : Singleton<GameManager>
     {
         yield return new WaitForSeconds(delay);
         currentEvent.Invoke();
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

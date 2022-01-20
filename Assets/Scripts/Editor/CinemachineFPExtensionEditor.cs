@@ -14,9 +14,13 @@ public class CinemachineFPExtensionInspector : Editor
 
         CinemachineFPExtension cinemachineFpExtension = (CinemachineFPExtension)target;
 
-        EditorGUILayout.BeginHorizontal();
-        
         EditorGUILayout.LabelField("Sensitivity");
+        
+        EditorGUILayout.Separator();
+
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("mouseSettingsData"), GUIContent.none);
+        
+        EditorGUILayout.BeginHorizontal();
         
         EditorGUILayout.PropertyField(serializedObject.FindProperty("horizontalSpeed"), GUIContent.none);
 

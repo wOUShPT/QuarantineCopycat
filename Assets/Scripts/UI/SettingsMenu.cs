@@ -9,6 +9,9 @@ public class SettingsMenu : MonoBehaviour
     private Resolution[] resolutions;
 
     [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private Slider mouseSensitivitySlider;
+    [SerializeField] private TextMeshProUGUI mouseSensitivityInfoLabel;
+    [SerializeField] private MouseSettings _mouseSettingsData;
     private void Start()
     {
         resolutions = Screen.resolutions;
@@ -29,17 +32,19 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+        mouseSensitivitySlider.value = _mouseSettingsData.mouseSensitivity;
+        mouseSensitivityInfoLabel.text = (_mouseSettingsData.mouseSensitivity / 10f).ToString();
     }
 
     public void SetResolution( int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
+        Resolution resolution = resolutions[resolutionDropdown.value];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen); ;
     }
-    public void SetVolume( float volume)
+    public void SetMouseSensitivity()
     {
-        Debug.Log("volume");
-        
+        _mouseSettingsData.mouseSensitivity = mouseSensitivitySlider.value;
+        mouseSensitivityInfoLabel.text = (_mouseSettingsData.mouseSensitivity / 10f).ToString();
     }
     
     public void IsFullscreen( bool isFullscreen)

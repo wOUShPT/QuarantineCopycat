@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class CinemachineFPExtension : CinemachineExtension
 {
+    public MouseSettings mouseSettingsData;
+    
     public float horizontalSpeed;
  
     public float verticalSpeed;
@@ -51,18 +54,10 @@ public class CinemachineFPExtension : CinemachineExtension
         } 
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
-        _cinemachineFpCutsceneExtension = FindObjectOfType<CinemachineFPCutsceneExtension>();
-        vCam = GetComponent<CinemachineVirtualCameraBase>();
-        _currentRotation = vCam.Follow.rotation.eulerAngles;
-        _currentRotation.z = 0;
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
+        vCam = GetComponent<CinemachineVirtualCameraBase>();
         _currentRotation = vCam.Follow.localRotation.eulerAngles;
         _currentRotation.z = 0;
         CameraState state = vCam.State;
@@ -77,8 +72,8 @@ public class CinemachineFPExtension : CinemachineExtension
         {
             if (!PlayerProperties.FreezeAim)
             {
-                _currentRotation.x += InputManager.Instance.PlayerInput.Look.x * verticalSpeed * deltaTime;
-                _currentRotation.y += InputManager.Instance.PlayerInput.Look.y * horizontalSpeed * deltaTime;
+                _currentRotation.x += InputManager.Instance.PlayerInput.Look.x * mouseSettingsData.mouseSensitivity * deltaTime;
+                _currentRotation.y += InputManager.Instance.PlayerInput.Look.y * mouseSettingsData.mouseSensitivity * deltaTime;
                 _currentRotation.z = 0;
             }
 
