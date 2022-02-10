@@ -21,27 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="37ff6665-f7b8-42b5-9b81-dfd008e24b54" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Wall/Ceilling.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Wall/Ceilling.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Character/Character2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Character/Character2.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineFPExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineFPExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineStaticFPExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineStaticFPExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/CinemachineFPExtensionEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/CinemachineFPExtensionEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Phone/PickUpPhone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Phone/PickUpPhone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SettingsMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SettingsMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Bath/BathOutSequence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Bath/BathOutSequence.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/BrushingTeeth/BrushTeethIn.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/BrushingTeeth/BrushTeethIn.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Coffee/CoffeeSeuence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Coffee/CoffeeSeuence.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Coffee/DrinkCoffeeTimeline.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Coffee/DrinkCoffeeTimeline.playable" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Timeline/Sleep/WakeSequence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Sleep/WakeSequence.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Sofa/SofaInSequenceTimeline.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Sofa/SofaInSequenceTimeline.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Sofa/SofaOutSequenceTimeline.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Sofa/SofaOutSequenceTimeline.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Toaster/EatToasterTimeline.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Toaster/EatToasterTimeline.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Toaster/ToasterSequence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Toaster/ToasterSequence.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,6 +260,8 @@
       <workItem from="1642518723411" duration="16301000" />
       <workItem from="1642572872389" duration="63000" />
       <workItem from="1642612799335" duration="6286000" />
+      <workItem from="1642698484384" duration="4499000" />
+      <workItem from="1643460228932" duration="3775000" />
     </task>
     <servers />
   </component>

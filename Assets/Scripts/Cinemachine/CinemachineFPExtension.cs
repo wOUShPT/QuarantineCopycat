@@ -57,6 +57,7 @@ public class CinemachineFPExtension : CinemachineExtension
     protected override void OnEnable()
     {
         base.OnEnable();
+        _cinemachineFpCutsceneExtension = FindObjectOfType<CinemachineFPCutsceneExtension>();
         vCam = GetComponent<CinemachineVirtualCameraBase>();
         _currentRotation = vCam.Follow.localRotation.eulerAngles;
         _currentRotation.z = 0;
