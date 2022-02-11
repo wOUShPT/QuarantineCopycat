@@ -22,18 +22,11 @@ public class FridgePlace : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if( !IsFridgeEmpty()) // Player doesn't have an item
-        {
-            TakeItemToPlayer();
-            return;
-        }
-        //Has an item
         PickUpItemBehaviour pickUpItem = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
         if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Food && !IsFridgeFull())
         {
             item = pickUpItem;
             item.PickedUp = false;
-            fridgeParams.foodPickUps.Add(item);
             playerPickUp.BreakConnection(item);
             PlaceItemToSpot();
         }
@@ -49,20 +42,8 @@ public class FridgePlace : ItemSpotBehaviour
         }
         return true; // The Fridge is full
     }
-    private bool IsFridgeEmpty()
-    {
-        foreach (Transform fridgeSpot in fridgeParams.foodTransform)
-        {
-            if (fridgeSpot != null)
-            {
-                return false; // the fridge is not full
-            }
-        }
-        return true; // The Fridge is full
-    }
     protected override void PlaceItemToSpot()
     {
-        
         foreach (Transform fridgeSpot in fridgeParams.foodTransform)
         {
             if(fridgeSpot.childCount == 0)
@@ -73,34 +54,5 @@ public class FridgePlace : ItemSpotBehaviour
         }
         SetItemValuesDefault(item.transform);
         item.transform.localScale = item.InitialScale;
-    }
-
-    protected override void TakeItemToPlayer()
-    {
-        TakeSpecificFoodInTheFridge();
-        // Player took the fridge
-        playerPickUp.GetPickedupObject(item);
-        item = null;
-        interactDelegate = CheckPlayerHasItem;
-    }
-    private void TakeSpecificFoodInTheFridge()
-    {
-        foreach (Transform fridgeSpot in fridgeParams.foodTransform) // See the available spot
-        {
-            if (fridgeSpot.childCount == 0)
-            {
-                return;
-            }
-            item = fridgeSpot.GetComponentInChildren<PickUpItemBehaviour>();
-            break;
-        }
-        foreach( PickUpItemBehaviour foodPickUp in fridgeParams.foodPickUps)
-        {
-            if( item == foodPickUp)
-            {
-                fridgeParams.foodPickUps.Remove(item);
-                break;
-            }
-        }
     }
 }

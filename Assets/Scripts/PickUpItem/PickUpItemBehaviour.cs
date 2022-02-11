@@ -182,14 +182,7 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
             return;
         if (wasInterected)
             return;
-        if (!pickedUp)
-        {
-            PickUp();
-        }
-        else if (pickedUp)
-        {
-            DropItem();
-        }
+        PickUp();
         wasInterected = true;
     }
     private void PickUp()
@@ -197,17 +190,12 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
         //Desattach itemspot to this item and vice versa
         if(ItemSpotBehaviour != null) // a way for stack/list items
         {
-            itemSpotBehaviour.Item = null;
+            itemSpotBehaviour.ItemGoesToInventory();
             itemSpotBehaviour.CheckItemIsOnTheList(this);
             itemSpotBehaviour = null;
         }
         playerPickUp.GetPickedupObject(this);
         pickedUp = true;
-    }
-    private void DropItem()
-    {
-        //playerPickUp.BreakConnection();
-        pickedUp = false;
     }
     public void ExitInteract()
     {

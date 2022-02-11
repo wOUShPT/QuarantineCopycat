@@ -48,14 +48,4 @@ public class BrushingTeethBehaviour : ToggleInteractionTrigger
         toothBrushAnimator = null;
         interactionTriggerCollider.enabled = false; //now interaction trigger is disabled
     }
-    //Called by the timeline
-    public void BrushTeethAnimationStart() // Play animation
-    {
-        //toothBrushAnimator.Play("ToothbrushAnimation");
-    }
-    public void BrushTeethAnimationStop()
-    {
-        //toothBrushAnimator.Play("NewState");
-    }
-
 }

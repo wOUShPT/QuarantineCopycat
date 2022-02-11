@@ -34,16 +34,6 @@ public class CoffeeMachine : ItemSpotBehaviour
         item.ItemCollider.enabled = false;
         item.gameObject.SetActive(true);
     }
-
-    protected override void TakeItemToPlayer()
-    {
-        if (coffeeMachineParams.IsCoffeeBeDoing)
-            return;
-        // Player took the coffee
-        playerPickUp.GetPickedupObject(item);
-        item = null;
-        interactDelegate = CheckPlayerHasItem;
-    }
     IEnumerator WaitToMakeToastWork()
     {
         coffeeMachineParams.BoxCollider.enabled = false;

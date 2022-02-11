@@ -129,7 +129,6 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
                 item = beginningItem;
                 PlaceItemToSpot();
             }
-            interactDelegate = TakeItemToPlayer;
         }
     }
     protected bool CheckHasItemSpotBeginning() // Used only at the start
@@ -180,7 +179,10 @@ public abstract class ItemSpotBehaviour : MonoBehaviour, IInteractable
     }
     protected abstract void CheckPlayerHasItem();
 
-    protected abstract void TakeItemToPlayer();
+    public virtual void ItemGoesToInventory() //The item is now at the inventory //this being the "replace for take item to player"
+    {
+        item = null;
+    }
 
     protected Transform GetAvailableSpot()
     {

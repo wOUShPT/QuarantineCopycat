@@ -15,11 +15,6 @@ public class PlatePlace : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (CheckLaundryHasPlates())
-        {
-            TakeItemToPlayer();
-            return;
-        }
         PickUpItemBehaviour plateBehaviour = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
         if (plateBehaviour == null || !CheckCanPlaceItem(plateBehaviour))
         {
@@ -29,14 +24,6 @@ public class PlatePlace : ItemSpotBehaviour
         item.PickedUp = false;
         playerPickUp.BreakConnection(item); // Drop book
         PlaceItemToSpot();
-    }
-    private bool CheckLaundryHasPlates() //Check the laundry has cloths
-    {
-        if (plateParamsStack.Count > 0)
-        {
-            return true; // has at least one cloth
-        }
-        return false; // no cloths
     }
     private bool CheckCanPlaceItem(PickUpItemBehaviour plateBehaviour)
     {
@@ -64,13 +51,5 @@ public class PlatePlace : ItemSpotBehaviour
         item.ItemCollider.isTrigger = true;
         plateParamsStack.Push(new PlateSpotParams(transform, item));
         item = null;
-    }
-
-    protected override void TakeItemToPlayer()
-    {
-        // Player took a plate
-        PlateSpotParams platesParams = plateParamsStack.Pop();
-        platesParams.itemBehaviour.ItemCollider.isTrigger = false;
-        playerPickUp.GetPickedupObject(platesParams.itemBehaviour);
     }
 }

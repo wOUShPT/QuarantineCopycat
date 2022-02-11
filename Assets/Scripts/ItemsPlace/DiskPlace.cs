@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DiskPlace : ItemSpotBehaviour
 {
-    // Start is called before the first frame update
     protected override void Awake()
     {
         dropObjectType = PickUpItemBehaviour.PickUpObjectType.Disk;//Force to disk
@@ -29,7 +28,6 @@ public class DiskPlace : ItemSpotBehaviour
             diskParams.targetMusic = pickUpItem.AudioClip;
             diskParams.diskBehaviour.PlayVinylDisk(diskParams.targetMusic);
             PlayRotateDisk();
-            //interactDelegate = TakeItemToPlayer;
         }
     }
 
@@ -41,19 +39,13 @@ public class DiskPlace : ItemSpotBehaviour
         // Attach item to this itemspotbehaviour
         item.ItemSpotBehaviour = this;
     }
-
-    protected override void TakeItemToPlayer()
+    public override void ItemGoesToInventory()
     {
-        // Player took the disk or any
-        if (item != null)
-            return;
         StopRotateDisk();
-        playerPickUp.GetPickedupObject(item);
-        item = null;
         //Stop disk vinyl music
         diskParams.diskBehaviour.StopVinylDisk();
         diskParams.targetMusic = null;
-        //interactDelegate = CheckPlayerHasItem;
+        base.ItemGoesToInventory();
     }
 
     public void PlayRotateDisk()

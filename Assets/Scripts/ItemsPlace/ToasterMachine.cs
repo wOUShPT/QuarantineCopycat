@@ -29,6 +29,7 @@ public class ToasterMachine : ItemSpotBehaviour
 
     protected override void PlaceItemToSpot()
     {
+        //Place to bread "parents" as well
         item.transform.position = breadParams.RightToasterPivot.position;
         item.transform.SetParent(breadParams.LeftToasterPivot);
         SetItemValuesDefault(item.transform);
@@ -39,17 +40,11 @@ public class ToasterMachine : ItemSpotBehaviour
         breadParams.RightToast.SetParent(breadParams.RightToasterPivot);
         SetItemValuesDefault(breadParams.RightToast);
     }
-
-    protected override void TakeItemToPlayer()
+    public override void ItemGoesToInventory()
     {
-        if (breadParams.IsBreadDoing)
-            return;
         // Player took the book or any
         BreadsReturnPreviousParent();
-        
-        playerPickUp.GetPickedupObject(item);
-
-        item = null;
+        base.ItemGoesToInventory();
     }
     public void BreadsReturnPreviousParent() //Make both breads return to the previous parent
     {
@@ -68,7 +63,6 @@ public class ToasterMachine : ItemSpotBehaviour
     {
         item.gameObject.SetActive(true);
         item.ItemCollider.enabled = true;
-        //BreadsReturnPreviousParent();
         item.BreadInteractionTrigger.enabled = true;
         item.enabled = false;
         Destroy(item);

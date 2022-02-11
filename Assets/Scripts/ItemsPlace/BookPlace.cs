@@ -28,19 +28,10 @@ public class BookPlace : ItemSpotBehaviour
         PlaceItemToSpot();
     }
 
-    protected override void TakeItemToPlayer()
+    public override void ItemGoesToInventory()
     {
-        if(item == null)
-        {
-            if(childrenItemSpot.Length == 0 || itemList.Count == 0)
-            {
-                return;
-            }
-            GetIem(ref item);
-        }
-        // Player took the book or anything
-        playerPickUp.GetPickedupObject(item);
-        item = null;
+        GetIem(ref item);
+        base.ItemGoesToInventory();
     }
     private void GetIem(ref PickUpItemBehaviour item)
     {

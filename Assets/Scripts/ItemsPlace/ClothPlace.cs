@@ -14,11 +14,6 @@ public class ClothPlace : ItemSpotBehaviour
 
     protected override void CheckPlayerHasItem()
     {
-        if (CheckLaundryHasCloths())
-        {
-            TakeItemToPlayer();
-            return;
-        }
         PickUpItemBehaviour clothBehaviour = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
         if (clothParamsStack.Count >= maxNumberCloths)
         {
@@ -33,14 +28,6 @@ public class ClothPlace : ItemSpotBehaviour
         playerPickUp.BreakConnection(item); // Drop book
         PlaceItemToSpot();
     }
-    private bool CheckLaundryHasCloths() //Check the laundry has cloths
-    {
-        if (clothParamsStack.Count > 0)
-        {
-            return true; // has at least one cloth
-        }
-        return false; // no cloths
-    }
 
     protected override void PlaceItemToSpot()
     {
@@ -51,13 +38,5 @@ public class ClothPlace : ItemSpotBehaviour
         item.ItemCollider.isTrigger = true;
         clothParamsStack.Push(new ClothParams(holderPositionArray[clothParamsStack.Count], item));
         item = null;
-    }
-
-    protected override void TakeItemToPlayer()
-    {
-        // Player took cloth
-        ClothParams clothParams = clothParamsStack.Pop();
-        clothParams.itemBehaviour.ItemCollider.isTrigger = false;
-        playerPickUp.GetPickedupObject(clothParams.itemBehaviour);
     }
 }
