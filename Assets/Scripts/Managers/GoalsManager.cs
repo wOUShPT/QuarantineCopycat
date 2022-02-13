@@ -8,7 +8,7 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
-public class GameManager : Singleton<GameManager>
+public class GoalsManager : Singleton<GoalsManager>
 {
     private int _currentDayIndex;
     [SerializeField] 

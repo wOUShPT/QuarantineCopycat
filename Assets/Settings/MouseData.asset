@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0cd5e1f9538b1047acaafd66f3f3845, type: 3}
-  m_Name: MouseSettings
+  m_Name: MouseData
   m_EditorClassIdentifier: 
-  mouseSensitivity: 5
+  mouseSensitivity: 0.5

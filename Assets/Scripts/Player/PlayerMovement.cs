@@ -14,7 +14,9 @@ using Random = UnityEngine.Random;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float movementSpeed;
+    private float _movementSpeed;
+    [SerializeField]
+    private float _turnSpeed;
     [SerializeField]
     private float gravity;
     [SerializeField]
@@ -29,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     private float headBobSpeed;
     [SerializeField] 
     private CinemachineFPExtension _cinemachineFpExtension;
+    private CinemachineStateDrivenCamera _cinemachineStateDrivenCamera;
+    private Camera _camera;
     public bool isOnActionPivot;
     private Vector3 _currentMoveDirection;
     private Vector3 _currentRotation;
@@ -40,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
     
     void Awake()
     {
+        _cinemachineStateDrivenCamera = FindObjectOfType<CinemachineStateDrivenCamera>();
+        _camera = Camera.main;
         isOnActionPivot = false;
         _currentHeadPosition = cameraPivot.localPosition;
         _startHeadPosition = _currentHeadPosition;
@@ -63,18 +69,18 @@ public class PlayerMovement : MonoBehaviour
     {
         _currentMoveDirection = (transform.forward * InputManager.Instance.PlayerInput.Movement.z) + (transform.right * InputManager.Instance.PlayerInput.Movement.x);
         _currentMoveDirection += new Vector3(_currentMoveDirection.x , gravity, _currentMoveDirection.z);
-        _characterController.Move(_currentMoveDirection * movementSpeed * Time.deltaTime);
+        _characterController.Move(_currentMoveDirection * _movementSpeed * Time.deltaTime);
         
     }
 
     void UpdateRotation()
     {
-        if (PlayerProperties.Mode == PlayerProperties.State.Cutscene)
+        if (PlayerProperties.Mode == PlayerProperties.State.Cutscene && CameraManager.CinemachineCameraState != CameraManager.CinemachineStateSwitcher.FirstPerson)
         {
             return;
         }
-        _currentRotation = new Vector3(0, _cinemachineFpExtension.CurrentRotation.x, 0);
-        transform.localEulerAngles = _currentRotation;
+
+        transform.localRotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, _camera.transform.localRotation.eulerAngles.y, 0)), _turnSpeed * Time.deltaTime);
     }
 
     // update head bobbing

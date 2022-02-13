@@ -11,13 +11,16 @@ public class CameraManager : MonoBehaviour
 
     public List<IInteractable> Interactables;
 
+    [Serializable]
     public enum CinemachineStateSwitcher
     {
         FirstPerson, Cinematic, SecondPerson, Darts, Toilet, Bath, BrushTeeth, WateringCan, Cadre, Sofa
     }
-    private CinemachineStateSwitcher cinemachineSwitcher;
+    private static CinemachineStateSwitcher cinemachineSwitcher;
     private CinemachineExtension[] _cameraExtensions;
     private CinemachineVirtualCameraBase[] _cameras;
+
+    public static CinemachineStateSwitcher CinemachineCameraState => cinemachineSwitcher;
     
     private void Awake()
     {
@@ -102,7 +105,7 @@ public class CameraManager : MonoBehaviour
         cinemachineSwitcher = CinemachineStateSwitcher.Sofa;
         SwitchState();
     }
-
+    
     public void SwitchCamera(CinemachineStateSwitcher state)
     {
         cinemachineSwitcher = state;
@@ -114,66 +117,40 @@ public class CameraManager : MonoBehaviour
         switch (cinemachineSwitcher)
         {
             case CinemachineStateSwitcher.FirstPerson:
-                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("FPCameraState");
-                //StartCoroutine(WaitToToToggleCinemachineExtension(true,0f));
-                //fPExtension.IsFirstPerson = true;
                 break;
             
             case CinemachineStateSwitcher.Cinematic:
-                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("FPCameraState");
-                //StartCoroutine(WaitToToToggleCinemachineExtension(true,0f));
-                //fPExtension.IsFirstPerson = true;
                 break;
 
             case CinemachineStateSwitcher.SecondPerson:
-                ToggleCurrentCinemachineExtension(false);
                 animator.Play("SPCameraState");
-                StartCoroutine(WaitToToToggleCinemachineExtension(true,0f));
-                //fPExtension.IsFirstPerson = false;
                 break;
             
             case CinemachineStateSwitcher.Darts:
-                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("DartsCameraState");
-                //StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
-                //fPExtension.IsFirstPerson = true;
                 break;
             
             case CinemachineStateSwitcher.Toilet:
-                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("ToiletCameraState");
-                //StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
-                //fPExtension.IsFirstPerson = true;
                 break;
             
             case CinemachineStateSwitcher.Bath:
-                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("BathCameraState");
-                //StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
-                //fPExtension.IsFirstPerson = true;
                 break;
             case CinemachineStateSwitcher.BrushTeeth:
-                //ToggleCurrentCinemachineExtension(false);
                 animator.Play("BrushTeethState");
-                //StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 break;
             case CinemachineStateSwitcher.WateringCan:
-                ToggleCurrentCinemachineExtension(false);
                 animator.Play("WateringCanState");
-                StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 break;
             case CinemachineStateSwitcher.Cadre:
-                ToggleCurrentCinemachineExtension(false);
                 animator.Play("CadreState");
-                StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 break;
             
             case CinemachineStateSwitcher.Sofa:
-                ToggleCurrentCinemachineExtension(false);
                 animator.Play("SofaState");
-                StartCoroutine(WaitToToToggleCinemachineExtension(true, 0f));
                 break;
         }
     }
