@@ -19,7 +19,6 @@ public class CoffeeMachine : ItemSpotBehaviour
         if (pickUpItem != null)
         {
             item = pickUpItem;
-            item.PickedUp = false;
             playerPickUp.BreakConnection(item); //Player will drop
             PlaceItemToSpot();
             //It's doing imediatly maybe needs a courotine

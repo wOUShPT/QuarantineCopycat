@@ -21,7 +21,6 @@ public class PlatePlace : ItemSpotBehaviour
             return;
         }
         item = plateBehaviour;
-        item.PickedUp = false;
         playerPickUp.BreakConnection(item); // Drop book
         PlaceItemToSpot();
     }

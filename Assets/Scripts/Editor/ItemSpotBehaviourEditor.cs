@@ -24,8 +24,6 @@ public class ItemSpotBehaviourEditor : Editor
             case PickUpItemBehaviour.PickUpObjectType.Disk:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("diskParams"));
                 break;
-            case PickUpItemBehaviour.PickUpObjectType.Any:
-                break;
             case PickUpItemBehaviour.PickUpObjectType.Bread:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("breadParams"));
                 break;

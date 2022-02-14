@@ -34,9 +34,6 @@ public class PickUpItemBehaviourEditor : Editor
             case PickUpItemBehaviour.PickUpObjectType.Coffee:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("coffeeParams"));
                 break;
-            case PickUpItemBehaviour.PickUpObjectType.Toothbrush:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("brushParams"));
-                break;
             case PickUpItemBehaviour.PickUpObjectType.WateringCan:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("wateringCanParams"));
                 break;
@@ -45,8 +42,6 @@ public class PickUpItemBehaviourEditor : Editor
                 break;
             case PickUpItemBehaviour.PickUpObjectType.Food:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("foodParams"));
-                break;
-            case PickUpItemBehaviour.PickUpObjectType.Any:
                 break;
         }
         EditorGUILayout.PropertyField(serializedObject.FindProperty("otherGameobjectOutlineArray"));

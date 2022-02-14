@@ -26,7 +26,6 @@ public class FridgePlace : ItemSpotBehaviour
         if (pickUpItem.ObjectType == PickUpItemBehaviour.PickUpObjectType.Food && !IsFridgeFull())
         {
             item = pickUpItem;
-            item.PickedUp = false;
             playerPickUp.BreakConnection(item);
             PlaceItemToSpot();
         }

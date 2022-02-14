@@ -23,7 +23,6 @@ public class BookPlace : ItemSpotBehaviour
             return; 
         }
         item = pickUpItem;
-        item.PickedUp = false;
         playerPickUp.BreakConnection(item); // Drop book
         PlaceItemToSpot();
     }

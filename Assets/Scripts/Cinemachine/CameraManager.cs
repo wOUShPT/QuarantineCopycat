@@ -62,6 +62,7 @@ public class CameraManager : MonoBehaviour
     
     public void ChangeToSecond()
     {
+        Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
         cinemachineSwitcher = CinemachineStateSwitcher.SecondPerson;
         SwitchState();
     }

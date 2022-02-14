@@ -12,12 +12,10 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
     public ItemSpotBehaviour ItemSpotBehaviour { get { return itemSpotBehaviour; } set { itemSpotBehaviour = value; } }
     public enum PickUpObjectType
     {
-        Book, Cloth, Disk, Bread, Any, Coffee, Toothbrush, WateringCan, Plate, Food
+        Book, Cloth, Disk, Bread, Coffee, WateringCan, Plate, Food
     }
     [SerializeField] private PickUpObjectType objectType;
     public PickUpObjectType ObjectType => objectType;
-    private bool pickedUp = false;
-    public bool PickedUp { get { return pickedUp; } set { pickedUp = value; } }
     private PlayerPickUpBehaviour playerPickUp;
     private Collider itemCollider;
     public Collider ItemCollider => itemCollider;
@@ -182,14 +180,8 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
             return;
         if (wasInterected)
             return;
-        if (!pickedUp)
-        {
-            PickUp();
-        }
-        else if (pickedUp)
-        {
-            DropItem();
-        }
+        PickUp();
+
         wasInterected = true;
     }
     private void PickUp()
@@ -202,12 +194,6 @@ public class PickUpItemBehaviour : MonoBehaviour, IInteractable
             itemSpotBehaviour = null;
         }
         playerPickUp.GetPickedupObject(this);
-        pickedUp = true;
-    }
-    private void DropItem()
-    {
-        //playerPickUp.BreakConnection();
-        pickedUp = false;
     }
     public void ExitInteract()
     {

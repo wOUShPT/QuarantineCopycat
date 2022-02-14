@@ -24,7 +24,6 @@ public class ClothPlace : ItemSpotBehaviour
             return; //can't put an cloth on a book spot
         }
         item = clothBehaviour;
-        clothBehaviour.PickedUp = false;
         playerPickUp.BreakConnection(item); // Drop book
         PlaceItemToSpot();
     }

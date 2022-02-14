@@ -13,10 +13,4 @@ public abstract class ToggleInteractionTrigger : MonoBehaviour
     }
     //Abstract classes in order to all parents having the same methods
     public abstract void CheckPlayeerHasToothSpecificItem();
-
-    public abstract void CheckPlayerDropSpecificItem();
-
-    protected abstract void AssignAndMakeInteractionTriggerInteraction(PickUpItemBehaviour pickUpItem);
-
-    protected abstract void MakeTriggerInteractionDisabled();
 }

@@ -31,15 +31,12 @@ public class PlayerPickUpBehaviour : MonoBehaviour
     {
         pickUpItem = pickedupObject;
         PickUpObject();
-        CheckIsBrushTeethBehaviour(pickedupObject);
     }
 
     public void BreakConnection(PickUpItemBehaviour item)
     {
         //Set parent to null
         item.transform.SetParent(null);
-        item.PickedUp = false;
-        CheckPlayerWillDropToothBrush(item);
         pickUpItem = null;
     }
     public void PickUpObject()
@@ -52,59 +49,6 @@ public class PlayerPickUpBehaviour : MonoBehaviour
         pickUpItem.gameObject.SetActive(false);
         inventory.AddItem(pickUpItem);
         pickUpItem = null;
-    }
-    private void CheckIsBrushTeethBehaviour(PickUpItemBehaviour item)
-    {
-        if(item != null)
-        {
-            switch (item.ObjectType)
-            {
-                case PickUpItemBehaviour.PickUpObjectType.Book:
-                case PickUpItemBehaviour.PickUpObjectType.Cloth:
-                case PickUpItemBehaviour.PickUpObjectType.Disk:
-                case PickUpItemBehaviour.PickUpObjectType.Bread:
-                case PickUpItemBehaviour.PickUpObjectType.Any:
-                case PickUpItemBehaviour.PickUpObjectType.Coffee:
-                case PickUpItemBehaviour.PickUpObjectType.Food:
-                case PickUpItemBehaviour.PickUpObjectType.Toothbrush:
-                    break;
-                case PickUpItemBehaviour.PickUpObjectType.WateringCan:
-                    item.WaterPlantsBehaviour.CheckPlayeerHasToothSpecificItem();
-                    break;
-                case PickUpItemBehaviour.PickUpObjectType.Plate:
-                    item.PlateBehaviour.CheckPlayeerHasToothSpecificItem();
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    private void CheckPlayerWillDropToothBrush(PickUpItemBehaviour item)
-    {
-        if (item != null)
-        {
-            switch (item.ObjectType)
-            {
-                case PickUpItemBehaviour.PickUpObjectType.Book:
-                case PickUpItemBehaviour.PickUpObjectType.Cloth:
-                case PickUpItemBehaviour.PickUpObjectType.Disk:
-                case PickUpItemBehaviour.PickUpObjectType.Bread:
-                case PickUpItemBehaviour.PickUpObjectType.Any:
-                case PickUpItemBehaviour.PickUpObjectType.Coffee:
-                case PickUpItemBehaviour.PickUpObjectType.Food:
-                case PickUpItemBehaviour.PickUpObjectType.Toothbrush:
-                    break;
-                case PickUpItemBehaviour.PickUpObjectType.WateringCan:
-                    item.WaterPlantsBehaviour.CheckPlayerDropSpecificItem();
-                    break;
-                case PickUpItemBehaviour.PickUpObjectType.Plate:
-                    item.PlateBehaviour.CheckPlayerDropSpecificItem();
-                    break;
-                default:
-                    break;
-            }
-            
-        }
     }
     private void Update()
     {

@@ -16,37 +16,7 @@ public class BrushingTeethBehaviour : ToggleInteractionTrigger
 
     public override void CheckPlayeerHasToothSpecificItem()
     {
-        if(pickupBehaviour != null)
-        {
-                PickUpItemBehaviour pickUpItem = pickupBehaviour.GetInventory().CheckHasItem(PickUpItemBehaviour.PickUpObjectType.Toothbrush);
-                if( pickUpItem != null)
-                {
-                    //If has toothBrushPivot
-                    AssignAndMakeInteractionTriggerInteraction(pickUpItem);
-                }
-        }
-    }
-    protected override void AssignAndMakeInteractionTriggerInteraction(PickUpItemBehaviour pickUpItem)
-    {
-        ItemToInteractionTriggerPivot = pickUpItem.transform;
-        toothBrushAnimator = pickUpItem.ItemAnimator;
-        interactionTriggerCollider.enabled = true; // now the interaction trigger can be interactable
-    }
-    public override void CheckPlayerDropSpecificItem()
-    {
-        if( pickupBehaviour != null)
-        {
-            if(ItemToInteractionTriggerPivot != null)
-            {
-                MakeTriggerInteractionDisabled();
-            }
-        }
-    }
-    protected override void MakeTriggerInteractionDisabled()
-    {
-        ItemToInteractionTriggerPivot = null; // make toothbrush references null since player don't have it anymore
-        toothBrushAnimator = null;
-        interactionTriggerCollider.enabled = false; //now interaction trigger is disabled
+        
     }
     //Called by the timeline
     public void BrushTeethAnimationStart() // Play animation

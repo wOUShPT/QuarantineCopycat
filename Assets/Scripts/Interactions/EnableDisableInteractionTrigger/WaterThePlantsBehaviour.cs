@@ -23,34 +23,9 @@ public class WaterThePlantsBehaviour : ToggleInteractionTrigger
             if (pickUpItem != null)
             {
                 //If has toothBrushPivot
-                AssignAndMakeInteractionTriggerInteraction(pickUpItem);
+                WaterCanPlay();
             }
         }
-    }
-
-    public override void CheckPlayerDropSpecificItem()
-    {
-        if (pickupBehaviour != null)
-        {
-            if (ItemToInteractionTriggerPivot != null)
-            {
-                MakeTriggerInteractionDisabled();
-            }
-        }
-    }
-
-    protected override void AssignAndMakeInteractionTriggerInteraction(PickUpItemBehaviour pickUpItem)
-    {
-        ItemToInteractionTriggerPivot = pickUpItem.transform;
-        wateringcanParticleSystem = pickUpItem.GetWaterParticle;
-        interactionTriggerCollider.enabled = true; // now the interaction trigger can be interactable
-    }
-
-    protected override void MakeTriggerInteractionDisabled()
-    {
-        ItemToInteractionTriggerPivot = null;
-        wateringcanParticleSystem = null;
-        interactionTriggerCollider.enabled = false; // now the interaction trigger can be interactable
     }
     //Called by the timeline
     public void WaterCanPlay()

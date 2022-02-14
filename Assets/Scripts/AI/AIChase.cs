@@ -1,6 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using Cinemachine;
+using System.Collections;
+
 public class AIChase : MonoBehaviour
 {
     //Agent
@@ -15,11 +18,29 @@ public class AIChase : MonoBehaviour
     [SerializeField] private float maxFOV = 60f;
     private float targetFOV;
     [SerializeField] private float sensibility = 0.2f;
+    private CameraManager cameraManager;
     private void Awake()
     {
         target = FindObjectOfType<PlayerMovement>().transform;
         agent = GetComponent<NavMeshAgent>();
+        agent.isStopped = true; // Make the agent stop
         fPExtension = FindObjectOfType<CinemachineFPExtension>();
+        cameraManager = FindObjectOfType<CameraManager>();
+    }
+    private void Start()
+    {
+        SwitchToSecondCamera();
+    }
+    private void SwitchToSecondCamera()
+    {
+        StartCoroutine(SetupChase());
+    }
+    IEnumerator SetupChase()
+    {
+        yield return new WaitForSeconds(3f);
+        cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
+        yield return new WaitForSeconds(5f);
+        agent.isStopped = true;
     }
     private void Update()
     {
@@ -61,12 +82,5 @@ public class AIChase : MonoBehaviour
         }
         vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, targetFOV, sensibility * Time.deltaTime);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement playerMovement))
-        {
-            //Stop AI Chasing
-            agent.isStopped = true;
-        }
-    }
+    
 }

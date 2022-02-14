@@ -22,7 +22,6 @@ public class DiskPlace : ItemSpotBehaviour
             //Player has a disk in his hands
             item = pickUpItem;
             item.gameObject.SetActive(true);
-            item.PickedUp = false;
             playerPickUp.BreakConnection(item);
             PlaceItemToSpot();
             diskParams.targetMusic = pickUpItem.AudioClip;

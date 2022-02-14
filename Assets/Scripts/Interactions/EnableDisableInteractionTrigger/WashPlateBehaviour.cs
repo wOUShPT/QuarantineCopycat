@@ -20,34 +20,10 @@ public class WashPlateBehaviour : ToggleInteractionTrigger
             if (pickUpItem != null && !pickUpItem.IsPlateWashed)
             {
                 //If has the plate not washed yet
-                AssignAndMakeInteractionTriggerInteraction(pickUpItem);
+                itemBehaviour = pickUpItem;
+                PlateIsWashed();
             }
         }
-    }
-
-    public override void CheckPlayerDropSpecificItem()
-    {
-        if (pickupBehaviour != null)
-        {
-            if (ItemToInteractionTriggerPivot != null)
-            {
-                MakeTriggerInteractionDisabled();
-            }
-        }
-    }
-
-    protected override void AssignAndMakeInteractionTriggerInteraction(PickUpItemBehaviour pickUpItem)
-    {
-        itemBehaviour = pickUpItem;
-        ItemToInteractionTriggerPivot = itemBehaviour.transform;
-        interactionTriggerCollider.enabled = true; // now the interaction trigger can be interactable
-    }
-
-    protected override void MakeTriggerInteractionDisabled()
-    {
-        itemBehaviour = null;
-        ItemToInteractionTriggerPivot = null;
-        interactionTriggerCollider.enabled = false; // now the interaction trigger can be interactable
     }
     public void PlateIsWashed()
     {
