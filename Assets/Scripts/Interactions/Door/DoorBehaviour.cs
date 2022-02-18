@@ -184,10 +184,6 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
             return;
         }
         fridgePlace.enabled = true;
-        //foreach( PickUpItemBehaviour pickups in foodPickUps)
-        //{
-        //    pickups.IsPickable = true;
-        //}
     }
     public void DisplayOutline()
     {

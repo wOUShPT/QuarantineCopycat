@@ -19,4 +19,19 @@ public class CameraFunctions : MonoBehaviour
             _camera.ForceCameraPosition(_camera.Follow.position, _camera.LookAt.rotation);
         }
     }
+
+    public void SetLookAtObject(Transform _lookatTarget)
+    {
+        if(_camera.LookAt == null)
+        {
+            _camera.LookAt = _lookatTarget;
+        }
+    }
+    public void SetNullLookAt()
+    {
+        if(_camera.LookAt != null)
+        {
+            _camera.LookAt = null; //Set camera look at as null
+        }
+    }
 }

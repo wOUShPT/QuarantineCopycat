@@ -19,6 +19,8 @@ public class AIChase : MonoBehaviour
     private float targetFOV;
     [SerializeField] private float sensibility = 0.2f;
     private CameraManager cameraManager;
+    private TriggerChase triggerChase;
+    [SerializeField] private LayerMask chaseMask;
     private void Awake()
     {
         target = FindObjectOfType<PlayerMovement>().transform;
@@ -26,10 +28,19 @@ public class AIChase : MonoBehaviour
         agent.isStopped = true; // Make the agent stop
         fPExtension = FindObjectOfType<CinemachineFPExtension>();
         cameraManager = FindObjectOfType<CameraManager>();
+        triggerChase = FindObjectOfType<TriggerChase>();
     }
     private void Start()
+    {        
+        triggerChase.OnPlayerInsideTrigger += ColliderTrigger_OnPlayerEnterTrigger;
+    }
+    private void ColliderTrigger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
     {
-        SwitchToSecondCamera();
+        if (agent.isStopped) //Switch the camera
+        {
+            SwitchToSecondCamera();
+            triggerChase.OnPlayerInsideTrigger -= ColliderTrigger_OnPlayerEnterTrigger;
+        }
     }
     private void SwitchToSecondCamera()
     {
@@ -37,13 +48,18 @@ public class AIChase : MonoBehaviour
     }
     IEnumerator SetupChase()
     {
-        yield return new WaitForSeconds(3f);
+        Camera.main.cullingMask = chaseMask;
+        yield return new WaitForSeconds(.1f);
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
         yield return new WaitForSeconds(5f);
-        agent.isStopped = true;
+        agent.isStopped = false; // Copycat starts moving
     }
     private void Update()
     {
+        if (agent.isStopped)
+        {
+            return; // The agent is stopped
+        }
         //Set target dynamically
         agent.SetDestination(target.position);
     }

@@ -14,7 +14,7 @@ public class CameraManager : MonoBehaviour
     [Serializable]
     public enum CinemachineStateSwitcher
     {
-        FirstPerson, Cinematic, SecondPerson, Darts, Toilet, Bath, BrushTeeth, WateringCan, Cadre, Sofa
+        FirstPerson, Cinematic, SecondPerson, Darts, Toilet, Bath, BrushTeeth, WateringCan, Cadre, Sofa, Copycat
     }
     private static CinemachineStateSwitcher cinemachineSwitcher;
     private CinemachineExtension[] _cameraExtensions;
@@ -112,6 +112,11 @@ public class CameraManager : MonoBehaviour
         cinemachineSwitcher = state;
         SwitchState();
     }
+    public void ChangeWatchCopycat()
+    {
+        cinemachineSwitcher = CinemachineStateSwitcher.Copycat;
+        SwitchState();
+    }
     
     private void SwitchState()
     {
@@ -152,6 +157,9 @@ public class CameraManager : MonoBehaviour
             
             case CinemachineStateSwitcher.Sofa:
                 animator.Play("SofaState");
+                break;
+            case CinemachineStateSwitcher.Copycat:
+                animator.Play("CopycatState");
                 break;
         }
     }
