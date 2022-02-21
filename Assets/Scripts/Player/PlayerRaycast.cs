@@ -15,11 +15,11 @@ public class PlayerRaycast : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
-        ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
     }
 
     void FixedUpdate()
     {
+        ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out hit, range))
         {
             raycastCallback(hit);

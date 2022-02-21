@@ -36,12 +36,13 @@ public class CoffeeMachine : ItemSpotBehaviour
     IEnumerator WaitToMakeToastWork()
     {
         coffeeMachineParams.BoxCollider.enabled = false;
-        yield return new WaitForSeconds(.6f); //Avoid interact immediatly with the toast
+        yield return new WaitForSeconds(.3f); //Avoid interact immediatly with the toast
         coffeeMachineParams.InteractionTriggerCollider.enabled = true;
     }
     //Called by the timeline
     public void CoffeIsReady()
     {
+        Debug.Log(item);
         item.ItemCollider.enabled = true;
         item.CoffeeInteractionTrigger.enabled = true;
         item.enabled = false;
