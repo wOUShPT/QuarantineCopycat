@@ -262,12 +262,160 @@
             </e>
           </e>
         </e>
+        <e p="Plugins" t="Include">
+          <e p="FMOD" t="Include">
+            <e p="addons" t="Include">
+              <e p="ResonanceAudio" t="Include">
+                <e p="Demos" t="Include">
+                  <e p="Environment" t="Include">
+                    <e p="ResonanceAudioDemo" t="Include">
+                      <e p="CubeRoomUnlitGrayscale.shader" t="Include" />
+                    </e>
+                  </e>
+                  <e p="Scripts" t="Include">
+                    <e p="DemoPlayerController.cs" t="Include" />
+                    <e p="ResonanceAudioDemo" t="Include">
+                      <e p="ResonanceAudioDemoCubeController.cs" t="Include" />
+                      <e p="ResonanceAudioDemoManager.cs" t="Include" />
+                    </e>
+                  </e>
+                </e>
+                <e p="Editor" t="Include">
+                  <e p="ResonanceAudioBuildProcessor.cs" t="Include" />
+                  <e p="ResonanceAudioListenerEditor.cs" t="Include" />
+                  <e p="ResonanceAudioMaterialMapEditor.cs" t="Include" />
+                  <e p="ResonanceAudioReverbBakingWindow.cs" t="Include" />
+                  <e p="ResonanceAudioReverbComputer.cs" t="Include" />
+                  <e p="ResonanceAudioReverbProbeEditor.cs" t="Include" />
+                  <e p="ResonanceAudioRoomEditor.cs" t="Include" />
+                  <e p="ResonanceAudioSourceEditor.cs" t="Include" />
+                </e>
+                <e p="Scripts" t="Include">
+                  <e p="ResonanceAudio.cs" t="Include" />
+                  <e p="ResonanceAudioAcousticMesh.cs" t="Include" />
+                  <e p="ResonanceAudioListener.cs" t="Include" />
+                  <e p="ResonanceAudioMaterialMap.cs" t="Include" />
+                  <e p="ResonanceAudioMaterialMapper.cs" t="Include" />
+                  <e p="ResonanceAudioMaterialMapperUpdater.cs" t="Include" />
+                  <e p="ResonanceAudioReverbProbe.cs" t="Include" />
+                  <e p="ResonanceAudioRoom.cs" t="Include" />
+                  <e p="ResonanceAudioRoomManager.cs" t="Include" />
+                  <e p="ResonanceAudioSource.cs" t="Include" />
+                </e>
+                <e p="Shaders" t="Include">
+                  <e p="ResonanceAudioSurfaceMaterial.shader" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="FMODUnity.asmdef" t="Include" />
+            <e p="platforms" t="Include">
+              <e p="android" t="Include">
+                <e p="src" t="Include">
+                  <e p="PlatformAndroid.cs" t="Include" />
+                </e>
+              </e>
+              <e p="html5" t="Include">
+                <e p="src" t="Include">
+                  <e p="PlatformWebGL.cs" t="Include" />
+                </e>
+              </e>
+              <e p="ios" t="Include">
+                <e p="src" t="Include">
+                  <e p="PlatformIOS.cs" t="Include" />
+                </e>
+              </e>
+              <e p="linux" t="Include">
+                <e p="src" t="Include">
+                  <e p="PlatformLinux.cs" t="Include" />
+                </e>
+              </e>
+              <e p="mac" t="Include">
+                <e p="src" t="Include">
+                  <e p="PlatformMac.cs" t="Include" />
+                </e>
+              </e>
+              <e p="tvos" t="Include">
+                <e p="src" t="Include">
+                  <e p="PlatformAppleTV.cs" t="Include" />
+                </e>
+              </e>
+              <e p="win" t="Include">
+                <e p="src" t="Include">
+                  <e p="PlatformWindows.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="ReadMe.txt" t="Include" />
+            <e p="src" t="Include">
+              <e p="AutomatableSlots.cs" t="Include" />
+              <e p="BankRefAttribute.cs" t="Include" />
+              <e p="CodeGeneration.cs" t="Include" />
+              <e p="Editor" t="Include">
+                <e p="BankRefDrawer.cs" t="Include" />
+                <e p="BankRefresher.cs" t="Include" />
+                <e p="BankRefreshWindow.cs" t="Include" />
+                <e p="BoltIntegration.cs" t="Include" />
+                <e p="CreateEventPopup.cs" t="Include" />
+                <e p="EditorBankRef.cs" t="Include" />
+                <e p="EditorEventRef.cs" t="Include" />
+                <e p="EditorParamRef.cs" t="Include" />
+                <e p="EditorSettings.cs" t="Include" />
+                <e p="EditorUtils.cs" t="Include" />
+                <e p="EventBrowser.cs" t="Include" />
+                <e p="EventCache.cs" t="Include" />
+                <e p="EventManager.cs" t="Include" />
+                <e p="EventRefDrawer.cs" t="Include" />
+                <e p="EventReferenceUpdater.cs" t="Include" />
+                <e p="FileReorganizer.cs" t="Include" />
+                <e p="FindAndReplace.cs" t="Include" />
+                <e p="FMODEventPlayableEditor.cs" t="Include" />
+                <e p="FMODEventTrackEditor.cs" t="Include" />
+                <e p="FMODUnityEditor.asmdef" t="Include" />
+                <e p="ListView.cs" t="Include" />
+                <e p="LogViewer.cs" t="Include" />
+                <e p="ParamRefDrawer.cs" t="Include" />
+                <e p="SettingsEditor.cs" t="Include" />
+                <e p="SetupWizard.cs" t="Include" />
+                <e p="StudioBankLoaderEditor.cs" t="Include" />
+                <e p="StudioEventEmitterEditor.cs" t="Include" />
+                <e p="StudioEventEmitterGizmoDrawer.cs" t="Include" />
+                <e p="StudioGlobalParameterTriggerEditor.cs" t="Include" />
+                <e p="StudioListenerEditor.cs" t="Include" />
+                <e p="StudioParameterTriggerEditor.cs" t="Include" />
+              </e>
+              <e p="EventHandler.cs" t="Include" />
+              <e p="EventRefAttribute.cs" t="Include" />
+              <e p="EventReference.cs" t="Include" />
+              <e p="fmod.cs" t="Include" />
+              <e p="fmod_dsp.cs" t="Include" />
+              <e p="fmod_errors.cs" t="Include" />
+              <e p="fmod_studio.cs" t="Include" />
+              <e p="FMODEventPlayable.cs" t="Include" />
+              <e p="FMODEventTrack.cs" t="Include" />
+              <e p="FMODRuntimeManagerOnGUIHelper.cs" t="Include" />
+              <e p="ParamRef.cs" t="Include" />
+              <e p="ParamRefAttribute.cs" t="Include" />
+              <e p="Platform.cs" t="Include" />
+              <e p="PlatformDefault.cs" t="Include" />
+              <e p="PlatformGroup.cs" t="Include" />
+              <e p="PlatformMobileHigh.cs" t="Include" />
+              <e p="PlatformMobileLow.cs" t="Include" />
+              <e p="PlatformPlayInEditor.cs" t="Include" />
+              <e p="RuntimeManager.cs" t="Include" />
+              <e p="RuntimeUtils.cs" t="Include" />
+              <e p="Settings.cs" t="Include" />
+              <e p="StudioBankLoader.cs" t="Include" />
+              <e p="StudioEventEmitter.cs" t="Include" />
+              <e p="StudioGlobalParameterTrigger.cs" t="Include" />
+              <e p="StudioListener.cs" t="Include" />
+              <e p="StudioParameterTrigger.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="AI" t="Include">
             <e p="AIChase.cs" t="Include" />
-          </e>
-          <e p="BrushTooth" t="Include">
-            <e p="BrushingTeethBehaviour.cs" t="Include" />
+            <e p="TriggerChase.cs" t="Include" />
           </e>
           <e p="Cinemachine" t="Include">
             <e p="CameraFunctions.cs" t="Include" />
@@ -294,6 +442,11 @@
           <e p="GameEvents" t="Include">
             <e p="GameEvent.cs" t="Include" />
             <e p="GameEventListener.cs" t="Include" />
+          </e>
+          <e p="Generator" t="Include">
+            <e p="Corridor.cs" t="Include" />
+            <e p="CorridorGenerator.cs" t="Include" />
+            <e p="CorridorPool.cs" t="Include" />
           </e>
           <e p="Interactions" t="Include">
             <e p="Bed" t="Include">
@@ -365,9 +518,6 @@
           <e p="OutlineTest" t="Include">
             <e p="FadeOutline.cs" t="Include" />
           </e>
-          <e p="PickUpItem" t="Include">
-            <e p="PickUpItemBehaviour.cs" t="Include" />
-          </e>
           <e p="Player" t="Include">
             <e p="PlayerAnimation.cs" t="Include" />
             <e p="PlayerInteraction.cs" t="Include" />
@@ -376,6 +526,9 @@
             <e p="PlayerPickUpBehaviour.cs" t="Include" />
             <e p="PlayerProperties.cs" t="Include" />
             <e p="PlayerRaycast.cs" t="Include" />
+          </e>
+          <e p="Poll" t="Include">
+            <e p="GenericObjectPool.cs" t="Include" />
           </e>
           <e p="ScriptableObjectScripts" t="Include">
             <e p="Data" t="Include">
@@ -443,6 +596,8 @@
           </e>
         </e>
       </e>
+      <e p="FMODUnity.csproj" t="IncludeRecursive" />
+      <e p="FMODUnityEditor.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="QuarantineCopycat.sln" t="IncludeFlat" />
