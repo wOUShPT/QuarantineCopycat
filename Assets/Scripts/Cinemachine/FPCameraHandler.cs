@@ -13,8 +13,8 @@ public class FPCameraHandler : MonoBehaviour
     private void Awake()
     {
         _povComponent = vCam.GetCinemachineComponent<CinemachinePOV>();
-        _povComponent.m_HorizontalAxis.m_MaxSpeed = mouseSenseData.mouseSensitivity * 5f;
-        _povComponent.m_VerticalAxis.m_MaxSpeed = mouseSenseData.mouseSensitivity * 0.56f * 5f;
+        _povComponent.m_HorizontalAxis.m_MaxSpeed = mouseSenseData.mouseSensitivity * 2f;
+        _povComponent.m_VerticalAxis.m_MaxSpeed = mouseSenseData.mouseSensitivity * 0.56f * 2f;
     }
 
     private void Update()

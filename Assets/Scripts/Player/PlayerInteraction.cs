@@ -14,42 +14,15 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private LayerMask interactablesLayer;
     private UIManager _uiManager;
-    private RaycastHit[] _hitResults;
+    private Camera _camera;
     private Transform raycastTransform;
     void Start()
     {
         _uiManager = FindObjectOfType<UIManager>();
-        
-        _hitResults = new RaycastHit[1];
-
+        _camera = Camera.main;
         _playerRaycast.raycastCallback += InteractionPrompt;
     }
-
-    /*void FixedUpdate()
-    {
-        if (PlayerProperties.FreezeInteraction)
-        {
-            return;
-        }
-
-        _hudReferences.ToggleInteractionPrompt(false);
-        int hits = Physics.RaycastNonAlloc(Camera.main.transform.position, Camera.main.transform.forward, _hitResults, range, interactablesLayer);
-        if (hits == 0)
-        {
-            return;
-        }
-        
-        if (_hitResults[0].transform.TryGetComponent(out IInteractable interactable))
-        {
-            _hudReferences.ToggleInteractionPrompt(true);
-            if (InputManager.Instance.PlayerInput.Interaction)
-            {
-                interactable.Interact();
-            }
-        }
-    }*/
-
-
+    
     private void OnDisable()
     {
         if (_uiManager.interactionPrompt != null)
@@ -62,12 +35,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (PlayerProperties.FreezeInteraction)
         {
+            _uiManager.ToggleInteractionPrompt(false);
+            TakeOffOutline();
+            CheckChangedRaycastTarget(null);
             return;
         }
-        
-        _uiManager.ToggleInteractionPrompt(false);
 
-        if (hit.transform.TryGetComponent(out IInteractable interactable)  && Vector3.Distance(Camera.main.transform.position, hit.point) <= (interactable.InteractionDistance() == 0 ? range : interactable.InteractionDistance()))
+        if (hit.transform.TryGetComponent(out IInteractable interactable)  && Vector3.Distance(_camera.transform.position, hit.point) <= (interactable.InteractionDistance() == 0 ? range : interactable.InteractionDistance()))
         {            
             _uiManager.ToggleInteractionPrompt(true);
             interactable.DisplayOutline();

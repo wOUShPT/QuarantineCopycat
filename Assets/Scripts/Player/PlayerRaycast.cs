@@ -6,22 +6,20 @@ using UnityEngine;
 public class PlayerRaycast : MonoBehaviour
 {
     public Action<RaycastHit> raycastCallback;
-    private RaycastHit[] _hitResults;
     private RaycastHit hit;
     [SerializeField]
     private float range;
+    private Camera _camera;
+    private Ray ray;
 
     private void Awake()
     {
-        _hitResults = new RaycastHit[1];
+        _camera = Camera.main;
+        ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
     }
 
     void FixedUpdate()
     {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        
-        int hits = Physics.RaycastNonAlloc(ray, _hitResults, range);
-
         if (Physics.Raycast(ray, out hit, range))
         {
             raycastCallback(hit);
