@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4090.7715, g: 2837.8086, b: 2548.3555, a: 1}
+  m_IndirectSpecularColor: {r: 4089.4707, g: 2834.0664, b: 2542.3672, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -908,9 +908,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d979bc5b8c49e4898efdd15181d42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDistanceSpawnLevelPart: 20
   levelPartStart: {fileID: 1014851065}
-  levelPartList:
-  - {fileID: 1440649890}
+  corridorPoolArray:
+  - name: Corridor
+    corridorPart: {fileID: 1440649890}
 --- !u!4 &150845877
 Transform:
   m_ObjectHideFlags: 0
@@ -922,7 +924,6 @@ Transform:
   m_LocalPosition: {x: -22.759481, y: -11.715281, z: -8.831682}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 713608157}
   - {fileID: 1440649891}
   m_Father: {fileID: 0}
   m_RootOrder: 23
@@ -26632,36 +26633,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4262517558375216835, guid: 968cc94ea2bb3c5408fa378227090a65, type: 3}
   m_PrefabInstance: {fileID: 711084372}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &713608156
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 713608157}
-  m_Layer: 0
-  m_Name: SecondCorridorGeneratorPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &713608157
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713608156}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 150845877}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &718724080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37268,6 +37239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 107595924}
+  placeCopyCat: {fileID: 0}
 --- !u!4 &1096276520
 Transform:
   m_ObjectHideFlags: 0
@@ -55223,7 +55195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5664ed8cd322dd1438b98787d14390e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7226363937210395058, guid: 3d7b135d90996fc4b983be8a822f4421, type: 3}
+  prefab:
+  - {fileID: 6458962521630614130, guid: 3d7b135d90996fc4b983be8a822f4421, type: 3}
+  - {fileID: 3963409121023452386, guid: fab8c361d35f9944b88a1a93abb10e1e, type: 3}
 --- !u!4 &1440649891
 Transform:
   m_ObjectHideFlags: 0
@@ -55236,7 +55210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 150845877}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1454745711
 GameObject:

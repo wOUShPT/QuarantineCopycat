@@ -21,6 +21,11 @@ public class AIChase : MonoBehaviour
     private CameraManager cameraManager;
     private TriggerChase triggerChase;
     [SerializeField] private LayerMask chaseMask;
+    private enum AgentState
+    {
+        Idle, Chase, MeshLink 
+    }
+    private AgentState agentState;
     private void Awake()
     {
         target = FindObjectOfType<PlayerMovement>().transform;
@@ -29,6 +34,7 @@ public class AIChase : MonoBehaviour
         fPExtension = FindObjectOfType<CinemachineFPExtension>();
         cameraManager = FindObjectOfType<CameraManager>();
         triggerChase = FindObjectOfType<TriggerChase>();
+        agent.autoTraverseOffMeshLink = false; //Traverse manually
     }
     private void Start()
     {        
@@ -53,15 +59,29 @@ public class AIChase : MonoBehaviour
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
         yield return new WaitForSeconds(5f);
         agent.isStopped = false; // Copycat starts moving
+        agentState = AgentState.Chase;
     }
     private void Update()
     {
-        if (agent.isStopped)
+        if (!agent.enabled || agent.isStopped)
         {
-            return; // The agent is stopped
+            return; // The agent is stopped or is not enabled
         }
-        //Set target dynamically
-        agent.SetDestination(target.position);
+        switch (agentState)
+        {
+            case AgentState.Idle:
+                break;
+            case AgentState.Chase:
+                //Set target dynamically
+                agent.SetDestination(target.position);
+                CheckAgentIsOnMeshLink();
+                break;
+            case AgentState.MeshLink:
+                break;
+            default:
+                break;
+        }
+        
     }
     void LateUpdate()
     {
@@ -90,13 +110,39 @@ public class AIChase : MonoBehaviour
                 targetFOV = minFOV + 10; // 30
                 break;
             case 6:
-                targetFOV = minFOV; // 20
-                break;
             default:
                 targetFOV = minFOV; // 20
                 break;
         }
         vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, targetFOV, sensibility * Time.deltaTime);
     }
-    
+    private void CheckGround()
+    {
+        
+        
+    }
+
+    private void CheckAgentIsOnMeshLink()
+    {
+        if (agent.isOnOffMeshLink)
+        {
+            Debug.Log("On off mesh link");
+            StartCoroutine(NormalSpeed());
+            agentState = AgentState.MeshLink;
+        }
+    }
+
+    IEnumerator NormalSpeed()
+    {
+        OffMeshLinkData data = agent.currentOffMeshLinkData;
+        Debug.Log(data.endPos);
+        Vector3 endPos = (data.endPos) + Vector3.up * agent.baseOffset;
+        while (agent.transform.position != endPos)
+        {
+            agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
+            yield return null;
+        }
+        agent.CompleteOffMeshLink();
+        agentState = AgentState.Chase;
+    }
 }

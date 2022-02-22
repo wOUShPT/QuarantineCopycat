@@ -10,11 +10,15 @@ public class PlayerAnimation : MonoBehaviour
     private Animator _animator;
     private PlayerMovement _movement;
     private CameraManager cameraManager;
+    private AIShowing showing;
+    [SerializeField]private Transform placeCopyCat;
+    public Transform PlaceCopyCat { get { return placeCopyCat; } set { placeCopyCat = value; } }
 
     private void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
         cameraManager = FindObjectOfType<CameraManager>();
+        showing = FindObjectOfType<AIShowing>();
     }
     private void Start()
     {
@@ -27,11 +31,9 @@ public class PlayerAnimation : MonoBehaviour
     }
     public void SeeCopyCat()
     {
-        PlayerProperties.Mode = PlayerProperties.State.Cutscene;
-        PlayerProperties.FreezeAim = true;
-        PlayerProperties.FreezeMovement = true;
-        PlayerProperties.FreezeInteraction = true;
+        SetPlayerProperties(true);
         cameraManager.ChangeWatchCopycat();
+        showing.SetCopyCatPosition(placeCopyCat);
         StartCoroutine(RotateBryan());
     }
 
@@ -49,10 +51,14 @@ public class PlayerAnimation : MonoBehaviour
             yield return null;
         }
         transform.localRotation = Quaternion.Euler(transform.rotation.x, MathAngleY, transform.rotation.z);
-        PlayerProperties.FreezeAim = false;
-        PlayerProperties.FreezeMovement = false;
-        PlayerProperties.FreezeInteraction = false;
-        PlayerProperties.Mode = PlayerProperties.State.Dynamic;
+        SetPlayerProperties(false);
         cameraManager.ChangeToCinematic();
+    }
+    private void SetPlayerProperties(bool state)
+    {
+        PlayerProperties.Mode = state ? PlayerProperties.State.Cutscene : PlayerProperties.State.Dynamic;
+        PlayerProperties.FreezeAim = state;
+        PlayerProperties.FreezeMovement = state;
+        PlayerProperties.FreezeInteraction = state;
     }
 }
