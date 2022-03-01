@@ -34,7 +34,6 @@ public class AIChase : MonoBehaviour
         fPExtension = FindObjectOfType<CinemachineFPExtension>();
         cameraManager = FindObjectOfType<CameraManager>();
         triggerChase = FindObjectOfType<TriggerChase>();
-        agent.autoTraverseOffMeshLink = false; //Traverse manually
     }
     private void Start()
     {        
@@ -59,7 +58,9 @@ public class AIChase : MonoBehaviour
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
         yield return new WaitForSeconds(5f);
         agent.isStopped = false; // Copycat starts moving
+        StartCoroutine(StartIsOnMeshLink());
         agentState = AgentState.Chase;
+        
     }
     private void Update()
     {
@@ -74,11 +75,8 @@ public class AIChase : MonoBehaviour
             case AgentState.Chase:
                 //Set target dynamically
                 agent.SetDestination(target.position);
-                CheckAgentIsOnMeshLink();
                 break;
             case AgentState.MeshLink:
-                break;
-            default:
                 break;
         }
         
@@ -116,33 +114,33 @@ public class AIChase : MonoBehaviour
         }
         vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, targetFOV, sensibility * Time.deltaTime);
     }
-    private void CheckGround()
+    private IEnumerator StartIsOnMeshLink()
     {
-        
-        
-    }
-
-    private void CheckAgentIsOnMeshLink()
-    {
-        if (agent.isOnOffMeshLink)
+        //Courotine for the navmesh link
+        agent.autoTraverseOffMeshLink = false;
+        while (true)
         {
-            Debug.Log("On off mesh link");
-            StartCoroutine(NormalSpeed());
-            agentState = AgentState.MeshLink;
+            if (agent.isOnOffMeshLink)
+            {
+                //Custom traverse link
+                agentState = AgentState.MeshLink;
+                yield return StartCoroutine(NormalSpeed()); //with normal speed
+                agent.CompleteOffMeshLink();
+            }
+            yield return null;
         }
     }
 
     IEnumerator NormalSpeed()
     {
         OffMeshLinkData data = agent.currentOffMeshLinkData;
-        Debug.Log(data.endPos);
         Vector3 endPos = (data.endPos) + Vector3.up * agent.baseOffset;
-        while (agent.transform.position != endPos)
+        while (agent.transform.position != endPos) //until the navmesh reached the end position of the link
         {
             agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
             yield return null;
         }
-        agent.CompleteOffMeshLink();
         agentState = AgentState.Chase;
+
     }
 }

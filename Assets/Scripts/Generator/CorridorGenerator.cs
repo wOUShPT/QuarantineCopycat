@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 public class CorridorGenerator : MonoBehaviour
 {
     
@@ -19,16 +18,8 @@ public class CorridorGenerator : MonoBehaviour
     {
         Straight, CurveRightEnd, CurveLeftEnd
     }
-    class PlacedCorridorInformation
-    {
-        public CorridorInfo corridorInfo;
-        public PlacedCorridorInformation(CorridorInfo _corridorInfo) //Constructor to have the informations
-        {
-            corridorInfo = _corridorInfo;
-        }
-    }
     //Check all corridor active
-    private List<PlacedCorridorInformation> corridorInformationList; 
+    [SerializeField]private List<CorridorInfo> corridorInformationList; 
     private Transform lastEndPositionTransform;
 
     private CharacterController playerMovement;
@@ -37,7 +28,15 @@ public class CorridorGenerator : MonoBehaviour
     {
         playerMovement = FindObjectOfType<CharacterController>();
         lastEndPositionTransform = levelPartStart.Find("EndPosition");
-        corridorInformationList = new List<PlacedCorridorInformation>();
+        foreach (CorridorInfo corridor in corridorInformationList)
+        {
+            corridor.gameObject.SetActive(true);
+        }
+        
+    }
+    private void Start()
+    {
+        UpdateLink();
     }
     private void Update()
     {
@@ -52,9 +51,13 @@ public class CorridorGenerator : MonoBehaviour
         CorridorInfo choosenLevelPart = corridorPoolArray[Random.Range(0, corridorPoolArray.Length)].corridorPart.Get();
         Transform lastLevelPartTransform = SpawnLevelPart(choosenLevelPart ,lastEndPositionTransform.position); // Get the spwan level
         TurnOffCorridor(choosenLevelPart);
-        corridorInformationList.Add(new PlacedCorridorInformation(choosenLevelPart));
+        CorridorInfo lastPart = corridorInformationList[corridorInformationList.Count - 1];
+        corridorInformationList.Add(choosenLevelPart);
+        //lastPart.UpdateLink();
         lastEndPositionTransform = lastLevelPartTransform.Find("EndPosition");
+        UpdateLink();
     }
+
     private Transform SpawnLevelPart(CorridorInfo levelPart, Vector3 spawnPosition)
     {
         Transform levelpartTransform = levelPart.transform;
@@ -64,15 +67,25 @@ public class CorridorGenerator : MonoBehaviour
         return levelpartTransform;
     }
 
+    private void UpdateLink()
+    {
+        if (corridorInformationList.Count == 0)
+            return;
+        foreach (CorridorInfo placedCorridorInformation in corridorInformationList)
+        {
+            placedCorridorInformation.UpdateLink();
+        }
+    }
+
     private void TurnOffCorridor(CorridorInfo currentCorridor)
     {
-        if(/*currentCorridor.GetCorridorType() == CorridorInfo.CorridorType.RightCurve*/ corridorInformationList.Count >= 5)
-        {
-            //Return to the pool
-            CorridorInfo corridorInformation = corridorInformationList[0].corridorInfo;
-            corridorInformationList.RemoveAt(0);
-            corridorPoolArray[0].corridorPart.ReturnToPool(corridorInformation);
-        }
+        //if(/*currentCorridor.GetCorridorType() == CorridorInfo.CorridorType.RightCurve*/ corridorInformationList.Count >= 5)
+        //{
+        //    //Return to the pool
+        //    CorridorInfo corridorInformation = corridorInformationList[0].corridorInfo;
+        //    corridorInformationList.RemoveAt(0);
+        //    corridorPoolArray[0].corridorPart.ReturnToPool(corridorInformation);
+        //}
     }
 
 }
