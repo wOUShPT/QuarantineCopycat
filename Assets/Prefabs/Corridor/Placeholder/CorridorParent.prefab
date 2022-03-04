@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: -0.000000029802322, y: 0, z: 0.65}
-  m_EndPoint: {x: 0.000000029802322, y: 0, z: -0.65}
+  m_StartPoint: {x: 0.000000029802322, y: 0, z: -1.22}
+  m_EndPoint: {x: -0.000000029802322, y: 0, z: 1.34}
   m_Width: 2.5257094
   m_CostModifier: -1
-  m_Bidirectional: 1
-  m_AutoUpdatePosition: 0
+  m_Bidirectional: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &1112796841951498371
 GameObject:
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshSurface: {fileID: 0}
   corridorType: 0
+  meshLink: {fileID: 7506013318958177555}
 --- !u!114 &239127044660662385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.06666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4568bfe519ea7db4a90b6043c23f1e00, type: 2}
 --- !u!65 &5213812927432271430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -142,6 +143,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.000000022351784, y: 9.228563, z: 3.1000001}
   m_Center: {x: 0.000049917984, y: -0.0003440381, z: 1.5499958}
+--- !u!208 &6876668577024603217
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693392043469623123}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.00001, y: 4.6140003, z: 1.5500001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 1.5500001}
+  m_TimeToStationary: 0.5
 --- !u!1 &5029814970436486034
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +202,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.00000012060636, y: 9.228563, z: 3.0999997}
   m_Center: {x: 0.00000007613563, y: -0.0003426076, z: 1.5499955}
+--- !u!208 &7790587278076665721
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302179080586384688}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.00001, y: 4.6140003, z: 1.5500001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 1.5500001}
+  m_TimeToStationary: 0.5
 --- !u!65 &2903727780509683341
 BoxCollider:
   m_ObjectHideFlags: 0

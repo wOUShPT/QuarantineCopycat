@@ -6,15 +6,13 @@ public class CorridorInfo : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface meshSurface;
     [SerializeField]private CorridorType corridorType;
+    [SerializeField] private NavMeshLink meshLink;
     private void Awake()
     {
         meshSurface = GetComponent<NavMeshSurface>();
-        SetBake();
+        //SetBake();
     }
-    private void OnEnable()
-    {
-        
-    }
+    
     public enum CorridorType
     {
         Straight, RightCurve
@@ -24,7 +22,10 @@ public class CorridorInfo : MonoBehaviour
     {
         meshSurface.BuildNavMesh();
     }
-
+    public void UpdateLink()
+    {
+        meshLink.UpdateLink();
+    }
     public CorridorType GetCorridorType()
     {
         return corridorType;
