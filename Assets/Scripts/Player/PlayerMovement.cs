@@ -23,8 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController _characterController;
     [SerializeField]
     private Transform cameraPivot;
-    [SerializeField] 
-    private NavMeshAgent _agent;
     [SerializeField, Range(0,1.5f)] 
     private float headBobIntensity;
     [SerializeField] 
@@ -97,29 +95,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         cameraPivot.transform.localPosition = _currentHeadPosition;
-    }
-
-    private IEnumerator MoveToTargetCoroutine(Transform target, float distanceThreshold)
-    {
-        _agent.SetDestination(target.position);
-        _currentRotation.y = transform.rotation.eulerAngles.y;
-        yield return new WaitUntil(() => Vector3.Distance(transform.position, target.position) <= _agent.stoppingDistance + distanceThreshold);
-        while (Mathf.Abs(_currentRotation.y - target.rotation.eulerAngles.y) >= 0.01f)
-        {
-            _currentRotation.y = Mathf.Lerp(_currentRotation.y, target.rotation.eulerAngles.y, Time.deltaTime * 5f);
-            transform.rotation = Quaternion.Euler(_currentRotation);
-            yield return null;
-        }
-        isOnActionPivot = true;
-    }
-
-    // call the navmeshagent to move the player to a target position
-    public void MoveToTarget(Transform target, float distanceThreshold)
-    {
-        PlayerProperties.FreezeMovement = true;
-        PlayerProperties.FreezeAim = true;
-        PlayerProperties.FreezeInteraction = true;
-        StartCoroutine(MoveToTargetCoroutine(target, distanceThreshold));
     }
 
     public void ToggleCollision(bool state)

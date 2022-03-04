@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-public class UI_Inventory : MonoBehaviour
+
+public class UI_NewInventory : MonoBehaviour
 {
-    private Inventory inventory;
     [SerializeField] private Transform itemSlotContainer;
     [SerializeField] private Transform itemSlotTemplate;
     [SerializeField] private UIItemAsset[] itemAssetArray;
-    public void SetInventory(Inventory inventory)
+    public void SetInventory()
     {
-        this.inventory = inventory;
         InventoryManager.inventory.OnItemListChanged += Inventory_OnItemListChanged;
         
     }
@@ -19,6 +18,7 @@ public class UI_Inventory : MonoBehaviour
     {
         RefreshInventoryItems();
     }
+
     private void RefreshInventoryItems()
     {
         foreach (Transform child in itemSlotContainer)
@@ -26,18 +26,20 @@ public class UI_Inventory : MonoBehaviour
             if (child == itemSlotTemplate) continue;
             Destroy(child.gameObject);
         }
+
         int x = 0;
         int y = 0;
         float itemSlotCellSize = 120f;
-        foreach (PickUpItemBehaviour item in inventory.GetItemList())
+        foreach (ItemType item in InventoryManager.inventory.GetItemList())
         {
             //Locate slots in an array
-            RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
+            RectTransform itemSlotRectTransform =
+                Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
             Image image = itemSlotRectTransform.Find("Image").GetComponent<Image>();
             //used by linq seeing the first object from the array with the same Object Type
-            image.sprite = itemAssetArray.Where(t => t.ObjectType == item.ObjectType).First().GetSprite();
+            image.sprite = item._sprite;
             x++;
         }
     }
