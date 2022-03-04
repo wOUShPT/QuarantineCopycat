@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2582441808757208635}
   - component: {fileID: 2582441808757208634}
   - component: {fileID: 2582441808757208633}
-  - component: {fileID: 2582441808757208632}
   - component: {fileID: 2582441808757208639}
   m_Layer: 10
   m_Name: Cloth
@@ -97,30 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2582441808757208632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2582441808757208638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04154b45adfc450459be619ec879dbd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDistance: 0
-  objectType: 1
-  bookParams:
-    textList: []
-  clothParams:
-    isClean: 0
-  diskParams:
-    audioClip: {fileID: 0}
-  breadParams:
-    isReady: 0
-    leftToast: {fileID: 0}
-    rightToast: {fileID: 0}
 --- !u!54 &2582441808757208639
 Rigidbody:
   m_ObjectHideFlags: 0

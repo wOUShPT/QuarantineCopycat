@@ -20,66 +20,94 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37ff6665-f7b8-42b5-9b81-dfd008e24b54" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/.idea.QuarantineCopycat.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/.idea.QuarantineCopycat.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/Built-In Samples.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/HDRP Samples (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/HDRP Samples 7xx - 9xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/HDRP Samples.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/LWRP Samples (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/LWRP Samples.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/Sample Resources.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/URP Samples.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/Editor/Templates/TemplateMenuItems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/Editor/Templates/TemplateMenuItems.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/CustomRTTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/HDSRPTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/LWSRPTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/PPStackTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 10xx - 11xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 3xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 4xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 572 (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 5xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 6xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 718 - 743 (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 7xx - 9xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/LWSRPTemplates 3xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/LWSRPTemplates 4xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/USRPTemplates 10xx - 11xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/USRPTemplates 7xx - 9xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/USRPTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Coffee/GlassCup.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Coffee/GlassCup.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Amazing Assets/Advanced Dissolve/Installer/High Definition.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Amazing Assets/Advanced Dissolve/Shaders/TextMeshPro/TextMeshPro v2.1.6.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FMODBanks/Desktop.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FMODBanks/Desktop/Master.bytes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FMODBanks/Desktop/Master.bytes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FMODBanks/Master.strings.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FMODBanks/Master.strings.bytes.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Book1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Book1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CafeBehaviour.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CafeBehaviour.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Cloth.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Cloth.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Coffee.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Coffee.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Disk.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Disk.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/OutlineCustomPassVolume.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/OutlineCustomPassVolume.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PairBreads.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PairBreads.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PhoneCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PhoneCanvas.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PhonePhysically.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PhonePhysically.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TimelineRelated/EatToastsSequence.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TimelineRelated/EatToastsSequence.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ToothbrushPivot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ToothbrushPivot.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/VinylDisk.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/VinylDisk.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/OnPivotInteractionTrigger.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/OnPivotInteractionTrigger.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/UI_Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory/UI_Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cinemachine/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cinemachine/CameraManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/EditorScreenshotExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/EditorScreenshotExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/ItemSpotBehaviourEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/ItemSpotBehaviourEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/PickUpItemBehaviourEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/PickUpItemBehaviourEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/Blind/BlindBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/Blind/BlindBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/BrushTooth/BrushingTeethBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/BrushTooth/BrushingTeethBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/Door/DoorBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/Door/DoorBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger/ToggleInteractionTrigger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger/ToggleInteractionTrigger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger/WashPlateBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger/WashPlateBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger/WaterThePlantsBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger/WaterThePlantsBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/InteractionTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/InteractionTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/Phone/PickUpPhone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/Phone/PickUpPhone.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/PickUpItem.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/PickUpItem/BookInspection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/PickUpItem/BookInspection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/PickUpItem/PickUpItemBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/PickUpItem/PickUpItemBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/NewVinylBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/NewVinylBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/VinylDiskBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/VinylDiskBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/Interactible.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/Interactible.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/Inventory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/Inventory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/UIItemAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory/UIItemAsset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/UI_Inventory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/UI_Inventory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/BookPlace.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/BookPlace.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ClothPlace.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ClothPlace.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/CoffeeMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/CoffeeMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/DiskPlace.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/DiskPlace.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/FridgePlace.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/FridgePlace.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ItemSpotBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ItemSpotBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/PlatePlace.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/PlatePlace.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ToasterMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ToasterMachine.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/OutlineSelection/02_Selection_Fullscreen.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/OutlineSelection/02_Selection_Fullscreen.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Book.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Book.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Bread.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Bread.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Cloth.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Cloth.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Coffee.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Coffee.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Disk.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Disk.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Food.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Food.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Plate.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Plate.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Toothbrush.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_Toothbrush.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_WateringCan.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI_Item_Assets/UI_WateringCan.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory/ItemType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory/ItemType.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory/PickupItem.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory/PickupItem.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory/UI_NewInventory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory/UI_NewInventory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/Selection_Fullscreen.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/Selection_Fullscreen.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInteraction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInteraction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerPickUpBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerPickUpBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/Upbeat Jazz Music - New York, 1924 (Copyright and Royalty Free).mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/Upbeat Jazz Music - New York, 1924 (Copyright and Royalty Free).mp3.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/AudioManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/AudioManager.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmod_editor.log" beforeDir="false" afterPath="$PROJECT_DIR$/fmod_editor.log" afterDir="false" />
@@ -101,47 +129,60 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.11/Runtime/Core/CinemachineExtension.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interfaces/Interactible.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/DebugStat.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ItemsPlace/CoffeeMachine.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ItemSpotBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ToasterMachine.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory/PickupItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GoalsManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory/UI_NewInventory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OutlineTest/FadeOutline.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/EditorTools/Modules/Components/GameObjectsToggler/GameObjectsToggler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/DialogueReceiver.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/NewVinylBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.2/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/fmod_studio.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DDOL.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerRaycast.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/addons/ResonanceAudio/Editor/ResonanceAudioReverbBakingWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/Editor/Nodes/Misc/LinearDepthNode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Singleton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/EditorScreenshotExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineFPCutsceneExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Inventory/UIItemAsset.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CameraManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Signals/SignalReceiverInspector.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/FPCameraHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerInteraction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerRaycast.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CameraFunctions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CameraManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DDOL.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Singleton.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineFPCutsceneExtension.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineFPExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineStaticFPExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/DialogueReceiver.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/PickUpItem/PickUpItemBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleClip.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleTrack.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/InventoryManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/InteractionTrigger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/CinemachineFPExtensionEditor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/GetSelectedMeshInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.high-definition@10.6.0/Runtime/Material/Material.hlsl" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.11/Runtime/Behaviours/CinemachineBrain.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Shaders/OutlineSelection/02_Selection_Fullscreen.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.11/Runtime/Helpers/CinemachineInputProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/DialogueTrack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Amazing Assets/Advanced Dissolve/Shaders/TextMeshPro/TMP_Bitmap-Custom-Atlas.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CameraFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/EditorTools/Modules/Components/GameObjectsToggler/GameObjectsToggler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.11/Runtime/Behaviours/CinemachineBrain.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleTrack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/InteractionTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/InventoryManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ItemsPlace/CoffeeMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/DebugStat.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GoalsManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Shaders/OutlineSelection/02_Selection_Fullscreen.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/GetSelectedMeshInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/CinemachineFPExtensionEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/Blind/BlindBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/Door/DoorBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Amazing Assets/Advanced Dissolve/Shaders/HDRP/Lit (Transparent).shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/Phone/PickUpPhone.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Settings/InputActions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/BrushTooth/BrushingTeethBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/VinylDiskBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactions/Interactible.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.11/Runtime/Helpers/CinemachineInputProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Previews/Preview_SimpleMultiplyOpNode.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/SubtitleClip.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Amazing Assets/Advanced Dissolve/Shaders/TextMeshPro/TMP_Sprite.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/RuntimeManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ToasterMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinemachine/CinemachineFPExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/Editor/Templates/TemplateHelperFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OutlineTest/FadeOutline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.2/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.11/Runtime/Core/CinemachineExtension.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.high-definition@10.6.0/Runtime/Material/Material.hlsl" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -159,8 +200,32 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/OutlineTest/FadeOutline.cs" />
         <option value="$PROJECT_DIR$/Assets/Plugins/FMOD/addons/ResonanceAudio/Editor/ResonanceAudioReverbBakingWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerRaycast.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/CoffeeMachine.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInteraction.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/InteractionTrigger.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/Blind/BlindBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/Phone/PickUpPhone.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/NewVinylBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/Interactible.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/BookPlace.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ClothPlace.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ItemSpotBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/NewPlayerInventory/PickupItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Plugins/FMOD/src/fmod_studio.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Editor/EditorScreenshotExtension.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/DiskPlace.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/CoffeeMachine.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/PickUpItem/PickUpItemBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ItemsPlace/ToasterMachine.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/Door/DoorBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger/ToggleInteractionTrigger.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/BrushTooth/BrushingTeethBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Inventory/UIItemAsset.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/PickUpItem/BookInspection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger/WashPlateBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/EnableDisableInteractionTrigger/AnimationInteraction.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/Interactible.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/VinylDiskBehaviour.cs" />
       </list>
     </option>
   </component>
@@ -192,30 +257,24 @@
       <option name="WORKING_DIRECTORY" value="E:\Users\woush\Desktop\TestQuarantine" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
       <method v="2" />
     </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
-      <option name="projectPathOnTarget" />
-      <option name="selectedOptions">
-        <list />
-      </option>
       <method v="2" />
     </configuration>
     <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
-      <option name="projectPathOnTarget" />
-      <option name="selectedOptions">
-        <list />
-      </option>
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -330,11 +389,13 @@
       <workItem from="1645464641377" duration="1632000" />
       <workItem from="1645565050301" duration="7228000" />
       <workItem from="1646158880276" duration="1118000" />
+      <workItem from="1646388243125" duration="10709000" />
+      <workItem from="1646411007156" duration="759000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="2" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
@@ -354,5 +415,15 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="601" y="109" key="RiderGenerateDialog" timestamp="1646388779219">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="601" y="109" key="RiderGenerateDialog/0.0.1536.816@0.0.1536.816" timestamp="1646388779218" />
+    <state x="429" y="7" width="678" height="801" key="find.popup" timestamp="1646391907453">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="429" y="7" width="678" height="801" key="find.popup/0.0.1536.816@0.0.1536.816" timestamp="1646391907453" />
   </component>
 </project>

@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 
 public static class EditorScreenshotExtension
 {
-    [MenuItem("Screenshot/Take Screenshot %#k")]
+    [MenuItem("Tools/Take Screenshot %#k")]
     private static void Screenshot()
     {
         // Get actvive EditorWindow

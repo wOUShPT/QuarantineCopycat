@@ -5,13 +5,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item Asset")]
 public class UIItemAsset : ScriptableObject
 {
-    [SerializeField]private PickUpItemBehaviour.PickUpObjectType objectType;
-    public PickUpItemBehaviour.PickUpObjectType ObjectType => objectType;
+    [SerializeField]private ItemType _itemType;
+    public ItemType ObjectType => _itemType;
     [SerializeField] private Sprite sprite;
 
     public Sprite GetSprite()
     {
         return sprite;
     }
+    
+}
+
+public enum PickUpObjectType
+{
     
 }

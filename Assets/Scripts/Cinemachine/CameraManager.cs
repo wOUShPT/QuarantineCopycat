@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour
     private Animator animator;
     private CinemachineStateDrivenCamera stateDrivenCamera;
 
-    public List<IInteractable> Interactables;
+    public List<InteractableBehaviour> Interactables;
 
     [Serializable]
     public enum CinemachineStateSwitcher

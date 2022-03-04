@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorBehaviour : MonoBehaviour, IInteractable
+public class DoorBehaviour : InteractableBehaviour
 {
-    [SerializeField] private float interactionDistance;
     [SerializeField] private Transform leftDoor;
     [SerializeField] private Transform rightDoor;
     private delegate void DoorsInteraction();
@@ -24,43 +23,18 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
         Cabinet, Fridge
     }
     [SerializeField] private DoorType doorType;
-    private FridgePlace fridgePlace;
-    protected int interactionLayer;
-    [SerializeField] protected int outlineLayer = 11;
-    [SerializeField] protected OtherGameobjectOutline[] otherGameobjectOutlineArray;
-    [System.Serializable]
-    public class OtherGameobjectOutline
-    {
-        public GameObject outlineObject;
-        public int interactionTrigger;
-    }
+
     private void Awake()
     {
+        base.Awake();
         doorsInteraction = OpenDoorByCode;
-        interactionLayer = gameObject.layer;
-        if (otherGameobjectOutlineArray.Length != 0)
-        {
-            foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
-            {
-                outlineObject.interactionTrigger = outlineObject.outlineObject.layer;
-            }
-        }
     }
     private void Start()
     {
-        if(doorType == DoorType.Fridge) //If it's a fridge
-        {
-            fridgePlace = GetComponentInChildren<FridgePlace>();
-            fridgePlace.enabled = false;
-        }
+        wasInteracted = false;
     }
 
-    public float InteractionDistance()
-    {
-        return interactionDistance;
-    }
-
-    public void Interact()
+    public override void Interact()
     {
         if (wasInteracted || isBeingAnimated)
         {
@@ -69,18 +43,7 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
         doorsInteraction?.Invoke();
         wasInteracted = true;
     }
-    public void ExitInteract()
-    {
-        FadeOutline.FadeeOutOutline();
-        wasInteracted = false;
-        gameObject.layer = interactionLayer;
-        if (otherGameobjectOutlineArray.Length == 0)
-            return;
-        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
-        {
-            outlineObject.outlineObject.layer = outlineObject.interactionTrigger;
-        }
-    }
+    
     private void OpenDoorByCode()
     {
         if(leftDoor != null)
@@ -182,20 +145,6 @@ public class DoorBehaviour : MonoBehaviour, IInteractable
         if(doorType != DoorType.Fridge)
         {
             return;
-        }
-        fridgePlace.enabled = true;
-    }
-    public void DisplayOutline()
-    {
-        if (gameObject.layer == outlineLayer)
-            return;
-        FadeOutline.Instance.FadeInOutline();
-        gameObject.layer = outlineLayer;
-        if (otherGameobjectOutlineArray.Length == 0)
-            return;
-        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
-        {
-            outlineObject.outlineObject.layer = outlineLayer;
         }
     }
 }

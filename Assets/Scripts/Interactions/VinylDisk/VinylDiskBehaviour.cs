@@ -1,32 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD;
 using UnityEngine;
+using FMOD.Studio;
 
-[RequireComponent(typeof(AudioSource))]
-public class VinylDiskBehaviour : MonoBehaviour
+public class VinylDiskBehaviour : InteractableBehaviour
 {
-    private bool wasInterected = false;
+    [SerializeField] private ItemType _item;
+    private bool _wasInteracted;
     [Range(0.001f, 1f)]
-    [SerializeField]private float volumeChange = 0.002f;
-    [SerializeField]private AudioSource audioSourceReference;
-    public AudioSource AudiouSourceReference => audioSourceReference;
-    [SerializeField]
-    private Animator _animator;
-    private void Awake()
-    {       
-        audioSourceReference = GetComponent<AudioSource>();
+    [SerializeField] private float _volumeIncrement = 0.002f;
+    [SerializeField] private Animator _animator;
+    private FMOD.Studio.EventInstance _music;
+    protected override void Awake()
+    {
+        base.Awake();
+        /*_music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Diagetic/Vinyl2");
+        _music.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        _music.release();*/
     }
+
+    public void Start()
+    {
+        _wasInteracted = false;
+    }
+
     private void Update()
     {
-        if (audioSourceReference.isPlaying)
+        if (_wasInteracted)
         {
             if (InputManager.Instance.PlayerInput.SwitchTvVolume < 0)
             {
-                audioSourceReference.volume -= volumeChange;
+                _music.getVolume(out float currentVolume);
+                _music.setVolume(currentVolume - _volumeIncrement);
             }
             if (InputManager.Instance.PlayerInput.SwitchTvVolume > 0)
             {
-                audioSourceReference.volume += volumeChange;
+                _music.getVolume(out float currentVolume);
+                _music.setVolume(currentVolume + _volumeIncrement);
             }
         }
         else
@@ -35,24 +47,25 @@ public class VinylDiskBehaviour : MonoBehaviour
         }
     }
 
-    public void ExitInteraction()
+    public override void Interact()
     {
-        if (wasInterected)
-        {
-            wasInterected = false;
-        }
+        PlayVinylDisk();
     }
-    public void PlayVinylDisk(AudioClip _audioclip)
+
+    public void PlayVinylDisk()
     {
-        audioSourceReference.clip = _audioclip;
-        audioSourceReference.Play();
+        _music.start();
         _animator.Play("VinylRotation");
     }
     public void StopVinylDisk()
     {
         //Stop audiosource
-        audioSourceReference.Stop();
-        audioSourceReference.clip = null;
+        _music.stop(STOP_MODE.IMMEDIATE);
         _animator.StopPlayback();
+    }
+
+    public void OnDestroy()
+    {
+        _music.stop(STOP_MODE.ALLOWFADEOUT);
     }
 }

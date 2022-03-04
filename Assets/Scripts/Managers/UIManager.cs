@@ -11,7 +11,7 @@ public class UIManager : Singleton<UIManager>
     public CanvasGroup crosshair;
     public CanvasGroup interactionPrompt;
     public Subtitle subtitle;
-    public UI_Inventory _uiInventory;
+    public UI_NewInventory _uiInventory;
     
 
     public void ToggleInteractionPrompt(bool state)

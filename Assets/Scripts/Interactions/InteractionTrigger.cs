@@ -3,74 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionTrigger : MonoBehaviour , IInteractable
+public class InteractionTrigger : InteractableBehaviour
 {
-    public float interactionDistance;
     public GameEvent gameEvent;
     private UIManager _uiManager;
-    private int interactionLayer;
-    [SerializeField] private int outlineLayer = 11;
-    [SerializeField] private int fakeMashOutlineLayer = 12;
-    [SerializeField] private OtherGameobjectOutline[] otherGameobjectOutlineArray;
-    [System.Serializable]
-    public class OtherGameobjectOutline
-    {
-        public GameObject OutlineObject;
-        public int InteractionTrigger;
-        public bool IsFakeMaterial;
-    }
 
-    public void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _uiManager = FindObjectOfType<UIManager>();
-        interactionLayer = this.gameObject.layer;
-        if (otherGameobjectOutlineArray.Length != 0)
-        {
-            foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
-            {
-                outlineObject.InteractionTrigger = outlineObject.OutlineObject.layer;
-            }
-        }
     }
 
-    public float InteractionDistance()
+    public override void Interact()
     {
-        return interactionDistance;
-    }
-
-    public void Interact()
-    {
-        if (!this.enabled)
+        if (!enabled)
             return;
         gameEvent.Raise();
         _uiManager.ToggleInteractionPrompt(false);
-    }
-
-    public void ExitInteract()
-    {
-        FadeOutline.FadeeOutOutline();
-        gameObject.layer = interactionLayer;
-        if (otherGameobjectOutlineArray.Length == 0)
-            return;
-        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
-        {
-            outlineObject.OutlineObject.layer = outlineObject.InteractionTrigger;
-        }
-    }
-
-    public void DisplayOutline()
-    {
-        if (!this.enabled)
-            return;
-        if (gameObject.layer == outlineLayer)
-            return;
-        FadeOutline.Instance.FadeInOutline();
-        gameObject.layer = outlineLayer;
-        if (otherGameobjectOutlineArray.Length == 0)
-            return;
-        foreach (OtherGameobjectOutline outlineObject in otherGameobjectOutlineArray)
-        {
-            outlineObject.OutlineObject.layer = !outlineObject.IsFakeMaterial ? outlineLayer : fakeMashOutlineLayer;
-        }
     }
 }

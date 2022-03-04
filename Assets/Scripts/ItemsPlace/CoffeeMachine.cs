@@ -1,55 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class CoffeeMachine : ItemSpotBehaviour
+public class CoffeeMachine : InteractableBehaviour
 {
-    
+    [SerializeField] private ItemType _item;
+    [SerializeField] private float taskDuration;
+    [SerializeField] private GameObject coffeeCup;
+    [SerializeField] private ParticleSystem _coffeeParticleSystem;
+
+    [SerializeField] private UnityEvent _preEffect;
+    [SerializeField] private UnityEvent _effect;
+    private bool _wasInteracted;
+
     protected override void Awake()
     {
-        coffeeMachineParams.BoxCollider = GetComponent<BoxCollider>();
-        coffeeMachineParams.InteractionTriggerCollider.enabled = false;
-        coffeeMachineParams.BoxCollider.enabled = true;
         base.Awake();
     }
 
-    protected override void CheckPlayerHasItem()
+    private void Start()
     {
-        PickUpItemBehaviour pickUpItem = playerPickUp.GetInventory().CheckHasItem(DropObjectType);
-        if (pickUpItem != null)
+        _wasInteracted = false;
+    }
+
+    public override void Interact()
+    {
+        if(InventoryManager.inventory.CheckHasItem(_item) && !_wasInteracted)
         {
-            item = pickUpItem;
-            playerPickUp.BreakConnection(item); //Player will drop
-            PlaceItemToSpot();
-            //It's doing imediatly maybe needs a courotine
-            StartCoroutine(WaitToMakeToastWork());
+            StartCoroutine(DoCoffee());
         }
     }
 
-    protected override void PlaceItemToSpot()
+    IEnumerator DoCoffee()
     {
-        item.transform.SetParent(coffeeMachineParams.CoffeePivot);
-        SetItemValuesDefault(item.transform);
-        item.ItemCollider.enabled = false;
-        item.gameObject.SetActive(true);
+        yield return new WaitForSeconds(taskDuration);
     }
-    IEnumerator WaitToMakeToastWork()
-    {
-        coffeeMachineParams.BoxCollider.enabled = false;
-        yield return new WaitForSeconds(.3f); //Avoid interact immediatly with the toast
-        coffeeMachineParams.InteractionTriggerCollider.enabled = true;
-    }
+
     //Called by the timeline
-    public void CoffeIsReady()
+    public void CoffeeIsReady()
     {
-        Debug.Log(item);
-        item.ItemCollider.enabled = true;
-        item.CoffeeInteractionTrigger.enabled = true;
-        item.enabled = false;
-        Destroy(item);
+
     }
-    public void PlaceCaffeAfterDrink(Transform coffeTransform)
+
+    public void PlaceCoffeeAfterDrink()
     {
-        coffeTransform.position = coffeeMachineParams.afterDrinkCoffeeTransform.position;
+        
     }
 }

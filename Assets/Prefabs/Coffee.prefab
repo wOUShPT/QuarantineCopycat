@@ -90,10 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9125172198531294507}
-  - component: {fileID: 9125172198531294504}
-  - component: {fileID: 5571243990825610501}
   - component: {fileID: 9125172198531294505}
-  - component: {fileID: 1162332815}
   m_Layer: 0
   m_Name: Coffee
   m_TagString: Untagged
@@ -116,74 +113,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9125172198531294504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9125172198531294551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04154b45adfc450459be619ec879dbd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDistance: 2
-  objectType: 5
-  outlineLayer: 11
-  bookParams:
-    textList: []
-  clothParams:
-    isClean: 0
-  diskParams:
-    audioClip: {fileID: 0}
-  breadParams:
-    isReady: 0
-    leftToast: {fileID: 8730692667619408808}
-    rightToast: {fileID: 0}
-    leftPivot: {fileID: 0}
-    rightPivot: {fileID: 0}
-    interactionTrigger: {fileID: 0}
-  coffeeParams:
-    interactionTrigger: {fileID: 0}
-  brushParams:
-    teethBehaviour: {fileID: 0}
-    hasToothpaste: 0
-    toothBrush: {fileID: 0}
-  wateringCanParams:
-    plantsBehaviour: {fileID: 0}
-    waterParticle: {fileID: 0}
-  plateParams:
-    plateBehaviour: {fileID: 0}
-    isWashed: 0
-    isPlaced: 0
-  foodParams:
-    isPickable: 0
-    hasEaten: 0
-  otherGameobjectOutlineArray:
-  - outlineObject: {fileID: 8242280103866769682}
-    interactionTrigger: 0
-    isFakeMaterial: 0
---- !u!114 &5571243990825610501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9125172198531294551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67cbd567f5cbdf9428fac3519b022d59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDistance: 0
-  gameEvent: {fileID: 11400000, guid: cd5ca5739c128d14b9742bcab111bcc5, type: 2}
-  outlineLayer: 11
-  fakeMashOutlineLayer: 12
-  otherGameobjectOutlineArray:
-  - OutlineObject: {fileID: 8242280103866769682}
-    InteractionTrigger: 0
-    IsFakeMaterial: 0
 --- !u!65 &9125172198531294505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -197,17 +126,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06233573, y: 0.04768771, z: 0.0557971}
   m_Center: {x: -0.005749464, y: 0.023793906, z: 0.0007240772}
---- !u!64 &1162332815
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9125172198531294551}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}

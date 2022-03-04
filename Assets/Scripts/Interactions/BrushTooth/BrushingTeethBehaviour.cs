@@ -2,22 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrushingTeethBehaviour : ToggleInteractionTrigger
+public class BrushingTeethBehaviour : InteractableBehaviour
 {
     [SerializeField] private MeshCollider interactionTriggerCollider;  
-    private Animator toothBrushAnimator;
+    private Animator _toothBrushAnimator;
     // Start is called before the first frame update
-    protected override void Start()
+    protected void Start()
     {
         interactionTriggerCollider.enabled = false;
-        base.Start();
-        
     }
-
-    public override void CheckPlayeerHasToothSpecificItem()
-    {
-        
-    }
+    
     //Called by the timeline
     public void BrushTeethAnimationStart() // Play animation
     {

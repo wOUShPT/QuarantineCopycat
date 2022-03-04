@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2323750988268075551}
   - component: {fileID: 2323750988268075520}
   - component: {fileID: 2323750988268075521}
-  - component: {fileID: 2323750988268075522}
   - component: {fileID: 2323750988268075523}
   m_Layer: 10
   m_Name: Disk
@@ -97,30 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2323750988268075522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2323750988268075524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04154b45adfc450459be619ec879dbd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDistance: 0
-  objectType: 2
-  bookParams:
-    textList: []
-  clothParams:
-    isClean: 0
-  diskParams:
-    audioClip: {fileID: 8300000, guid: 056b4c870e07dc548855f0064fd44ef0, type: 3}
-  breadParams:
-    isReady: 0
-    leftToast: {fileID: 0}
-    rightToast: {fileID: 0}
 --- !u!54 &2323750988268075523
 Rigidbody:
   m_ObjectHideFlags: 0

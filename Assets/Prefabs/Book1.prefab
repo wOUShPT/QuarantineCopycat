@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3788210221028888053}
   - component: {fileID: 3788210221028888050}
   - component: {fileID: 3788210221028888051}
-  - component: {fileID: 3788210221028888055}
   - component: {fileID: 3788210221028888054}
   m_Layer: 10
   m_Name: Book1
@@ -97,50 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3788210221028888055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3788210221028888048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04154b45adfc450459be619ec879dbd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDistance: 0
-  objectType: 0
-  bookParams:
-    textList:
-    - Bla bla bla bla bla bla bla Bla bla bla bla bla bla bla Bla bla bla bla bla
-      bla bla Bla bla bla bla bla bla bla Bla bla bla bla bla bla bla Bla bla bla
-      bla bla bla bla Bla bla bla bla bla bla bla
-    - "Louvar o Senhor\nGuiado pela m\xE3o com jesus eu vou,\nsigo como ovelha que
-      encontrou pastor"
-    - "Em nome do pai,\nfilho\ne esp\xEDrito santo!\n\nAm\xE9n!\nNosso cora\xE7\xE3o
-      est\xE1 em deus"
-  clothParams:
-    isClean: 0
-  diskParams:
-    audioClip: {fileID: 0}
-  breadParams:
-    isReady: 0
-    leftToast: {fileID: 0}
-    rightToast: {fileID: 0}
-  coffeeParams:
-    isReady: 0
-  brushParams:
-    teethBehaviour: {fileID: 0}
-    hasToothpaste: 0
-    toothBrush: {fileID: 0}
-  wateringCanParams:
-    plantsBehaviour: {fileID: 0}
-    waterParticle: {fileID: 0}
-  plateParams:
-    plateBehaviour: {fileID: 0}
-    isWashed: 0
-    isPlaced: 0
 --- !u!54 &3788210221028888054
 Rigidbody:
   m_ObjectHideFlags: 0

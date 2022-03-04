@@ -41,7 +41,7 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
 
-        if (hit.transform.TryGetComponent(out IInteractable interactable)  && Vector3.Distance(_camera.transform.position, hit.point) <= (interactable.InteractionDistance() == 0 ? range : interactable.InteractionDistance()))
+        if (hit.transform.TryGetComponent(out InteractableBehaviour interactable)  && Vector3.Distance(_camera.transform.position, hit.point) <= (interactable.InteractionDistance() == 0 ? range : interactable.InteractionDistance()))
         {            
             _uiManager.ToggleInteractionPrompt(true);
             interactable.DisplayOutline();
@@ -60,9 +60,9 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void TakeOffOutline()
     {
-        if (raycastTransform != null && raycastTransform.TryGetComponent(out IInteractable iinteractable))
+        if (raycastTransform != null && raycastTransform.TryGetComponent(out InteractableBehaviour iinteractable))
         {
-            iinteractable.ExitInteract();
+            iinteractable.HideOutline();
         }
     }
     private void CheckChangedRaycastTarget(Transform _targetTransform)
@@ -71,9 +71,9 @@ public class PlayerInteraction : MonoBehaviour
         if(_targetTransform != raycastTransform && raycastTransform != null)
         {
             //Changed target and raycastTransform is not null
-            if (raycastTransform.TryGetComponent(out IInteractable interactable))
+            if (raycastTransform.TryGetComponent(out InteractableBehaviour interactable))
             {
-                interactable.ExitInteract();
+                interactable.HideOutline();
             }
         }
         raycastTransform = _targetTransform;
