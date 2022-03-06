@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
 
-public class TelevisionBehaviour : MonoBehaviour
+public class TelevisionBehaviour : InteractableBehaviour
 {
     [FormerlySerializedAs("_gameEvent")] [SerializeField]
     private GameEvent _sofaOutGameEvent;
@@ -35,24 +36,31 @@ public class TelevisionBehaviour : MonoBehaviour
     private int _currentScriptedClipIndex;
     private double[] _manualClipsTimeElapsed;
     private double[] _manualClipsTotalTime;
-    private double _currentscriptedClipTotalTime;
     private double _currentScriptedClipTimeElapsed;
     private int _loopCounter;
     private float _zappingTimer;
     private float _zappingTimeInterval;
     private bool _isOn;
+    [SerializeField]
+    private StudioEventEmitter _emitter;
+
+    private FMOD.Studio.EventInstance _fmodInstance;
 
     [Serializable]
     public class ScriptedVideoClass
     {
         public VideoClip clip;
+        public EventReference FMODEvent;
         public bool isLooping;
         public int numberOfLoops;
     }
+    private bool _wasInteracted;
     
 
     private void Start()
     {
+        _wasInteracted = false;
+        DisableInteraction();
         _videoPlayer = GetComponent<VideoPlayer>();
 
         if (mode == TVMode.Manual)
@@ -63,7 +71,15 @@ public class TelevisionBehaviour : MonoBehaviour
         {
             InitScriptedTv();
         }
-       
+    }
+
+    public override void Interact()
+    {
+        if (!_wasInteracted && CanInteract)
+        {
+            DisableInteraction();
+            ToggleTvPower(); 
+        }
     }
 
     private void Update()
@@ -176,7 +192,6 @@ public class TelevisionBehaviour : MonoBehaviour
         _videoPlayer.loopPointReached += HandleLoopCount;
         _currentScriptedClipIndex = 0;
         _currentScriptedClipTimeElapsed = 0;
-        _currentscriptedClipTotalTime = scriptedVideos[_currentScriptedClipIndex].clip.length;
         _videoPlayer.clip = scriptedVideos[_currentScriptedClipIndex].clip;
         _videoPlayer.time = 0;
     }
@@ -231,33 +246,4 @@ public class TelevisionBehaviour : MonoBehaviour
         _videoPlayer.clip = scriptedVideos[_currentScriptedClipIndex].clip;
         _videoPlayer.Play();
     }
-
-   /*IEnumerator PowerOn()
-    {
-        screenMesh.material = _onMaterial;
-        float colorValue = 0;
-        _onMpb.SetColor("_BaseColor", new Color(colorValue, colorValue, colorValue, 1));
-        screenMesh.SetPropertyBlock(_onMpb);
-        while (colorValue != 255)
-        {
-            colorValue = (int)Mathf.Lerp(colorValue, 255, 50*Time.deltaTime);
-            _onMpb.SetColor("_BaseColor", new Color(colorValue, colorValue, colorValue, 1));
-            _onMaterial.SetColor();
-            yield return null;
-        }
-    }
-    
-    IEnumerator PowerOff()
-    {
-        float colorValue = 255;
-        _offMpb.SetColor("_BaseColor", new Color(colorValue, colorValue, colorValue, 1));
-        while (colorValue != 0)
-        {
-            colorValue = (int)Mathf.Lerp(colorValue, 0, 50*Time.deltaTime);
-            _onMpb.SetColor("_BaseColor", new Color(colorValue, colorValue, colorValue, 1));
-            yield return null;
-        }
-
-        screenMesh.material = _offMaterial;
-    }*/
 }

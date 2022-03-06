@@ -36,7 +36,7 @@ public class PlayerInteraction : MonoBehaviour
         if (PlayerProperties.FreezeInteraction)
         {
             _uiManager.ToggleInteractionPrompt(false);
-            TakeOffOutline();
+            HideOutline();
             CheckChangedRaycastTarget(null);
             return;
         }
@@ -54,11 +54,11 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
-            TakeOffOutline();
+            HideOutline();
             CheckChangedRaycastTarget(null);
         }
     }
-    private void TakeOffOutline()
+    private void HideOutline()
     {
         if (raycastTransform != null && raycastTransform.TryGetComponent(out InteractableBehaviour iinteractable))
         {

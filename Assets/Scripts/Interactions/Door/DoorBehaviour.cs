@@ -8,7 +8,7 @@ public class DoorBehaviour : InteractableBehaviour
     [SerializeField] private Transform rightDoor;
     private delegate void DoorsInteraction();
     private DoorsInteraction doorsInteraction;
-    private bool wasInteracted = false;
+    private bool _wasInteracted = false;
     [SerializeField] private AnimationCurve animationCurve;
     private enum RotationAxis
     {
@@ -24,24 +24,24 @@ public class DoorBehaviour : InteractableBehaviour
     }
     [SerializeField] private DoorType doorType;
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         doorsInteraction = OpenDoorByCode;
     }
     private void Start()
     {
-        wasInteracted = false;
+        _wasInteracted = false;
     }
 
     public override void Interact()
     {
-        if (wasInteracted || isBeingAnimated)
+        if (_wasInteracted || isBeingAnimated)
         {
             return;
         }
         doorsInteraction?.Invoke();
-        wasInteracted = true;
+        _wasInteracted = true;
     }
     
     private void OpenDoorByCode()
