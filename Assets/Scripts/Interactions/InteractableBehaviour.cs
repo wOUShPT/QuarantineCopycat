@@ -57,6 +57,7 @@ public class InteractableBehaviour: MonoBehaviour
     public void DisableInteraction()
     {
         CanInteract = false;
+        HideOutline();
     }
 
     protected internal void HideOutline()

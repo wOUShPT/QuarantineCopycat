@@ -5,9 +5,11 @@ using FMODUnity;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class TelevisionBehaviour : InteractableBehaviour
 {
@@ -20,8 +22,8 @@ public class TelevisionBehaviour : InteractableBehaviour
         Manual, Scripted
     }
     private VideoPlayer _videoPlayer;
-    [FormerlySerializedAs("clips")] [SerializeField]
-    private VideoClip[] manualVideos;
+    [SerializeField]
+    private ManualVideoClass[] manualVideos;
     [SerializeField]
     private ScriptedVideoClass[] scriptedVideos;
     [SerializeField] 
@@ -41,11 +43,9 @@ public class TelevisionBehaviour : InteractableBehaviour
     private float _zappingTimer;
     private float _zappingTimeInterval;
     private bool _isOn;
-    [SerializeField]
-    private StudioEventEmitter _emitter;
-
     private FMOD.Studio.EventInstance _fmodInstance;
-
+    [SerializeField] private UnityEvent preEffect;
+    [SerializeField] private UnityEvent effect;
     [Serializable]
     public class ScriptedVideoClass
     {
@@ -54,13 +54,21 @@ public class TelevisionBehaviour : InteractableBehaviour
         public bool isLooping;
         public int numberOfLoops;
     }
+
+    [Serializable]
+    public class ManualVideoClass
+    {
+        public VideoClip clip;
+        public EventReference FMODEvent;
+    }
+    
     private bool _wasInteracted;
     
 
     private void Start()
     {
         _wasInteracted = false;
-        DisableInteraction();
+        //DisableInteraction();
         _videoPlayer = GetComponent<VideoPlayer>();
 
         if (mode == TVMode.Manual)
@@ -148,8 +156,12 @@ public class TelevisionBehaviour : InteractableBehaviour
     // Switch the channel
     private void SwitchChannel()
     {
-        _videoPlayer.clip = manualVideos[_currentManualClipIndex];
+        _videoPlayer.clip = manualVideos[_currentManualClipIndex].clip;
         _videoPlayer.time = _manualClipsTotalTime[_currentManualClipIndex];
+        _fmodInstance.stop(STOP_MODE.IMMEDIATE);
+        _fmodInstance = RuntimeManager.CreateInstance(manualVideos[_currentManualClipIndex].FMODEvent);
+        _fmodInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+        _fmodInstance.start();
         _videoPlayer.Play();
     }
 
@@ -174,7 +186,7 @@ public class TelevisionBehaviour : InteractableBehaviour
 
         for (int i = 0; i < manualVideos.Length; i++)
         {
-            _manualClipsTimeElapsed[i] = manualVideos[i].frameCount;
+            _manualClipsTimeElapsed[i] = manualVideos[i].clip.frameCount;
             _manualClipsTotalTime[i] = 0;
         }
 
@@ -192,6 +204,8 @@ public class TelevisionBehaviour : InteractableBehaviour
         _videoPlayer.loopPointReached += HandleLoopCount;
         _currentScriptedClipIndex = 0;
         _currentScriptedClipTimeElapsed = 0;
+        _fmodInstance = RuntimeManager.CreateInstance(scriptedVideos[_currentScriptedClipIndex].FMODEvent);
+        _fmodInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
         _videoPlayer.clip = scriptedVideos[_currentScriptedClipIndex].clip;
         _videoPlayer.time = 0;
     }
@@ -202,19 +216,25 @@ public class TelevisionBehaviour : InteractableBehaviour
         
         if (_isOn)
         {
+            if (!_wasInteracted)
+            {
+                preEffect.Invoke();
+                _wasInteracted = true;
+            }
             screenMesh.material = _onMaterial;
+            _fmodInstance.start();
             _videoPlayer.Play();
             if(mode == TVMode.Manual)
             {
                 SwitchChannel();
                 _zappingTimer = _zappingTimeInterval;
             }
-
-
         }
         else
         {
+            effect.Invoke();
             _videoPlayer.Stop();
+            _fmodInstance.stop(STOP_MODE.IMMEDIATE);
             screenMesh.material = _offMaterial;
         }
     }
@@ -245,5 +265,9 @@ public class TelevisionBehaviour : InteractableBehaviour
         _currentScriptedClipIndex++;
         _videoPlayer.clip = scriptedVideos[_currentScriptedClipIndex].clip;
         _videoPlayer.Play();
+        _fmodInstance.stop(STOP_MODE.IMMEDIATE);
+        _fmodInstance = RuntimeManager.CreateInstance(scriptedVideos[_currentScriptedClipIndex].FMODEvent);
+        _fmodInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+        _fmodInstance.start();
     }
 }
