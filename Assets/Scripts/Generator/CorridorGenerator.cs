@@ -7,7 +7,7 @@ public class CorridorGenerator : MonoBehaviour
     [SerializeField] private float playerDistanceSpawnLevelPart = 20f;
     
     [SerializeField] private Transform levelPartStart;
-    [SerializeField] private  Corridor[] corridorPoolArray;
+    [SerializeField] private  Corridor corridorPoolArray;
     [System.Serializable]
     struct Corridor //Details abou the pools
     {
@@ -23,11 +23,14 @@ public class CorridorGenerator : MonoBehaviour
     private Transform lastEndPositionTransform;
 
     private CharacterController playerMovement;
+    private AIChase aiChase;
+    private List<int> removeIndex;
 
     private void Awake()
     {
         playerMovement = FindObjectOfType<CharacterController>();
         lastEndPositionTransform = levelPartStart.Find("EndPosition");
+        aiChase = FindObjectOfType<AIChase>();
         foreach (CorridorInfo corridor in corridorInformationList)
         {
             corridor.gameObject.SetActive(true);
@@ -48,11 +51,10 @@ public class CorridorGenerator : MonoBehaviour
     }
     private void SpawnLevelPart()
     {
-        CorridorInfo choosenLevelPart = corridorPoolArray[Random.Range(0, corridorPoolArray.Length)].corridorPart.Get();
+        CorridorInfo choosenLevelPart = corridorPoolArray.corridorPart.Get();
         Transform lastLevelPartTransform = SpawnLevelPart(choosenLevelPart ,lastEndPositionTransform.position); // Get the spwan level
-        TurnOffCorridor(choosenLevelPart);
-        CorridorInfo lastPart = corridorInformationList[corridorInformationList.Count - 1];
         corridorInformationList.Add(choosenLevelPart);
+        TurnOffCorridor(choosenLevelPart);
         //lastPart.UpdateLink();
         lastEndPositionTransform = lastLevelPartTransform.Find("EndPosition");
         UpdateLink();
@@ -79,13 +81,34 @@ public class CorridorGenerator : MonoBehaviour
 
     private void TurnOffCorridor(CorridorInfo currentCorridor)
     {
-        //if(/*currentCorridor.GetCorridorType() == CorridorInfo.CorridorType.RightCurve*/ corridorInformationList.Count >= 5)
-        //{
-        //    //Return to the pool
-        //    CorridorInfo corridorInformation = corridorInformationList[0].corridorInfo;
-        //    corridorInformationList.RemoveAt(0);
-        //    corridorPoolArray[0].corridorPart.ReturnToPool(corridorInformation);
-        //}
+        if(corridorInformationList.Count <= 2)
+        {
+            return;
+        }
+        removeIndex = new List<int>(); 
+        if (currentCorridor.GetCorridorType() == CorridorInfo.CorridorType.RightCurve)
+        {
+            
+            for (int i = 0; i < corridorInformationList.Count; i++)
+            {
+                if (corridorInformationList[i].transform == aiChase.CheckDown())
+                {
+                    ReturnToPool(removeIndex);
+                    return;
+                }
+                removeIndex.Add(i);
+            }
+        }
+        
+    }
+    private void ReturnToPool(List<int> indexList)
+    {
+        for (int i = indexList.Count - 1; i >= 0; i--)
+        {
+            CorridorInfo corridorInformation = corridorInformationList[indexList[i]];
+            corridorInformationList.RemoveAt(indexList[i]);
+            corridorPoolArray.corridorPart.ReturnToPool(corridorInformation);
+        }
     }
 
 }

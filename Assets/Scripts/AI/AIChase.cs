@@ -21,6 +21,10 @@ public class AIChase : MonoBehaviour
     private CameraManager cameraManager;
     private TriggerChase triggerChase;
     [SerializeField] private LayerMask chaseMask;
+    //Where is copycat grounded
+    [SerializeField] private LayerMask corridorMask;
+    private Transform lastCorridorGrounded;
+    private PlayerSPRotate playerRotate;
     private enum AgentState
     {
         Idle, Chase, MeshLink 
@@ -34,9 +38,11 @@ public class AIChase : MonoBehaviour
         fPExtension = FindObjectOfType<CinemachineFPExtension>();
         cameraManager = FindObjectOfType<CameraManager>();
         triggerChase = FindObjectOfType<TriggerChase>();
+        playerRotate = FindObjectOfType<PlayerSPRotate>();
     }
     private void Start()
-    {        
+    {
+        playerRotate.enabled = false;
         triggerChase.OnPlayerInsideTrigger += ColliderTrigger_OnPlayerEnterTrigger;
     }
     private void ColliderTrigger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
@@ -59,6 +65,7 @@ public class AIChase : MonoBehaviour
         yield return new WaitForSeconds(5f);
         agent.isStopped = false; // Copycat starts moving
         StartCoroutine(StartIsOnMeshLink());
+        playerRotate.enabled = true;
         agentState = AgentState.Chase;
         
     }
@@ -73,10 +80,12 @@ public class AIChase : MonoBehaviour
             case AgentState.Idle:
                 break;
             case AgentState.Chase:
+                MimicPlayerMovements();
                 //Set target dynamically
-                agent.SetDestination(target.position);
+                MoveOrStopAgent();
                 break;
             case AgentState.MeshLink:
+                MimicPlayerMovements();
                 break;
         }
         
@@ -130,17 +139,105 @@ public class AIChase : MonoBehaviour
             yield return null;
         }
     }
+    private void MimicPlayerMovements()
+    {
+        //Seeing direction
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 direction = Vector3.Normalize(target.position - transform.position);
+        
+        if(!IsPlayerLookingAtCopyCat())
+        {
+            //Player is looking on front
+            return;
+        }
+        float dot = Vector3.Dot(forward, direction);
+        if (dot > 0)
+        {
+            Vector3 newPosition;
+            if (Mathf.Abs(Vector3.Dot(Vector3.right, direction)) > 0.9f && target.position.z != agent.transform.position.z)
+            {
+                //Move in forward
+                newPosition = new Vector3(agent.transform.position.x, agent.transform.position.y, target.position.z);
+                //agent.nextPosition = Vector3.Lerp(agent.transform.position, newPosition, agent.speed * Time.deltaTime);
+                agent.nextPosition = newPosition;
+            }
+            else if (Mathf.Abs(Vector3.Dot(Vector3.forward, direction)) > 0.9f && target.position.x != agent.transform.position.x)
+            {
+                //Move vector 3 right and left
+                newPosition = new Vector3(target.position.x, agent.transform.position.y, agent.transform.position.z);
+                agent.nextPosition = newPosition;
+            }
+        }
+    }
+
+    private bool IsPlayerLookingAtCopyCat()
+    {
+        if (Vector3.Dot(transform.TransformDirection(Vector3.forward), playerRotate.LookDirection) >= 0)
+        {
+            //Player is looking on front or perpendicular
+            return false;
+        }
+        //Player is looking at copycat
+        return true;
+    }
+
+    private void MoveOrStopAgent()
+    {
+        if (IsPlayerLookingAtCopyCat())
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+            return;
+        }
+        //Start running
+        agent.isStopped = false;
+        agent.SetDestination(target.position);
+    }
 
     IEnumerator NormalSpeed()
     {
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 endPos = (data.endPos) + Vector3.up * agent.baseOffset;
-        while (agent.transform.position != endPos) //until the navmesh reached the end position of the link
+        while (CheckDistance(endPos)) //until the navmesh reached the end position of the link
         {
-            agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
+            if (!IsPlayerLookingAtCopyCat())
+            {
+                agent.nextPosition = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
+            }
             yield return null;
         }
         agentState = AgentState.Chase;
-
+    }
+    private bool CheckDistance(Vector3 _endPos)
+    {
+        //This one for the straight
+        Vector3 endPosDirection = Vector3.Normalize(_endPos - transform.position);
+        if(Mathf.Abs(Vector3.Dot(Vector3.forward, endPosDirection)) >= 0.4f)
+        {
+            return Mathf.Abs(_endPos.z - agent.transform.position.z) > .3f;
+        }
+        if (Mathf.Abs(Vector3.Dot(Vector3.right, endPosDirection)) >= 0.4f)
+        {
+            return Mathf.Abs(_endPos.x - agent.transform.position.x) > .3f;
+        }
+        return true;
+    }
+    public Transform CheckDown()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 300, corridorMask))
+        {
+            if(hit.transform.parent.TryGetComponent(out CorridorInfo corridorInfo))
+            {
+                lastCorridorGrounded = corridorInfo.transform;
+                return lastCorridorGrounded;
+            }
+            if (hit.transform.parent.parent.TryGetComponent(out CorridorInfo parentparentCorridorInfo))
+            {
+                lastCorridorGrounded = parentparentCorridorInfo.transform;
+                return lastCorridorGrounded;
+            }
+        }
+        return lastCorridorGrounded;
     }
 }

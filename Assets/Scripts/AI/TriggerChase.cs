@@ -12,6 +12,7 @@ public class TriggerChase : MonoBehaviour
         {
             //Player inside the trigger area
             OnPlayerInsideTrigger?.Invoke(this,EventArgs.Empty);
+            this.gameObject.SetActive(false);
         }
     }
 }

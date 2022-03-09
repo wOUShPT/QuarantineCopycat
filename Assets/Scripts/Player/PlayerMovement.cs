@@ -77,7 +77,10 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-
+        if(CameraManager.CinemachineCameraState != CameraManager.CinemachineStateSwitcher.FirstPerson)
+        {
+            return;
+        }
         transform.localRotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, _camera.transform.localRotation.eulerAngles.y, 0)), _turnSpeed * Time.deltaTime);
     }
 
