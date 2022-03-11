@@ -10,13 +10,13 @@ public class PickUpPhone : InteractableBehaviour
     private PlayerPhone _playerPhone;
     private delegate void PickPhoneAction();
     private PickPhoneAction _phoneAction;
-    private InteractionTrigger _interactionTrigger;
+    private Interaction _interaction;
 
     protected override void Awake()
     {
         base.Awake();
         _playerPhone = FindObjectOfType<PlayerPhone>();
-        _interactionTrigger = GetComponentInChildren<InteractionTrigger>();
+        _interaction = GetComponentInChildren<Interaction>();
     }
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class PickUpPhone : InteractableBehaviour
     private void PickPhone()
     {
         _playerPhone.ToggleHasPhoneToTrue();
-        _interactionTrigger.Interact();
+        _interaction.Interact();
         _phoneAction = null;
         _wasInteraction = true;
         effect.Invoke();

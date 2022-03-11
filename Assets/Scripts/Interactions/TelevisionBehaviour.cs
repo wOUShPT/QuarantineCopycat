@@ -38,7 +38,6 @@ public class TelevisionBehaviour : InteractableBehaviour
     private int _currentScriptedClipIndex;
     private double[] _manualClipsTimeElapsed;
     private double[] _manualClipsTotalTime;
-    private double _currentScriptedClipTimeElapsed;
     private int _loopCounter;
     private float _zappingTimer;
     private float _zappingTimeInterval;
@@ -118,7 +117,6 @@ public class TelevisionBehaviour : InteractableBehaviour
                             {
                                 _currentManualClipIndex = manualVideos.Length - 1;
                             }
-                
                             _zappingTimer = 0;
                             SwitchChannel();
                         }
@@ -129,8 +127,7 @@ public class TelevisionBehaviour : InteractableBehaviour
                             if (_currentManualClipIndex == manualVideos.Length) 
                             { 
                                 _currentManualClipIndex = 0;
-                            } 
-                            
+                            }
                             _zappingTimer = 0; 
                             SwitchChannel();
                         }
@@ -203,7 +200,6 @@ public class TelevisionBehaviour : InteractableBehaviour
         _isOn = false;
         _videoPlayer.loopPointReached += HandleLoopCount;
         _currentScriptedClipIndex = 0;
-        _currentScriptedClipTimeElapsed = 0;
         _fmodInstance = RuntimeManager.CreateInstance(scriptedVideos[_currentScriptedClipIndex].FMODEvent);
         _fmodInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
         _videoPlayer.clip = scriptedVideos[_currentScriptedClipIndex].clip;

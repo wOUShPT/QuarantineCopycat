@@ -1,16 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-9155941458550160423
+--- !u!1102 &-9129520161825426032
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rig|CameraAction_002
-  m_Speed: 1
+  m_Name: PhoneOut
+  m_Speed: -2
   m_CycleOffset: 0
-  m_Transitions: []
+  m_Transitions:
+  - {fileID: 137362751318660877}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -20,20 +21,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -3685932374063928910, guid: 44d5b3c0fb7a41b41b391aad62961000, type: 3}
+  m_Motion: {fileID: 5666912238486678330, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-8498325613234563410
+--- !u!1102 &-6795537812627145348
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rig|PhoneAction
+  m_Name: PhoneIn
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -46,20 +47,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 2151048880052387532, guid: 44d5b3c0fb7a41b41b391aad62961000, type: 3}
+  m_Motion: {fileID: 5666912238486678330, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-4724329928288083285
+--- !u!1102 &-6366393620349999647
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rig|PickUp
+  m_Name: HandsRig|PickUp
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -72,20 +73,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 597835581007178282, guid: 44d5b3c0fb7a41b41b391aad62961000, type: 3}
+  m_Motion: {fileID: -8331120034669527899, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-4613410708806847855
+--- !u!1102 &-2058326319858981125
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rig|Dardo_IDLE
+  m_Name: Dummy
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -98,7 +99,33 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 2816629724870115116, guid: 44d5b3c0fb7a41b41b391aad62961000, type: 3}
+  m_Motion: {fileID: 0}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &-1853470419525843301
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hide
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: af89c8dd22fa71646a1d47ad4289dfae, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -126,32 +153,28 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &739652276773831076
-AnimatorState:
-  serializedVersion: 6
+--- !u!1101 &137362751318660877
+AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rig|RemoteControlAction_001
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: -1339839467396266857, guid: 44d5b3c0fb7a41b41b391aad62961000, type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -1853470419525843301}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.1
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1107 &1430923336179934492
 AnimatorStateMachine:
   serializedVersion: 6
@@ -162,29 +185,35 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 3131307224902814081}
-    m_Position: {x: 630, y: -110, z: 0}
+    m_State: {fileID: -2058326319858981125}
+    m_Position: {x: 710, y: 400, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -9155941458550160423}
-    m_Position: {x: 360, y: 120, z: 0}
+    m_State: {fileID: -6366393620349999647}
+    m_Position: {x: 700, y: -90, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 739652276773831076}
-    m_Position: {x: 630, y: 410, z: 0}
+    m_State: {fileID: 7839800473170476796}
+    m_Position: {x: 700, y: -30, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -4724329928288083285}
-    m_Position: {x: 630, y: 280, z: 0}
+    m_State: {fileID: 8780409135043480863}
+    m_Position: {x: 700, y: 30, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -8498325613234563410}
-    m_Position: {x: 640, y: 690, z: 0}
+    m_State: {fileID: 1752586619978648592}
+    m_Position: {x: 700, y: 90, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -4613410708806847855}
-    m_Position: {x: 630, y: 10, z: 0}
+    m_State: {fileID: 2791791383162359619}
+    m_Position: {x: 700, y: 150, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 8557018218161453469}
-    m_Position: {x: 630, y: 150, z: 0}
+    m_State: {fileID: -6795537812627145348}
+    m_Position: {x: 700, y: 210, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 6616802657802536171}
-    m_Position: {x: 640, y: 540, z: 0}
+    m_State: {fileID: 3838347379523869394}
+    m_Position: {x: 700, y: 310, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -1853470419525843301}
+    m_Position: {x: 410, y: 120, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -9129520161825426032}
+    m_Position: {x: 410, y: 240, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -194,15 +223,15 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 1030, y: 100, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -9155941458550160423}
---- !u!1102 &3131307224902814081
+  m_DefaultState: {fileID: -1853470419525843301}
+--- !u!1102 &1752586619978648592
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rig|RemoteControlAction
+  m_Name: HandsRig|WakeUP
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -215,20 +244,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8498447037282861477, guid: 44d5b3c0fb7a41b41b391aad62961000, type: 3}
+  m_Motion: {fileID: 3819069033324535837, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &6616802657802536171
+--- !u!1102 &2791791383162359619
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rig|Dardo_SHOOT
+  m_Name: HandsRig|RemoteControl
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -241,20 +270,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6099874050125558824, guid: 44d5b3c0fb7a41b41b391aad62961000, type: 3}
+  m_Motion: {fileID: 4531258975684595324, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &8557018218161453469
+--- !u!1102 &3838347379523869394
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rig|RemoteControl
+  m_Name: HandsRig|Dardo_IDLE
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -267,7 +296,59 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 5538161946391918497, guid: 44d5b3c0fb7a41b41b391aad62961000, type: 3}
+  m_Motion: {fileID: 8280320470245115179, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &7839800473170476796
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HandsRig|PhoneAction_001
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -4180726869349630297, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &8780409135043480863
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HandsRig|Dardo_SHOOT
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -3436804767019573532, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

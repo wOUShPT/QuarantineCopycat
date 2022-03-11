@@ -43,44 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cbd567f5cbdf9428fac3519b022d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactionDistance: 2
-  interactionLayer: 0
-  outlineLayer: 11
-  fakeShaderOutlineLayer: 12
-  _otherGameobjectOutlineArray: []
-  gameEvent: {fileID: 11400000, guid: a4610a941f20ae94486c05a8b18b7627, type: 2}
---- !u!114 &7838111557140744322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6223217178505128079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b1f87d4cc7eb44e95f1c7c787c37a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactionDistance: 2
-  interactionLayer: 0
-  outlineLayer: 11
-  fakeShaderOutlineLayer: 12
-  _otherGameobjectOutlineArray: []
+  interactionDistance: 2
+  gameObjectsOutlinedArray: []
+  _itemType: {fileID: 0}
   effect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Progress
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: acebc06859cc85949a668b6f2add2bab, type: 2}
-          m_ObjectArgumentAssemblyTypeName: GameEvent, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!64 &1589984795
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -160,7 +128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e2dd177803e99a94f92e6d39a494491f, type: 3}
       propertyPath: m_Name
-      value: Phone
+      value: PhonePhysically
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e2dd177803e99a94f92e6d39a494491f, type: 3}
       propertyPath: m_Layer

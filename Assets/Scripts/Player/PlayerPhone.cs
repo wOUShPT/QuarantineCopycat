@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -17,15 +18,16 @@ public class PlayerPhone : MonoBehaviour
     private PhoneFunctionDelegate phoneDelegate;
     private bool hasPhone = false;
     private bool hasClicked = false;
-    [SerializeField] private CinemachineFPExtension _cinemachineFpExtension;
-    private PlayerMovement _playerMovement;
+    private FPCameraHandler _fpCameraHandler;
+    [SerializeField]
+    private Animator _fpRigAnimator;
     
     private void Awake()
     {
+        _fpCameraHandler = FindObjectOfType<FPCameraHandler>();
         phoneUI = FindObjectOfType<ChangePhoneUI>();
         phoneUI.ResetPhoneLayers();
         messageManager = FindObjectOfType<PhoneMessageManager>();
-        _playerMovement = FindObjectOfType<PlayerMovement>();
     }
     // Start is called before the first frame update
     void Start()
@@ -130,6 +132,7 @@ public class PlayerPhone : MonoBehaviour
     }
     public void HidePhone() //Called by Animation as well
     {
+        _fpRigAnimator.Play("PhoneOut");
         phoneCanvasGroup.alpha = 0;
         phoneCanvasGroup.interactable = false;
         phoneModel.SetActive(false);
@@ -148,14 +151,14 @@ public class PlayerPhone : MonoBehaviour
     IEnumerator DisplayPhoneSequence()
     {
         InputManager.Instance.TogglePlayerControls(false);
-        PlayerProperties.Mode = PlayerProperties.State.Cutscene;
         PlayerProperties.FreezeAim = true;
-        yield return new WaitForSeconds(1f);
-        _playerMovement.CenterCameraOnYAxis();
+        _fpRigAnimator.Play("PhoneIn");
+        _fpCameraHandler.RecenterCameraOnYaw(0.2f);
+        phoneModel.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
         primaryButton.Select();
         phoneCanvasGroup.alpha = 1;
         phoneCanvasGroup.interactable = true;
-        phoneModel.SetActive(true);
         InputManager.Instance.TogglePhoneControls(true);
         phoneDelegate = HidePhone;
         yield return null;

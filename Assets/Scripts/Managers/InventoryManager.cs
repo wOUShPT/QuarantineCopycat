@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static Inventory inventory;
+    public static Inventory Inventory;
     private UI_Inventory _uiInventory;
 
     void Awake()
     {
-        inventory = new Inventory();
+        Inventory = new Inventory();
         _uiInventory = FindObjectOfType<UI_Inventory>();
         _uiInventory.SetInventory();
     }
@@ -28,8 +28,11 @@ public class Inventory
     }
     public void AddItem(ItemType itemType)
     {
-        _itemList.Add(itemType);
-        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        if (CheckHasItem(itemType))
+        {
+            _itemList.Add(itemType);
+            OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
     
     public bool CheckHasItem(ItemType itemType)
@@ -38,8 +41,11 @@ public class Inventory
     }
     public void RemoveItem(ItemType itemType)
     {
-        _itemList.Remove(itemType);
-        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        if (CheckHasItem(itemType))
+        {
+            _itemList.Remove(itemType);
+            OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
     public List<ItemType> GetItemList()
     {

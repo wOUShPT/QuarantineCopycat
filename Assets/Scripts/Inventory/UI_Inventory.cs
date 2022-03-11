@@ -11,7 +11,7 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] private UIItemAsset[] itemAssetArray;
     public void SetInventory()
     {
-        InventoryManager.inventory.OnItemListChanged += Inventory_OnItemListChanged;
+        InventoryManager.Inventory.OnItemListChanged += Inventory_OnItemListChanged;
         
     }
     private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
@@ -30,7 +30,7 @@ public class UI_Inventory : MonoBehaviour
         int x = 0;
         int y = 0;
         float itemSlotCellSize = 120f;
-        foreach (ItemType item in InventoryManager.inventory.GetItemList())
+        foreach (ItemType item in InventoryManager.Inventory.GetItemList())
         {
             //Locate slots in an array
             RectTransform itemSlotRectTransform =

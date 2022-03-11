@@ -62,9 +62,9 @@ public class VinylDiskBehaviour : InteractableBehaviour
 
     public override void Interact()
     {
-        if (InventoryManager.inventory.CheckHasItem(_triggerItem) && CanInteract)
+        if (InventoryManager.Inventory.CheckHasItem(_triggerItem) && CanInteract)
         {
-            InventoryManager.inventory.RemoveItem(_triggerItem);
+            InventoryManager.Inventory.RemoveItem(_triggerItem);
             HideOutline();
             PlayVinylDisk();
             DisableInteraction();

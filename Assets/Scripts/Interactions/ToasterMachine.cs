@@ -35,12 +35,12 @@ public class ToasterMachine : InteractableBehaviour
 
     public override void Interact()
     {
-        if(InventoryManager.inventory.CheckHasItem(_item) && !_wasInteracted)
+        if(InventoryManager.Inventory.CheckHasItem(_item) && !_wasInteracted)
         {
             _wasInteracted = true;
             DisableInteraction();
             HideOutline();
-            InventoryManager.inventory.RemoveItem(_item);
+            InventoryManager.Inventory.RemoveItem(_item);
             StartCoroutine(DoToast());
         }
     }
