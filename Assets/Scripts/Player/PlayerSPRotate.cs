@@ -25,7 +25,7 @@ public class PlayerSPRotate : MonoBehaviour
             // Usually you use transform.LookAt for this.
             // But this can give you more control over the angle
             float targetAngle = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, targetAngle, ref TurnsmoothVelocity, rotationSpeed * Time.deltaTime);
+            float angle = Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, targetAngle, ref TurnsmoothVelocity, rotationSpeed);
             transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
             //"Save the lookdirection
             lastSavedLookDirection = lookDirection;

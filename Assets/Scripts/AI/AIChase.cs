@@ -10,12 +10,18 @@ public class AIChase : MonoBehaviour
     private NavMeshAgent agent;
     [SerializeField] private Transform target;
     //Zoom lens
-    private CinemachineFPExtension fPExtension;
     [SerializeField]private CinemachineVirtualCamera vcam;
     [SerializeField] private float minDistance = 2f;
     [SerializeField] private float maxDistance = 6f;
     [SerializeField] private float minFOV = 20f;
     [SerializeField] private float maxFOV = 60f;
+    [SerializeField] private float minSpeed = 1f;
+    [SerializeField] private float maxSpeed = 3f;
+    [SerializeField] private float minAcceleration = 2f;
+    [SerializeField] private float maxAcceleration = 4f;
+    private float normalSpeed, normalAcceleration;
+    //Boundry
+    [SerializeField]private Vector2 idealDistance;
     private float targetFOV;
     [SerializeField] private float sensibility = 0.2f;
     private CameraManager cameraManager;
@@ -25,6 +31,7 @@ public class AIChase : MonoBehaviour
     [SerializeField] private LayerMask corridorMask;
     private Transform lastCorridorGrounded;
     private PlayerSPRotate playerRotate;
+    [SerializeField]private LayerMask seeTargetMask;
     private enum AgentState
     {
         Idle, Chase, MeshLink 
@@ -35,13 +42,14 @@ public class AIChase : MonoBehaviour
         target = FindObjectOfType<PlayerMovement>().transform;
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = true; // Make the agent stop
-        fPExtension = FindObjectOfType<CinemachineFPExtension>();
         cameraManager = FindObjectOfType<CameraManager>();
         triggerChase = FindObjectOfType<TriggerChase>();
         playerRotate = FindObjectOfType<PlayerSPRotate>();
     }
     private void Start()
     {
+        normalSpeed = agent.speed;
+        normalAcceleration = agent.acceleration;
         playerRotate.enabled = false;
         triggerChase.OnPlayerInsideTrigger += ColliderTrigger_OnPlayerEnterTrigger;
     }
@@ -93,35 +101,67 @@ public class AIChase : MonoBehaviour
     void LateUpdate()
     {
         ZoomInOutCamera();
+        SetRubberBranding();
     }
     private void ZoomInOutCamera()
     {
-        if (fPExtension.IsFirstPerson) // it's not in the second perspective
+        if (CheckIsCopycatIdle())
+            return;
+
+        targetFOV = GetRemainingDistance() < idealDistance.x ? minFOV : targetFOV;
+        targetFOV = GetRemainingDistance() > idealDistance.y ? maxFOV : targetFOV;
+        vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, targetFOV, sensibility * Time.deltaTime);
+    }
+
+    private void SetRubberBranding()
+    {
+        if (CheckIsCopycatIdle())
+            return;
+        // rubber banding
+        if(GetRemainingDistance() < idealDistance.x)
         {
+            agent.speed = minSpeed;
+            agent.acceleration = minAcceleration;
             return;
         }
-        float distance = Mathf.RoundToInt(Vector3.Distance(transform.position, target.position));
-        distance = Mathf.Clamp(distance, minDistance, maxDistance);
-        switch (distance)
+        else if(GetRemainingDistance() > idealDistance.y)
         {
-            case 2:
-                targetFOV = maxFOV;
-                break;
-            case 3:
-                targetFOV = maxFOV - 10;
-                break;
-            case 4:
-                targetFOV = maxFOV - 20;
-                break;
-            case 5:
-                targetFOV = minFOV + 10; // 30
-                break;
-            case 6:
-            default:
-                targetFOV = minFOV; // 20
-                break;
+            agent.speed = maxSpeed;
+            agent.acceleration = maxAcceleration;
+            return;
         }
-        vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, targetFOV, sensibility * Time.deltaTime);
+        //It's in the ideal distance
+        agent.speed = normalSpeed;
+        agent.acceleration =  normalAcceleration;
+    }
+    private bool CheckIsCopycatIdle()
+    {
+        return agentState == AgentState.Idle;
+    }
+    private float GetRemainingDistance()
+    {
+        float distance = 0f;
+        Vector3[] corners = agent.path.corners;
+        //NavMeshAgent.remainingDistance is still calculated only after the penultimate corner of the path has been reached,
+        //and the agent is traversing the last segment.
+        if(agent.pathPending || agent.pathStatus == NavMeshPathStatus.PathInvalid || corners.Length == 0)
+        {
+            //avoid get an infinite value
+            distance = Mathf.Clamp(Mathf.RoundToInt(Vector3.Distance(transform.position, target.position)), minDistance, maxDistance);
+            return distance;
+        }
+        if (corners.Length > 2)
+        {
+            //Measures all agent path corner points
+            for (int i = 0; i < corners.Length - 1; i++)
+            {
+                distance += Mathf.RoundToInt(Vector3.Distance(corners[i], corners[i + 1]));
+            }
+            return Mathf.Clamp(distance, minDistance, maxDistance);
+        }
+        //In case  the remaining path is straight
+        distance = Mathf.Clamp(Mathf.RoundToInt(agent.remainingDistance), minDistance, maxDistance);
+        return distance;
     }
     private IEnumerator StartIsOnMeshLink()
     {
@@ -141,43 +181,52 @@ public class AIChase : MonoBehaviour
     }
     private void MimicPlayerMovements()
     {
-        //Seeing direction
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 direction = Vector3.Normalize(target.position - transform.position);
-        
-        if(!IsPlayerLookingAtCopyCat())
+        if (!IsPlayerLookingAtCopyCat())
         {
             //Player is looking on front
             return;
         }
-        float dot = Vector3.Dot(forward, direction);
-        if (dot > 0)
+        //Seeing direction
+        Vector3 direction = Vector3.Normalize(target.position - agent.transform.position);
+        
+        Vector3 newPosition;
+        if (Mathf.Abs(Vector3.Dot(Vector3.right, direction)) > 0.9f && target.position.z != agent.transform.position.z)
         {
-            Vector3 newPosition;
-            if (Mathf.Abs(Vector3.Dot(Vector3.right, direction)) > 0.9f && target.position.z != agent.transform.position.z)
-            {
-                //Move in forward
-                newPosition = new Vector3(agent.transform.position.x, agent.transform.position.y, target.position.z);
-                //agent.nextPosition = Vector3.Lerp(agent.transform.position, newPosition, agent.speed * Time.deltaTime);
-                agent.nextPosition = newPosition;
-            }
-            else if (Mathf.Abs(Vector3.Dot(Vector3.forward, direction)) > 0.9f && target.position.x != agent.transform.position.x)
-            {
-                //Move vector 3 right and left
-                newPosition = new Vector3(target.position.x, agent.transform.position.y, agent.transform.position.z);
-                agent.nextPosition = newPosition;
-            }
+            //Move in forward
+            newPosition = new Vector3(agent.transform.position.x, agent.transform.position.y, target.position.z);
+            //agent.nextPosition = Vector3.Lerp(agent.transform.position, newPosition, agent.speed * Time.deltaTime);
+            agent.nextPosition = newPosition;
+        }
+        else if (Mathf.Abs(Vector3.Dot(Vector3.forward, direction)) > 0.9f && target.position.x != agent.transform.position.x)
+        {
+            //Move vector 3 right and left
+            newPosition = new Vector3(target.position.x, agent.transform.position.y, agent.transform.position.z);
+            agent.nextPosition = newPosition;
         }
     }
 
     private bool IsPlayerLookingAtCopyCat()
     {
-        if (Vector3.Dot(transform.TransformDirection(Vector3.forward), playerRotate.LookDirection) >= 0)
+        if (!IsCopycatSeeingPlayer())
+        {
+            return false;
+        }
+        Vector3 forward = vcam.transform.TransformDirection(Vector3.forward).normalized;
+        if (Vector3.Dot(forward, playerRotate.LookDirection.normalized) >= 0.2f)
         {
             //Player is looking on front or perpendicular
             return false;
         }
         //Player is looking at copycat
+        return true;
+    }
+    private bool IsCopycatSeeingPlayer()
+    {
+        if(Physics.Linecast(agent.transform.position, target.position, seeTargetMask ))
+        {
+            //Copycat is not seing player (probably a door between them)
+            return false;
+        }
         return true;
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4089.541, g: 2834.1445, b: 2542.3438, a: 1}
+  m_IndirectSpecularColor: {r: 4089.3887, g: 2835.2148, b: 2544.289, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69493a2b9afc534896e41c97dd4e77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 4
+  rotationSpeed: 0.1
 --- !u!4 &122948273 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5660026064973096156, guid: f148753a67ac6664288de78505c5eda5, type: 3}
@@ -862,7 +862,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: 6b0e27c81313a8f41a91362d4cb9d7fd, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &150845875
 GameObject:
   m_ObjectHideFlags: 0
@@ -16664,7 +16666,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: 0695169df58ab5c4e923ab293c9da1c1, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &288889777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17019,7 +17023,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: ff287b542bbf8d749adc86a56db5169d, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &346675733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17387,6 +17393,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cffd05a0329454ca9cd6163c799d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &414833216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6002515586746294969, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+  m_PrefabInstance: {fileID: 1061657294}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &419164276 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 4278712282334230031, guid: e8baa1a16b137354ea3cfff9007abd2c, type: 3}
@@ -25901,7 +25912,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1589984796}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6
@@ -34876,11 +34887,6 @@ MonoBehaviour:
   outlineMaterial: {fileID: 2100000, guid: 9a6016cee60ad8647b1b96b70feac25b, type: 2}
   maxValue: 5
   lerpDuration: 0.1
---- !u!1 &995748279 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8295290850138038903, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
-  m_PrefabInstance: {fileID: 1061657294}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1007467534
 GameObject:
   m_ObjectHideFlags: 3
@@ -37024,8 +37030,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryButton: {fileID: 2136546677}
   phoneCanvasGroup: {fileID: 358933111}
-  phoneModel: {fileID: 995748279}
-  _cinemachineFpExtension: {fileID: 722589775}
+  phoneModel: {fileID: 414833216}
+  _fpRigAnimator: {fileID: 0}
 --- !u!95 &1096276527
 Animator:
   serializedVersion: 3
@@ -42674,13 +42680,49 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: vcam
+      value: 
+      objectReference: {fileID: 601999868}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1096276520}
     - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: minSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: maxDistance
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: minDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
       propertyPath: childCapsule
       value: 
       objectReference: {fileID: 122948273}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: idealDistance.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: idealDistance.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: maxAcceleration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: minAcceleration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
       propertyPath: raycastOffset.x
       value: -0.75
@@ -42695,6 +42737,10 @@ PrefabInstance:
       objectReference: {fileID: 722589772}
     - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
       propertyPath: corridorMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
+      propertyPath: seeTargetMask.m_Bits
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5981468976493657638, guid: f148753a67ac6664288de78505c5eda5, type: 3}
@@ -44138,7 +44184,12 @@ MonoBehaviour:
   screenMesh: {fileID: 5719716154612612480}
   _onMaterial: {fileID: 2100000, guid: 0c6c73a4aa208b344a574f6e17b00b4d, type: 2}
   _offMaterial: {fileID: 2100000, guid: a04856e4d67261c4d9ffaa39eb0f45eb, type: 2}
-  _emitter: {fileID: 0}
+  preEffect:
+    m_PersistentCalls:
+      m_Calls: []
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!328 &1413446649
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -49807,7 +49858,15 @@ MonoBehaviour:
   _item: {fileID: 0}
   taskDuration: 0
   toasts: {fileID: 0}
-  _toasterParticleSystem: {fileID: 0}
+  _toasterParticleSystemAnimator: {fileID: 0}
+  _toasterAnimator: {fileID: 0}
+  FMODEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   _preEffect:
     m_PersistentCalls:
       m_Calls: []
@@ -49837,6 +49896,13 @@ MonoBehaviour:
   taskDuration: 0
   coffeeCup: {fileID: 0}
   _coffeeParticleSystem: {fileID: 0}
+  FMODEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   _preEffect:
     m_PersistentCalls:
       m_Calls: []
@@ -49947,7 +50013,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: 981a7d14f5b1ff743924188f589d1689, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1415779956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5628516026998535461, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
@@ -49967,7 +50035,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: 981a7d14f5b1ff743924188f589d1689, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1415779958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7198965218544868304, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
@@ -50021,7 +50091,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 0}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1415779964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8523902750399608088, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
@@ -66008,17 +66080,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1745131366744594299, guid: e2dd177803e99a94f92e6d39a494491f, type: 3}
---- !u!114 &1589984796 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7838111557140744322, guid: c1428f8d5230cd24b9ce1b978db8c354, type: 3}
-  m_PrefabInstance: {fileID: 6529136289207232875}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589984794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b1f87d4cc7eb44e95f1c7c787c37a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1590401016
 GameObject:
   m_ObjectHideFlags: 19
@@ -66094,7 +66155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: cf4c6b8265c93c94a9ce080978d037b9, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1594740754
 GameObject:
   m_ObjectHideFlags: 3
@@ -66179,7 +66242,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: 6b0e27c81313a8f41a91362d4cb9d7fd, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1613511402
 GameObject:
   m_ObjectHideFlags: 0
@@ -67179,7 +67244,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: 33e57c0e53544d441ada50f2ef072c9b, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1743999037
 GameObject:
   m_ObjectHideFlags: 0
@@ -80493,7 +80560,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: 682893acbe2a5924fb90d801766673d0, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2132803999
 GameObject:
   m_ObjectHideFlags: 0
@@ -86305,7 +86374,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: 2521aa5a164327e4d8b0b5432a35f63a, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2445923679875510618
 GameObject:
   m_ObjectHideFlags: 0
@@ -87075,7 +87146,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 2
   gameObjectsOutlinedArray: []
-  gameEvent: {fileID: 11400000, guid: c421b11868f0f6b409b51f4aa54ae328, type: 2}
+  effect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!64 &4788151141094014567 stripped
 MeshCollider:
   m_CorrespondingSourceObject: {fileID: -2797182516680660710, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
