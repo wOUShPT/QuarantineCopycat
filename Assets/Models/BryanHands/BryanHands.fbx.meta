@@ -24,6 +24,9 @@ ModelImporter:
   - first:
       74: 3819069033324535837
     second: HandsRig|WakeUP
+  - first:
+      74: -7748612279447451058
+    second: HandsRig|SmartphoneAction
   externalObjects: {}
   materials:
     materialImportMode: 2

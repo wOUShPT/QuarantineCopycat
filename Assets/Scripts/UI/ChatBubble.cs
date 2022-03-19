@@ -23,7 +23,7 @@ public class ChatBubble : MonoBehaviour
         textMeshPro.ForceMeshUpdate();
         Vector2 textSize = textMeshPro.GetRenderedValues(true);
 
-        Vector2 padding = new Vector2(0f, 0.015f);
+        Vector2 padding = new Vector2(0f, 20f);
         backgroundrectTransform.sizeDelta = new Vector2(backgroundrectTransform.sizeDelta.x, textSize.y + padding.y);
         pivotRectTransform.sizeDelta = backgroundrectTransform.sizeDelta;
     }

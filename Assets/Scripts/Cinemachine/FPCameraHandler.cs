@@ -16,8 +16,8 @@ public class FPCameraHandler : MonoBehaviour
     private void Awake()
     {
         _povComponent = vCam.GetCinemachineComponent<CinemachinePOV>();
-        _povComponent.m_HorizontalAxis.m_MaxSpeed = mouseSenseData.mouseSensitivity * 2f;
-        _povComponent.m_VerticalAxis.m_MaxSpeed = mouseSenseData.mouseSensitivity * 0.56f * 2f;
+        _povComponent.m_HorizontalAxis.m_MaxSpeed = mouseSenseData.mouseSensitivity;
+        _povComponent.m_VerticalAxis.m_MaxSpeed = mouseSenseData.mouseSensitivity * 0.56f;
     }
 
     private void Update()
@@ -30,19 +30,25 @@ public class FPCameraHandler : MonoBehaviour
         _povComponent.m_VerticalAxis.m_InputAxisValue = InputManager.Instance.PlayerInput.Look.y;
     }
 
-    public void RecenterCameraOnYaw(float duration)
+    public void RecenterCameraOnYaw(float duration, float targetValue)
     {
-        StartCoroutine(RecenterCameraOnYawCoroutine(duration));
+        StartCoroutine(RecenterCameraOnYawCoroutine(duration, targetValue));
     }
 
-    IEnumerator RecenterCameraOnYawCoroutine(float duration)
+    IEnumerator RecenterCameraOnYawCoroutine(float duration, float targetValue)
     {
         _povComponent.m_HorizontalAxis.m_InputAxisValue = 0;
         _povComponent.m_VerticalAxis.m_InputAxisValue = 0;
-        _povComponent.m_VerticalRecentering.m_RecenteringTime = duration;
-        _povComponent.m_VerticalRecentering.m_enabled = true;
-        yield return new WaitForSeconds(duration * 3f);
-        //_povComponent.m_VerticalAxis.Value = 0;
-        _povComponent.m_VerticalRecentering.m_enabled = false;
+        float interval = Mathf.Abs(_povComponent.m_VerticalAxis.Value - targetValue);
+        float elapsedTime = 0;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            _povComponent.m_VerticalAxis.Value = Mathf.Lerp(_povComponent.m_VerticalAxis.Value, targetValue, elapsedTime / duration);
+            yield return new WaitForEndOfFrame();
+        }
+
+        _povComponent.m_VerticalAxis.Value = targetValue;
+        Debug.Log("Recentered");
     }
 }

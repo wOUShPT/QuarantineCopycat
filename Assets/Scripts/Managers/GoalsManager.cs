@@ -50,6 +50,10 @@ public class GoalsManager : Singleton<GoalsManager>
         _currentDayIndex = 1;
         _goalsMetCounter = 0;
         _canProgress = false;
+    }
+
+    private void Start()
+    {
         preEffect.Invoke();
     }
 

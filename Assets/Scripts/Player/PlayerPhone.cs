@@ -52,7 +52,7 @@ public class PlayerPhone : MonoBehaviour
         {
             return; // If player doesn't have a phone
         }
-        if (InputManager.Instance.PlayerInput.UsePhone > 0)
+        if (InputManager.Instance.PlayerInput.UsePhone > 0 || InputManager.Instance.PhoneInput.HidePhone)
         {
             phoneDelegate?.Invoke();
         }
@@ -62,7 +62,7 @@ public class PlayerPhone : MonoBehaviour
                 return;
             if(phoneUI.Menus[0].Menu.alpha == 1f)
             {
-                phoneDelegate?.Invoke(); // Turn Of
+                //phoneDelegate?.Invoke(); // Turn Of
                 return;
             }
             RetrocedeMenu();
@@ -130,16 +130,26 @@ public class PlayerPhone : MonoBehaviour
     {
         StartCoroutine(DisplayPhoneSequence());
     }
-    public void HidePhone() //Called by Animation as well
+    
+    private void HidePhone() //Display immediately for now, but in the future it will be an IK handle animation
+    {
+        StartCoroutine(HidePhoneSequence());
+    }
+    
+    IEnumerator HidePhoneSequence() //Called by Animation as well
     {
         _fpRigAnimator.Play("PhoneOut");
         phoneCanvasGroup.alpha = 0;
         phoneCanvasGroup.interactable = false;
+        InputManager.Instance.TogglePhoneControls(false);
+        yield return new WaitForSeconds(0.5f);
+        _fpCameraHandler.RecenterCameraOnYaw(1f, 0);
+        yield return new WaitForSeconds(1f);
         phoneModel.SetActive(false);
         InputManager.Instance.TogglePlayerControls(true);
         PlayerProperties.Mode = PlayerProperties.State.Dynamic;
         PlayerProperties.FreezeAim = false;
-        InputManager.Instance.TogglePhoneControls(false);
+        UIManager.Instance.ToggleReticle(true);
         phoneDelegate = DisplayPhone;
         phoneUI.ResetPhoneLayers();
     }
@@ -151,11 +161,13 @@ public class PlayerPhone : MonoBehaviour
     IEnumerator DisplayPhoneSequence()
     {
         InputManager.Instance.TogglePlayerControls(false);
+        UIManager.Instance.ToggleReticle(false);
         PlayerProperties.FreezeAim = true;
-        _fpRigAnimator.Play("PhoneIn");
-        _fpCameraHandler.RecenterCameraOnYaw(0.2f);
-        phoneModel.SetActive(true);
+        _fpCameraHandler.RecenterCameraOnYaw(1f, 15);
         yield return new WaitForSeconds(0.2f);
+        phoneModel.SetActive(true);
+        _fpRigAnimator.Play("PhoneIn");
+        yield return new WaitForSeconds(0.8f);
         primaryButton.Select();
         phoneCanvasGroup.alpha = 1;
         phoneCanvasGroup.interactable = true;

@@ -615,6 +615,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "HidePhone",
+                    "type": "Button",
+                    "id": "ef134ef7-2749-4eaf-a6da-3e15d66972c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "RecieveMessageDebug",
                     "type": "Button",
                     "id": "d9a2a558-ee70-44fd-abe3-7e8d21266c4e",
@@ -739,6 +747,17 @@
                     "processors": "",
                     "groups": "Mouse&Keyboard",
                     "action": "Send",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c91b5c59-f82c-448e-90fd-8186842d4ac0",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "HidePhone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -28,7 +28,7 @@ public class Inventory
     }
     public void AddItem(ItemType itemType)
     {
-        if (CheckHasItem(itemType))
+        if (!CheckHasItem(itemType))
         {
             _itemList.Add(itemType);
             OnItemListChanged?.Invoke(this, EventArgs.Empty);

@@ -628,6 +628,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""HidePhone"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef134ef7-2749-4eaf-a6da-3e15d66972c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""RecieveMessageDebug"",
                     ""type"": ""Button"",
                     ""id"": ""d9a2a558-ee70-44fd-abe3-7e8d21266c4e"",
@@ -752,6 +760,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
                     ""action"": ""Send"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c91b5c59-f82c-448e-90fd-8186842d4ac0"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""HidePhone"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1178,6 +1197,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Phone_Movement = m_Phone.FindAction("Movement", throwIfNotFound: true);
         m_Phone_Select = m_Phone.FindAction("Select", throwIfNotFound: true);
         m_Phone_Return = m_Phone.FindAction("Return", throwIfNotFound: true);
+        m_Phone_HidePhone = m_Phone.FindAction("HidePhone", throwIfNotFound: true);
         m_Phone_RecieveMessageDebug = m_Phone.FindAction("RecieveMessageDebug", throwIfNotFound: true);
         m_Phone_Send = m_Phone.FindAction("Send", throwIfNotFound: true);
         // Menus
@@ -1372,6 +1392,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Phone_Movement;
     private readonly InputAction m_Phone_Select;
     private readonly InputAction m_Phone_Return;
+    private readonly InputAction m_Phone_HidePhone;
     private readonly InputAction m_Phone_RecieveMessageDebug;
     private readonly InputAction m_Phone_Send;
     public struct PhoneActions
@@ -1381,6 +1402,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Phone_Movement;
         public InputAction @Select => m_Wrapper.m_Phone_Select;
         public InputAction @Return => m_Wrapper.m_Phone_Return;
+        public InputAction @HidePhone => m_Wrapper.m_Phone_HidePhone;
         public InputAction @RecieveMessageDebug => m_Wrapper.m_Phone_RecieveMessageDebug;
         public InputAction @Send => m_Wrapper.m_Phone_Send;
         public InputActionMap Get() { return m_Wrapper.m_Phone; }
@@ -1401,6 +1423,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Return.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnReturn;
                 @Return.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnReturn;
                 @Return.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnReturn;
+                @HidePhone.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnHidePhone;
+                @HidePhone.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnHidePhone;
+                @HidePhone.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnHidePhone;
                 @RecieveMessageDebug.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnRecieveMessageDebug;
                 @RecieveMessageDebug.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnRecieveMessageDebug;
                 @RecieveMessageDebug.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnRecieveMessageDebug;
@@ -1420,6 +1445,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Return.started += instance.OnReturn;
                 @Return.performed += instance.OnReturn;
                 @Return.canceled += instance.OnReturn;
+                @HidePhone.started += instance.OnHidePhone;
+                @HidePhone.performed += instance.OnHidePhone;
+                @HidePhone.canceled += instance.OnHidePhone;
                 @RecieveMessageDebug.started += instance.OnRecieveMessageDebug;
                 @RecieveMessageDebug.performed += instance.OnRecieveMessageDebug;
                 @RecieveMessageDebug.canceled += instance.OnRecieveMessageDebug;
@@ -1584,6 +1612,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnReturn(InputAction.CallbackContext context);
+        void OnHidePhone(InputAction.CallbackContext context);
         void OnRecieveMessageDebug(InputAction.CallbackContext context);
         void OnSend(InputAction.CallbackContext context);
     }
