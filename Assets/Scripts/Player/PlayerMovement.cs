@@ -65,10 +65,17 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateMovement()
     {
-        _currentMoveDirection = (transform.forward * InputManager.Instance.PlayerInput.Movement.z) + (transform.right * InputManager.Instance.PlayerInput.Movement.x);
-        _currentMoveDirection += new Vector3(_currentMoveDirection.x , gravity, _currentMoveDirection.z);
+        if(CameraManager.CinemachineCameraState != CameraManager.CinemachineStateSwitcher.SecondPerson)
+        {
+            _currentMoveDirection = (transform.forward * InputManager.Instance.PlayerInput.Movement.z) + (transform.right * InputManager.Instance.PlayerInput.Movement.x);
+            _currentMoveDirection += new Vector3(_currentMoveDirection.x, gravity, _currentMoveDirection.z);
+        }
+        if(CameraManager.CinemachineCameraState == CameraManager.CinemachineStateSwitcher.SecondPerson)
+        {
+            _currentMoveDirection = (Camera.main.transform.forward * InputManager.Instance.PlayerInput.Movement.z) + (Camera.main.transform.right * InputManager.Instance.PlayerInput.Movement.x);
+            _currentMoveDirection += new Vector3(_currentMoveDirection.x, gravity, _currentMoveDirection.z);
+        }
         _characterController.Move(_currentMoveDirection * _movementSpeed * Time.deltaTime);
-        
     }
 
     void UpdateRotation()

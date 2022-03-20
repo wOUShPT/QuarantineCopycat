@@ -27,6 +27,11 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
+        if (PlayerProperties.FreezeMovement)
+        {
+            _animator.SetFloat("Velocity", 0f);
+            return;
+        }
         _animator.SetFloat("Velocity", _movement.currentVelocity);
     }
     public void SeeCopyCat()

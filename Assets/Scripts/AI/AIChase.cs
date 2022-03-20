@@ -3,12 +3,14 @@ using UnityEngine;
 using UnityEngine.AI;
 using Cinemachine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AIChase : MonoBehaviour
 {
     //Agent
     private NavMeshAgent agent;
     [SerializeField] private Transform target;
+    private PlayerMovement playerMovement;
     //Zoom lens
     [SerializeField]private CinemachineVirtualCamera vcam;
     [SerializeField] private float minDistance = 2f;
@@ -32,14 +34,20 @@ public class AIChase : MonoBehaviour
     private Transform lastCorridorGrounded;
     private PlayerSPRotate playerRotate;
     [SerializeField]private LayerMask seeTargetMask;
+    [SerializeField] private CameraFunctions playerCameraFunctions;
     private enum AgentState
     {
-        Idle, Chase, MeshLink 
+        Idle, Chase, MeshLink, Finished
     }
     private AgentState agentState;
+
+    private float changeSpeedSmooth = 0.1f;
+
+    private Queue<Waypoint> waypointsQueue;
     private void Awake()
     {
-        target = FindObjectOfType<PlayerMovement>().transform;
+        waypointsQueue = new Queue<Waypoint>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = true; // Make the agent stop
         cameraManager = FindObjectOfType<CameraManager>();
@@ -68,14 +76,22 @@ public class AIChase : MonoBehaviour
     IEnumerator SetupChase()
     {
         Camera.main.cullingMask = chaseMask;
+        PlayerProperties.FreezeAim = true;
+        PlayerProperties.FreezeInteraction = true;
+        PlayerProperties.FreezeMovement = true;
+        Debug.Log("Chaseee!");
+        playerCameraFunctions.ResetCameraTransform();
         yield return new WaitForSeconds(.1f);
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
+        UIManager.Instance.ToggleReticle(false);
         yield return new WaitForSeconds(5f);
         agent.isStopped = false; // Copycat starts moving
         StartCoroutine(StartIsOnMeshLink());
         playerRotate.enabled = true;
         agentState = AgentState.Chase;
-        
+        PlayerProperties.FreezeMovement = false;
+        SetWaypoint();
+
     }
     private void Update()
     {
@@ -86,6 +102,7 @@ public class AIChase : MonoBehaviour
         switch (agentState)
         {
             case AgentState.Idle:
+            case AgentState.Finished:
                 break;
             case AgentState.Chase:
                 MimicPlayerMovements();
@@ -100,17 +117,15 @@ public class AIChase : MonoBehaviour
     }
     void LateUpdate()
     {
-        ZoomInOutCamera();
+        //ZoomInOutCamera();
         SetRubberBranding();
     }
     private void ZoomInOutCamera()
     {
         if (CheckIsCopycatIdle())
             return;
-
-        targetFOV = GetRemainingDistance() < idealDistance.x ? minFOV : targetFOV;
-        targetFOV = GetRemainingDistance() > idealDistance.y ? maxFOV : targetFOV;
-        vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, targetFOV, sensibility * Time.deltaTime);
+        targetFOV = GetRemainingDistance() < ((idealDistance.x + idealDistance.y) / 2) ? minFOV : targetFOV;
+        vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, targetFOV, sensibility);
     }
 
     private void SetRubberBranding()
@@ -118,21 +133,26 @@ public class AIChase : MonoBehaviour
         if (CheckIsCopycatIdle())
             return;
         // rubber banding
-        if(GetRemainingDistance() < idealDistance.x)
+        float remainingDistance = GetRemainingDistance();
+        if(remainingDistance < idealDistance.x)
         {
-            agent.speed = minSpeed;
-            agent.acceleration = minAcceleration;
+            agent.speed = GetLerpSpeed(agent.speed, minSpeed);
+            agent.acceleration = GetLerpSpeed(agent.acceleration, minAcceleration);
             return;
         }
-        else if(GetRemainingDistance() > idealDistance.y)
+        else if(remainingDistance > idealDistance.y)
         {
-            agent.speed = maxSpeed;
-            agent.acceleration = maxAcceleration;
+            agent.speed = GetLerpSpeed(agent.speed, maxSpeed);
+            agent.acceleration = GetLerpSpeed(agent.acceleration, maxAcceleration);
             return;
         }
         //It's in the ideal distance
-        agent.speed = normalSpeed;
-        agent.acceleration =  normalAcceleration;
+        agent.speed = GetLerpSpeed(agent.speed, normalSpeed);
+        agent.acceleration =  GetLerpSpeed(agent.acceleration, normalAcceleration);
+    }
+    private float GetLerpSpeed(float currentSpeed, float tartgetSpeed)
+    {
+        return Mathf.Lerp(currentSpeed, tartgetSpeed, changeSpeedSmooth);
     }
     private bool CheckIsCopycatIdle()
     {
@@ -140,27 +160,8 @@ public class AIChase : MonoBehaviour
     }
     private float GetRemainingDistance()
     {
-        float distance = 0f;
-        Vector3[] corners = agent.path.corners;
-        //NavMeshAgent.remainingDistance is still calculated only after the penultimate corner of the path has been reached,
-        //and the agent is traversing the last segment.
-        if(agent.pathPending || agent.pathStatus == NavMeshPathStatus.PathInvalid || corners.Length == 0)
-        {
-            //avoid get an infinite value
-            distance = Mathf.Clamp(Mathf.RoundToInt(Vector3.Distance(transform.position, target.position)), minDistance, maxDistance);
-            return distance;
-        }
-        if (corners.Length > 2)
-        {
-            //Measures all agent path corner points
-            for (int i = 0; i < corners.Length - 1; i++)
-            {
-                distance += Mathf.RoundToInt(Vector3.Distance(corners[i], corners[i + 1]));
-            }
-            return Mathf.Clamp(distance, minDistance, maxDistance);
-        }
-        //In case  the remaining path is straight
-        distance = Mathf.Clamp(Mathf.RoundToInt(agent.remainingDistance), minDistance, maxDistance);
+        float distance = Vector3.Distance(agent.transform.position, playerMovement.transform.position);
+        distance = Mathf.Clamp(distance, minDistance, maxDistance);
         return distance;
     }
     private IEnumerator StartIsOnMeshLink()
@@ -175,6 +176,9 @@ public class AIChase : MonoBehaviour
                 agentState = AgentState.MeshLink;
                 yield return StartCoroutine(NormalSpeed()); //with normal speed
                 agent.CompleteOffMeshLink();
+                yield return null;
+                agentState = AgentState.Chase;
+                agent.SetDestination(target.position);
             }
             yield return null;
         }
@@ -187,20 +191,20 @@ public class AIChase : MonoBehaviour
             return;
         }
         //Seeing direction
-        Vector3 direction = Vector3.Normalize(target.position - agent.transform.position);
+        Transform playerTransform = playerMovement.transform;
+        Vector3 direction = Vector3.Normalize(playerTransform.position - agent.transform.position);
         
         Vector3 newPosition;
-        if (Mathf.Abs(Vector3.Dot(Vector3.right, direction)) > 0.9f && target.position.z != agent.transform.position.z)
+        if (Mathf.Abs(Vector3.Dot(Vector3.right, direction)) > 0.9f && playerTransform.position.z != agent.transform.position.z)
         {
             //Move in forward
-            newPosition = new Vector3(agent.transform.position.x, agent.transform.position.y, target.position.z);
-            //agent.nextPosition = Vector3.Lerp(agent.transform.position, newPosition, agent.speed * Time.deltaTime);
+            newPosition = new Vector3(agent.transform.position.x, agent.transform.position.y, playerTransform.position.z);
             agent.nextPosition = newPosition;
         }
-        else if (Mathf.Abs(Vector3.Dot(Vector3.forward, direction)) > 0.9f && target.position.x != agent.transform.position.x)
+        else if (Mathf.Abs(Vector3.Dot(Vector3.forward, direction)) > 0.9f && playerTransform.position.x != agent.transform.position.x)
         {
             //Move vector 3 right and left
-            newPosition = new Vector3(target.position.x, agent.transform.position.y, agent.transform.position.z);
+            newPosition = new Vector3(playerTransform.position.x, agent.transform.position.y, agent.transform.position.z);
             agent.nextPosition = newPosition;
         }
     }
@@ -222,7 +226,7 @@ public class AIChase : MonoBehaviour
     }
     private bool IsCopycatSeeingPlayer()
     {
-        if(Physics.Linecast(agent.transform.position, target.position, seeTargetMask ))
+        if(Physics.Linecast(agent.transform.position, playerMovement.transform.position, seeTargetMask ))
         {
             //Copycat is not seing player (probably a door between them)
             return false;
@@ -240,13 +244,44 @@ public class AIChase : MonoBehaviour
         }
         //Start running
         agent.isStopped = false;
-        agent.SetDestination(target.position);
+        CheckNeedToChangeWaypoint();
     }
 
+    private void CheckNeedToChangeWaypoint()
+    {
+        float distance = Vector3.Distance(agent.transform.position, target.position);
+        if(distance < 1.8f && waypointsQueue.Count > 0)
+        {
+            SetWaypoint();
+        }
+        agent.SetDestination(target.position);
+        
+    }
+    private void SetWaypoint()
+    {
+        Waypoint waypoint = waypointsQueue.Dequeue();
+        target = waypoint.transform;
+        Vector3 auxTargetPosition = waypoint.transform.position;
+        if (waypoint.IsRandomizedOnCircle())
+        {
+            //A circle around
+            auxTargetPosition.z = UnityEngine.Random.Range(waypoint.transform.position.z - 1, waypoint.transform.position.z + 1);
+            auxTargetPosition.x = UnityEngine.Random.Range(waypoint.transform.position.x - 1, waypoint.transform.position.x + 1);
+        }
+        else
+        {
+            Vector3 mindVector = (-1.0f) * waypoint.transform.TransformDirection(waypoint.transform.forward);
+            Vector3 maxVector = 1.0f * waypoint.transform.TransformDirection(waypoint.transform.forward);
+            auxTargetPosition += new Vector3(UnityEngine.Random.Range(mindVector.x, maxVector.x), 0, UnityEngine.Random.Range(mindVector.z, maxVector.z));
+        }
+        target.position = auxTargetPosition;
+    }
     IEnumerator NormalSpeed()
     {
+        //Travel at normal speed on the links
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 endPos = (data.endPos) + Vector3.up * agent.baseOffset;
+        endPos.y = agent.transform.position.y;
         while (CheckDistance(endPos)) //until the navmesh reached the end position of the link
         {
             if (!IsPlayerLookingAtCopyCat())
@@ -255,19 +290,28 @@ public class AIChase : MonoBehaviour
             }
             yield return null;
         }
-        agentState = AgentState.Chase;
+    }
+    public void AddMoreDestination(Waypoint [] waypointTransformArray)
+    {
+        foreach (Waypoint waypoint in waypointTransformArray) // Add more destinations to where copycat can move
+        {
+            waypointsQueue.Enqueue(waypoint);
+        }
     }
     private bool CheckDistance(Vector3 _endPos)
     {
         //This one for the straight
-        Vector3 endPosDirection = Vector3.Normalize(_endPos - transform.position);
+        Vector3 endPosDirection = Vector3.Normalize(_endPos);
+        Debug.Log(endPosDirection);
         if(Mathf.Abs(Vector3.Dot(Vector3.forward, endPosDirection)) >= 0.4f)
         {
-            return Mathf.Abs(_endPos.z - agent.transform.position.z) > .3f;
+            //Forward Direction globally
+            return Mathf.Abs(_endPos.z - agent.transform.position.z) > .1f;
         }
         if (Mathf.Abs(Vector3.Dot(Vector3.right, endPosDirection)) >= 0.4f)
         {
-            return Mathf.Abs(_endPos.x - agent.transform.position.x) > .3f;
+            //Right Direction globally
+            return Mathf.Abs(_endPos.x - agent.transform.position.x) > .1f;
         }
         return true;
     }

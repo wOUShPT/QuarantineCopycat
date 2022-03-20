@@ -8,8 +8,9 @@ public class TriggerChase : MonoBehaviour
     public EventHandler OnPlayerInsideTrigger;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.TryGetComponent(out PlayerMovement playerMovement))
         {
+            playerMovement.transform.rotation = Quaternion.Euler(Vector3.zero);
             //Player inside the trigger area
             OnPlayerInsideTrigger?.Invoke(this,EventArgs.Empty);
             this.gameObject.SetActive(false);

@@ -16,11 +16,19 @@ public class PlayerSPRotate : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 cameraForward = Vector3.forward;
-        Vector3 cameraRight = -Vector3.right;
-        lookDirection = ((cameraRight * InputManager.Instance.PlayerInput.Movement.z) + (cameraForward * InputManager.Instance.PlayerInput.Movement.x)).normalized;
+        if (PlayerProperties.FreezeMovement)
+        {
+            return;
+        }
+        RotateModel();
+    }
+    private void RotateModel()
+    {
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+        lookDirection = ((cameraForward * InputManager.Instance.PlayerInput.Movement.z) + (cameraRight * InputManager.Instance.PlayerInput.Movement.x)).normalized;
 
-        if(lookDirection.sqrMagnitude >= 0.1f)
+        if (lookDirection.sqrMagnitude >= 0.1f)
         {
             // Usually you use transform.LookAt for this.
             // But this can give you more control over the angle
