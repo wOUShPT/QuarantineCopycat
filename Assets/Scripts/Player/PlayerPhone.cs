@@ -9,10 +9,14 @@ public class PlayerPhone : MonoBehaviour
 {
     private PhoneMessageManager messageManager;
     private ChangePhoneUI phoneUI;
-    [SerializeField]private Button primaryButton;
+    [SerializeField]private Button defaultSelectedButton;
     //make alpha 1 and 0
-    [SerializeField] private CanvasGroup phoneCanvasGroup;
+    [SerializeField] private CanvasGroup screenCanvasGroup;
     [SerializeField] private GameObject phoneModel;
+    [SerializeField] private float AnimationInDuration;
+    [SerializeField] private float AnimationOutDuration;
+    [SerializeField] private float AnimationInAngle;
+    [SerializeField] private float AnimationOutAngle;
 
     private delegate void PhoneFunctionDelegate();
     private PhoneFunctionDelegate phoneDelegate;
@@ -32,11 +36,11 @@ public class PlayerPhone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        primaryButton.Select();
+        defaultSelectedButton.Select();
         phoneModel.SetActive(false);
-        phoneCanvasGroup.alpha = 0;
-        phoneCanvasGroup.interactable = false;
-        phoneCanvasGroup.blocksRaycasts = false;
+        screenCanvasGroup.alpha = 0;
+        screenCanvasGroup.interactable = false;
+        screenCanvasGroup.blocksRaycasts = false;
         InputManager.Instance.TogglePhoneControls(false);
         phoneDelegate = DisplayPhone;
     }
@@ -139,12 +143,13 @@ public class PlayerPhone : MonoBehaviour
     IEnumerator HidePhoneSequence() //Called by Animation as well
     {
         _fpRigAnimator.Play("PhoneOut");
-        phoneCanvasGroup.alpha = 0;
-        phoneCanvasGroup.interactable = false;
+        screenCanvasGroup.alpha = 0;
+        screenCanvasGroup.interactable = false;
         InputManager.Instance.TogglePhoneControls(false);
-        yield return new WaitForSeconds(0.5f);
-        _fpCameraHandler.RecenterCameraOnYaw(1f, 0);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(AnimationOutDuration * 0.5f);
+        _fpCameraHandler.RecenterCameraOnYaw(AnimationOutDuration, AnimationOutAngle);
+        yield return new WaitForSeconds(AnimationOutDuration * 0.5f);
+        yield return new WaitForSeconds(0.1f);
         phoneModel.SetActive(false);
         InputManager.Instance.TogglePlayerControls(true);
         PlayerProperties.Mode = PlayerProperties.State.Dynamic;
@@ -163,14 +168,14 @@ public class PlayerPhone : MonoBehaviour
         InputManager.Instance.TogglePlayerControls(false);
         UIManager.Instance.ToggleReticle(false);
         PlayerProperties.FreezeAim = true;
-        _fpCameraHandler.RecenterCameraOnYaw(1f, 15);
-        yield return new WaitForSeconds(0.2f);
+        _fpCameraHandler.RecenterCameraOnYaw(AnimationInDuration, AnimationInAngle);
+        yield return new WaitForSeconds(AnimationInDuration * 0.2f);
         phoneModel.SetActive(true);
         _fpRigAnimator.Play("PhoneIn");
-        yield return new WaitForSeconds(0.8f);
-        primaryButton.Select();
-        phoneCanvasGroup.alpha = 1;
-        phoneCanvasGroup.interactable = true;
+        yield return new WaitForSeconds(AnimationInDuration * 0.8f);
+        defaultSelectedButton.Select();
+        screenCanvasGroup.alpha = 1;
+        screenCanvasGroup.interactable = true;
         InputManager.Instance.TogglePhoneControls(true);
         phoneDelegate = HidePhone;
         yield return null;

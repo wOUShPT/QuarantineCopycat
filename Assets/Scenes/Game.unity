@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4090.4219, g: 2837.5273, b: 2547.7695, a: 1}
+  m_IndirectSpecularColor: {r: 4090.4844, g: 2837.5664, b: 2547.8633, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -657,6 +657,17 @@ Transform:
   m_Father: {fileID: 812501199}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &166476591 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6002515587345030880, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+  m_PrefabInstance: {fileID: 1061657294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &169482856
 GameObject:
   m_ObjectHideFlags: 0
@@ -16450,7 +16461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 3
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &339036590
 Transform:
   m_ObjectHideFlags: 0
@@ -35076,6 +35087,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1480277916}
     m_Modifications:
+    - target: {fileID: 7241094, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241094, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241094, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241094, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 241400261, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 241400261, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 241400261, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 241400261, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     - target: {fileID: 244024976, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 30
@@ -35083,6 +35126,22 @@ PrefabInstance:
     - target: {fileID: 244024977, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
       propertyPath: m_text
       value: Doctor
+      objectReference: {fileID: 0}
+    - target: {fileID: 482912537, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482912537, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482912537, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482912537, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 504536952, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
       propertyPath: m_AnchorMax.y
@@ -35788,9 +35847,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e908c4ea04dc634791d2312c3a97b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryButton: {fileID: 2136546677}
-  phoneCanvasGroup: {fileID: 358933111}
+  defaultSelectedButton: {fileID: 166476591}
+  screenCanvasGroup: {fileID: 358933111}
   phoneModel: {fileID: 927022312}
+  AnimationInDuration: 1
+  AnimationOutDuration: 1
+  AnimationInAngle: 15
+  AnimationOutAngle: 0
   _fpRigAnimator: {fileID: 679283649}
 --- !u!1 &1105636169
 GameObject:
@@ -70809,6 +70872,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3631858739282399978, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 65793
+      objectReference: {fileID: 0}
+    - target: {fileID: -3631858739282399978, guid: 6ff824e3e5da6034ca6334460915c20f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b0a7a31717e3aeb4394e01090fc2a2d4, type: 2}
@@ -80437,17 +80504,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &2136546677 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6002515587309904580, guid: d33aa7ea411cca040958b7fbae485f23, type: 3}
-  m_PrefabInstance: {fileID: 1061657294}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371050452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &3501641760866988
 Transform:
   m_ObjectHideFlags: 0
