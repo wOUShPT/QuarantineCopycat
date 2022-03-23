@@ -27,8 +27,6 @@ public class PlayerMovement : MonoBehaviour
     private float headBobIntensity;
     [SerializeField] 
     private float headBobSpeed;
-    [SerializeField] 
-    private CinemachineFPExtension _cinemachineFpExtension;
     private CinemachineStateDrivenCamera _cinemachineStateDrivenCamera;
     private Camera _camera;
     public bool isOnActionPivot;
@@ -110,12 +108,5 @@ public class PlayerMovement : MonoBehaviour
     public void ToggleCollision(bool state)
     {
         _characterController.enableOverlapRecovery = state;
-    }
-
-
-    // call cinemachine custom extension to recenter the camera on the Y Axis
-    public void CenterCameraOnYAxis()
-    {
-        _cinemachineFpExtension.RecenterYAxis();
     }
 }

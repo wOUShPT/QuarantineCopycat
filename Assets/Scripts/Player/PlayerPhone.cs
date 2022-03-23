@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,12 +12,12 @@ public class PlayerPhone : MonoBehaviour
     private ChangePhoneUI phoneUI;
     [SerializeField]private Button defaultSelectedButton;
     //make alpha 1 and 0
-    [SerializeField] private CanvasGroup screenCanvasGroup;
+    [SerializeField] private CanvasGroup phoneCanvasGroup;
     [SerializeField] private GameObject phoneModel;
-    [SerializeField] private float AnimationInDuration;
-    [SerializeField] private float AnimationOutDuration;
-    [SerializeField] private float AnimationInAngle;
-    [SerializeField] private float AnimationOutAngle;
+    [SerializeField] private float animationInDuration;
+    [SerializeField] private float animationInAngle;
+    [SerializeField] private float animationOutDuration;
+    [SerializeField] private float animationOutAngle;
 
     private delegate void PhoneFunctionDelegate();
     private PhoneFunctionDelegate phoneDelegate;
@@ -25,7 +26,7 @@ public class PlayerPhone : MonoBehaviour
     private FPCameraHandler _fpCameraHandler;
     [SerializeField]
     private Animator _fpRigAnimator;
-    
+
     private void Awake()
     {
         _fpCameraHandler = FindObjectOfType<FPCameraHandler>();
@@ -38,9 +39,9 @@ public class PlayerPhone : MonoBehaviour
     {
         defaultSelectedButton.Select();
         phoneModel.SetActive(false);
-        screenCanvasGroup.alpha = 0;
-        screenCanvasGroup.interactable = false;
-        screenCanvasGroup.blocksRaycasts = false;
+        phoneCanvasGroup.alpha = 0;
+        phoneCanvasGroup.interactable = false;
+        phoneCanvasGroup.blocksRaycasts = false;
         InputManager.Instance.TogglePhoneControls(false);
         phoneDelegate = DisplayPhone;
     }
@@ -48,46 +49,18 @@ public class PlayerPhone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckTurnedPhone();
-    }
-    private void CheckTurnedPhone()
-    {
         if (!hasPhone)
         {
             return; // If player doesn't have a phone
         }
+        
+        CheckInput();
+    }
+    private void CheckInput()
+    {
         if (InputManager.Instance.PlayerInput.UsePhone > 0 || InputManager.Instance.PhoneInput.HidePhone)
         {
             phoneDelegate?.Invoke();
-        }
-        if( InputManager.Instance.PhoneInput.Return && !hasClicked)
-        {
-            if (phoneUI.IsTyping)
-                return;
-            if(phoneUI.Menus[0].Menu.alpha == 1f)
-            {
-                //phoneDelegate?.Invoke(); // Turn Of
-                return;
-            }
-            RetrocedeMenu();
-        }
-        
-        if (InputManager.Instance.PhoneInput.Send && !hasClicked)
-        {
-            hasClicked = true;
-            if (phoneUI.IsTyping)
-            {
-                phoneUI.WriteAllText();
-                return;
-            }
-            SendMessage();
-        }
-        if (!InputManager.Instance.PhoneInput.Return && !InputManager.Instance.PhoneInput.Send)
-        {
-            if (hasClicked)
-            {
-                hasClicked = !hasClicked;
-            }
         }
     }
     private void SendMessage()
@@ -130,25 +103,27 @@ public class PlayerPhone : MonoBehaviour
         }
         phoneUI.BackFromCurrentMenu(currentMenuIndex);
     }
-    private void DisplayPhone() //Display immediately for now, but in the future it will be an IK handle animation
+    public void DisplayPhone() //Display immediately for now, but in the future it will be an IK handle animation
     {
         StartCoroutine(DisplayPhoneSequence());
     }
     
-    private void HidePhone() //Display immediately for now, but in the future it will be an IK handle animation
+    public void HidePhone() //Display immediately for now, but in the future it will be an IK handle animation
     {
         StartCoroutine(HidePhoneSequence());
     }
     
     IEnumerator HidePhoneSequence() //Called by Animation as well
     {
+        _fpRigAnimator.speed = 2.2f * animationOutDuration;
         _fpRigAnimator.Play("PhoneOut");
-        screenCanvasGroup.alpha = 0;
-        screenCanvasGroup.interactable = false;
+        phoneCanvasGroup.alpha = 0;
+        phoneCanvasGroup.interactable = false;
+        StopCoroutine(CheckUIInput());
         InputManager.Instance.TogglePhoneControls(false);
-        yield return new WaitForSeconds(AnimationOutDuration * 0.5f);
-        _fpCameraHandler.RecenterCameraOnYaw(AnimationOutDuration, AnimationOutAngle);
-        yield return new WaitForSeconds(AnimationOutDuration * 0.5f);
+        yield return new WaitForSeconds(0.5f * animationOutDuration);
+        _fpCameraHandler.MoveCameraOnYaw(animationOutDuration, animationOutAngle);
+        yield return new WaitForSeconds(0.5f * animationOutDuration);
         yield return new WaitForSeconds(0.1f);
         phoneModel.SetActive(false);
         InputManager.Instance.TogglePlayerControls(true);
@@ -168,16 +143,59 @@ public class PlayerPhone : MonoBehaviour
         InputManager.Instance.TogglePlayerControls(false);
         UIManager.Instance.ToggleReticle(false);
         PlayerProperties.FreezeAim = true;
-        _fpCameraHandler.RecenterCameraOnYaw(AnimationInDuration, AnimationInAngle);
-        yield return new WaitForSeconds(AnimationInDuration * 0.2f);
+        _fpCameraHandler.MoveCameraOnYaw(animationInDuration, animationInAngle);
+        yield return new WaitForSeconds(0.2f * animationInDuration);
         phoneModel.SetActive(true);
+        _fpRigAnimator.speed = 1.5f * animationInDuration;
         _fpRigAnimator.Play("PhoneIn");
-        yield return new WaitForSeconds(AnimationInDuration * 0.8f);
+        yield return new WaitForSeconds(0.8f * animationInDuration);
+        yield return new WaitForSeconds(0.1f);
         defaultSelectedButton.Select();
-        screenCanvasGroup.alpha = 1;
-        screenCanvasGroup.interactable = true;
+        phoneCanvasGroup.alpha = 1;
+        phoneCanvasGroup.interactable = true;
         InputManager.Instance.TogglePhoneControls(true);
         phoneDelegate = HidePhone;
-        yield return null;
+        _fpRigAnimator.speed = 1;
+        StartCoroutine(CheckUIInput());
+    }
+
+
+    IEnumerator CheckUIInput()
+    {
+        while (true)
+        {
+            if( InputManager.Instance.PhoneInput.Return && !hasClicked)
+            {
+                if (phoneUI.IsTyping)
+                    yield return null;
+            
+                if(phoneUI.Menus[0].Menu.alpha == 1f)
+                {
+                    //phoneDelegate?.Invoke(); // Turn Off
+                    yield return null;
+                }
+            
+                RetrocedeMenu();
+            }
+        
+            if (InputManager.Instance.PhoneInput.Send && !hasClicked)
+            {
+                hasClicked = true;
+                if (phoneUI.IsTyping)
+                {
+                    phoneUI.WriteAllText();
+                    yield return null;
+                }
+                SendMessage();
+            }
+            if (!InputManager.Instance.PhoneInput.Return && !InputManager.Instance.PhoneInput.Send)
+            {
+                if (hasClicked)
+                {
+                    hasClicked = !hasClicked;
+                }
+            }
+            yield return new WaitForEndOfFrame();
+        }
     }
 }
