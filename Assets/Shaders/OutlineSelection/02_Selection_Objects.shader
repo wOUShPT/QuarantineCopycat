@@ -71,7 +71,7 @@
                 ZERO_INITIALIZE(BuiltinData, builtinData); // No call to InitBuiltinData as we don't have any lighting
                 ZERO_INITIALIZE(SurfaceData, surfaceData); // No call to InitBuiltinData as we don't have any lighting
                 builtinData.opacity = 1;
-                builtinData.emissiveColor = float3(0, 0, 0);
+                builtinData.emissiveColor = _SelectionColor;
                 surfaceData.color = float3(1,1,1) * _SelectionColor.rgb;
             }
 

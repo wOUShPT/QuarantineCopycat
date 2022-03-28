@@ -354,7 +354,7 @@ Material:
     - _SVBRDF_NormalMap_SO: {r: 1, g: 1, b: 0, a: 0}
     - _SVBRDF_SpecularColorMap_SO: {r: 1, g: 1, b: 0, a: 0}
     - _SVBRDF_SpecularLobeMap_SO: {r: 1, g: 1, b: 0, a: 0}
-    - _SelectionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SelectionColor: {r: 1335.418, g: 1335.418, b: 1335.418, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _TextureSize: {r: 64, g: 64, b: 0, a: 0}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
