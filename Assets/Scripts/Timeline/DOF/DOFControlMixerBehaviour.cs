@@ -12,6 +12,7 @@ public class DOFControlMixerBehaviour : PlayableBehaviour
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
         VolumeProfile trackBinding = playerData as VolumeProfile;
+        bool isOn = true;
         DofRange finalNearRange = new DofRange(0, 0);
         DofRange finalFarRange = new DofRange(0, 0);
 
@@ -27,11 +28,11 @@ public class DOFControlMixerBehaviour : PlayableBehaviour
             DOFControlBehaviour input = inputPlayable.GetBehaviour();
 
             // Use the above variables to process each frame of this playable.
-            //finalIntensity += input.intensity * inputWeight;
-            finalNearRange.Start += input.NearRange.Start * inputWeight;
-            finalNearRange.End += input.NearRange.End * inputWeight;
-            finalFarRange.Start += input.FarRange.Start * inputWeight;
-            finalFarRange.End += input.FarRange.End * inputWeight;
+            isOn = input.isOn;
+            finalNearRange.Start.value += input.NearRange.Start.value * inputWeight;
+            finalNearRange.End.value += input.NearRange.End.value * inputWeight;
+            finalFarRange.Start.value += input.FarRange.Start.value * inputWeight;
+            finalFarRange.End.value += input.FarRange.End.value * inputWeight;
         }
 
         if (!trackBinding.TryGet(out DepthOfField dof) && !dof.IsNearLayerActive())
@@ -39,26 +40,27 @@ public class DOFControlMixerBehaviour : PlayableBehaviour
             return;
         }
         //assign the result to the bound object
-        dof.nearFocusStart.overrideState = true;
-        dof.nearFocusEnd.overrideState = true;
-        dof.farFocusStart.overrideState = true;
-        dof.farFocusEnd.overrideState = true;
-        dof.nearFocusStart.value = finalNearRange.Start;
-        dof.nearFocusEnd.value = finalNearRange.End;
-        dof.farFocusStart.value = finalFarRange.Start;
-        dof.farFocusEnd.value = finalFarRange.End;
+        dof.active = isOn; 
+        dof.nearFocusStart.overrideState = finalFarRange.Start.overrideState;
+        dof.nearFocusEnd.overrideState = finalNearRange.End.overrideState;
+        dof.farFocusStart.overrideState = finalFarRange.Start.overrideState;
+        dof.farFocusEnd.overrideState = finalFarRange.End.overrideState;
+        dof.nearFocusStart.value = finalNearRange.Start.value;
+        dof.nearFocusEnd.value = finalNearRange.End.value;
+        dof.farFocusStart.value = finalFarRange.Start.value;
+        dof.farFocusEnd.value = finalFarRange.End.value;
     }
     
     [Serializable]
     public struct DofRange
     {
-        public float Start;
-        public float End;
+        public MinFloatParameter Start;
+        public MinFloatParameter End;
 
         public DofRange(float start, float end)
         {
-            Start = start;
-            End = end;
+            Start = new MinFloatParameter(start, 0, true);
+            End = new MinFloatParameter(end, 0, true);
         }
     }
     

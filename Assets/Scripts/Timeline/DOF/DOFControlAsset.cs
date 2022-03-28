@@ -13,5 +13,5 @@ public class DOFControlAsset : PlayableAsset, ITimelineClipAsset
         return playable;
     }
 
-    public ClipCaps clipCaps => ClipCaps.Blending;
+    public ClipCaps clipCaps => ClipCaps.All;
 }
