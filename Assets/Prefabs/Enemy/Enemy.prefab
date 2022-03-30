@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5660026064973096156}
   - component: {fileID: 3281147946818774871}
   - component: {fileID: 5484945775781340868}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,6 +196,11 @@ MonoBehaviour:
   maxDistance: 8
   minFOV: 20
   maxFOV: 60
+  minSpeed: 1
+  maxSpeed: 3
+  minAcceleration: 2
+  maxAcceleration: 4
+  idealDistance: {x: 0, y: 0}
   sensibility: 0.2
   chaseMask:
     serializedVersion: 2
@@ -203,13 +208,10 @@ MonoBehaviour:
   corridorMask:
     serializedVersion: 2
     m_Bits: 0
-  childRotation: {fileID: 0}
-  CollideDirectionMask:
+  seeTargetMask:
     serializedVersion: 2
     m_Bits: 0
-  spCinemachineVirtucalCamera: {fileID: 0}
-  cameraForwardTransform: {fileID: 0}
-  playrCamTransform: {fileID: 0}
+  playerCameraFunctions: {fileID: 0}
 --- !u!195 &5981468976493657641
 NavMeshAgent:
   m_ObjectHideFlags: 0

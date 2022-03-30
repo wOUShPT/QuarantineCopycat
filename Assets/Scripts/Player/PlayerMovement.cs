@@ -31,12 +31,14 @@ public class PlayerMovement : MonoBehaviour
     private Camera _camera;
     public bool isOnActionPivot;
     private Vector3 _currentMoveDirection;
+    public Vector3 CurrentMoveDirection => _currentMoveDirection;
     private Vector3 _currentRotation;
     private Vector3 _startHeadPosition;
     private Vector3 _currentHeadPosition;
     private float _headBobTimeCounter;
 
-    public float currentVelocity => new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
+    //public float currentVelocity => new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
+    public float currentVelocity => new Vector2(_currentMoveDirection.x, _currentMoveDirection.z).magnitude;
     
     void Awake()
     {
@@ -70,10 +72,15 @@ public class PlayerMovement : MonoBehaviour
         }
         if(CameraManager.CinemachineCameraState == CameraManager.CinemachineStateSwitcher.SecondPerson)
         {
-            _currentMoveDirection = (Camera.main.transform.forward * InputManager.Instance.PlayerInput.Movement.z) + (Camera.main.transform.right * InputManager.Instance.PlayerInput.Movement.x);
+            _currentMoveDirection = (Camera.main.transform.forward * Mathf.Clamp01(InputManager.Instance.PlayerInput.Movement.z)) + (Camera.main.transform.right * InputManager.Instance.PlayerInput.Movement.x);
+            if (_currentMoveDirection == Vector3.zero)
+            {
+                return;
+            }
             _currentMoveDirection += new Vector3(_currentMoveDirection.x, gravity, _currentMoveDirection.z);
         }
         _characterController.Move(_currentMoveDirection * _movementSpeed * Time.deltaTime);
+        
     }
 
     void UpdateRotation()

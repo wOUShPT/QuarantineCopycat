@@ -12,28 +12,21 @@ public class PlayerAnimation : MonoBehaviour
     private CameraManager cameraManager;
     private AIShowing showing;
     [SerializeField]private Transform placeCopyCat;
-    public Transform PlaceCopyCat { get { return placeCopyCat; } set { placeCopyCat = value; } }
-
     private void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
         cameraManager = FindObjectOfType<CameraManager>();
         showing = FindObjectOfType<AIShowing>();
     }
-    private void Start()
-    {
-        //SeeCopyCat();
-    }
-
     void Update()
     {
-        if (PlayerProperties.FreezeMovement)
-        {
-            _animator.SetFloat("Velocity", 0f);
-            return;
-        }
-        _animator.SetFloat("Velocity", _movement.currentVelocity);
+        _animator.SetFloat("Velocity", PlayerProperties.FreezeMovement ? 0f : _movement.currentVelocity);
     }
+    private void SetPlaceCopycat(Transform _transform)
+    {
+        placeCopyCat = _transform;
+    }
+    //Cutscene of Copycat appearing
     public void SeeCopyCat()
     {
         SetPlayerProperties(true);
