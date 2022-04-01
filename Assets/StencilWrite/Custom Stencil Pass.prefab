@@ -45,14 +45,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGlobal: 1
   fadeRadius: 0
+  priority: 0
   customPasses:
   - id: 0
   injectionPoint: 2
   references:
     version: 1
     00000000:
-      type: {class: DrawRenderersCustomPass, ns: UnityEngine.Rendering.HighDefinition,
-        asm: Unity.RenderPipelines.HighDefinition.Runtime}
+      type: {class: DrawRenderersCustomPass, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:
         m_Name: StencilWrite
         enabled: 1
@@ -64,17 +64,14 @@ MonoBehaviour:
         filterFoldout: 1
         rendererFoldout: 1
         renderQueueType: 2
-        passNames:
-        - Forward
         layerMask:
           serializedVersion: 2
           m_Bits: 4294967295
         sortingCriteria: 59
-        overrideMaterial: {fileID: 2100000, guid: f36702eed4350f84e9f6acd12a950b18,
-          type: 2}
+        overrideMaterial: {fileID: 2100000, guid: f36702eed4350f84e9f6acd12a950b18, type: 2}
         overrideMaterialPassIndex: 0
         overrideMaterialPassName: Forward Unlit
         overrideDepthState: 0
-        depthCompareFunction: 4
+        depthCompareFunction: 6
         depthWrite: 1
         shaderPass: 0

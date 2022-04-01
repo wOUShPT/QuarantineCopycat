@@ -156,8 +156,8 @@ MonoBehaviour:
   m_DefaultLookDevProfile: {fileID: 11400000, guid: 5faa2ae8b04f09545afd623ae68934fe, type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
-      data1: 140666621263741
-      data2: 4539628425463136280
+      data1: 140529182310237
+      data2: 4539628425462087704
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
     colorBufferFormat: 74
     supportCustomPass: 1
     customBufferFormat: 12
-    supportedLitShaderMode: 3
+    supportedLitShaderMode: 2
     planarReflectionResolution:
       m_Values: 000100000004000000040000
       m_SchemaId:

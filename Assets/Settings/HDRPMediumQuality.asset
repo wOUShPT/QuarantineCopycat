@@ -224,7 +224,7 @@ MonoBehaviour:
     colorBufferFormat: 74
     supportCustomPass: 1
     customBufferFormat: 12
-    supportedLitShaderMode: 3
+    supportedLitShaderMode: 2
     planarReflectionResolution:
       m_Values: 000100000004000000040000
       m_SchemaId:
@@ -317,7 +317,7 @@ MonoBehaviour:
     dynamicResolutionSettings:
       enabled: 1
       maxPercentage: 100
-      minPercentage: 100
+      minPercentage: 75
       dynResType: 1
       upsampleFilter: 3
       forceResolution: 0
