@@ -52,6 +52,12 @@ public class AIChase : MonoBehaviour
     [SerializeField] private float dontseePlayerAmountTime = 5.0f;
     private List<Waypoint> waypointsListe;
     [SerializeField] private Animator eyesAnimator;
+    [SerializeField]private GameEvent dollyEvent;
+    [SerializeField]private CinemachineVirtualCamera firstVirtualCamera;
+    [SerializeField]private CinemachineVirtualCamera secondVirtualCamera;
+    private float fpInitialFrustumHeight;
+    private float spInitialFrustumHeight;
+    private bool dollyzoomEnabled = false;
     private void Awake()
     {
         waypointsListe = new List<Waypoint>();
@@ -83,21 +89,44 @@ public class AIChase : MonoBehaviour
     }
     IEnumerator SetupChase()
     {
+        //Stop player
         PlayerProperties.FreezeAim = true;
         PlayerProperties.FreezeInteraction = true;
         PlayerProperties.FreezeMovement = true;
         playerCameraFunctions.ResetCameraTransform();
         yield return new WaitForSeconds(waitTimeToSwitchCamera);
         Camera.main.cullingMask = chaseMask;
+        dollyEvent.Raise();
+        SetupDolly();
+        yield return new WaitForSeconds(.2f);
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
         UIManager.Instance.ToggleReticle(false);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(9f);
         agent.isStopped = false; // Copycat starts moving
         StartCoroutine(StartIsOnMeshLink());
         playerRotate.enabled = true;
         agentState = AgentState.Chase;
         PlayerProperties.FreezeMovement = false;
         SetWaypoint();
+        dollyzoomEnabled = false;
+    }
+    // Calculate the frustum height at a given distance from the camera.
+    private float FrustumHeightAtDistance(float distance, CinemachineVirtualCamera camera)
+    {
+        return 2.0f * distance * Mathf.Tan(camera.m_Lens.FieldOfView * 0.5f * Mathf.Deg2Rad);
+    }
+    private float ComputeFieldOfView(float height, float distance)
+    {
+        // Calculate the FOV needed to get a given frustum height at a given distance.
+        return 2.0f * Mathf.Atan((float)(height * 0.5 / distance)) * Mathf.Rad2Deg;
+    }
+    private void SetupDolly()
+    {
+        float distanceFromTarget = Vector3.Distance(Camera.main.transform.position, playerMovement.transform.position);
+
+        fpInitialFrustumHeight = FrustumHeightAtDistance(distanceFromTarget, firstVirtualCamera);
+        spInitialFrustumHeight = FrustumHeightAtDistance(distanceFromTarget, secondVirtualCamera);
+        dollyzoomEnabled = true;
     }
     public void SetTimeToSwitchCamera(float reactCopycatTime)
     {
@@ -122,11 +151,16 @@ public class AIChase : MonoBehaviour
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.FirstPerson);
         PlayerProperties.FreezeMovement = false;
         PlayerProperties.FreezeAim = false;
-        
     }
 
     private void Update()
     {
+        if (dollyzoomEnabled)
+        {
+            var currDistance = Vector3.Distance(Camera.main.transform.position, playerMovement.transform.position);
+            firstVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(fpInitialFrustumHeight, currDistance);
+            secondVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(spInitialFrustumHeight, currDistance);
+        }
         if (!agent.enabled || agent.isStopped)
         {
             return; // The agent is stopped or is not enabled
@@ -352,12 +386,9 @@ public class AIChase : MonoBehaviour
             yield return null;
         }
     }
-    public void AddMoreDestination(Waypoint [] waypointTransformArray, bool needsToClear)
+    public void AddMoreDestination(Waypoint[] waypointTransformArray)
     {
-        if (needsToClear)
-        {
-            waypointsListe.Clear();
-        }
+        waypointsListe.Clear();
         foreach (Waypoint waypoint in waypointTransformArray) // Add more destinations to where copycat can move
         {
             waypointsListe.Add(waypoint);

@@ -5,7 +5,8 @@ using UnityEngine;
 public class WaypointAdder : MonoBehaviour
 {
     private AIChase copycatScript;
-    private Waypoint[] waypointArray;
+    [SerializeField]private Waypoint[] waypointRightArray;
+    [SerializeField] private Waypoint[] waypointLeftArray;
     private void Awake()
     {
         copycatScript = FindObjectOfType<AIChase>();
@@ -18,8 +19,10 @@ public class WaypointAdder : MonoBehaviour
         }
         if(other.TryGetComponent(out PlayerMovement playerMovement))
         {
+            Vector3 right = transform.TransformDirection(Vector3.right).normalized;
+            float dotproduct = Vector3.Dot(right, playerMovement.CurrentMoveDirection);
             //Add the waypoints where player will pass while being chased
-            copycatScript.AddMoreDestination(waypointArray, true);
+            copycatScript.AddMoreDestination( dotproduct >= 0 ? waypointRightArray : waypointLeftArray);
         }
     }
 }

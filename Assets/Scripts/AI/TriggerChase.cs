@@ -22,21 +22,22 @@ public class TriggerChase : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out PlayerMovement playerMovement))
+        if (!aIChase.Agent.isStopped)
+        {
+            //Copycat is chasing, there's no need to trigger the chase
+            return;
+        }
+        if (other.TryGetComponent(out PlayerMovement playerMovement))
         {
             //Player inside the trigger area
-            if (!aIChase.Agent.isStopped)
-            {
-                //Copycat is chasing, there's no need to trigger the chase
-                return;
-            }
+            
             float percentage = UnityEngine.Random.Range(0f, 1f);
             if (percentage < triggerPercentage)
             {
                 //RNG said to start the chase
                 Vector3 right = transform.TransformDirection(Vector3.right).normalized;
                 float dotproduct = Vector3.Dot(right, playerMovement.CurrentMoveDirection);
-                aIChase.AddMoreDestination(dotproduct > 0 ? copycatWaypointsRightTransform : copycatWaypointsLeftTransform, true);
+                aIChase.AddMoreDestination(dotproduct > 0 ? copycatWaypointsRightTransform : copycatWaypointsLeftTransform);
                 aIChase.Agent.Warp(dotproduct > 0 ? copyCatTransformRightDirection.position : copyCatTransformLeftDirection.position);
                 aIChase.Agent.isStopped = true;
                 aIChase.transform.GetChild(0).localPosition = Vector3.zero;
