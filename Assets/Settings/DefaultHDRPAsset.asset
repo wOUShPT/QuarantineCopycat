@@ -156,8 +156,8 @@ MonoBehaviour:
   m_DefaultLookDevProfile: {fileID: 11400000, guid: 5faa2ae8b04f09545afd623ae68934fe, type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
-      data1: 140529182310237
-      data2: 4539628425462087704
+      data1: 140529182441309
+      data2: 4539628429757055000
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -224,17 +224,17 @@ MonoBehaviour:
     colorBufferFormat: 74
     supportCustomPass: 1
     customBufferFormat: 12
-    supportedLitShaderMode: 2
+    supportedLitShaderMode: 3
     planarReflectionResolution:
       m_Values: 000100000004000000040000
       m_SchemaId:
         m_Id: With3Levels
     supportDecals: 1
-    supportDecalLayers: 0
+    supportDecalLayers: 1
     decalLayerName0: Decal Layer default
-    decalLayerName1: Decal Layer 1
-    decalLayerName2: Decal Layer 2
-    decalLayerName3: Decal Layer 3
+    decalLayerName1: Walls
+    decalLayerName2: Ceilling
+    decalLayerName3: Floor
     decalLayerName4: Decal Layer 4
     decalLayerName5: Decal Layer 5
     decalLayerName6: Decal Layer 6
@@ -307,8 +307,8 @@ MonoBehaviour:
       screenSpaceShadowBufferFormat: 48
     decalSettings:
       drawDistance: 1000
-      atlasWidth: 2048
-      atlasHeight: 2048
+      atlasWidth: 4096
+      atlasHeight: 4096
       perChannelMask: 1
     postProcessSettings:
       m_LutSize: 32
@@ -445,6 +445,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 11400000, guid: 2b7005ba3a4d8474b8cdc34141ad766e, type: 2}
   - {fileID: 11400000, guid: a563607f9a859a14ea23047aaf46a342, type: 2}
+  - {fileID: 11400000, guid: 9bf40036d79da0242a05368d1ab6b5c2, type: 2}
   beforeTransparentCustomPostProcesses: []
   beforeTAACustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []

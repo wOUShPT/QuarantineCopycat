@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2686e09ec7aef44bad2843e4416f057, type: 3}
+  m_Name: LampShade
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  profile:
+    scatteringDistance: {r: 3.732132, g: 3.732132, b: 3.732132, a: 1}
+    transmissionTint: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 1}
+    texturingMode: 0
+    transmissionMode: 0
+    thicknessRemap: {x: 2.6554966, y: 50}
+    worldScale: 1
+    ior: 2
+    hash: 1079919604

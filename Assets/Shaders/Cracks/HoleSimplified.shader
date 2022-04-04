@@ -12,8 +12,8 @@ Shader "HoleSimplified"
 		[HideInInspector] _StencilWriteMaskMV("Stencil Write Mask MV", Int) = 40
 		[HideInInspector] _StencilRefDistortionVec("Stencil Ref Distortion Vec", Int) = 4
 		[HideInInspector] _StencilWriteMaskDistortionVec("Stencil Write Mask Distortion Vec", Int) = 4
-		 _StencilWriteMaskGBuffer("Stencil Write Mask GBuffer", float) = 14
-		 _StencilReadMaskGBuffer("Stencil Read Mask GBuffer", float) = 14
+		 _StencilWriteMaskGBuffer("Stencil Write Mask GBuffer", int) = 14
+		 _StencilReadMaskGBuffer("Stencil Read Mask GBuffer", int) = 14
 		 _StencilRefGBuffer("Stencil Ref GBuffer", Int) = 10
 		 _ZTestGBuffer("ZTest GBuffer", Int) = 4
 		[ToggleUI] _ZWrite("ZWrite", Float) = 1
@@ -57,14 +57,37 @@ Shader "HoleSimplified"
 			Stencil
 			{
 				Ref [_StencilRefGBuffer]
-				ReadMask [_StencilReadMaskGBuffer]
-				WriteMask 64
+				ReadMask [_StencilWriteMaskGBuffer]
+				WriteMask [_StencilWriteMaskGBuffer]
 				Comp Always
 				Pass Keep
 				Fail Keep
 				ZFail Keep
 			}
 			
+		}
+		
+		Pass
+		{
+			
+			Name "DepthOnly"
+			Tags { "LightMode"="DepthOnly" }
+
+			Cull [_CullMode]
+
+			ZWrite on
+
+			Stencil
+			{
+				Ref [_StencilRefGBuffer]
+				ReadMask [_StencilWriteMaskGBuffer]
+				WriteMask [_StencilWriteMaskGBuffer]
+				Comp NotEqual
+				Pass Replace
+				Fail Keep
+				ZFail Keep
+			}
+
 		}
 
 	}

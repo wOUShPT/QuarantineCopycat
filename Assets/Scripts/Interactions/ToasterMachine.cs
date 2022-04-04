@@ -12,21 +12,12 @@ public class ToasterMachine : InteractableBehaviour
     [SerializeField] private GameObject toasts;
     [SerializeField] private Animator _toasterParticleSystemAnimator;
     [SerializeField] private Animator _toasterAnimator;
-    [SerializeField] private EventReference FMODEvent;
-    private EventInstance _fmodInstance;
+    [SerializeField] private EventReference FMODToasterInEvent;
+    [SerializeField] private EventReference FMODToasterOutEvent;
+    private EventInstance _eventInstance;
     [SerializeField] private UnityEvent _preEffect;
     [SerializeField] private UnityEvent _effect;
     private bool _wasInteracted;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        if (!FMODEvent.IsNull)
-        {
-            _fmodInstance = RuntimeManager.CreateInstance(FMODEvent);
-            _fmodInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
-        }
-    }
 
     private void Start()
     {
@@ -51,14 +42,22 @@ public class ToasterMachine : InteractableBehaviour
         toasts.SetActive(true);
         yield return new WaitForSeconds(1f);
         _toasterAnimator.Play("In");
-        if (_fmodInstance.isValid())
+        if (!FMODToasterInEvent.IsNull)
         {
-            _fmodInstance.start();
+            _eventInstance = RuntimeManager.CreateInstance(FMODToasterInEvent);
+            _eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+            _eventInstance.start();
         }
         yield return new WaitForSeconds(taskDuration/3f);
         _toasterParticleSystemAnimator.speed = 1 / (2f * taskDuration / 3f);
         _toasterParticleSystemAnimator.Play("FadeSmokeIn");
         yield return new WaitForSeconds(2 * taskDuration / 3f);
+        if (!FMODToasterOutEvent.IsNull)
+        {
+            _eventInstance = RuntimeManager.CreateInstance(FMODToasterOutEvent);
+            _eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+            _eventInstance.start();
+        }
         _toasterAnimator.Play("Out");
         yield return new WaitForSeconds(1f);
         _effect.Invoke();

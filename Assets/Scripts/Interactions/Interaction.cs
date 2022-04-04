@@ -10,6 +10,9 @@ public class Interaction : InteractableBehaviour
 
     public override void Interact()
     {
-        effect.Invoke();
+        if (CanInteract)
+        {
+            effect.Invoke();
+        }
     }
 }

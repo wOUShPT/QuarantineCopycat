@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class DartsBehaviour : MonoBehaviour
 {
@@ -82,7 +83,7 @@ public class DartsBehaviour : MonoBehaviour
             _precisionTimer = Mathf.Clamp(_precisionTimer, 0f, 5f);
             _currentFOV = Mathf.Lerp(_currentFOV, 10, Time.deltaTime * 1);
             //_currentNoiseAmp = Mathf.Lerp(_currentNoiseAmp, 2f, Time.deltaTime);
-            _currentNoiseFreq = Mathf.Lerp(_currentNoiseFreq, 2f, Time.deltaTime);
+            _currentNoiseFreq = Mathf.MoveTowards(_currentNoiseFreq, 3f, Time.deltaTime);
             //_cameraNoise.m_AmplitudeGain = _currentNoiseAmp;
             _cameraNoise.m_FrequencyGain = _currentNoiseFreq;
             _camera.m_Lens.FieldOfView = _currentFOV;
@@ -125,7 +126,10 @@ public class DartsBehaviour : MonoBehaviour
             dart.velocity = Vector3.zero;
             dart.angularDrag = 0;
             dart.angularVelocity = Vector3.zero;
-            dart.AddForce(Camera.main.transform.forward * 55 * shotVelMultiplier, ForceMode.Impulse);
+            Debug.Log(Random.insideUnitCircle);
+            Vector3 randomDeviationVector = new Vector3(Random.insideUnitCircle.x, Random.insideUnitCircle.y,
+                Camera.main.transform.forward.z);
+            dart.AddForce((Camera.main.transform.forward + randomDeviationVector.normalized * MapValue(0, 3, 1, 0, _precisionTimer) * 0.2f) * 55 * shotVelMultiplier, ForceMode.Impulse);
         }
     }
 

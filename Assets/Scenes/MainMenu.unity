@@ -1254,8 +1254,8 @@ GameObject:
   m_Component:
   - component: {fileID: 310363528}
   - component: {fileID: 310363527}
-  - component: {fileID: 310363526}
   - component: {fileID: 310363529}
+  - component: {fileID: 310363526}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1263,14 +1263,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &310363526
-AudioListener:
+--- !u!114 &310363526
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310363525}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!20 &310363527
 Camera:
   m_ObjectHideFlags: 0
@@ -4117,6 +4123,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7884823378000795646, guid: 0c41ab06d319e5a48a83182c3b81c0c1, type: 3}
+      propertyPath: m_text
+      value: ALPHA
+      objectReference: {fileID: 0}
     - target: {fileID: 7884823378794682566, guid: 0c41ab06d319e5a48a83182c3b81c0c1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4221,6 +4231,7 @@ GameObject:
   - component: {fileID: 1048235444}
   - component: {fileID: 1048235448}
   - component: {fileID: 1048235449}
+  - component: {fileID: 1048235450}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -4340,6 +4351,36 @@ MonoBehaviour:
   mouseSensitivitySlider: {fileID: 1691867399}
   mouseSensitivityInfoLabel: {fileID: 291044117}
   _mouseSettingsData: {fileID: 11400000, guid: e0597927d67b4fa44a2cc5d58425c252, type: 2}
+--- !u!114 &1048235450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048235443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1356722758
+      Data2: 1104863299
+      Data3: 312239541
+      Data4: -1716422247
+    Path: event:/Music/NonDiagetic/Main Theme
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 10000
 --- !u!1 &1063625758
 GameObject:
   m_ObjectHideFlags: 0

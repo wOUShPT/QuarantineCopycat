@@ -12,6 +12,7 @@ public class PlayerPhone : MonoBehaviour
     private ChangePhoneUI phoneUI;
     [SerializeField]private Button defaultSelectedButton;
     //make alpha 1 and 0
+    [SerializeField] private Camera phoneCanvasCamera;
     [SerializeField] private CanvasGroup phoneCanvasGroup;
     [SerializeField] private GameObject phoneModel;
     [SerializeField] private float animationInDuration;
@@ -23,13 +24,12 @@ public class PlayerPhone : MonoBehaviour
     private PhoneFunctionDelegate phoneDelegate;
     private bool hasPhone = false;
     private bool hasClicked = false;
-    private FPCameraHandler _fpCameraHandler;
+    [SerializeField] private FPCameraHandler _fpCameraHandler;
     [SerializeField]
     private Animator _fpRigAnimator;
 
     private void Awake()
     {
-        _fpCameraHandler = FindObjectOfType<FPCameraHandler>();
         phoneUI = FindObjectOfType<ChangePhoneUI>();
         phoneUI.ResetPhoneLayers();
         messageManager = FindObjectOfType<PhoneMessageManager>();
@@ -39,6 +39,7 @@ public class PlayerPhone : MonoBehaviour
     {
         defaultSelectedButton.Select();
         phoneModel.SetActive(false);
+        phoneCanvasCamera.gameObject.SetActive(false);
         phoneCanvasGroup.alpha = 0;
         phoneCanvasGroup.interactable = false;
         phoneCanvasGroup.blocksRaycasts = false;
@@ -103,6 +104,7 @@ public class PlayerPhone : MonoBehaviour
         }
         phoneUI.BackFromCurrentMenu(currentMenuIndex);
     }
+    
     public void DisplayPhone() //Display immediately for now, but in the future it will be an IK handle animation
     {
         StartCoroutine(DisplayPhoneSequence());
@@ -112,7 +114,7 @@ public class PlayerPhone : MonoBehaviour
     {
         StartCoroutine(HidePhoneSequence());
     }
-    
+
     IEnumerator HidePhoneSequence() //Called by Animation as well
     {
         _fpRigAnimator.speed = 2.2f * animationOutDuration;
@@ -132,6 +134,7 @@ public class PlayerPhone : MonoBehaviour
         UIManager.Instance.ToggleReticle(true);
         phoneDelegate = DisplayPhone;
         phoneUI.ResetPhoneLayers();
+        phoneCanvasCamera.gameObject.SetActive(false);
     }
     public void ToggleHasPhoneToTrue()
     {
@@ -140,6 +143,7 @@ public class PlayerPhone : MonoBehaviour
 
     IEnumerator DisplayPhoneSequence()
     {
+        phoneCanvasCamera.gameObject.SetActive(true);
         InputManager.Instance.TogglePlayerControls(false);
         UIManager.Instance.ToggleReticle(false);
         PlayerProperties.FreezeAim = true;

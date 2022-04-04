@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class DoorBehaviour : InteractableBehaviour
@@ -9,12 +11,13 @@ public class DoorBehaviour : InteractableBehaviour
     private delegate void DoorsInteraction();
     private DoorsInteraction doorsInteraction;
     private bool _wasInteracted = false;
-    [SerializeField] private AnimationCurve animationCurve;
     private enum RotationAxis
     {
         XAxis, YAxis, ZAxis
     }
     [SerializeField] private RotationAxis rotationAxis;
+    [SerializeField] private AnimationCurve animationCurve;
+    [SerializeField] private float openDuration;
     [SerializeField] private float targetRotateGap = 90; // be the target in one axis
     private bool isBeingAnimated = false;
 
@@ -23,6 +26,9 @@ public class DoorBehaviour : InteractableBehaviour
         Cabinet, Fridge
     }
     [SerializeField] private DoorType doorType;
+    public EventReference OpenDoorFMODEvent;
+    public EventReference CloseDoorFMODEvent;
+    private EventInstance _eventInstance;
 
     protected override void Awake()
     {
@@ -32,16 +38,16 @@ public class DoorBehaviour : InteractableBehaviour
     private void Start()
     {
         _wasInteracted = false;
+
     }
 
     public override void Interact()
     {
-        if (_wasInteracted || isBeingAnimated)
+        if (isBeingAnimated)
         {
             return;
         }
         doorsInteraction?.Invoke();
-        _wasInteracted = true;
     }
     
     private void OpenDoorByCode()
@@ -82,6 +88,9 @@ public class DoorBehaviour : InteractableBehaviour
         }
         CheckIsFridgeOpen();
         doorsInteraction = CloseDoorByCode;
+        _eventInstance = FMODUnity.RuntimeManager.CreateInstance(OpenDoorFMODEvent);
+        _eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        _eventInstance.start();
     }
     private void CloseDoorByCode()
     {
@@ -120,6 +129,9 @@ public class DoorBehaviour : InteractableBehaviour
             }
         }
         doorsInteraction = OpenDoorByCode;
+        _eventInstance = FMODUnity.RuntimeManager.CreateInstance(CloseDoorFMODEvent);
+        _eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        _eventInstance.start();
     }
     private void RotateDoor(Transform _rotate, Vector3 _rotationVector)
     {
@@ -130,9 +142,9 @@ public class DoorBehaviour : InteractableBehaviour
         float elapsed = 0.0f; //elaped
         isBeingAnimated = true;
         Quaternion to = _rotate.rotation * Quaternion.Euler(targetVector);
-        while ( elapsed < _time)
+        while ( elapsed < openDuration)
         {
-            float percentage = (float)elapsed / _time;
+            float percentage = (float)elapsed / openDuration;
             _rotate.rotation = Quaternion.Lerp(_rotate.rotation, to, animationCurve.Evaluate( percentage)); // Call evaluate
             elapsed += Time.deltaTime;
             yield return null;
