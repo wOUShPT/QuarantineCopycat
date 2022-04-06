@@ -15,14 +15,16 @@ public class TriggerChase : MonoBehaviour
     [SerializeField] private float triggerPercentage = 0.3f;
     [SerializeField] private bool playerWillLookAtCopycat = true;
     [SerializeField] private float reactCopycatTime = 5.0f;
-
+    private ChaseManager chaseManager;
+    [SerializeField]private Transform targetLook;
     private void Awake()
     {
         aIChase = FindObjectOfType<AIChase>();
+        chaseManager = FindObjectOfType<ChaseManager>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!aIChase.Agent.isStopped)
+        if (!aIChase.CheckIsCopycatIdle())
         {
             //Copycat is chasing, there's no need to trigger the chase
             return;
@@ -41,9 +43,21 @@ public class TriggerChase : MonoBehaviour
                 aIChase.Agent.Warp(dotproduct > 0 ? copyCatTransformRightDirection.position : copyCatTransformLeftDirection.position);
                 aIChase.Agent.isStopped = true;
                 aIChase.transform.GetChild(0).localPosition = Vector3.zero;
-                aIChase.SetTimeToSwitchCamera(reactCopycatTime);
+                chaseManager.SetTimeToSwitchCamera(reactCopycatTime);
+                //Bug needed fix immediatly!
+                if (playerWillLookAtCopycat)
+                {
+                    targetLook.position = new Vector3(aIChase.transform.position.x, Camera.main.transform.position.y, aIChase.transform.position.z);
+                }
+                else
+                {
+                    targetLook.position = 2 * transform.position - aIChase.transform.position;
+                    Vector3 auxPosition = targetLook.transform.position;
+                    auxPosition.y = Camera.main.transform.position.y;
+                    targetLook.transform.position = auxPosition;
+                }
                 //Rotate forward
-                playerMovement.transform.rotation = Quaternion.LookRotation(playerWillLookAtCopycat ? aIChase.transform.position : playerMovement.transform.position - aIChase.transform.position);
+                playerMovement.transform.LookAt(targetLook);
                 OnPlayerInsideTrigger?.Invoke(this, EventArgs.Empty);
                 this.gameObject.SetActive(false);
             }

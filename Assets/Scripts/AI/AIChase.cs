@@ -30,137 +30,40 @@ public class AIChase : MonoBehaviour
     //Boundry
     [SerializeField]private Vector2 idealDistance;
     [SerializeField] private float sensibility = 0.2f;
-    private CameraManager cameraManager;
-    [SerializeField]private TriggerChase[] triggerChaseArray;
-    private LayerMask savedLayerMask;
-    //Chase setup
-    private float waitTimeToSwitchCamera = 5.0f;
-    [SerializeField] private LayerMask chaseMask;
     //Where is copycat grounded
     [SerializeField] private LayerMask corridorMask;
     private Transform lastCorridorGrounded;
     private PlayerSPRotate playerRotate;
     [SerializeField]private LayerMask seeTargetMask;
-    [SerializeField] private CameraFunctions playerCameraFunctions;
-    private enum AgentState
+    public enum AgentState
     {
         Idle, Chase, MeshLink, Finished
     }
     private AgentState agentState;
+    public AgentState State { get { return agentState; } set { agentState = value; } }
     private float changeSpeedSmooth = 0.1f;
     private float lostPlayerTime = 0.0f;
-    [SerializeField] private float dontseePlayerAmountTime = 5.0f;
+    [SerializeField] private float dontseePlayerAmountTime = 3.0f;
     private List<Waypoint> waypointsListe;
-    [SerializeField] private Animator eyesAnimator;
-    [SerializeField]private GameEvent dollyEvent;
-    [SerializeField]private CinemachineVirtualCamera firstVirtualCamera;
-    [SerializeField]private CinemachineVirtualCamera secondVirtualCamera;
-    private float fpInitialFrustumHeight;
-    private float spInitialFrustumHeight;
-    private bool dollyzoomEnabled = false;
+    private ChaseManager chaseManager;
     private void Awake()
     {
         waypointsListe = new List<Waypoint>();
         playerMovement = FindObjectOfType<PlayerMovement>();
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = true; // Make the agent stop
-        cameraManager = FindObjectOfType<CameraManager>();
-        triggerChaseArray = FindObjectsOfType<TriggerChase>();
         playerRotate = FindObjectOfType<PlayerSPRotate>();
+        chaseManager = FindObjectOfType<ChaseManager>();
     }
     private void Start()
     {
-        savedLayerMask = Camera.main.cullingMask;
         normalSpeed = agent.speed;
         normalAcceleration = agent.acceleration;
         playerRotate.enabled = false;
-        foreach (var trigger in triggerChaseArray)
-        {
-            trigger.OnPlayerInsideTrigger += ColliderTrigger_OnPlayerEnterTrigger;
-        }
-    }
-    private void ColliderTrigger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
-    {
-        SwitchToSecondCamera();
-    }
-    private void SwitchToSecondCamera()
-    {
-        StartCoroutine(SetupChase());
-    }
-    IEnumerator SetupChase()
-    {
-        //Stop player
-        PlayerProperties.FreezeAim = true;
-        PlayerProperties.FreezeInteraction = true;
-        PlayerProperties.FreezeMovement = true;
-        playerCameraFunctions.ResetCameraTransform();
-        yield return new WaitForSeconds(waitTimeToSwitchCamera);
-        Camera.main.cullingMask = chaseMask;
-        dollyEvent.Raise();
-        SetupDolly();
-        yield return new WaitForSeconds(.2f);
-        cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
-        UIManager.Instance.ToggleReticle(false);
-        yield return new WaitForSeconds(9f);
-        agent.isStopped = false; // Copycat starts moving
         StartCoroutine(StartIsOnMeshLink());
-        playerRotate.enabled = true;
-        agentState = AgentState.Chase;
-        PlayerProperties.FreezeMovement = false;
-        SetWaypoint();
-        dollyzoomEnabled = false;
     }
-    // Calculate the frustum height at a given distance from the camera.
-    private float FrustumHeightAtDistance(float distance, CinemachineVirtualCamera camera)
-    {
-        return 2.0f * distance * Mathf.Tan(camera.m_Lens.FieldOfView * 0.5f * Mathf.Deg2Rad);
-    }
-    private float ComputeFieldOfView(float height, float distance)
-    {
-        // Calculate the FOV needed to get a given frustum height at a given distance.
-        return 2.0f * Mathf.Atan((float)(height * 0.5 / distance)) * Mathf.Rad2Deg;
-    }
-    private void SetupDolly()
-    {
-        float distanceFromTarget = Vector3.Distance(Camera.main.transform.position, playerMovement.transform.position);
-
-        fpInitialFrustumHeight = FrustumHeightAtDistance(distanceFromTarget, firstVirtualCamera);
-        spInitialFrustumHeight = FrustumHeightAtDistance(distanceFromTarget, secondVirtualCamera);
-        dollyzoomEnabled = true;
-    }
-    public void SetTimeToSwitchCamera(float reactCopycatTime)
-    {
-        waitTimeToSwitchCamera = reactCopycatTime;
-    }
-    private void SwitchToFirstPerson()
-    {
-        StartCoroutine(SetupFirstPersonAgain());
-    }
-    IEnumerator SetupFirstPersonAgain()
-    {
-        PlayerProperties.FreezeMovement = true;
-        agent.ResetPath();
-        agent.isStopped = true; //Copycat stops moving
-        agentState = AgentState.Idle;
-        playerRotate.enabled = false;
-        yield return new WaitForSeconds(.1f);
-        eyesAnimator.Play("Close_Eyes");
-        yield return new WaitForSeconds(2f);
-        Camera.main.cullingMask = savedLayerMask;
-        eyesAnimator.Play("Open_Eyes");
-        cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.FirstPerson);
-        PlayerProperties.FreezeMovement = false;
-        PlayerProperties.FreezeAim = false;
-    }
-
     private void Update()
     {
-        if (dollyzoomEnabled)
-        {
-            var currDistance = Vector3.Distance(Camera.main.transform.position, playerMovement.transform.position);
-            firstVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(fpInitialFrustumHeight, currDistance);
-            secondVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(spInitialFrustumHeight, currDistance);
-        }
         if (!agent.enabled || agent.isStopped)
         {
             return; // The agent is stopped or is not enabled
@@ -177,7 +80,6 @@ public class AIChase : MonoBehaviour
             case AgentState.MeshLink:
                 break;
         }
-        
     }
     void LateUpdate()
     {
@@ -188,18 +90,15 @@ public class AIChase : MonoBehaviour
         float remainingDistance = GetRemainingDistance();
         if(remainingDistance < idealDistance.x)
         {
-            vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, minFOV, sensibility);
+            vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, maxFOV, sensibility);
             return;
         }
         if(remainingDistance > idealDistance.y)
         {
-            vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, maxFOV, sensibility);
+            vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, minFOV, sensibility);
             return;
         }
-        if(currentTimeToChangeMove >= timeToChangeMoveSettings)
-        {
-            vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, idealFOV, sensibility);
-        }
+        vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, idealFOV, sensibility);
     }
 
     private void SetRubberBranding()
@@ -238,7 +137,7 @@ public class AIChase : MonoBehaviour
     {
         return Mathf.Lerp(currentSpeed, tartgetSpeed, changeSpeedSmooth);
     }
-    private bool CheckIsCopycatIdle()
+    public bool CheckIsCopycatIdle()
     {
         return agentState == AgentState.Idle;
     }
@@ -292,7 +191,10 @@ public class AIChase : MonoBehaviour
     //        agent.nextPosition = newPosition;
     //    }
     //}
-
+    public void SetCurrentTimeToChangeMoveMax()
+    {
+        currentTimeToChangeMove = timeToChangeMoveSettings;
+    }
     private bool IsPlayerLookingAtCopyCat()
     {
         if (!IsCopycatSeeingPlayer())
@@ -315,7 +217,8 @@ public class AIChase : MonoBehaviour
         lostPlayerTime += Time.deltaTime;
         if( lostPlayerTime >= dontseePlayerAmountTime)
         {
-            SwitchToFirstPerson();
+            chaseManager.SwitchToFirstPerson();
+            lostPlayerTime = 0f;
         }
     }
     private bool IsCopycatSeeingPlayer()
@@ -330,17 +233,9 @@ public class AIChase : MonoBehaviour
 
     private void MoveOrStopAgent()
     {
-        if (IsPlayerLookingAtCopyCat())
-        {
-            agent.isStopped = true;
-            agent.ResetPath();
-            return;
-        }
         //Start running
-        agent.isStopped = false;
         CheckNeedToChangeWaypoint();
     }
-
     private void CheckNeedToChangeWaypoint()
     {
         float distance = Vector3.Distance(agent.transform.position, target.position);
@@ -349,9 +244,8 @@ public class AIChase : MonoBehaviour
             SetWaypoint();
         }
         agent.SetDestination(target.position);
-        
     }
-    private void SetWaypoint()
+    public void SetWaypoint()
     {
         Waypoint waypoint = waypointsListe[0];
         waypointsListe.RemoveAt(0);
@@ -427,5 +321,15 @@ public class AIChase : MonoBehaviour
             }
         }
         return lastCorridorGrounded;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent(out PlayerMovement player))
+        {
+            Debug.Log("Gameover");
+            player.enabled = false;
+            agentState = AgentState.Idle;
+            agent.enabled = false;
+        }
     }
 }
