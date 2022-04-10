@@ -8,7 +8,7 @@ public class ChaseManager : MonoBehaviour
     private AIChase aiChase;
     private PlayerMovement playerMovement;
     private CameraManager cameraManager;
-    [SerializeField] private TriggerChase[] triggerChaseArray;
+    private TriggerChase[] triggerChaseArray;
     private LayerMask savedLayerMask;
     //Chase setup
     private float waitTimeToSwitchCamera = 5.0f;
@@ -64,13 +64,26 @@ public class ChaseManager : MonoBehaviour
         Camera.main.cullingMask = chaseMask;
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
         UIManager.Instance.ToggleReticle(false);
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(6f);
+        dollyzoomEnabled = false;
+        yield return new WaitForSeconds(.1f);
+        float timeElapsed = 0f;
+        float lerpDuration = 5f;
+        float startValue = secondVirtualCamera.m_Lens.FieldOfView;
+        float endValue = 40f;
+        while (timeElapsed < lerpDuration)
+        {
+            secondVirtualCamera.m_Lens.FieldOfView = Mathf.Lerp(startValue, endValue, timeElapsed / lerpDuration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        secondVirtualCamera.m_Lens.FieldOfView = endValue;
+        yield return new WaitForSeconds(.1f);
         aiChase.Agent.enabled = true;
         aiChase.Agent.isStopped = false; // Copycat starts moving
         playerRotate.enabled = true;
         PlayerProperties.FreezeMovement = false;
         aiChase.SetWaypoint();
-        dollyzoomEnabled = false;
         aiChase.SetCurrentTimeToChangeMoveMax();
         aiChase.State = AIChase.AgentState.Chase;
     }
@@ -124,6 +137,10 @@ public class ChaseManager : MonoBehaviour
             firstVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(fpInitialFrustumHeight, currDistance);
             secondVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(spInitialFrustumHeight, currDistance);
         }
+    }
+    public void SetEnableDisableSecondPersonRotatee(bool state)
+    {
+        playerRotate.enabled = state;
     }
 
 }

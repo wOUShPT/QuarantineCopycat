@@ -81,25 +81,22 @@ public class CorridorGenerator : MonoBehaviour
 
     private void TurnOffCorridor(CorridorInfo currentCorridor)
     {
-        if(corridorInformationList.Count <= 2)
+        if (corridorInformationList.Count <= 2)
         {
             return;
         }
-        removeIndex = new List<int>(); 
+        removeIndex = new List<int>();
         if (currentCorridor.GetCorridorType() == CorridorInfo.CorridorType.RightCurve)
         {
-            
+
             for (int i = 0; i < corridorInformationList.Count; i++)
             {
-                if (corridorInformationList[i].transform == aiChase.CheckDown())
-                {
-                    ReturnToPool(removeIndex);
-                    return;
-                }
+                ReturnToPool(removeIndex);
+                return;
                 removeIndex.Add(i);
             }
         }
-        
+
     }
     private void ReturnToPool(List<int> indexList)
     {

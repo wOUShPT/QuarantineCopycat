@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4612926773822594676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.296, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.7, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children:
   - {fileID: 5981468975859829219}
   m_Father: {fileID: 5981468976493657637}
@@ -136,7 +136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5981468975859829218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.89, z: 0}
+  m_LocalPosition: {x: 0, y: 0.97, z: 0}
   m_LocalScale: {x: 2, y: 1.4285713, z: 2}
   m_Children:
   - {fileID: 2206479463479273683}
@@ -154,9 +154,9 @@ GameObject:
   - component: {fileID: 5981468976493657637}
   - component: {fileID: 5981468976493657638}
   - component: {fileID: 5981468976493657641}
-  - component: {fileID: 5981468976493657634}
   - component: {fileID: 3270761718278607765}
-  m_Layer: 0
+  - component: {fileID: 313652880327381704}
+  m_Layer: 14
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,25 +193,24 @@ MonoBehaviour:
   target: {fileID: 0}
   vcam: {fileID: 0}
   minDistance: 2
-  maxDistance: 8
-  minFOV: 20
+  maxDistance: 14
+  minFOV: 30
   maxFOV: 60
+  idealFOV: 40
   minSpeed: 1
-  maxSpeed: 3
+  maxSpeed: 4
   minAcceleration: 2
   maxAcceleration: 4
-  idealDistance: {x: 0, y: 0}
-  sensibility: 0.2
-  chaseMask:
-    serializedVersion: 2
-    m_Bits: 3955
+  timeToChangeMoveSettings: 5
+  idealDistance: {x: 6, y: 10}
+  sensibility: 0.03
   corridorMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   seeTargetMask:
     serializedVersion: 2
-    m_Bits: 0
-  playerCameraFunctions: {fileID: 0}
+    m_Bits: 1
+  dontseePlayerAmountTime: 3
 --- !u!195 &5981468976493657641
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -222,7 +221,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 1
+  m_Speed: 2
   m_Acceleration: 2
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -232,10 +231,23 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1.48
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
---- !u!136 &5981468976493657634
-CapsuleCollider:
+--- !u!114 &3270761718278607765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981468976493657640}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c7ed099f8372c4f88bc84014406b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appearedTime: 3
+--- !u!65 &313652880327381704
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -244,20 +256,6 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3270761718278607765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5981468976493657640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3c7ed099f8372c4f88bc84014406b61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  appearedTime: 3
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.8956139, z: 1.4799315}
+  m_Center: {x: 0, y: -0.038308382, z: 0}
