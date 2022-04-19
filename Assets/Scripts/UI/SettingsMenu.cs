@@ -10,6 +10,7 @@ public class SettingsMenu : MonoBehaviour
 
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private Slider mouseSensitivitySlider;
+    [SerializeField] private Toggle vsyncToggle;
     [SerializeField] private TextMeshProUGUI mouseSensitivityInfoLabel;
     [SerializeField] private MouseSettings _mouseSettingsData;
     private void Start()
@@ -32,8 +33,32 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-        mouseSensitivitySlider.value = _mouseSettingsData.mouseSensitivity;
-        mouseSensitivityInfoLabel.text = (_mouseSettingsData.mouseSensitivity / 10f).ToString();
+        
+        if (PlayerPrefs.HasKey("MouseSensitivity"))
+        {
+            _mouseSettingsData.mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity");
+        }
+        else
+        {
+            _mouseSettingsData.mouseSensitivity = 0.5f;
+            PlayerPrefs.SetFloat("MouseSensitivity", _mouseSettingsData.mouseSensitivity);
+            PlayerPrefs.Save();
+        }
+        mouseSensitivitySlider.value = _mouseSettingsData.mouseSensitivity*10f;
+        mouseSensitivityInfoLabel.text = _mouseSettingsData.mouseSensitivity.ToString();
+
+        if (PlayerPrefs.HasKey("VSync"))
+        {
+            vsyncToggle.isOn = PlayerPrefs.GetInt("VSync") == 2;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("VSync", 2);
+            vsyncToggle.isOn = PlayerPrefs.GetInt("VSync") == 2;
+            QualitySettings.vSyncCount = PlayerPrefs.GetInt("VSync");
+            PlayerPrefs.Save();
+        }
+        
     }
 
     public void SetResolution( int resolutionIndex)
@@ -43,19 +68,19 @@ public class SettingsMenu : MonoBehaviour
     }
     public void SetMouseSensitivity()
     {
-        _mouseSettingsData.mouseSensitivity = mouseSensitivitySlider.value;
-        mouseSensitivityInfoLabel.text = (_mouseSettingsData.mouseSensitivity / 10f).ToString();
+        _mouseSettingsData.mouseSensitivity = mouseSensitivitySlider.value/10f;
+        mouseSensitivityInfoLabel.text = _mouseSettingsData.mouseSensitivity.ToString();
+        PlayerPrefs.SetFloat("MouseSensitivity", _mouseSettingsData.mouseSensitivity);
+        PlayerPrefs.Save();
     }
     
     public void IsFullscreen( bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
     }
-    public void SetSyncToogle( bool hasSync)
+    public void SetSyncToggle()
     {
-        QualitySettings.vSyncCount = hasSync ? 1 : 0;
-        Debug.Log(QualitySettings.vSyncCount.ToString());
-        
+        QualitySettings.vSyncCount = vsyncToggle.isOn ? 2 : 0;
     }
     public void SetQuality(int qualityIndex)
     {

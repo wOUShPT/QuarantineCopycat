@@ -20,191 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37ff6665-f7b8-42b5-9b81-dfd008e24b54" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/.idea.QuarantineCopycat.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/Built-In Samples.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/HDRP Samples (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/HDRP Samples 7xx - 9xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/HDRP Samples.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/LWRP Samples (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/LWRP Samples.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/Sample Resources.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Examples/URP Samples.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/CustomRTTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/HDSRPTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/LWSRPTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/PPStackTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 10xx - 11xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 3xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 4xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 572 (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 5xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 6xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 718 - 743 (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/HDSRPTemplates 7xx - 9xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/LWSRPTemplates 3xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/LWSRPTemplates 4xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/USRPTemplates 10xx - 11xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/SRP (Legacy)/USRPTemplates 7xx - 9xx (Legacy).unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/USRPTemplates.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/AlarmClock/AlarmClock.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/AlarmClock/AlarmClock.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Toilet/ToiletClose.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Toilet/ToiletClose.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Toilet/ToiletOpen.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Toilet/ToiletOpen.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bed/BedPillow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bed/BedPillow.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bookcase/BookcaseFrame.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bookcase/BookcaseFrame.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Character/Character2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Character/Character2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Character/New Diffusion Profile.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Character/New Diffusion Profile.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Door/DoorFrame.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Door/DoorFrame.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Counter/Counter_02.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Counter/Counter_02.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Sink/Sink.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Sink/Sink.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Table/Table.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Kitchen&amp;LivingRoom/Table/Table.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Lamp/Lampshade.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Lamp/Lampshade.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/LightSwitches/LightSwitch02.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/LightSwitches/LightSwitch02.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Painting/Painting 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Painting/Painting 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Painting/PaintingFrame 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Painting/PaintingFrame 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/BREAD.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/BREAD.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Cagadeiro.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Cagadeiro.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Chavena.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Chavena.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Controller.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Controller.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Disco.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Disco.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/KitchenWoodFrame_Left.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/KitchenWoodFrame_Left.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/KitchenWoodFrame_Right.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/KitchenWoodFrame_Right.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Macbook.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Macbook.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/PS4.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/PS4.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Phone.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Phone.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Rogerio.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Rogerio.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Willy.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Willy.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/alvo.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/alvo.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/car01.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/car01.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/car02.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/car02.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/crack.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/crack.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/crackTop.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/crackTop.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/crack_depthmask.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/crack_depthmask.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/dish.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/dish.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/porta.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/porta.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/quadro.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/quadro.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/thermojumpRocket.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/thermojumpRocket.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/tostas.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/tostas.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Editor.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PhoneCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PhoneCanvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PhonePhysically.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PhonePhysically.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/DepthOfField Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/DepthOfField Profile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/LightingData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/LightingData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-0_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-0_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-0_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-0_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-0_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-0_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-10_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-10_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-10_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-10_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-11_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-11_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-11_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-11_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-11_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-11_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-12_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-12_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-12_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-12_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-12_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-12_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-1_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-1_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-1_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-1_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-1_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-1_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-2_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-2_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-2_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-2_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-2_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-2_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-3_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-3_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-3_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-3_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-3_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-3_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-4_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-4_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-4_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-4_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-4_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-4_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-5_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-5_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-5_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-5_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-5_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-5_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-6_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-6_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-6_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-6_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-6_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-6_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-7_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-7_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-7_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-7_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-7_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-7_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-8_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-8_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-8_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-8_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-8_comp_shadowmask.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-8_comp_shadowmask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-9_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-9_comp_dir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-9_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Lightmap-9_comp_light.exr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FMOD/FMODEventSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FMOD/FMODEventSource.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/CoffeeMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/CoffeeMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/DartsBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/DartsBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/Door/DoorBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/Door/DoorBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/Interaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/Interaction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/TelevisionBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/TelevisionBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/ToasterMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/ToasterMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory/PickupItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/InventoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/InventoryManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerPhone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerPhone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/DefaultHDRPAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/DefaultHDRPAsset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/DefaultLookDevProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/DefaultLookDevProfile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/HDRPHighQuality.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/HDRPHighQuality.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/HDRPLowQuality.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/HDRPLowQuality.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/HDRPMediumQuality.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/HDRPMediumQuality.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Cracks/CrackWalls.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Cracks/CrackWalls.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Cracks/DepthMask.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Cracks/DepthMask.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Cracks/HoleSimplified.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Cracks/HoleSimplified.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Cracks/SeenThroughFloor.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Cracks/SeenThroughFloor.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Cracks/TriplanarSeeThrough.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Cracks/TriplanarSeeThrough.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Cracks/TriplanarSeenThrough.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Cracks/TriplanarSeenThrough.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas/FullScreen_ScrollingFormulas.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas/FullScreen_ScrollingFormulas.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas/Resources.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas/Resources/ScrollingFormulas.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas/Resources/ScrollingFormulas.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas/Resources/formulas-seamless.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas/Resources/formulas-seamless.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas/Resources/formulas-seamless_black_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ScrollingFormulas/Resources/formulas-seamless_black_back.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StencilWrite.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StencilWrite/Custom Stencil Pass.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StencilWrite/Custom Stencil Pass.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StencilWrite/StencilWrite.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StencilWrite/StencilWrite.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StencilWrite/StencilWriteShader.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StencilWrite/StencilWriteShader.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/Master.bank" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Master.bank" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/Master.strings.bank" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Master.strings.bank" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Bath/BathInSequence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Bath/BathInSequence.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Sleep/WakeSequence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Sleep/WakeSequence.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Sofa/SofaInSequenceTimeline.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Sofa/SofaInSequenceTimeline.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Sofa/SofaOutSequenceTimeline.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Sofa/SofaOutSequenceTimeline.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Timeline/Toilet/ToiletSequence.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/Toilet/ToiletSequence.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SettingsMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SettingsMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmod_editor.log" beforeDir="false" afterPath="$PROJECT_DIR$/fmod_editor.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -551,6 +371,8 @@
       <workItem from="1648863545021" duration="2970000" />
       <workItem from="1648915711308" duration="9625000" />
       <workItem from="1648996559243" duration="11033000" />
+      <workItem from="1649173709624" duration="6884000" />
+      <workItem from="1649510325264" duration="621000" />
     </task>
     <servers />
   </component>
