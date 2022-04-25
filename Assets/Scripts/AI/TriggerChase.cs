@@ -44,10 +44,9 @@ public class TriggerChase : MonoBehaviour
                 aIChase.Agent.isStopped = true;
                 aIChase.transform.GetChild(0).localPosition = Vector3.zero;
                 chaseManager.SetTimeToSwitchCamera(reactCopycatTime);
-                //Bug needed fix immediatly!
                 if (playerWillLookAtCopycat)
                 {
-                    targetLook.position = new Vector3(aIChase.transform.position.x, Camera.main.transform.position.y, aIChase.transform.position.z);
+                    targetLook.position = new Vector3(aIChase.transform.position.x, aIChase.transform.position.y, aIChase.transform.position.z);
                 }
                 else
                 {
@@ -58,6 +57,8 @@ public class TriggerChase : MonoBehaviour
                 }
                 //Rotate forward
                 playerMovement.transform.LookAt(targetLook);
+                //Force player avoid "floating"
+                playerMovement.transform.rotation = Quaternion.Euler(playerMovement.transform.rotation.x, 0f, playerMovement.transform.rotation.z);
                 OnPlayerInsideTrigger?.Invoke(this, EventArgs.Empty);
                 this.gameObject.SetActive(false);
             }

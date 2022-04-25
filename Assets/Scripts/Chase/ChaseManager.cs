@@ -23,6 +23,10 @@ public class ChaseManager : MonoBehaviour
     private float fpInitialFrustumHeight;
     private float spInitialFrustumHeight;
     private bool dollyzoomEnabled = false;
+    [SerializeField] private CanvasGroup gameoverGroup;
+    [SerializeField] private float waitJellyEffectSeconds = 6f;
+    [SerializeField] private float waitFadeInSeconds = 1f;
+    [SerializeField] private float waitMinimum = .1f;
     private void Awake()
     {
         aiChase = FindObjectOfType<AIChase>();
@@ -34,12 +38,17 @@ public class ChaseManager : MonoBehaviour
     private void Start()
     {
         savedLayerMask = Camera.main.cullingMask;
-        playerRotate.enabled = false;
+        SetEnableDisableSecondPersonRotatee(false);
         initialFOVVirtualCamera = firstVirtualCamera.m_Lens.FieldOfView;
         foreach (var trigger in triggerChaseArray)
         {
             trigger.OnPlayerInsideTrigger += ColliderTrigger_OnPlayerEnterTrigger;
         }
+        // Disable gameover group of gameover's canvas
+        gameoverGroup.alpha = 0f;
+        gameoverGroup.interactable = false;
+        gameoverGroup.blocksRaycasts = false;
+
     }
     private void ColliderTrigger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
     {
@@ -64,9 +73,9 @@ public class ChaseManager : MonoBehaviour
         Camera.main.cullingMask = chaseMask;
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
         UIManager.Instance.ToggleReticle(false);
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(waitJellyEffectSeconds);
         dollyzoomEnabled = false;
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(waitMinimum);
         float timeElapsed = 0f;
         float lerpDuration = 5f;
         float startValue = secondVirtualCamera.m_Lens.FieldOfView;
@@ -78,10 +87,10 @@ public class ChaseManager : MonoBehaviour
             yield return null;
         }
         secondVirtualCamera.m_Lens.FieldOfView = endValue;
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(waitMinimum);
         aiChase.Agent.enabled = true;
         aiChase.Agent.isStopped = false; // Copycat starts moving
-        playerRotate.enabled = true;
+        SetEnableDisableSecondPersonRotatee(true);
         PlayerProperties.FreezeMovement = false;
         aiChase.SetWaypoint();
         aiChase.SetCurrentTimeToChangeMoveMax();
@@ -120,9 +129,10 @@ public class ChaseManager : MonoBehaviour
     IEnumerator SetupFirstPersonAgain()
     {
         PlayerProperties.FreezeMovement = true;
-        playerRotate.enabled = false;
+        playerRotate.transform.rotation = playerMovement.transform.rotation;
+        SetEnableDisableSecondPersonRotatee(false);
         dollyEvent.Raise();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(waitFadeInSeconds);
         firstVirtualCamera.m_Lens.FieldOfView = initialFOVVirtualCamera;
         Camera.main.cullingMask = savedLayerMask;
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.FirstPerson);
@@ -142,5 +152,10 @@ public class ChaseManager : MonoBehaviour
     {
         playerRotate.enabled = state;
     }
-
+    public void EnableGameOverScreen()
+    {
+        gameoverGroup.alpha = 1f;
+        gameoverGroup.interactable = true;
+        gameoverGroup.blocksRaycasts = false;
+    }
 }
