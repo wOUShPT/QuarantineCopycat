@@ -2,15 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class TriggerChase : MonoBehaviour
 {
     public EventHandler OnPlayerInsideTrigger;
-    [SerializeField] private Transform copyCatTransformLeftDirection;
     [SerializeField] private Transform copyCatTransformRightDirection;
+    [SerializeField] private Transform copyCatTransformLeftDirection;
     private AIChase aIChase;
-    [SerializeField] private Waypoint[] copycatWaypointsLeftTransform;
-    [SerializeField] private Waypoint[] copycatWaypointsRightTransform; //Where the red arrow is pointing in the editor
+    private BoxCollider getWaypointRightBoxcollider;
+    private BoxCollider getWaypointLeftBoxcollider;
+    private Waypoint[] copycatWaypointsRightTransform; //Where the red arrow is pointing in the editor
+    private Waypoint[] copycatWaypointsLeftTransform;
     [Range(0f,1f)]
     [SerializeField] private float triggerPercentage = 0.3f;
     [SerializeField] private bool playerWillLookAtCopycat = true;
@@ -21,6 +23,17 @@ public class TriggerChase : MonoBehaviour
     {
         aIChase = FindObjectOfType<AIChase>();
         chaseManager = FindObjectOfType<ChaseManager>();
+        getWaypointRightBoxcollider = transform.GetChild(0).GetComponent<BoxCollider>();
+        getWaypointLeftBoxcollider = transform.GetChild(1).GetComponent<BoxCollider>();
+    }
+    private void Start()
+    {
+        RaycastHit[] raycastHitRightArray = Physics.BoxCastAll(getWaypointRightBoxcollider.bounds.center, getWaypointRightBoxcollider.transform.localScale, getWaypointRightBoxcollider.transform.right, Quaternion.identity, getWaypointRightBoxcollider.size.z);
+        copycatWaypointsRightTransform = raycastHitRightArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
+        copycatWaypointsRightTransform = copycatWaypointsRightTransform.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
+        RaycastHit[] raycastHitLefttArray = Physics.BoxCastAll(getWaypointLeftBoxcollider.bounds.center, getWaypointLeftBoxcollider.transform.localScale, getWaypointLeftBoxcollider.transform.right, Quaternion.identity, getWaypointLeftBoxcollider.size.z);
+        copycatWaypointsLeftTransform = raycastHitLefttArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
+        copycatWaypointsLeftTransform = copycatWaypointsLeftTransform.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -58,7 +71,6 @@ public class TriggerChase : MonoBehaviour
                 //Rotate forward
                 playerMovement.transform.LookAt(targetLook);
                 //Force player avoid "floating"
-                playerMovement.transform.rotation = Quaternion.Euler(playerMovement.transform.rotation.x, 0f, playerMovement.transform.rotation.z);
                 OnPlayerInsideTrigger?.Invoke(this, EventArgs.Empty);
                 this.gameObject.SetActive(false);
             }

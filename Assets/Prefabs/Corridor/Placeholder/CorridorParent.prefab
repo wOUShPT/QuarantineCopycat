@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bce85219ca49bc448a8fafde16288e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointType: 0
 --- !u!1 &1112796841951498371
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,8 +144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corridorType: 0
   meshLink: {fileID: 7506013318958177555}
-  waypointsCopycat:
-  - {fileID: 6420229380407233750}
 --- !u!114 &239127044660662385
 MonoBehaviour:
   m_ObjectHideFlags: 0
