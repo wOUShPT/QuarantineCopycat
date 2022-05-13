@@ -25,15 +25,23 @@ public class TriggerChase : MonoBehaviour
         chaseManager = FindObjectOfType<ChaseManager>();
         getWaypointRightBoxcollider = transform.GetChild(0).GetComponent<BoxCollider>();
         getWaypointLeftBoxcollider = transform.GetChild(1).GetComponent<BoxCollider>();
+        targetLook = GameObject.Find("TargetLook").transform;
     }
     private void Start()
     {
-        RaycastHit[] raycastHitRightArray = Physics.BoxCastAll(getWaypointRightBoxcollider.bounds.center, getWaypointRightBoxcollider.transform.localScale, getWaypointRightBoxcollider.transform.right, Quaternion.identity, getWaypointRightBoxcollider.size.z);
+        // Get the waypoints
+        RaycastHit[] raycastHitRightArray = Physics.BoxCastAll(getWaypointRightBoxcollider.bounds.center, getWaypointRightBoxcollider.transform.localScale, getWaypointRightBoxcollider.transform.right, Quaternion.identity, getWaypointRightBoxcollider.size.x / 2);
         copycatWaypointsRightTransform = raycastHitRightArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
         copycatWaypointsRightTransform = copycatWaypointsRightTransform.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
-        RaycastHit[] raycastHitLefttArray = Physics.BoxCastAll(getWaypointLeftBoxcollider.bounds.center, getWaypointLeftBoxcollider.transform.localScale, getWaypointLeftBoxcollider.transform.right, Quaternion.identity, getWaypointLeftBoxcollider.size.z);
+        RaycastHit[] raycastHitLefttArray = Physics.BoxCastAll(getWaypointLeftBoxcollider.bounds.center, getWaypointLeftBoxcollider.transform.localScale, getWaypointLeftBoxcollider.transform.right, Quaternion.identity, getWaypointLeftBoxcollider.size.x / 2);
         copycatWaypointsLeftTransform = raycastHitLefttArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
         copycatWaypointsLeftTransform = copycatWaypointsLeftTransform.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
+        // assign place enemies transform
+        copyCatTransformRightDirection = playerWillLookAtCopycat ? raycastHitRightArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform 
+            : raycastHitLefttArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform;
+        copyCatTransformLeftDirection = playerWillLookAtCopycat ? raycastHitLefttArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform 
+             : raycastHitRightArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform;
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -52,6 +60,7 @@ public class TriggerChase : MonoBehaviour
                 //RNG said to start the chase
                 Vector3 right = transform.TransformDirection(Vector3.right).normalized;
                 float dotproduct = Vector3.Dot(right, playerMovement.CurrentMoveDirection);
+                aIChase.Agent.enabled = true;
                 aIChase.AddMoreDestination(dotproduct > 0 ? copycatWaypointsRightTransform : copycatWaypointsLeftTransform);
                 aIChase.Agent.Warp(dotproduct > 0 ? copyCatTransformRightDirection.position : copyCatTransformLeftDirection.position);
                 aIChase.Agent.isStopped = true;

@@ -24,7 +24,11 @@ public class WaypointAdder : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!copycatScript.enabled || copycatScript.Agent.isStopped)
+        if (!copycatScript.enabled )
+        {
+            return;
+        }
+        if (copycatScript.Agent.isStopped)
         {
             return;
         }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7919749551183137425}
   - component: {fileID: 9158586547779322936}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: RightGetWaypoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2181504868416763944}
   - component: {fileID: 3227707531024747056}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LeftGetWaypoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,10 +99,10 @@ GameObject:
   - component: {fileID: 3074383962015061885}
   - component: {fileID: 3074383962015061858}
   - component: {fileID: 3074383962015061859}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Trigger
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -150,6 +150,6 @@ MonoBehaviour:
   copyCatTransformRightDirection: {fileID: 0}
   copyCatTransformLeftDirection: {fileID: 0}
   triggerPercentage: 1
-  playerWillLookAtCopycat: 0
+  playerWillLookAtCopycat: 1
   reactCopycatTime: 0.1
   targetLook: {fileID: 0}

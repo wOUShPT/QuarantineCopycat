@@ -254,6 +254,7 @@ public class AIChase : MonoBehaviour
         if(Physics.Linecast(agent.transform.position, playerMovement.transform.position, seeTargetMask ))
         {
             //Copycat is not seing player (probably a door between them)
+            
             return false;
         }
         return true;
