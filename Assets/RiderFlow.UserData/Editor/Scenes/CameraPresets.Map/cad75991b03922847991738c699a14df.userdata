@@ -1,0 +1,54 @@
+{
+  "42ac55698c9b6e544b68e58530cf0ded": {
+    "sceneGuid": "cad75991b03922847991738c699a14df",
+    "uniqueCameraId": "42ac55698c9b6e544b68e58530cf0ded",
+    "name": "Angle_3",
+    "pointX": -11.0546494,
+    "pointY": 0.4573406,
+    "pointZ": 19.7896366,
+    "directionX": 0.02069695,
+    "directionY": -0.311750263,
+    "directionZ": 0.0129070766,
+    "directionW": 0.9508956,
+    "zoom": 13.4725332
+  },
+  "84b4e69ab61dd7a4fb55aaed6c7751ca": {
+    "sceneGuid": "cad75991b03922847991738c699a14df",
+    "uniqueCameraId": "84b4e69ab61dd7a4fb55aaed6c7751ca",
+    "name": "Angle_4",
+    "pointX": -32.315918,
+    "pointY": 0.706727147,
+    "pointZ": 9.547401,
+    "directionX": 0.00309163961,
+    "directionY": -0.624385059,
+    "directionZ": 0.009553305,
+    "directionW": 0.7823168,
+    "zoom": 13.4725332
+  },
+  "324090648b3559546847616d0f8a4ec8": {
+    "sceneGuid": "cad75991b03922847991738c699a14df",
+    "uniqueCameraId": "324090648b3559546847616d0f8a4ec8",
+    "name": "Angle_1",
+    "pointX": 14.0079918,
+    "pointY": -3.56727886,
+    "pointZ": 10.8173752,
+    "directionX": 0.1020718,
+    "directionY": 0.468453944,
+    "directionZ": -0.0479689762,
+    "directionW": 0.8773863,
+    "zoom": 13.4725332
+  },
+  "a6073031b73f4f84189d9f16e7924cc0": {
+    "sceneGuid": "cad75991b03922847991738c699a14df",
+    "uniqueCameraId": "a6073031b73f4f84189d9f16e7924cc0",
+    "name": "Angle_2",
+    "pointX": -20.57578,
+    "pointY": -1.96826029,
+    "pointZ": -3.552421,
+    "directionX": 0.03303972,
+    "directionY": -0.7073681,
+    "directionZ": 0.04076719,
+    "directionW": 0.7062959,
+    "zoom": 13.4725332
+  }
+}

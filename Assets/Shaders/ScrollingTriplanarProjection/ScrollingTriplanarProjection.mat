@@ -20,13 +20,20 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _TriplanarTexture:
-        m_Texture: {fileID: 2800000, guid: 2b5b9b1b9ec649e44aacb75ee4c6b9f6, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Emission: 0
+    - _EmissionPower: 0
+    - _FadeAttenuation: 1.5
     - _Power: 1
     - _Scale: 0.25
     - _SphereSize: 10000
     m_Colors:
+    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Emission: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 1024, g: 1024, b: 1024, a: 1}
+    - _ScaleDirection: {r: 0, g: 0, b: 0, a: 0}
     - _SphereOrigin: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

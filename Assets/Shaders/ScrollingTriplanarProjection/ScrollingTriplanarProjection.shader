@@ -3,10 +3,14 @@
     Properties
     {
         _TriplanarTexture("Triplanar Texture", 2D) = "white" {}
+        _Color("Color", Color) = (0,0,0)
+        _FadeAttenuation("Fade Attenuation", float) = 5
         _Scale("Scale", Float) = 0.2
+        _ScaleDirection("Scale Axis", Vector) = (0,0,0,0)
         _Power("Power", Float) = 1
         _SphereSize ("Sphere size", float) = 5
         _SphereOrigin("Sphere origin", Vector) = (0,0,0,0)
+        _EmissionPower("Emission Power", float) = 0
     }
 
     HLSLINCLUDE
@@ -42,7 +46,10 @@
     // you can check them out in the source code of the core SRP package.
 
     TEXTURE2D(_TriplanarTexture);
+    float3 _Color;
     float _Scale;
+    float3 _ScaleDirection;
+    float _FadeAttenuation;
     float _Power;
     float _SphereSize;
     float3 _SphereOrigin;
@@ -62,8 +69,8 @@
         NormalData normalData;
         DecodeFromNormalBuffer(varyings.positionCS.xy, normalData);
         float3 normal = normalData.normalWS;
-
-        float3 offsetedPosition = worldPos.xyz - float3(0, 0, _SphereSize);
+        
+        float3 offsetedPosition = worldPos.xyz - worldPos.xyz/2;
         float2 uvX = offsetedPosition.zy * _Scale;
         float2 uvY = offsetedPosition.xz * _Scale;
         float2 uvZ = offsetedPosition.xy * _Scale;
@@ -76,7 +83,8 @@
         normal = normalize(pow(abs(normal), _Power)) * s;
         color = colorX * abs(normal.x) + colorY * abs(normal.y) + colorZ * abs(normal.z);
 
-        float d = saturate((worldPos.z - _SphereSize) / 5.0);
+        float d = saturate((worldPos.z - _SphereSize) / _FadeAttenuation);
+        color.rgb *= _Color.rgb;
         color.a *= d;
 
         // Fade value allow you to increase the strength of the effect while the camera gets closer to the custom pass volume

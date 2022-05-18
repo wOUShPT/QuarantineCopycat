@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerAnimation : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField]
     private Animator _animator;
     private PlayerMovement _movement;
+    private float _footIndex;
     private CameraManager cameraManager;
     private AIShowing showing;
     [SerializeField]private Transform placeCopyCat;
@@ -21,6 +23,13 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         _animator.SetFloat("Velocity", PlayerProperties.FreezeMovement ? 0f : _movement.currentVelocity);
+        _animator.SetFloat("Horizontal", _movement.CurrentMoveDirection.x);
+        _animator.SetFloat("Vertical", _movement.CurrentMoveDirection.z);
+        if (_movement.currentVelocity == 0)
+        {
+            _footIndex = Mathf.Pow(-1, Random.Range(2, 4));
+            _animator.SetFloat("Foot", _footIndex);
+        }
     }
     private void SetPlaceCopycat(Transform _transform)
     {

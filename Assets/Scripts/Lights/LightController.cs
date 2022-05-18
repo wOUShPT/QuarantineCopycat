@@ -24,13 +24,19 @@ public class LightController : MonoBehaviour
     public void TurnOn()
     {
         SetIntensity(_defaultLightIntensity);
-        _lightMeshRenderer.material = _onMaterial;
+        if (_lightMeshRenderer)
+        {
+            _lightMeshRenderer.material = _onMaterial;
+        }
         _lightComponent.enabled = true;
     }
 
     public void TurnOff()
     {
-        _lightMeshRenderer.material = _offMaterial;
+        if (_lightMeshRenderer)
+        {
+            _lightMeshRenderer.material = _offMaterial;
+        }
         _lightComponent.enabled = false;
     }
 
