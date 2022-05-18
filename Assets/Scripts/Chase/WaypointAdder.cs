@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class WaypointAdder : MonoBehaviour
 {
     private AIChase copycatScript;
-    [SerializeField]private Waypoint[] waypointRightArray;
-    [SerializeField] private Waypoint[] waypointLeftArray;
+    [SerializeField] private BoxCollider rightGetAdder; 
+    [SerializeField] private BoxCollider leftGetAdder; 
+    private Waypoint[] waypointRightArray;
+     private Waypoint[] waypointLeftArray;
     private void Awake()
     {
         copycatScript = FindObjectOfType<AIChase>();
     }
+    private void Start()
+    {
+        RaycastHit[] raycastHitRightArray = Physics.BoxCastAll(rightGetAdder.bounds.center, rightGetAdder.bounds.extents /2, rightGetAdder.transform.right, rightGetAdder.transform.rotation, rightGetAdder.size.z);
+        waypointRightArray = raycastHitRightArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
+        waypointRightArray = waypointRightArray.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
+        RaycastHit[] raycastHitLefttArray = Physics.BoxCastAll(leftGetAdder.bounds.center, leftGetAdder.bounds.extents / 2, -leftGetAdder.transform.right, leftGetAdder.transform.rotation, leftGetAdder.size.z);
+        waypointLeftArray = raycastHitLefttArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
+        waypointLeftArray = waypointLeftArray.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
+    }
     private void OnTriggerEnter(Collider other)
     {
+        if (!copycatScript.enabled )
+        {
+            return;
+        }
         if (copycatScript.Agent.isStopped)
         {
             return;

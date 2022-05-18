@@ -2,15 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class TriggerChase : MonoBehaviour
 {
     public EventHandler OnPlayerInsideTrigger;
-    [SerializeField] private Transform copyCatTransformLeftDirection;
     [SerializeField] private Transform copyCatTransformRightDirection;
+    [SerializeField] private Transform copyCatTransformLeftDirection;
     private AIChase aIChase;
-    [SerializeField] private Waypoint[] copycatWaypointsLeftTransform;
-    [SerializeField] private Waypoint[] copycatWaypointsRightTransform; //Where the red arrow is pointing in the editor
+    private BoxCollider getWaypointRightBoxcollider;
+    private BoxCollider getWaypointLeftBoxcollider;
+    private Waypoint[] copycatWaypointsRightTransform; //Where the red arrow is pointing in the editor
+    private Waypoint[] copycatWaypointsLeftTransform;
     [Range(0f,1f)]
     [SerializeField] private float triggerPercentage = 0.3f;
     [SerializeField] private bool playerWillLookAtCopycat = true;
@@ -21,6 +23,25 @@ public class TriggerChase : MonoBehaviour
     {
         aIChase = FindObjectOfType<AIChase>();
         chaseManager = FindObjectOfType<ChaseManager>();
+        getWaypointRightBoxcollider = transform.GetChild(0).GetComponent<BoxCollider>();
+        getWaypointLeftBoxcollider = transform.GetChild(1).GetComponent<BoxCollider>();
+        targetLook = GameObject.Find("TargetLook").transform;
+    }
+    private void Start()
+    {
+        // Get the waypoints
+        RaycastHit[] raycastHitRightArray = Physics.BoxCastAll(getWaypointRightBoxcollider.bounds.center, getWaypointRightBoxcollider.transform.localScale, getWaypointRightBoxcollider.transform.right, Quaternion.identity, getWaypointRightBoxcollider.size.x / 2);
+        copycatWaypointsRightTransform = raycastHitRightArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
+        copycatWaypointsRightTransform = copycatWaypointsRightTransform.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
+        RaycastHit[] raycastHitLefttArray = Physics.BoxCastAll(getWaypointLeftBoxcollider.bounds.center, getWaypointLeftBoxcollider.transform.localScale, getWaypointLeftBoxcollider.transform.right, Quaternion.identity, getWaypointLeftBoxcollider.size.x / 2);
+        copycatWaypointsLeftTransform = raycastHitLefttArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
+        copycatWaypointsLeftTransform = copycatWaypointsLeftTransform.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
+        // assign place enemies transform
+        copyCatTransformRightDirection = playerWillLookAtCopycat ? raycastHitRightArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform 
+            : raycastHitLefttArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform;
+        copyCatTransformLeftDirection = playerWillLookAtCopycat ? raycastHitLefttArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform 
+             : raycastHitRightArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform;
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -39,15 +60,15 @@ public class TriggerChase : MonoBehaviour
                 //RNG said to start the chase
                 Vector3 right = transform.TransformDirection(Vector3.right).normalized;
                 float dotproduct = Vector3.Dot(right, playerMovement.CurrentMoveDirection);
+                aIChase.Agent.enabled = true;
                 aIChase.AddMoreDestination(dotproduct > 0 ? copycatWaypointsRightTransform : copycatWaypointsLeftTransform);
                 aIChase.Agent.Warp(dotproduct > 0 ? copyCatTransformRightDirection.position : copyCatTransformLeftDirection.position);
                 aIChase.Agent.isStopped = true;
                 aIChase.transform.GetChild(0).localPosition = Vector3.zero;
                 chaseManager.SetTimeToSwitchCamera(reactCopycatTime);
-                //Bug needed fix immediatly!
                 if (playerWillLookAtCopycat)
                 {
-                    targetLook.position = new Vector3(aIChase.transform.position.x, Camera.main.transform.position.y, aIChase.transform.position.z);
+                    targetLook.position = new Vector3(aIChase.transform.position.x, aIChase.transform.position.y, aIChase.transform.position.z);
                 }
                 else
                 {
@@ -58,6 +79,7 @@ public class TriggerChase : MonoBehaviour
                 }
                 //Rotate forward
                 playerMovement.transform.LookAt(targetLook);
+                //Force player avoid "floating"
                 OnPlayerInsideTrigger?.Invoke(this, EventArgs.Empty);
                 this.gameObject.SetActive(false);
             }

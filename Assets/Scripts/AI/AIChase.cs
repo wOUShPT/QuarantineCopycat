@@ -89,20 +89,27 @@ public class AIChase : MonoBehaviour
         isfovLerpHappening = true;
         if (remainingDistance < idealDistance.x)
         {
-            StopCoroutine(fovEnumerator);
+            StopfovCourotine();
             fovEnumerator = FovLerp(vcam.m_Lens.FieldOfView, maxFOV);
         }
         else if(remainingDistance > idealDistance.y)
         {
-            StopCoroutine(fovEnumerator);
+            StopfovCourotine();
             fovEnumerator = FovLerp(vcam.m_Lens.FieldOfView, minFOV);
         }
         else
         {
-            StopCoroutine(fovEnumerator);
+            StopfovCourotine();
             fovEnumerator = FovLerp(vcam.m_Lens.FieldOfView, idealFOV);
         }
         StartCoroutine(fovEnumerator);
+    }
+    private void StopfovCourotine()
+    {
+        if(fovEnumerator != null)
+        {
+            StopCoroutine(fovEnumerator);
+        }
     }
 
     private void SetRubberBranding()
@@ -247,6 +254,7 @@ public class AIChase : MonoBehaviour
         if(Physics.Linecast(agent.transform.position, playerMovement.transform.position, seeTargetMask ))
         {
             //Copycat is not seing player (probably a door between them)
+            
             return false;
         }
         return true;
@@ -294,6 +302,17 @@ public class AIChase : MonoBehaviour
             player.enabled = false;
             agentState = AgentState.Finished;
             agent.enabled = false;
+            StopAllCoroutines();
+            StartCoroutine(TurnComponentsByCaught());
         }
+    }
+    private IEnumerator TurnComponentsByCaught()
+    {
+        //Disabling or enabling components after copycat got player (Bryan) Gameover
+        yield return new WaitForSeconds(1f);
+        //Animator maybe
+        Debug.Log("Visual feedback");
+        yield return new WaitForSeconds(2f);
+        chaseManager.EnableGameOverScreen();
     }
 }

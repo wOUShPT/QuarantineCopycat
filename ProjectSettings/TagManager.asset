@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DartBoard
   - SceneTransition
+  - PlaceEnemy
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - CrackMask
   - SeeThrough
   - ScrollingTriplanarProjection
-  - 
-  - 
+  - Waypoints
+  - Place
   - 
   - 
   - 
