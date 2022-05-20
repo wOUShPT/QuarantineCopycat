@@ -33,6 +33,24 @@ public class FMODEventSource : MonoBehaviour
       _eventInstance.start();
    }
 
+   public void ChangeParameter(string parameter, float value)
+   {
+      if (FMODEvent.IsNull)
+      {
+         return;
+      }  
+      _eventInstance.setParameterByName(parameter, value);
+   }
+   
+   public void StopEvent()
+   {
+      if (FMODEvent.IsNull)
+      {
+         return;
+      }
+      _eventInstance.stop(STOP_MODE.ALLOWFADEOUT);
+   }
+
    public void OnDestroy()
    {
       if (FMODEvent.IsNull)

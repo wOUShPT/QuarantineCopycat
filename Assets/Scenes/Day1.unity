@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 8053.7812, g: 6781.7734, b: 4377.6875, a: 1}
+  m_IndirectSpecularColor: {r: 8053.9844, g: 6782.0234, b: 4377.9688, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15052,7 +15052,7 @@ ReflectionProbe:
   m_Enabled: 1
   serializedVersion: 2
   m_Type: 0
-  m_Mode: 1
+  m_Mode: 2
   m_RefreshMode: 2
   m_TimeSlicingMode: 0
   m_Resolution: 128
@@ -22212,7 +22212,7 @@ ReflectionProbe:
   m_Enabled: 1
   serializedVersion: 2
   m_Type: 0
-  m_Mode: 1
+  m_Mode: 2
   m_RefreshMode: 2
   m_TimeSlicingMode: 0
   m_Resolution: 128
@@ -23866,7 +23866,7 @@ ReflectionProbe:
   m_Enabled: 1
   serializedVersion: 2
   m_Type: 0
-  m_Mode: 1
+  m_Mode: 2
   m_RefreshMode: 2
   m_TimeSlicingMode: 0
   m_Resolution: 128
@@ -24367,7 +24367,7 @@ ReflectionProbe:
   m_Enabled: 1
   serializedVersion: 2
   m_Type: 0
-  m_Mode: 1
+  m_Mode: 2
   m_RefreshMode: 2
   m_TimeSlicingMode: 0
   m_Resolution: 128
@@ -33201,6 +33201,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1415779969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415779959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e995a733780104840aae9c3ca2bb6971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTypeIndex: 0
+  FMODEvent:
+    Guid:
+      Data1: 2137448776
+      Data2: 1079072074
+      Data3: -1408974716
+      Data4: 867641941
+    Path: event:/SFX/Bedrooom/Alarm Clock
+  sourceGameObject: {fileID: 1415779959}
 --- !u!4 &1415779977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5416899492541910230, guid: 6cc9d8cf919daa34284e0b775161a24a, type: 3}
@@ -48279,8 +48300,6 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 6653723829390218427, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
     value: {fileID: 1925782476}
-  - key: {fileID: 9033453750419897235, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
-    value: {fileID: 1490075278}
   - key: {fileID: 810327258799461679, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
     value: {fileID: 1490075278}
   - key: {fileID: 2607121949617547106, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
@@ -48307,6 +48326,8 @@ PlayableDirector:
     value: {fileID: 1415779960}
   - key: {fileID: 3725868574701015298, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
     value: {fileID: 1490075275}
+  - key: {fileID: -7303971484258517553, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 1490075278}
   m_ExposedReferences:
     m_References:
     - 9ce200666e5f34d48af38d253e96109b: {fileID: 722589773}
@@ -48342,6 +48363,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 77499a1a21346354c9ab3af228248e43, type: 2}
     - {fileID: 11400000, guid: 7e71ab1db9d24474a8b8ec7956a14258, type: 2}
     - {fileID: 11400000, guid: 4d6b4a4d808c262488698733cfb47bc2, type: 2}
+    - {fileID: 11400000, guid: d2a9ef9293ff1734f872f604f5221154, type: 2}
+    - {fileID: 11400000, guid: 7f8252dc7be567345aabafe6b0e96960, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -48530,6 +48553,34 @@ MonoBehaviour:
         - m_Target: {fileID: 1096276523}
           m_TargetAssemblyTypeName: PlayerProperties, Assembly-CSharp
           m_MethodName: SwitchToDynamicMode
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1415779969}
+          m_TargetAssemblyTypeName: FMODEventSource, Assembly-CSharp
+          m_MethodName: PlayEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1415779969}
+          m_TargetAssemblyTypeName: FMODEventSource, Assembly-CSharp
+          m_MethodName: StopEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -49480,7 +49531,7 @@ ReflectionProbe:
   m_Enabled: 1
   serializedVersion: 2
   m_Type: 0
-  m_Mode: 1
+  m_Mode: 2
   m_RefreshMode: 2
   m_TimeSlicingMode: 0
   m_Resolution: 128
@@ -50150,7 +50201,7 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 6653723829390218427, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
     value: {fileID: 1925782476}
-  - key: {fileID: 9033453750419897235, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1617502082}
   - key: {fileID: 810327258799461679, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
     value: {fileID: 1617502082}
