@@ -8,23 +8,19 @@ public class TriggerChase : MonoBehaviour
     public EventHandler OnPlayerInsideTrigger;
     [SerializeField] private Transform copyCatTransformRightDirection;
     [SerializeField] private Transform copyCatTransformLeftDirection;
-    private AIChase aIChase;
-    private BoxCollider getWaypointRightBoxcollider;
-    private BoxCollider getWaypointLeftBoxcollider;
+    [SerializeField] private AIChase aIChase;
+    [SerializeField] private BoxCollider getWaypointRightBoxcollider;
+    [SerializeField] private BoxCollider getWaypointLeftBoxcollider;
     private Waypoint[] copycatWaypointsRightTransform; //Where the red arrow is pointing in the editor
     private Waypoint[] copycatWaypointsLeftTransform;
     [Range(0f,1f)]
     [SerializeField] private float triggerPercentage = 0.3f;
     [SerializeField] private bool playerWillLookAtCopycat = true;
     [SerializeField] private float reactCopycatTime = 5.0f;
-    private ChaseManager chaseManager;
+    [SerializeField] private ChaseManager chaseManager;
     [SerializeField]private Transform targetLook;
     private void Awake()
     {
-        aIChase = FindObjectOfType<AIChase>();
-        chaseManager = FindObjectOfType<ChaseManager>();
-        getWaypointRightBoxcollider = transform.GetChild(0).GetComponent<BoxCollider>();
-        getWaypointLeftBoxcollider = transform.GetChild(1).GetComponent<BoxCollider>();
         targetLook = GameObject.Find("TargetLook").transform;
     }
     private void Start()
@@ -41,7 +37,6 @@ public class TriggerChase : MonoBehaviour
             : raycastHitLefttArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform;
         copyCatTransformLeftDirection = playerWillLookAtCopycat ? raycastHitLefttArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform 
              : raycastHitRightArray.Where(t => t.transform.tag == "PlaceEnemy").FirstOrDefault().transform;
-
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -52,8 +47,7 @@ public class TriggerChase : MonoBehaviour
         }
         if (other.TryGetComponent(out PlayerMovement playerMovement))
         {
-            //Player inside the trigger area
-            
+            //Player inside the trigger area           
             float percentage = UnityEngine.Random.Range(0f, 1f);
             if (percentage < triggerPercentage)
             {
@@ -79,11 +73,11 @@ public class TriggerChase : MonoBehaviour
                 }
                 //Rotate forward
                 playerMovement.transform.LookAt(targetLook);
+                playerMovement.transform.rotation= Quaternion.Euler(new Vector3(0f, playerMovement.transform.rotation.eulerAngles.y, 0f));
                 //Force player avoid "floating"
                 OnPlayerInsideTrigger?.Invoke(this, EventArgs.Empty);
                 this.gameObject.SetActive(false);
             }
-        }
-        
+        }        
     }
 }

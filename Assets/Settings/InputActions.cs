@@ -121,6 +121,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""967d7bae-39ee-4c6f-9bab-312bbc6b6440"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -594,6 +602,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""ShootOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2516efd8-5c02-496a-a5cf-4e74b10194fc"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1192,6 +1211,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_TapNote = m_Player.FindAction("TapNote", throwIfNotFound: true);
         m_Player_HoldNote = m_Player.FindAction("HoldNote", throwIfNotFound: true);
         m_Player_Inspection = m_Player.FindAction("Inspection", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         // Phone
         m_Phone = asset.FindActionMap("Phone", throwIfNotFound: true);
         m_Phone_Movement = m_Phone.FindAction("Movement", throwIfNotFound: true);
@@ -1273,6 +1293,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_TapNote;
     private readonly InputAction m_Player_HoldNote;
     private readonly InputAction m_Player_Inspection;
+    private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -1290,6 +1311,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @TapNote => m_Wrapper.m_Player_TapNote;
         public InputAction @HoldNote => m_Wrapper.m_Player_HoldNote;
         public InputAction @Inspection => m_Wrapper.m_Player_Inspection;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1338,6 +1360,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Inspection.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInspection;
                 @Inspection.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInspection;
                 @Inspection.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInspection;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1381,6 +1406,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Inspection.started += instance.OnInspection;
                 @Inspection.performed += instance.OnInspection;
                 @Inspection.canceled += instance.OnInspection;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -1606,6 +1634,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnTapNote(InputAction.CallbackContext context);
         void OnHoldNote(InputAction.CallbackContext context);
         void OnInspection(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface IPhoneActions
     {

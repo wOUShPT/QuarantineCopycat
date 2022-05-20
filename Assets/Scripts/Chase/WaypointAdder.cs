@@ -15,6 +15,7 @@ public class WaypointAdder : MonoBehaviour
     }
     private void Start()
     {
+        // Left and right based on waypoint adder transfor position
         RaycastHit[] raycastHitRightArray = Physics.BoxCastAll(rightGetAdder.bounds.center, rightGetAdder.bounds.extents /2, rightGetAdder.transform.right, rightGetAdder.transform.rotation, rightGetAdder.size.z);
         waypointRightArray = raycastHitRightArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
         waypointRightArray = waypointRightArray.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
@@ -24,7 +25,7 @@ public class WaypointAdder : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!copycatScript.enabled )
+        if (!copycatScript.Agent.enabled)
         {
             return;
         }

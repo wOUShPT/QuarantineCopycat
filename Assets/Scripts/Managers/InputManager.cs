@@ -57,6 +57,8 @@ public class InputManager : Singleton<InputManager>
             _inputActions.Player.TapNote.performed += ctx => _playerInput.TapNote = ctx.ReadValue<float>();
             _inputActions.Player.Inspection.performed += ctx => _playerInput.Inspection = true;
             _inputActions.Player.Inspection.canceled += ctx => _playerInput.Inspection = false;
+            _inputActions.Player.Sprint.performed += ctx => _playerInput.isSprinting = true;
+            _inputActions.Player.Sprint.canceled += ctx => _playerInput.isSprinting = false;
 
             //Phone
             _inputActions.Phone.Movement.performed += ctx => _phoneInput.Navigation = ctx.ReadValue<Vector2>();
@@ -161,13 +163,13 @@ public class InputManager : Singleton<InputManager>
         public bool Interaction;
         public bool ExitInteraction;
         public bool Inspection;
+        public bool isSprinting;
         public HoldButton Shoot;
         public float Pause;
         public float UsePhone;
         public float SwitchTvChannel;
         public float SwitchTvVolume;
         public float TapNote;
-
     }
 
     public struct HoldButton
@@ -179,7 +181,7 @@ public class InputManager : Singleton<InputManager>
         public float holdTime;
     }
     
-
+    
     public struct PhoneInputStruct
     {
         public Vector2 Navigation;

@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _movementSpeed;
     [SerializeField]
+    private float sprintSpeed;
+    [SerializeField]
     private float _turnSpeed;
     [SerializeField]
     private float gravity;
@@ -27,14 +29,15 @@ public class PlayerMovement : MonoBehaviour
     private float headBobIntensity;
     [SerializeField] 
     private float headBobSpeed;
+    [SerializeField] private bool canSprint = false;
     private CinemachineStateDrivenCamera _cinemachineStateDrivenCamera;
     private Camera _camera;
     public bool isOnActionPivot;
     private Vector3 _currentMoveDirection;
     public Vector3 CurrentMoveDirection => _currentMoveDirection;
-    private Vector3 _currentRotation;
     private Vector3 _startHeadPosition;
     private Vector3 _currentHeadPosition;
+    [Range(0f, 3f)] [SerializeField] private float headPositionMultiplier = 0.3f;
     private float _headBobTimeCounter;
 
     //public float currentVelocity => new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
@@ -79,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             }
             _currentMoveDirection += new Vector3(_currentMoveDirection.x, gravity, _currentMoveDirection.z);
         }
-        _characterController.Move(_currentMoveDirection * _movementSpeed * Time.deltaTime);
+        _characterController.Move(_currentMoveDirection * (canSprint && InputManager.Instance.PlayerInput.isSprinting ? sprintSpeed : _movementSpeed) * Time.deltaTime);
         
     }
 
@@ -101,7 +104,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_currentMoveDirection.x != 0 || _currentMoveDirection.z != 0)
         {
-            _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * headBobSpeed, headBobIntensity*0.1f);
+            if (canSprint && InputManager.Instance.PlayerInput.isSprinting)
+            {
+                _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * headBobSpeed * (headBobIntensity * headPositionMultiplier), headBobIntensity * 0.1f);
+            }
+            else
+            {
+                _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * headBobSpeed, headBobIntensity * 0.1f);
+            }
+            
         }
         else
         {

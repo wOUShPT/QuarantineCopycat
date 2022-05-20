@@ -24,7 +24,7 @@ public class ChaseManager : MonoBehaviour
     private float spInitialFrustumHeight;
     private bool dollyzoomEnabled = false;
     [SerializeField] private CanvasGroup gameoverGroup;
-    [SerializeField] private float waitJellyEffectSeconds = 6f;
+    [SerializeField] private float waitJellyEffectSeconds = 4f;
     [SerializeField] private float waitFadeInSeconds = 1f;
     [SerializeField] private float waitMinimum = .1f;
     private void Awake()
@@ -48,7 +48,6 @@ public class ChaseManager : MonoBehaviour
         gameoverGroup.alpha = 0f;
         gameoverGroup.interactable = false;
         gameoverGroup.blocksRaycasts = false;
-
     }
     private void ColliderTrigger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
     {
@@ -77,7 +76,7 @@ public class ChaseManager : MonoBehaviour
         dollyzoomEnabled = false;
         yield return new WaitForSeconds(waitMinimum);
         float timeElapsed = 0f;
-        float lerpDuration = 5f;
+        float lerpDuration = 2f;
         float startValue = secondVirtualCamera.m_Lens.FieldOfView;
         float endValue = 40f;
         while (timeElapsed < lerpDuration)
@@ -154,8 +153,9 @@ public class ChaseManager : MonoBehaviour
     }
     public void EnableGameOverScreen()
     {
+        Time.timeScale = 1f;
         gameoverGroup.alpha = 1f;
         gameoverGroup.interactable = true;
-        gameoverGroup.blocksRaycasts = false;
+        gameoverGroup.blocksRaycasts = true;
     }
 }

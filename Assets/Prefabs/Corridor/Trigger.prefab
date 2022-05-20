@@ -149,7 +149,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   copyCatTransformRightDirection: {fileID: 0}
   copyCatTransformLeftDirection: {fileID: 0}
+  aIChase: {fileID: 0}
+  getWaypointRightBoxcollider: {fileID: 9158586547779322936}
+  getWaypointLeftBoxcollider: {fileID: 3227707531024747056}
   triggerPercentage: 1
   playerWillLookAtCopycat: 1
   reactCopycatTime: 0.1
+  chaseManager: {fileID: 0}
   targetLook: {fileID: 0}

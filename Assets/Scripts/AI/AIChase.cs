@@ -11,7 +11,7 @@ public class AIChase : MonoBehaviour
     private NavMeshAgent agent;
     public NavMeshAgent Agent => agent;
     [SerializeField] private Transform target;
-    private PlayerMovement playerMovement;
+    [SerializeField]private PlayerMovement playerMovement;
     //Zoom lens
     [SerializeField]private CinemachineVirtualCamera vcam;
     [SerializeField] private float minClampDistance = 2f;
@@ -25,8 +25,8 @@ public class AIChase : MonoBehaviour
     [SerializeField] private float minAcceleration = 2f;
     [SerializeField] private float maxAcceleration = 4f;
     private float normalSpeed, normalAcceleration;
-    private float currentTimeToChangeMove;
-    [SerializeField]private float timeToChangeMoveSettings = 3.5f;
+    private float currentTimeChangeMove;
+    [SerializeField]private float timeChangeMoveSettings = 3.5f;
     //Boundry
     [SerializeField]private Vector2 idealDistance;
     [SerializeField] private float fovLerpDuration = 4f;
@@ -42,17 +42,25 @@ public class AIChase : MonoBehaviour
     public AgentState State { get { return agentState; } set { agentState = value; } }
     private float lostPlayerTime = 0.0f;
     [SerializeField] private float dontseePlayerAmountTime = 3.0f;
-    private List<Waypoint> waypointsListe;
-    private ChaseManager chaseManager;
+    private List<Waypoint> waypointsList;
+    [SerializeField]private ChaseManager chaseManager;
     private IEnumerator fovEnumerator, speedEnumerator, accelerationEnumerator;
     private bool isonMovementCourotine = false;
+    [SerializeField] private Transform cameraPivot;
+    private Vector3 _startHeadPosition;
+    private Vector3 _currentHeadPosition;
+    [Range(0f, 3f)] [SerializeField] private float headPositionMultiplier = 0.3f;
+    [SerializeField, Range(0, 1.5f)]
+    private float headBobIntensity;
+    [SerializeField]
+    private float headBobSpeed;
     private void Awake()
     {
-        waypointsListe = new List<Waypoint>();
-        playerMovement = FindObjectOfType<PlayerMovement>();
+        waypointsList = new List<Waypoint>();
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = true; // Make the agent stop
-        chaseManager = FindObjectOfType<ChaseManager>();
+        _currentHeadPosition = cameraPivot.localPosition;
+        _startHeadPosition = _currentHeadPosition;
     }
     private void Start()
     {
@@ -72,9 +80,11 @@ public class AIChase : MonoBehaviour
                 break;
             case AgentState.Chase:
                 //Set target dynamically
-                SetRubberBranding(); // Set Speed depending distance between copycat and Bryan
+                SetRubberBanding(); // Set Speed depending distance between copycat and Bryan
                 MoveOrStopAgent();
                 IsPlayerLookingAtCopyCat();
+                UpdateHeadPosition();
+                IsCopycatLookingPlayerFace();
                 break;
         }
     }
@@ -112,9 +122,9 @@ public class AIChase : MonoBehaviour
         }
     }
 
-    private void SetRubberBranding()
+    private void SetRubberBanding()
     {
-        // rubber branding
+        // rubber banding
         if (isonMovementCourotine)
         {
             return;
@@ -124,7 +134,7 @@ public class AIChase : MonoBehaviour
         {
             if (CheckIfSameValue(agent.speed, minSpeed))
                 return;
-            currentTimeToChangeMove = 0f;
+            currentTimeChangeMove = 0f;
             StopMovementCourotines();
             speedEnumerator = GetLerpMove(agent.speed, minSpeed, true);
             accelerationEnumerator = GetLerpMove(agent.acceleration, minAcceleration, false);
@@ -136,7 +146,7 @@ public class AIChase : MonoBehaviour
         {
             if (CheckIfSameValue(agent.speed, maxSpeed))
                 return;
-            currentTimeToChangeMove = 0f;
+            currentTimeChangeMove = 0f;
             StopMovementCourotines();
             speedEnumerator = GetLerpMove(agent.speed, maxSpeed, true);
             accelerationEnumerator = GetLerpMove(agent.acceleration, maxAcceleration, false);
@@ -144,8 +154,8 @@ public class AIChase : MonoBehaviour
             ZoomInOutCamera();
             return;
         }
-        currentTimeToChangeMove += Time.deltaTime;
-        if(currentTimeToChangeMove >= timeToChangeMoveSettings)
+        currentTimeChangeMove += Time.deltaTime;
+        if(currentTimeChangeMove >= timeChangeMoveSettings)
         {
             if (CheckIfSameValue(agent.speed, normalSpeed))
                 return;
@@ -163,12 +173,15 @@ public class AIChase : MonoBehaviour
     }
     private void StopMovementCourotines()
     {
-        if(speedEnumerator == null || accelerationEnumerator == null)
+        if(accelerationEnumerator != null)
         {
-            return; //Avoid enumerator null errors
+            StopCoroutine(speedEnumerator);
         }
-        StopCoroutine(speedEnumerator);
-        StopCoroutine(accelerationEnumerator);
+        if(accelerationEnumerator != null)
+        {
+            StopCoroutine(accelerationEnumerator);
+        }
+        
     }
     private void StartMovementCourotines()
     {
@@ -229,7 +242,7 @@ public class AIChase : MonoBehaviour
     }
     public void SetCurrentTimeToChangeMoveMax()
     {
-        currentTimeToChangeMove = timeToChangeMoveSettings;
+        currentTimeChangeMove = timeChangeMoveSettings;
     }
     private void IsPlayerLookingAtCopyCat()
     {
@@ -245,16 +258,29 @@ public class AIChase : MonoBehaviour
         lostPlayerTime += Time.deltaTime;
         if( lostPlayerTime >= dontseePlayerAmountTime)
         {
-            lostPlayerTime = 0f;
-            chaseManager.SwitchToFirstPerson();
+            //Switch to bryan's perspective
+            PrepareSwitchCamera();
         }
+    }
+    private void PrepareSwitchCamera()
+    {
+        //Switch to bryan's perspective
+        lostPlayerTime = 0f;
+        chaseManager.SwitchToFirstPerson();
     }
     private bool IsCopycatSeeingPlayer()
     {
-        if(Physics.Linecast(agent.transform.position, playerMovement.transform.position, seeTargetMask ))
+        Vector3 playerSeeOffsetUp = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y + 1f, playerMovement.transform.position.z);
+        Vector3 playerSeeOffsetLeft = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y + 1f, playerMovement.transform.position.z - 0.3f);
+        Vector3 playerSeeOffsetRight = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y + 0.5f, playerMovement.transform.position.z + 0.3f);
+
+        Debug.DrawLine(agent.transform.position, playerSeeOffsetUp, Color.red);
+        Debug.DrawLine(agent.transform.position, playerSeeOffsetLeft, Color.red);
+        Debug.DrawLine(agent.transform.position, playerSeeOffsetRight, Color.red);
+        if (Physics.Linecast(agent.transform.position, playerSeeOffsetUp, seeTargetMask ))
         {
             //Copycat is not seing player (probably a door between them)
-            
+            Debug.DrawLine(agent.transform.position, playerSeeOffsetUp, Color.green);
             return false;
         }
         return true;
@@ -268,16 +294,21 @@ public class AIChase : MonoBehaviour
     private void CheckNeedToChangeWaypoint()
     {
         float distance = Vector3.Distance(agent.transform.position, target.position);
-        if(distance < 1.8f && waypointsListe.Count > 0)
+        if(distance < 1.8f && waypointsList.Count > 0)
         {
+            // Go to next waypoint
             SetWaypoint();
         }
         agent.SetDestination(target.position);
     }
     public void SetWaypoint()
     {
-        Waypoint waypoint = waypointsListe[0];
-        waypointsListe.RemoveAt(0);
+        if(waypointsList.Count == 0)
+        {
+            return;
+        }
+        Waypoint waypoint = waypointsList[0];
+        waypointsList.RemoveAt(0);
         target = waypoint.transform;
         Vector3 auxTargetPosition = waypoint.transform.position;
         //A circle around
@@ -287,32 +318,63 @@ public class AIChase : MonoBehaviour
     }
     public void AddMoreDestination(Waypoint[] waypointTransformArray)
     {
-        waypointsListe.Clear();
+        waypointsList.Clear();
         foreach (Waypoint waypoint in waypointTransformArray) // Add more destinations to where copycat can move
         {
-            waypointsListe.Add(waypoint);
+            waypointsList.Add(waypoint);
         }
+        SetWaypoint();
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (!agent.enabled || agentState == AgentState.Idle)
+        {
+            return;
+        }
         if(other.TryGetComponent(out PlayerMovement player))
         {
             //Gameover
-            chaseManager.SetEnableDisableSecondPersonRotatee(false);
-            player.enabled = false;
-            agentState = AgentState.Finished;
-            agent.enabled = false;
-            StopAllCoroutines();
-            StartCoroutine(TurnComponentsByCaught());
+            PrepareGameover(player);
         }
+    }
+    private void PrepareGameover(PlayerMovement player)
+    {
+        chaseManager.SetEnableDisableSecondPersonRotatee(false);
+        player.enabled = false;
+        agentState = AgentState.Finished;
+        agent.enabled = false;
+        StopAllCoroutines();
+        StartCoroutine(TurnComponentsByCaught());
     }
     private IEnumerator TurnComponentsByCaught()
     {
         //Disabling or enabling components after copycat got player (Bryan) Gameover
         yield return new WaitForSeconds(1f);
         //Animator maybe
-        Debug.Log("Visual feedback");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        // Visual feedback
         yield return new WaitForSeconds(2f);
         chaseManager.EnableGameOverScreen();
+    }
+    void UpdateHeadPosition()
+    {
+        if (agent.velocity.x != 0 || agent.velocity.z != 0)
+        {
+            _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * headBobSpeed * (headBobIntensity * headPositionMultiplier), headBobIntensity * 0.1f);
+        }
+        else
+        {
+            _currentHeadPosition.y = Mathf.Lerp(cameraPivot.transform.localPosition.y, _startHeadPosition.y, Time.deltaTime * 20f);
+        }
+        cameraPivot.transform.localPosition = _currentHeadPosition;
+    }
+    //Prevent Copycat seeing bryan's face
+    private void IsCopycatLookingPlayerFace()
+    {
+        if(Vector3.Dot( playerMovement.transform.forward, agent.transform.forward) < 0)
+        {
+            PrepareGameover(playerMovement);
+        }
     }
 }
