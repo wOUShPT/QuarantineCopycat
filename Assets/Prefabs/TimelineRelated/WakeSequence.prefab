@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6922703605222463040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6922703605222463043}
+  - component: {fileID: 6922703605222463069}
+  - component: {fileID: 6922703605222463042}
+  m_Layer: 0
+  m_Name: WakeSequence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6922703605222463043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922703605222463040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &6922703605222463069
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922703605222463040}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: e9bbc98d0dcf6a84897d370b2bee080a, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 2607121949617547106, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 810327258799461679, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5464732490449032122, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7253282547822746794, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2106746437595274171, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7040448445355523176, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6653723829390218427, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8273345047345125839, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8850590063573095352, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6285712327163785318, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2700727811758826480, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6261220213931564680, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1693109896266552227, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3725868574701015298, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5807569421580720700, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5087079285683959638, guid: ac8cb39fad278ee4f8a9f4d49dd29c0d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8560670024802996983, guid: e9bbc98d0dcf6a84897d370b2bee080a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3017905867144312690, guid: e9bbc98d0dcf6a84897d370b2bee080a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3234090757604262879, guid: e9bbc98d0dcf6a84897d370b2bee080a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2037836557680508763, guid: e9bbc98d0dcf6a84897d370b2bee080a, type: 2}
+    value: {fileID: 6922703605222463042}
+  - key: {fileID: 7802436855806816568, guid: e9bbc98d0dcf6a84897d370b2bee080a, type: 2}
+    value: {fileID: 6922703605222463042}
+  - key: {fileID: 1484638189376707079, guid: e9bbc98d0dcf6a84897d370b2bee080a, type: 2}
+    value: {fileID: 6922703605222463042}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &6922703605222463042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922703605222463040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 3fcaf7832c29ba64d90f29d428747b2a, type: 2}
+    - {fileID: 11400000, guid: 901798845fadd7a42a4a7443e7cb550b, type: 2}
+    - {fileID: 11400000, guid: 3d93f9fa2e214bc4fa1cada40f668768, type: 2}
+    - {fileID: 11400000, guid: 27f7dcab40d2387499281414885bbe7c, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: ToggleReticle
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: PlayerProperties, Assembly-CSharp
+          m_MethodName: ToggleFreezeAim
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: PlayerProperties, Assembly-CSharp
+          m_MethodName: ToggleFreezeInteraction
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: PlayerProperties, Assembly-CSharp
+          m_MethodName: ToggleFreezeMovement
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2

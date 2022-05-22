@@ -242,7 +242,7 @@ MonoBehaviour:
     msaaSampleCount: 1
     supportMotionVectors: 1
     supportRuntimeDebugDisplay: 0
-    supportRuntimeAOVAPI: 0
+    supportRuntimeAOVAPI: 1
     supportDitheringCrossFade: 1
     supportTerrainHole: 0
     supportProbeVolume: 0

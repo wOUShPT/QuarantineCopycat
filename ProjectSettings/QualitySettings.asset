@@ -118,5 +118,6 @@ QualitySettings:
     Android: 0
     PS4: 1
     Standalone: 1
+    WebGL: 0
     Windows Store Apps: 1
     XboxOne: 1

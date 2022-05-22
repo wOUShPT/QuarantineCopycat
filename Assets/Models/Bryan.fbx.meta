@@ -57,6 +57,18 @@ ModelImporter:
   - first:
       74: -1377632687508097215
     second: rig_Bryan|BathroomInteractionJumpScare
+  - first:
+      74: -5708601774068988171
+    second: rig_Bryan|MedicineAction
+  - first:
+      74: -8558587413676625422
+    second: rig_Bryan|MedicineAction.001
+  - first:
+      74: 7317859207116806891
+    second: rig_Bryan|PoseLib
+  - first:
+      74: -3087108180267099044
+    second: rig_Bryan|running_cycle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -173,11 +185,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|PoseLib
-      takeName: rig|PoseLib
+      name: rig_Bryan|PoseLib
+      takeName: rig_Bryan|PoseLib
       internalID: 0
       firstFrame: 0
-      lastFrame: 4
+      lastFrame: 5
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -468,6 +480,64 @@ ModelImporter:
       internalID: 0
       firstFrame: 0
       lastFrame: 165
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig_Bryan|MedicineAction
+      takeName: rig_Bryan|MedicineAction
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 373
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig_Bryan|running_cycle
+      takeName: rig_Bryan|running_cycle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
