@@ -55,13 +55,11 @@ public class LookAtTrigger : MonoBehaviour
         if (Physics.Raycast(lookAtTransform.position,  _lookAtToCameraDirection, out RaycastHit hit, _lookAtToCameraDistance) && hit.collider.TryGetComponent(out CharacterController controller))
         {
             _onSight = true;
-            Debug.Log("Is on sight: " + _onSight);
             return;
         }
         
         _onSight = false;
-        Debug.Log("Is on sight: " + _onSight);
-        
+
         Debug.DrawRay(lookAtTransform.position, _lookAtToCameraDirection * _lookAtToCameraDistance, Color.magenta);
     }
 }
