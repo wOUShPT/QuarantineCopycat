@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] 
     private float headBobSpeed;
     [SerializeField] private bool canSprint = false;
+    [SerializeField] private CameraManager cameraManager;
     private CinemachineStateDrivenCamera _cinemachineStateDrivenCamera;
     private Camera _camera;
     public bool isOnActionPivot;
@@ -51,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
         _currentHeadPosition = cameraPivot.localPosition;
         _startHeadPosition = _currentHeadPosition;
         _headBobTimeCounter = 0;
+        if (canSprint)
+        {
+            cameraManager.ChangeToFirst();
+            Time.timeScale = 1f;
+        }
     }
     
     void Update()
@@ -88,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateRotation()
     {
-        if (PlayerProperties.Mode == PlayerProperties.State.Cutscene && CameraManager.CinemachineCameraState != CameraManager.CinemachineStateSwitcher.FirstPerson)
+        if (PlayerProperties.Mode == PlayerProperties.State.Cutscene)
         {
             return;
         }
@@ -111,15 +117,13 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * headBobSpeed, headBobIntensity * 0.1f);
-            }
-            
+            }     
         }
         else
         {
             _headBobTimeCounter = 0;
             _currentHeadPosition.y = Mathf.Lerp(cameraPivot.transform.localPosition.y, _startHeadPosition.y, Time.deltaTime * 20f);
         }
-
         cameraPivot.transform.localPosition = _currentHeadPosition;
     }
 

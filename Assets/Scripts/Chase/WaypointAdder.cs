@@ -5,10 +5,15 @@ using System.Linq;
 public class WaypointAdder : MonoBehaviour
 {
     private AIChase copycatScript;
-    [SerializeField] private BoxCollider rightGetAdder; 
-    [SerializeField] private BoxCollider leftGetAdder; 
+    [SerializeField] private BoxCollider rightGetAdder;
+    [SerializeField] private BoxCollider leftGetAdder;
     private Waypoint[] waypointRightArray;
-     private Waypoint[] waypointLeftArray;
+    private Waypoint[] waypointLeftArray;
+    private bool canAddWaypoints = true;
+    private float currentTimeToWaypoints = 0.0f;
+    [SerializeField] private float timeToAddWaypointsAgain = 8f;
+    private delegate void TimeAction();
+    private TimeAction timeAction;
     private void Awake()
     {
         copycatScript = FindObjectOfType<AIChase>();
@@ -23,8 +28,16 @@ public class WaypointAdder : MonoBehaviour
         waypointLeftArray = raycastHitLefttArray.Where(t => t.transform.GetComponent<Waypoint>() != null).Select(t => t.transform.GetComponent<Waypoint>()).ToArray();
         waypointLeftArray = waypointLeftArray.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).ToArray();
     }
+    private void Update()
+    {
+        timeAction?.Invoke();
+    }
     private void OnTriggerEnter(Collider other)
     {
+        if (!canAddWaypoints)
+        {
+            return;
+        }
         if (!copycatScript.Agent.enabled)
         {
             return;
@@ -39,6 +52,18 @@ public class WaypointAdder : MonoBehaviour
             float dotproduct = Vector3.Dot(right, playerMovement.CurrentMoveDirection);
             //Add the waypoints where player will pass while being chased
             copycatScript.AddMoreDestination( dotproduct >= 0 ? waypointRightArray : waypointLeftArray);
+            canAddWaypoints = false;
+            timeAction += WaitToAddWaypoints;
+        }
+    }
+    private void WaitToAddWaypoints()
+    {
+        currentTimeToWaypoints += Time.deltaTime;
+        if(currentTimeToWaypoints >= timeToAddWaypointsAgain)
+        {
+            currentTimeToWaypoints = 0;
+            canAddWaypoints = true;
+            timeAction -= WaitToAddWaypoints;
         }
     }
 }

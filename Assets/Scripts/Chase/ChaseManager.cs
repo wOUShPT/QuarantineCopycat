@@ -48,6 +48,7 @@ public class ChaseManager : MonoBehaviour
         gameoverGroup.alpha = 0f;
         gameoverGroup.interactable = false;
         gameoverGroup.blocksRaycasts = false;
+        SetupFirstPersonAgain();
     }
     private void ColliderTrigger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
     {
@@ -74,6 +75,8 @@ public class ChaseManager : MonoBehaviour
         UIManager.Instance.ToggleReticle(false);
         yield return new WaitForSeconds(waitJellyEffectSeconds);
         dollyzoomEnabled = false;
+        //Reset
+        playerRotate.transform.localRotation = Quaternion.Euler(Vector3.zero);
         yield return new WaitForSeconds(waitMinimum);
         float timeElapsed = 0f;
         float lerpDuration = 2f;
@@ -93,6 +96,7 @@ public class ChaseManager : MonoBehaviour
         PlayerProperties.FreezeMovement = false;
         aiChase.SetWaypoint();
         aiChase.SetCurrentTimeToChangeMoveMax();
+        aiChase.SetCanBeTriggerByDot(false);
         aiChase.State = AIChase.AgentState.Chase;
     }
     // Calculate the frustum height at a given distance from the camera.
