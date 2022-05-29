@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class LookAtTrigger : MonoBehaviour
 {
     [SerializeField] private Transform lookAtTransform;
+    [SerializeField] private LayerMask layerMask;
     [SerializeField] private float lookPercentageThreshold;
     [SerializeField] private float minimumTriggerDistance;
     [SerializeField] private float maximumTriggerDistance;
@@ -52,7 +53,7 @@ public class LookAtTrigger : MonoBehaviour
     {
         _lookAtToCameraDirection = _mainCamera.transform.position + Vector3.down * 0.25f - lookAtTransform.position;
 
-        if (Physics.Raycast(lookAtTransform.position,  _lookAtToCameraDirection, out RaycastHit hit, _lookAtToCameraDistance) && hit.collider.TryGetComponent(out CharacterController controller))
+        if (Physics.Raycast(lookAtTransform.position,  _lookAtToCameraDirection, out RaycastHit hit, _lookAtToCameraDistance, layerMask) && hit.collider.TryGetComponent(out CharacterController controller))
         {
             _onSight = true;
             return;

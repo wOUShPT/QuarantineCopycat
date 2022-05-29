@@ -21,6 +21,15 @@ public class GoalsManager : Singleton<GoalsManager>
     private List<bool> _currentGoalsMet;
     private bool _canProgress;
     private int _goalsMetCounter;
+    public ScenesEnum nextScene;
+
+    public enum ScenesEnum
+    {
+        Menu,
+        Day1,
+        Day2,
+        Labyrinth
+    }
 
 
     [Serializable]
@@ -121,6 +130,6 @@ public class GoalsManager : Singleton<GoalsManager>
 
     public void EndGame()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(nextScene.ToString());
     }
 }
