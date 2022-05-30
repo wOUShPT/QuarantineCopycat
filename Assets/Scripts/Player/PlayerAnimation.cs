@@ -25,6 +25,7 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetFloat("Velocity", PlayerProperties.FreezeMovement ? 0f : _movement.currentVelocity);
         _animator.SetFloat("Horizontal", _movement.CurrentMoveDirection.x);
         _animator.SetFloat("Vertical", _movement.CurrentMoveDirection.z);
+        _animator.SetBool("isRunning", _movement.GetIsSprinting());
         if (_movement.currentVelocity == 0)
         {
             _footIndex = Mathf.Pow(-1, Random.Range(2, 4));

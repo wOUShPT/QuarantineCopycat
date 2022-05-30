@@ -102,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        Debug.Log("Rotation!");
         transform.localRotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, _camera.transform.localRotation.eulerAngles.y, 0)), _turnSpeed * Time.deltaTime);
     }
 
@@ -130,5 +131,9 @@ public class PlayerMovement : MonoBehaviour
     public void ToggleCollision(bool state)
     {
         _characterController.enableOverlapRecovery = state;
+    }
+    public bool GetIsSprinting()
+    {
+        return InputManager.Instance.PlayerInput.isSprinting;
     }
 }

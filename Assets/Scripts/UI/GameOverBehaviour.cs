@@ -9,17 +9,21 @@ public class GameOverBehaviour : MonoBehaviour
     // Start is called before the first frame update
     public void RestartLevel()
     {
-        StartCoroutine(TransitionReset());
+        StartCoroutine(TransitionReset(SceneManager.GetActiveScene().buildIndex));
     }
     public void ExitGame() //Quit game
     {
         Application.Quit();
     }
-    IEnumerator TransitionReset()
+    public void ReturnToMainMenu()
+    {
+        StartCoroutine(TransitionReset(0));
+    }
+    IEnumerator TransitionReset(int buildIndex)
     {
         transitionAnimator.Play("FadeOut");
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(buildIndex);
         yield return null;
     }
 }

@@ -26,7 +26,7 @@ public class ChaseManager : MonoBehaviour
     [SerializeField] private CanvasGroup gameoverGroup;
     [SerializeField] private float waitJellyEffectSeconds = 4f;
     [SerializeField] private float waitFadeInSeconds = 1f;
-    [SerializeField] private float waitMinimum = .1f;
+    [SerializeField] private float waitSetupSeconds = .1f;
     private void Awake()
     {
         aiChase = FindObjectOfType<AIChase>();
@@ -77,9 +77,9 @@ public class ChaseManager : MonoBehaviour
         dollyzoomEnabled = false;
         //Reset
         playerRotate.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        yield return new WaitForSeconds(waitMinimum);
+        yield return new WaitForSeconds(waitSetupSeconds);
         float timeElapsed = 0f;
-        float lerpDuration = 2f;
+        float lerpDuration = 1.5f;
         float startValue = secondVirtualCamera.m_Lens.FieldOfView;
         float endValue = 40f;
         while (timeElapsed < lerpDuration)
@@ -89,7 +89,7 @@ public class ChaseManager : MonoBehaviour
             yield return null;
         }
         secondVirtualCamera.m_Lens.FieldOfView = endValue;
-        yield return new WaitForSeconds(waitMinimum);
+        yield return new WaitForSeconds(waitSetupSeconds);
         aiChase.Agent.enabled = true;
         aiChase.Agent.isStopped = false; // Copycat starts moving
         SetEnableDisableSecondPersonRotatee(true);

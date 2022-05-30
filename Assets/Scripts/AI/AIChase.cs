@@ -35,7 +35,6 @@ public class AIChase : MonoBehaviour
     [SerializeField] private float speedLerpDuration = 4f;
     
     [SerializeField]private LayerMask seeTargetMask;
-    [SerializeField] private LayerMask playerMask;
     public enum AgentState
     {
         Idle, Chase, Finished
@@ -55,9 +54,8 @@ public class AIChase : MonoBehaviour
     [SerializeField, Range(0, 1.5f)]
     private float headBobIntensity;
     [SerializeField]
-    private float headBobSpeed;
-    [SerializeField] private float closeDistance = 5.0f;
     private bool canBeTriggerByDot = true;
+    private Vector3 destinationTarget;
     private void Awake()
     {
         waypointsList = new List<Waypoint>();
@@ -85,10 +83,9 @@ public class AIChase : MonoBehaviour
             case AgentState.Chase:
                 //Set target dynamically
                 SetRubberBanding(); // Set Speed depending distance between copycat and Bryan
-                MoveOrStopAgent();
+                CheckNeedToChangeWaypoint();
                 IsPlayerLookingAtCopyCat();
                 UpdateHeadPosition();
-                //IsCopycatLookingPlayerFace();
                 break;
         }
     }
@@ -185,7 +182,6 @@ public class AIChase : MonoBehaviour
         {
             StopCoroutine(accelerationEnumerator);
         }
-        
     }
     private void StartMovementCourotines()
     {
@@ -278,28 +274,15 @@ public class AIChase : MonoBehaviour
         Vector3 playerSeeOffsetUp = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y + 1f, playerMovement.transform.position.z);
         Vector3 playerSeeOffsetLeft = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y + 1f, playerMovement.transform.position.z - 0.3f);
         Vector3 playerSeeOffsetRight = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y + 0.5f, playerMovement.transform.position.z + 0.3f);
-
-        Debug.DrawLine(agent.transform.position, playerSeeOffsetUp, Color.red);
-        Debug.DrawLine(agent.transform.position, playerSeeOffsetLeft, Color.red);
-        Debug.DrawLine(agent.transform.position, playerSeeOffsetRight, Color.red);
         bool IsBlockingVisionUp = Physics.Linecast(agent.transform.position, playerSeeOffsetUp, seeTargetMask);
         bool IsBlockingVisionLeft = Physics.Linecast(agent.transform.position, playerSeeOffsetLeft, seeTargetMask);
         bool IsBlockingVisionRight = Physics.Linecast(agent.transform.position, playerSeeOffsetRight, seeTargetMask);
         if (IsBlockingVisionUp && IsBlockingVisionLeft && IsBlockingVisionRight)
         {
             //Copycat is not seing player (probably a door between them)
-            Debug.DrawLine(agent.transform.position, playerSeeOffsetUp, Color.green);
-            Debug.DrawLine(agent.transform.position, playerSeeOffsetLeft, Color.green);
-            Debug.DrawLine(agent.transform.position, playerSeeOffsetRight, Color.green);
             return false;
         }
         return true;
-    }
-
-    private void MoveOrStopAgent()
-    {
-        //Start running
-        CheckNeedToChangeWaypoint();
     }
     private void CheckNeedToChangeWaypoint()
     {
@@ -310,9 +293,16 @@ public class AIChase : MonoBehaviour
             // Go to next waypoint
             SetWaypoint();
             agent.ResetPath();
-            
         }
-        agent.SetDestination(IsCopycatSeeingPlayer() ? playerMovement.transform.position : target.position);
+        Vector3 auxdestinationTarget = IsCopycatSeeingPlayer() ? playerMovement.transform.position : target.position;
+        if(destinationTarget != null && auxdestinationTarget == destinationTarget)
+        {
+            return;
+        }
+        destinationTarget = auxdestinationTarget;
+        //Move to destination
+        agent.ResetPath();
+        agent.SetDestination(destinationTarget);
     }
     public void SetWaypoint()
     {
@@ -362,63 +352,36 @@ public class AIChase : MonoBehaviour
         agent.velocity = Vector3.zero;
         agent.ResetPath();
         chaseManager.SetEnableDisableSecondPersonRotatee(false);
-        player.enabled = false;        
-        
+        player.enabled = false;              
         StopAllCoroutines();
         StartCoroutine(TurnComponentsByCaught());
     }
     private IEnumerator TurnComponentsByCaught()
     {
         //Disabling or enabling components after copycat got player (Bryan) Gameover
-        yield return new WaitForSeconds(3f);
         agent.ResetPath();
         agent.isStopped = true; //Copycat stops moving
         agent.velocity = Vector3.zero;
-        agent.speed = 0f;
-        agent.acceleration = 0f;
         agent.enabled = false;
+        yield return new WaitForSeconds(3f);
         //Animator maybe
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
         // Visual feedback
         yield return new WaitForSeconds(2f);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         chaseManager.EnableGameOverScreen();
     }
     void UpdateHeadPosition()
     {
         if (agent.velocity.x != 0 || agent.velocity.z != 0)
         {
-            _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * headBobSpeed * (headBobIntensity * headPositionMultiplier), headBobIntensity * 0.1f);
+            _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * /*headBobSpeed*/agent.speed * (headBobIntensity * headPositionMultiplier), headBobIntensity * 0.1f);
         }
         else
         {
             _currentHeadPosition.y = Mathf.Lerp(cameraPivot.transform.localPosition.y, _startHeadPosition.y, Time.deltaTime * 20f);
         }
         cameraPivot.transform.localPosition = _currentHeadPosition;
-    }
-    //Prevent Copycat seeing bryan's face
-    private bool IsCopycatLookingPlayerFace()
-    {
-        if (agentState == AgentState.Finished)
-        {
-            return false;
-        }
-        float angle = Vector3.Angle(playerRotate.transform.forward, playerRotate.transform.position - vcam.transform.position);
-        // square the distance we compare with
-        if (!canBeTriggerByDot)
-        {
-            if(angle < 80f)
-            {
-                canBeTriggerByDot = true;
-            }
-            return false;
-        }
-        if (angle > 80f && IsCopycatSeeingPlayer())
-        {
-            Debug.Log("Gameover by dot");
-            return true;
-        }
-        return false;
     }
     public void SetCanBeTriggerByDot(bool condition)
     {

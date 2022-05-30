@@ -78,6 +78,6 @@ public class TriggerChase : MonoBehaviour
                 OnPlayerInsideTrigger?.Invoke(this, EventArgs.Empty);
                 this.gameObject.SetActive(false);
             }
-        }        
+        }
     }
 }

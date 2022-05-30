@@ -191,26 +191,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  playerMovement: {fileID: 0}
+  playerRotate: {fileID: 0}
   vcam: {fileID: 0}
-  minDistance: 2
-  maxDistance: 14
+  minClampDistance: 2
+  maxClampDistance: 14
   minFOV: 30
   maxFOV: 60
   idealFOV: 40
-  minSpeed: 1
-  maxSpeed: 4
-  minAcceleration: 2
-  maxAcceleration: 4
-  timeToChangeMoveSettings: 5
-  idealDistance: {x: 6, y: 10}
-  sensibility: 0.03
-  corridorMask:
-    serializedVersion: 2
-    m_Bits: 1
+  minSpeed: 3
+  maxSpeed: 8
+  minAcceleration: 9
+  maxAcceleration: 5
+  timeChangeMoveSettings: 3.5
+  idealDistance: {x: 3, y: 8}
+  fovLerpDuration: 4
+  speedLerpDuration: 4
   seeTargetMask:
     serializedVersion: 2
     m_Bits: 1
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   dontseePlayerAmountTime: 3
+  chaseManager: {fileID: 0}
+  cameraPivot: {fileID: 5981468975859829219}
+  headPositionMultiplier: 1.22
+  headBobIntensity: 1.5
+  headBobSpeed: 0.65
+  closeDistance: 6
 --- !u!195 &5981468976493657641
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -225,7 +234,7 @@ NavMeshAgent:
   m_Acceleration: 2
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.25
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -257,5 +266,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.8956139, z: 1.4799315}
-  m_Center: {x: 0, y: -0.038308382, z: 0}
+  m_Size: {x: 0.5835743, y: 1.0872501, z: 0.9729195}
+  m_Center: {x: 0, y: 0, z: 0}
