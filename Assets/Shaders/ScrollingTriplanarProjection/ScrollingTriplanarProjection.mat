@@ -28,12 +28,12 @@ Material:
     - _EmissionPower: 0
     - _FadeAttenuation: 1.5
     - _Power: 1
-    - _Scale: 0.25
-    - _SphereSize: 10000
+    - _Scale: 0
+    - _SphereSize: -9.7
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _Emission: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1024, g: 1024, b: 1024, a: 1}
     - _ScaleDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _SphereOrigin: {r: 0, g: 0, b: 0, a: 0}
+    - _SphereOrigin: {r: 0, g: -10, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DoorBehaviour : InteractableBehaviour
 {
@@ -20,15 +21,10 @@ public class DoorBehaviour : InteractableBehaviour
     [SerializeField] private float openDuration;
     [SerializeField] private float targetRotateGap = 90; // be the target in one axis
     private bool isBeingAnimated = false;
-
-    private enum DoorType
-    {
-        Cabinet, Fridge
-    }
-    [SerializeField] private DoorType doorType;
     public EventReference OpenDoorFMODEvent;
     public EventReference CloseDoorFMODEvent;
     private EventInstance _eventInstance;
+    public UnityEvent effect;
 
     protected override void Awake()
     {
@@ -38,7 +34,6 @@ public class DoorBehaviour : InteractableBehaviour
     private void Start()
     {
         _wasInteracted = false;
-
     }
 
     public override void Interact()
@@ -86,7 +81,6 @@ public class DoorBehaviour : InteractableBehaviour
                     break;
             }
         }
-        CheckIsFridgeOpen();
         doorsInteraction = CloseDoorByCode;
         _eventInstance = FMODUnity.RuntimeManager.CreateInstance(OpenDoorFMODEvent);
         _eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
@@ -151,12 +145,5 @@ public class DoorBehaviour : InteractableBehaviour
         }
         _rotate.rotation = to;
         isBeingAnimated = false;
-    }
-    private void CheckIsFridgeOpen()
-    {
-        if(doorType != DoorType.Fridge)
-        {
-            return;
-        }
     }
 }

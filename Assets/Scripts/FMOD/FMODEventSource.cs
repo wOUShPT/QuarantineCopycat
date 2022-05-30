@@ -30,6 +30,7 @@ public class FMODEventSource : MonoBehaviour
       {
          return;
       }
+      _eventInstance.stop(STOP_MODE.IMMEDIATE);
       _eventInstance.start();
    }
 
