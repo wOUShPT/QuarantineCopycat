@@ -29,12 +29,36 @@ public class FadeOutline : Singleton<FadeOutline>
         FadeInCourotine = FadeOutlineInObject(minvalue, maxValue); // "Reset Courotine
         StartCoroutine(FadeInCourotine);
     }
-    public static void FadeeOutOutline()
+
+    public void AttentionHighlight()
+    {
+        
+    }
+    
+    public static void FadeOutOutline()
     {
     }
     private IEnumerator FadeOutlineInObject(float startValue, float endValue)
     {
         
+        float timeElapsed = 0f;
+        float valueToLerp = startValue;
+        OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
+        yield return null;
+        while (timeElapsed < lerpDuration)
+        {
+            valueToLerp = Mathf.Lerp(startValue, endValue, timeElapsed / lerpDuration);
+            OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        valueToLerp = endValue;
+        OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
+
+    }
+
+    private IEnumerator AttentionHighlightAnimation(float startValue, float endValue)
+    {
         float timeElapsed = 0f;
         float valueToLerp = startValue;
         OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);

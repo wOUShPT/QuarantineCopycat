@@ -62,7 +62,7 @@ public class InteractableBehaviour: MonoBehaviour
 
     protected internal void HideOutline()
     {
-        FadeOutline.FadeeOutOutline();
+        FadeOutline.FadeOutOutline();
         //gameObject.layer = interactionLayer;
         if (gameObjectsOutlinedArray.Length == 0)
             return;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,8 @@ using UnityEngine.Events;
 using FMOD.Studio;
 using FMODUnity;
 
-public class ToasterMachine : InteractableBehaviour
+public class ToasterMachine: MonoBehaviour
 {
-    [SerializeField] private ItemType _item;
     [SerializeField] private float taskDuration;
     [SerializeField] private GameObject toasts;
     [SerializeField] private Animator _toasterParticleSystemAnimator;
@@ -17,23 +17,10 @@ public class ToasterMachine : InteractableBehaviour
     private EventInstance _eventInstance;
     [SerializeField] private UnityEvent _preEffect;
     [SerializeField] private UnityEvent _effect;
-    private bool _wasInteracted;
 
-    private void Start()
+    public void StartToaster()
     {
-        _wasInteracted = false;
-    }
-
-    public override void Interact()
-    {
-        if(InventoryManager.Inventory.CheckHasItem(_item) && !_wasInteracted)
-        {
-            _wasInteracted = true;
-            DisableInteraction();
-            HideOutline();
-            InventoryManager.Inventory.RemoveItem(_item);
-            StartCoroutine(DoToast());
-        }
+        StartCoroutine(DoToast());
     }
 
     IEnumerator DoToast()
@@ -64,5 +51,10 @@ public class ToasterMachine : InteractableBehaviour
         yield return new WaitForSeconds(5f);
         _toasterParticleSystemAnimator.speed = 2f;
         _toasterParticleSystemAnimator.Play("FadeSmokeOut");
+    }
+
+    private void OnDestroy()
+    {
+        _eventInstance.release();
     }
 }

@@ -23,7 +23,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Amazing Assets/Advanced Dissolve/Installer/High Definition.unitypackage.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Amazing Assets/Advanced Dissolve/Shaders/TextMeshPro/TextMeshPro v2.1.6.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bookcase/BookcaseFrame.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bookcase/BookcaseFrame.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Day1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Day1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Day2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Day2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/CoffeeMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/CoffeeMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/InteractableBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/InteractableBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/ToasterMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/ToasterMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/VinylDiskBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/VinylDiskBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory/ItemPickInteraction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/PickupItem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory/ItemPickInteraction.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/FadeOutline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/FadeOutline.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/Selection_Fullscreen.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/Selection_Fullscreen.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmod_editor.log" beforeDir="false" afterPath="$PROJECT_DIR$/fmod_editor.log" afterDir="false" />
@@ -54,7 +63,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/Lights/LightControlTrack.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timeline/Lights/LightControlAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.high-definition@10.6.0/Runtime/Material/Lit/Lit.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Inventory/PickupItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Inventory/ItemPickInteraction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerPhone.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.2/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DDOL.cs" root0="FORCE_HIGHLIGHTING" />
@@ -388,6 +397,7 @@
       <workItem from="1653774626631" duration="675000" />
       <workItem from="1653830664318" duration="5541000" />
       <workItem from="1653909507769" duration="2538000" />
+      <workItem from="1653984621931" duration="3934000" />
     </task>
     <servers />
   </component>

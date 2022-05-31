@@ -9,10 +9,8 @@ using Debug = UnityEngine.Debug;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 [RequireComponent(typeof(Animator))]
-public class VinylDiskBehaviour : InteractableBehaviour
+public class VinylDiskBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    private ItemType _triggerItem;
     private bool wasInteracted = false;
     [Range(0.001f, 1f)]
     [SerializeField]private float volumeIncrement = 0.002f;
@@ -23,13 +21,10 @@ public class VinylDiskBehaviour : InteractableBehaviour
     [SerializeField] private GameObject diskGameObject;
     private FMOD.Studio.EventInstance _music;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-        DisableInteraction();
-
-        _music = FMODUnity.RuntimeManager.CreateInstance(_FMODEvent);
-        _music.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        _music = RuntimeManager.CreateInstance(_FMODEvent);
+        _music.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
     }
 
     private void Update()
@@ -57,17 +52,6 @@ public class VinylDiskBehaviour : InteractableBehaviour
         if (currentPlaybackState == PLAYBACK_STATE.STOPPED)
         {
             _animator.StopPlayback();
-        }
-    }
-
-    public override void Interact()
-    {
-        if (InventoryManager.Inventory.CheckHasItem(_triggerItem) && CanInteract)
-        {
-            InventoryManager.Inventory.RemoveItem(_triggerItem);
-            HideOutline();
-            PlayVinylDisk();
-            DisableInteraction();
         }
     }
     

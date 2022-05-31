@@ -6,9 +6,8 @@ using FMODUnity;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CoffeeMachine : InteractableBehaviour
+public class CoffeeMachine : MonoBehaviour
 {
-    [SerializeField] private ItemType _item;
     [SerializeField] private float taskDuration;
     [SerializeField] private GameObject coffeeCup;
     [SerializeField] private ParticleSystem _coffeeParticleSystem;
@@ -16,11 +15,9 @@ public class CoffeeMachine : InteractableBehaviour
     private EventInstance _fmodInstance;
     [SerializeField] private UnityEvent _preEffect;
     [SerializeField] private UnityEvent _effect;
-    private bool _wasInteracted;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         if (!FMODEvent.IsNull)
         {
             _fmodInstance = RuntimeManager.CreateInstance(FMODEvent);
@@ -28,21 +25,9 @@ public class CoffeeMachine : InteractableBehaviour
         }
     }
 
-    private void Start()
+    public void StartCoffee()
     {
-        _wasInteracted = false;
-    }
-
-    public override void Interact()
-    {
-        if(InventoryManager.Inventory.CheckHasItem(_item) && !_wasInteracted)
-        {
-            _wasInteracted = true;
-            DisableInteraction();
-            HideOutline();
-            InventoryManager.Inventory.RemoveItem(_item);
-            StartCoroutine(DoCoffee());
-        }
+        StartCoroutine(DoCoffee());
     }
 
     IEnumerator DoCoffee()
@@ -59,5 +44,10 @@ public class CoffeeMachine : InteractableBehaviour
         _coffeeParticleSystem.Stop();
         yield return new WaitForSeconds(1f);
         _effect.Invoke();
+    }
+
+    public void OnDestroy()
+    {
+        _fmodInstance.release();
     }
 }
