@@ -27,6 +27,8 @@ public class ChaseManager : MonoBehaviour
     [SerializeField] private float waitJellyEffectSeconds = 4f;
     [SerializeField] private float waitFadeInSeconds = 1f;
     [SerializeField] private float waitSetupSeconds = .1f;
+    [SerializeField] private float endFOVValue = 40f;
+    [SerializeField] private float lerpDuration = 1.5f;
     private void Awake()
     {
         aiChase = FindObjectOfType<AIChase>();
@@ -62,9 +64,7 @@ public class ChaseManager : MonoBehaviour
     {
         Camera.main.cullingMask = seeCopycatMask;
         //Stop player
-        PlayerProperties.FreezeAim = true;
-        PlayerProperties.FreezeInteraction = true;
-        PlayerProperties.FreezeMovement = true;
+        SetFreezePlayerProprities(true, true, true);
         playerCameraFunctions.ResetCameraTransform();
         yield return new WaitForSeconds(waitTimeToSwitchCamera);
         dollyEvent.Raise();
@@ -79,25 +79,29 @@ public class ChaseManager : MonoBehaviour
         playerRotate.transform.localRotation = Quaternion.Euler(Vector3.zero);
         yield return new WaitForSeconds(waitSetupSeconds);
         float timeElapsed = 0f;
-        float lerpDuration = 1.5f;
-        float startValue = secondVirtualCamera.m_Lens.FieldOfView;
-        float endValue = 40f;
+        float startFOVValue = secondVirtualCamera.m_Lens.FieldOfView;
         while (timeElapsed < lerpDuration)
         {
-            secondVirtualCamera.m_Lens.FieldOfView = Mathf.Lerp(startValue, endValue, timeElapsed / lerpDuration);
+            secondVirtualCamera.m_Lens.FieldOfView = Mathf.Lerp(startFOVValue, endFOVValue, timeElapsed / lerpDuration);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        secondVirtualCamera.m_Lens.FieldOfView = endValue;
+        secondVirtualCamera.m_Lens.FieldOfView = endFOVValue;
         yield return new WaitForSeconds(waitSetupSeconds);
         aiChase.Agent.enabled = true;
         aiChase.Agent.isStopped = false; // Copycat starts moving
         SetEnableDisableSecondPersonRotatee(true);
-        PlayerProperties.FreezeMovement = false;
+        SetFreezePlayerProprities(true, true, false);
         aiChase.SetWaypoint();
         aiChase.SetCurrentTimeToChangeMoveMax();
         aiChase.SetCanBeTriggerByDot(false);
         aiChase.State = AIChase.AgentState.Chase;
+    }
+    private void SetFreezePlayerProprities(bool stateAim, bool stateInteraction, bool stateMovement)
+    {
+        PlayerProperties.FreezeAim = stateAim;
+        PlayerProperties.FreezeInteraction = stateInteraction;
+        PlayerProperties.FreezeMovement = stateMovement;
     }
     // Calculate the frustum height at a given distance from the camera.
     private float FrustumHeightAtDistance(float distance, CinemachineVirtualCamera camera)
@@ -131,7 +135,7 @@ public class ChaseManager : MonoBehaviour
     }
     IEnumerator SetupFirstPersonAgain()
     {
-        PlayerProperties.FreezeMovement = true;
+        SetFreezePlayerProprities(true, true, true);
         playerRotate.transform.rotation = playerMovement.transform.rotation;
         SetEnableDisableSecondPersonRotatee(false);
         dollyEvent.Raise();
@@ -139,8 +143,7 @@ public class ChaseManager : MonoBehaviour
         firstVirtualCamera.m_Lens.FieldOfView = initialFOVVirtualCamera;
         Camera.main.cullingMask = savedLayerMask;
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.FirstPerson);
-        PlayerProperties.FreezeMovement = false;
-        PlayerProperties.FreezeAim = false;
+        SetFreezePlayerProprities(false, false, false);
     }
     private void Update()
     {

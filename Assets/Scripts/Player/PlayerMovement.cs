@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private float headBobSpeed;
     [SerializeField] private bool canSprint = false;
     [SerializeField] private CameraManager cameraManager;
-    private CinemachineStateDrivenCamera _cinemachineStateDrivenCamera;
     private Camera _camera;
     public bool isOnActionPivot;
     private Vector3 _currentMoveDirection;
@@ -40,13 +39,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _currentHeadPosition;
     [Range(0f, 3f)] [SerializeField] private float headPositionMultiplier = 0.3f;
     private float _headBobTimeCounter;
-
-    //public float currentVelocity => new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
     public float currentVelocity => new Vector2(_currentMoveDirection.x, _currentMoveDirection.z).magnitude;
     
     void Awake()
     {
-        _cinemachineStateDrivenCamera = FindObjectOfType<CinemachineStateDrivenCamera>();
         _camera = Camera.main;
         isOnActionPivot = false;
         _currentHeadPosition = cameraPivot.localPosition;
@@ -54,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         _headBobTimeCounter = 0;
         if (canSprint)
         {
+            PlayerProperties.FreezeMovement = false;
             cameraManager.ChangeToFirst();
             Time.timeScale = 1f;
         }
@@ -64,8 +61,7 @@ public class PlayerMovement : MonoBehaviour
         if (PlayerProperties.FreezeMovement)
         {
             return;
-        }
-        
+        }      
         UpdateRotation();
         UpdateMovement();
         UpdateHeadPosition();
@@ -88,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
             }
             _currentMoveDirection += new Vector3(_currentMoveDirection.x, gravity, _currentMoveDirection.z);
         }
-        _characterController.Move(_currentMoveDirection * (canSprint && InputManager.Instance.PlayerInput.isSprinting ? sprintSpeed : _movementSpeed) * Time.deltaTime);
+        _characterController.Move(_currentMoveDirection * (canSprint && GetIsSprinting() ? sprintSpeed : _movementSpeed) * Time.deltaTime);
         
     }
 
@@ -102,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Rotation!");
         transform.localRotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, _camera.transform.localRotation.eulerAngles.y, 0)), _turnSpeed * Time.deltaTime);
     }
 
@@ -134,6 +129,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public bool GetIsSprinting()
     {
+        if (PlayerProperties.FreezeMovement)
+        {
+            return false;
+        }
         return InputManager.Instance.PlayerInput.isSprinting;
     }
 }

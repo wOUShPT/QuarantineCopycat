@@ -327,6 +327,11 @@ public class AIChase : MonoBehaviour
             waypointsList.Add(waypoint);
         }
         SetWaypoint();
+        agent.ResetPath();
+        if (IsCopycatSeeingPlayer())
+        {
+            agent.velocity = Vector3.zero;
+        }
         agent.SetDestination(target.position);
     }
     private void OnTriggerEnter(Collider other)
@@ -352,6 +357,7 @@ public class AIChase : MonoBehaviour
         agent.velocity = Vector3.zero;
         agent.ResetPath();
         chaseManager.SetEnableDisableSecondPersonRotatee(false);
+        PlayerProperties.FreezeMovement = true;
         player.enabled = false;              
         StopAllCoroutines();
         StartCoroutine(TurnComponentsByCaught());
@@ -360,7 +366,6 @@ public class AIChase : MonoBehaviour
     {
         //Disabling or enabling components after copycat got player (Bryan) Gameover
         agent.ResetPath();
-        agent.isStopped = true; //Copycat stops moving
         agent.velocity = Vector3.zero;
         agent.enabled = false;
         yield return new WaitForSeconds(3f);

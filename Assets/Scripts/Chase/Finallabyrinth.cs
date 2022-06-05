@@ -9,7 +9,7 @@ public class Finallabyrinth : MonoBehaviour
         if(other.TryGetComponent(out PlayerMovement playerMovement))
         {
             // end maze
-            
+            Debug.Log("End maze!");
         }
     }
 }
