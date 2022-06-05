@@ -206,7 +206,7 @@ MonoBehaviour:
       Data2: 1206288460
       Data3: 957167267
       Data4: 1548433653
-    Path: event:/Dialogue/Chat 2 - Doctor
+    Path: event:/Dialogue/DAY1/Chat 2 - Doctor
   stopType: 0
   parameters: []
 --- !u!74 &-4241141392882222332

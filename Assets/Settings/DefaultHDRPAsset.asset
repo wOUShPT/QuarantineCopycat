@@ -447,7 +447,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a563607f9a859a14ea23047aaf46a342, type: 2}
   - {fileID: 11400000, guid: 9bf40036d79da0242a05368d1ab6b5c2, type: 2}
   beforeTransparentCustomPostProcesses: []
-  beforeTAACustomPostProcesses: []
+  beforeTAACustomPostProcesses:
+  - CopycatVision, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   beforePostProcessCustomPostProcesses: []
   afterPostProcessCustomPostProcesses: []
   virtualTexturingSettings:

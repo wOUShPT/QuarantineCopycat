@@ -21,19 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="37ff6665-f7b8-42b5-9b81-dfd008e24b54" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuarantineCopycat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Amazing Assets/Advanced Dissolve/Installer/High Definition.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Amazing Assets/Advanced Dissolve/Shaders/TextMeshPro/TextMeshPro v2.1.6.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bookcase/BookcaseFrame.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Bedroom/Bookcase/BookcaseFrame.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Day1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Day1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Day2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Day2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/CoffeeMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/CoffeeMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/InteractableBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/InteractableBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/ToasterMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/ToasterMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/VinylDiskBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/VinylDisk/VinylDiskBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory/ItemPickInteraction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/PickupItem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory/ItemPickInteraction.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/FadeOutline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/FadeOutline.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/Selection_Fullscreen.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OutlineTest/Selection_Fullscreen.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/DefaultHDRPAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/DefaultHDRPAsset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/DefaultLookDevProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/DefaultLookDevProfile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/Lightning/LightingSettings3High.lighting" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Lightning/LightingSettings3High.lighting" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Timeline/End/EndTimelineSequenceDay1.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Timeline/End/EndTimelineSequenceDay1.playable" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmod_editor.log" beforeDir="false" afterPath="$PROJECT_DIR$/fmod_editor.log" afterDir="false" />
     </list>
@@ -398,6 +392,8 @@
       <workItem from="1653830664318" duration="5541000" />
       <workItem from="1653909507769" duration="2538000" />
       <workItem from="1653984621931" duration="3934000" />
+      <workItem from="1654072140554" duration="6935000" />
+      <workItem from="1654247832128" duration="11133000" />
     </task>
     <servers />
   </component>
