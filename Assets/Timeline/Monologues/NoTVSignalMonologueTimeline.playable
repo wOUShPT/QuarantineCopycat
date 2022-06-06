@@ -48,7 +48,7 @@ MonoBehaviour:
       Data2: 1313787726
       Data3: 1997024912
       Data4: 1981692435
-    Path: event:/Dialogue/Tv 2 - Lost Signal
+    Path: event:/Dialogue/DAY1/Tv 2 - Lost Signal
   stopType: 0
   parameters: []
 --- !u!114 &-242865350692035402
@@ -283,6 +283,6 @@ MonoBehaviour:
       Data2: 1156088358
       Data3: -1009934404
       Data4: 2136011416
-    Path: event:/Dialogue/Trigger 3 - Lost Cellphone
+    Path: event:/Dialogue/DAY1/Trigger 3 - Lost Cellphone
   stopType: 0
   parameters: []

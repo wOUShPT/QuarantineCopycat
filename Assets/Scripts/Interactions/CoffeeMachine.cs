@@ -42,6 +42,10 @@ public class CoffeeMachine : MonoBehaviour
         _coffeeParticleSystem.Play();
         yield return new WaitForSeconds(taskDuration);
         _coffeeParticleSystem.Stop();
+        if (_fmodInstance.isValid())
+        {
+            _fmodInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
         yield return new WaitForSeconds(1f);
         _effect.Invoke();
     }

@@ -48,7 +48,7 @@ MonoBehaviour:
       Data2: 1270581050
       Data3: -249999942
       Data4: -1161065389
-    Path: event:/Dialogue/Tv - The Virus
+    Path: event:/Dialogue/DAY1/Tv - The Virus
   stopType: 0
   parameters: []
 --- !u!114 &-242865350692035402

@@ -12,6 +12,15 @@ ModelImporter:
   - first:
       74: 239103329489909433
     second: rig|MedicineAction
+  - first:
+      74: 1339201199764027381
+    second: rig|Cube.003Action
+  - first:
+      74: -1272980023366976567
+    second: rig|Door_Action
+  - first:
+      74: -8419104180467944750
+    second: rig|Door_close
   externalObjects: {}
   materials:
     materialImportMode: 2
