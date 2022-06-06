@@ -12,31 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888d36fcd56f1b4488b85332f4de0f78, type: 3}
   m_Name: CopycatVision
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   ghostingIntensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.647
     min: 0
     max: 1
   distortionIntensity:
     m_OverrideState: 1
-    m_Value: 0.97
+    m_Value: 0.409
     min: 0
     max: 1
   distortionSpeed:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.679
     min: 0
     max: 1
   vignetteIntensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.994
     min: 0
     max: 1
   noiseIntensity:
     m_OverrideState: 1
-    m_Value: 0.32
+    m_Value: 0.2
     min: 0
     max: 1
 --- !u!114 &11400000

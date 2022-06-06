@@ -22,13 +22,13 @@ public sealed class CopycatVision : CustomPostProcessVolumeComponent, IPostProce
 
     Material _material;
 
-    public bool IsActive() => _material != null && ghostingIntensity.value >= 0 && distortionIntensity.value >= 0 && distortionSpeed.value >= 0 && vignetteIntensity.value >= 0 && noiseIntensity.value >= 0;
+    public bool IsActive() => _material != null && ghostingIntensity.value > 0 && distortionIntensity.value > 0 && distortionSpeed.value > 0 && vignetteIntensity.value > 0 && noiseIntensity.value > 0;
 
     public override CustomPostProcessInjectionPoint injectionPoint => CustomPostProcessInjectionPoint.BeforeTAA;
 
     public override void Setup()
     {
-        if (IsActive() && Shader.Find("Hidden/Shader/CopycatVisionPostProcessing") != null)
+        if (Shader.Find("Hidden/Shader/CopycatVisionPostProcessing") != null)
             _material = new Material(Shader.Find("Hidden/Shader/CopycatVisionPostProcessing"));
     }
 
