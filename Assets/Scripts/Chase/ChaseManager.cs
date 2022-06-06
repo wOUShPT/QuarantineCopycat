@@ -94,7 +94,6 @@ public class ChaseManager : MonoBehaviour
         SetFreezePlayerProprities(true, true, false);
         aiChase.SetWaypoint();
         aiChase.SetCurrentTimeToChangeMoveMax();
-        aiChase.SetCanBeTriggerByDot(false);
         aiChase.State = AIChase.AgentState.Chase;
     }
     private void SetFreezePlayerProprities(bool stateAim, bool stateInteraction, bool stateMovement)

@@ -54,8 +54,8 @@ public class AIChase : MonoBehaviour
     [SerializeField, Range(0, 1.5f)]
     private float headBobIntensity;
     [SerializeField]
-    private bool canBeTriggerByDot = true;
     private Vector3 destinationTarget;
+    [SerializeField] private float CopycatPlayerAngleLimit = 45f; // Force to copycat to stop if it's too close
     private void Awake()
     {
         waypointsList = new List<Waypoint>();
@@ -294,15 +294,7 @@ public class AIChase : MonoBehaviour
             SetWaypoint();
             agent.ResetPath();
         }
-        Vector3 auxdestinationTarget = IsCopycatSeeingPlayer() ? playerMovement.transform.position : target.position;
-        if(destinationTarget != null && auxdestinationTarget == destinationTarget)
-        {
-            return;
-        }
-        destinationTarget = auxdestinationTarget;
-        //Move to destination
-        agent.ResetPath();
-        agent.SetDestination(destinationTarget);
+        SetVectorDestination();
     }
     public void SetWaypoint()
     {
@@ -327,12 +319,23 @@ public class AIChase : MonoBehaviour
             waypointsList.Add(waypoint);
         }
         SetWaypoint();
-        agent.ResetPath();
-        if (IsCopycatSeeingPlayer())
+        if (IsCopycatSeeingPlayer() && IsPlayerOnAngleWatch())
         {
             agent.velocity = Vector3.zero;
         }
-        agent.SetDestination(target.position);
+        SetVectorDestination();
+    }
+    private void SetVectorDestination()
+    {
+        Vector3 auxdestinationTarget = IsCopycatSeeingPlayer() ? playerMovement.transform.position : target.position;
+        if (destinationTarget != null && auxdestinationTarget == destinationTarget)
+        {
+            return;
+        }
+        destinationTarget = auxdestinationTarget;
+        //Move to destination
+        agent.ResetPath();
+        agent.SetDestination(destinationTarget);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -347,7 +350,6 @@ public class AIChase : MonoBehaviour
                 return;
             }
             //Gameover
-            Debug.Log("Gameover by trigger");
             PrepareGameover(player);
         }
     }
@@ -378,18 +380,18 @@ public class AIChase : MonoBehaviour
     }
     void UpdateHeadPosition()
     {
-        if (agent.velocity.x != 0 || agent.velocity.z != 0)
-        {
-            _currentHeadPosition.y = _startHeadPosition.y - Mathf.PingPong(Time.time * /*headBobSpeed*/agent.speed * (headBobIntensity * headPositionMultiplier), headBobIntensity * 0.1f);
-        }
-        else
-        {
-            _currentHeadPosition.y = Mathf.Lerp(cameraPivot.transform.localPosition.y, _startHeadPosition.y, Time.deltaTime * 20f);
-        }
+        _currentHeadPosition.y = agent.velocity.x != 0 || agent.velocity.z != 0 ?
+            _startHeadPosition.y - Mathf.PingPong(Time.time * agent.speed * (headBobIntensity * headPositionMultiplier), headBobIntensity * 0.1f)
+            : Mathf.Lerp(cameraPivot.transform.localPosition.y, _startHeadPosition.y, Time.deltaTime * 20f);
+
         cameraPivot.transform.localPosition = _currentHeadPosition;
     }
-    public void SetCanBeTriggerByDot(bool condition)
+    //Prevent Copycat seeing bryan's face
+    private bool IsPlayerOnAngleWatch()
     {
-        canBeTriggerByDot = condition;
+        float angle = Vector3.Angle(playerRotate.transform.forward, playerRotate.transform.position - vcam.transform.position);
+        // square the distance we compare with
+        bool state = angle > CopycatPlayerAngleLimit ? true : false;
+        return state;
     }
 }
