@@ -33,7 +33,6 @@ public class AIChase : MonoBehaviour
     [SerializeField] private float fovLerpDuration = 4f;
     private bool isfovLerpHappening;
     [SerializeField] private float speedLerpDuration = 4f;
-    
     [SerializeField]private LayerMask seeTargetMask;
     public enum AgentState
     {
@@ -56,6 +55,8 @@ public class AIChase : MonoBehaviour
     [SerializeField]
     private Vector3 destinationTarget;
     [SerializeField] private float CopycatPlayerAngleLimit = 45f; // Force to copycat to stop if it's too close
+    [SerializeField] private float waitForAnimationRunningTime = 3f;
+    [SerializeField] private float waitAfterDeathAnimation = 2f;
     private void Awake()
     {
         waypointsList = new List<Waypoint>();
@@ -370,10 +371,10 @@ public class AIChase : MonoBehaviour
         agent.ResetPath();
         agent.velocity = Vector3.zero;
         agent.enabled = false;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(waitForAnimationRunningTime);
         //Animator maybe
         // Visual feedback
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(waitAfterDeathAnimation);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         chaseManager.EnableGameOverScreen();
@@ -383,7 +384,6 @@ public class AIChase : MonoBehaviour
         _currentHeadPosition.y = agent.velocity.x != 0 || agent.velocity.z != 0 ?
             _startHeadPosition.y - Mathf.PingPong(Time.time * agent.speed * (headBobIntensity * headPositionMultiplier), headBobIntensity * 0.1f)
             : Mathf.Lerp(cameraPivot.transform.localPosition.y, _startHeadPosition.y, Time.deltaTime * 20f);
-
         cameraPivot.transform.localPosition = _currentHeadPosition;
     }
     //Prevent Copycat seeing bryan's face

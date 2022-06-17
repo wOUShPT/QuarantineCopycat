@@ -22,15 +22,18 @@ public class ChaseManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera secondVirtualCamera;
     private float fpInitialFrustumHeight;
     private float spInitialFrustumHeight;
-    private bool dollyzoomEnabled = false;
     [SerializeField] private CanvasGroup gameoverGroup;
     [SerializeField] private float waitJellyEffectSeconds = 4f;
     [SerializeField] private float waitFadeInSeconds = 1f;
     [SerializeField] private float waitSetupSeconds = .1f;
     [SerializeField] private float endFOVValue = 40f;
     [SerializeField] private float lerpDuration = 1.5f;
+    [SerializeField] private float FadeCameraPassToSecondPersonTime = 0.9f;
+    private delegate void DollyZoomEffect();
+    private DollyZoomEffect zoomEffect;
     private void Awake()
     {
+        //Need to put in inspector
         aiChase = FindObjectOfType<AIChase>();
         playerMovement = FindObjectOfType<PlayerMovement>();
         cameraManager = FindObjectOfType<CameraManager>();
@@ -69,12 +72,13 @@ public class ChaseManager : MonoBehaviour
         yield return new WaitForSeconds(waitTimeToSwitchCamera);
         dollyEvent.Raise();
         SetupDolly();
-        yield return new WaitForSeconds(.9f);
+        //Fade camera and pass to second person
+        yield return new WaitForSeconds(FadeCameraPassToSecondPersonTime);
         Camera.main.cullingMask = chaseMask;
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
         UIManager.Instance.ToggleReticle(false);
         yield return new WaitForSeconds(waitJellyEffectSeconds);
-        dollyzoomEnabled = false;
+        zoomEffect -= DollyZoom;
         //Reset
         playerRotate.transform.localRotation = Quaternion.Euler(Vector3.zero);
         yield return new WaitForSeconds(waitSetupSeconds);
@@ -116,10 +120,9 @@ public class ChaseManager : MonoBehaviour
     {
         //Player movement is the target object
         float distanceFromTarget = Vector3.Distance(Camera.main.transform.position, playerMovement.transform.position);
-
         fpInitialFrustumHeight = FrustumHeightAtDistance(distanceFromTarget, firstVirtualCamera);
         spInitialFrustumHeight = FrustumHeightAtDistance(distanceFromTarget, secondVirtualCamera);
-        dollyzoomEnabled = true;
+        zoomEffect += DollyZoom;
     }
     public void SetTimeToSwitchCamera(float reactCopycatTime)
     {
@@ -146,12 +149,13 @@ public class ChaseManager : MonoBehaviour
     }
     private void Update()
     {
-        if (dollyzoomEnabled)
-        {
-            var currDistance = Vector3.Distance(Camera.main.transform.position, playerMovement.transform.position);
-            firstVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(fpInitialFrustumHeight, currDistance);
-            secondVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(spInitialFrustumHeight, currDistance);
-        }
+        zoomEffect?.Invoke();
+    }
+    private void DollyZoom()
+    {
+        var currDistance = Vector3.Distance(Camera.main.transform.position, playerMovement.transform.position);
+        firstVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(fpInitialFrustumHeight, currDistance);
+        secondVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(spInitialFrustumHeight, currDistance);
     }
     public void SetEnableDisableSecondPersonRotatee(bool state)
     {
@@ -159,7 +163,6 @@ public class ChaseManager : MonoBehaviour
     }
     public void EnableGameOverScreen()
     {
-        Time.timeScale = 1f;
         gameoverGroup.alpha = 1f;
         gameoverGroup.interactable = true;
         gameoverGroup.blocksRaycasts = true;

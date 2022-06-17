@@ -52,10 +52,8 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerProperties.FreezeMovement = false;
             cameraManager.ChangeToFirst();
-            Time.timeScale = 1f;
         }
     }
-    
     void Update()
     {
         if (PlayerProperties.FreezeMovement)
@@ -66,8 +64,6 @@ public class PlayerMovement : MonoBehaviour
         UpdateMovement();
         UpdateHeadPosition();
     }
-    
-
     void UpdateMovement()
     {
         if(CameraManager.CinemachineCameraState != CameraManager.CinemachineStateSwitcher.SecondPerson)
