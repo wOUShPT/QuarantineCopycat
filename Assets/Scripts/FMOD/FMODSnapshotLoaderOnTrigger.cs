@@ -25,7 +25,7 @@ public class FMODSnapshotLoaderOnTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !snapshot.IsNull)
         {
             _instance.start();
-            Debug.Log("Changed snapshot to: " + snapshot.Path);
+            //Debug.Log("Changed snapshot to: " + snapshot.Path);
         }
         
     }
