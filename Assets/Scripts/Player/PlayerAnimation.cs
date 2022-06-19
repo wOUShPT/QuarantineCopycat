@@ -13,12 +13,17 @@ public class PlayerAnimation : MonoBehaviour
     private float _footIndex;
     private CameraManager cameraManager;
     private AIShowing showing;
+    private float _lookBackTimer;
+    private float _lookBackTargetTime;
+    [SerializeField]private Vector2 lookBackRandomTimeInterval;
     [SerializeField]private Transform placeCopyCat;
     private void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
         cameraManager = FindObjectOfType<CameraManager>();
         showing = FindObjectOfType<AIShowing>();
+        _lookBackTimer = 0;
+        _lookBackTargetTime = Random.Range(lookBackRandomTimeInterval.x, lookBackRandomTimeInterval.y);
     }
     void Update()
     {
@@ -30,6 +35,21 @@ public class PlayerAnimation : MonoBehaviour
         {
             _footIndex = Mathf.Pow(-1, Random.Range(2, 4));
             _animator.SetFloat("Foot", _footIndex);
+        }
+
+        if (!_movement.GetIsSprinting())
+        {
+            _lookBackTimer = 0;
+            return;
+        }
+        
+        _lookBackTimer += Time.deltaTime;
+        
+        if (_lookBackTimer >= _lookBackTargetTime)
+        {
+            _lookBackTimer = 0;
+            _lookBackTargetTime = Random.Range(lookBackRandomTimeInterval.x, lookBackRandomTimeInterval.y);
+            _animator.SetTrigger("LookBack");
         }
     }
     private void SetPlaceCopycat(Transform _transform)
