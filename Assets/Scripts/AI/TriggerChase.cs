@@ -58,11 +58,10 @@ public class TriggerChase : MonoBehaviour
                 aIChase.AddMoreDestination(dotproduct > 0 ? copycatWaypointsRightTransform : copycatWaypointsLeftTransform);
                 aIChase.Agent.Warp(dotproduct > 0 ? copyCatTransformRightDirection.position : copyCatTransformLeftDirection.position);
                 aIChase.Agent.isStopped = true;
-                aIChase.transform.GetChild(0).localPosition = Vector3.zero;
                 chaseManager.SetTimeToSwitchCamera(reactCopycatTime);
                 if (playerWillLookAtCopycat)
                 {
-                    targetLook.position = new Vector3(aIChase.transform.position.x, aIChase.transform.position.y, aIChase.transform.position.z);
+                    targetLook.position = new Vector3(aIChase.transform.position.x, Camera.main.transform.position.y, aIChase.transform.position.z);
                 }
                 else
                 {
