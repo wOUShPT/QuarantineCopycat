@@ -16,7 +16,7 @@ public class AIShowing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DissapearCopyCat();
+        DisappearCopyCat();
     }
 
     public void SetCopyCatPosition(Transform transformPosition)
@@ -24,16 +24,16 @@ public class AIShowing : MonoBehaviour
         meshAgent.enabled = false;
         gameObject.SetActive(true);
         transform.position = transformPosition.position;
-        StartCoroutine(WaitUntilDissapear());
+        StartCoroutine(WaitUntilDisappear());
     }
 
-    IEnumerator WaitUntilDissapear()
+    IEnumerator WaitUntilDisappear()
     {
         yield return new WaitForSeconds(appearedTime);
-        DissapearCopyCat();
+        DisappearCopyCat();
     }
 
-    private void DissapearCopyCat()
+    private void DisappearCopyCat()
     {
         this.gameObject.SetActive(false);
         transform.position = initialPosition;

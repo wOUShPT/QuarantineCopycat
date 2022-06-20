@@ -54,7 +54,7 @@ public class AIChase : MonoBehaviour
     private float headBobIntensity;
     [SerializeField]
     private Vector3 destinationTarget;
-    [SerializeField] private float CopycatPlayerAngleLimit = 45f; // Force to copycat to stop if it's too close
+    [SerializeField] private float copycatPlayerAngleLimit = 45f; // Force to copycat to stop if it's too close
     [SerializeField] private float waitForAnimationRunningTime = 3f;
     [SerializeField] private float waitAfterDeathAnimation = 2f;
     private void Awake()
@@ -101,22 +101,22 @@ public class AIChase : MonoBehaviour
         isfovLerpHappening = true;
         if (remainingDistance < idealDistance.x)
         {
-            StopfovCourotine();
-            fovEnumerator = FovLerp(vcam.m_Lens.FieldOfView, maxFOV);
+            StopFOVCoroutine();
+            fovEnumerator = FOVLerp(vcam.m_Lens.FieldOfView, maxFOV);
         }
         else if(remainingDistance > idealDistance.y)
         {
-            StopfovCourotine();
-            fovEnumerator = FovLerp(vcam.m_Lens.FieldOfView, minFOV);
+            StopFOVCoroutine();
+            fovEnumerator = FOVLerp(vcam.m_Lens.FieldOfView, minFOV);
         }
         else
         {
-            StopfovCourotine();
-            fovEnumerator = FovLerp(vcam.m_Lens.FieldOfView, idealFOV);
+            StopFOVCoroutine();
+            fovEnumerator = FOVLerp(vcam.m_Lens.FieldOfView, idealFOV);
         }
         StartCoroutine(fovEnumerator);
     }
-    private void StopfovCourotine()
+    private void StopFOVCoroutine()
     {
         if(fovEnumerator != null)
         {
@@ -131,16 +131,18 @@ public class AIChase : MonoBehaviour
         {
             return;
         }
+
         float remainingDistance = GetRemainingDistance();
+            
         if(remainingDistance < idealDistance.x)
         {
             if (CheckIfSameValue(agent.speed, minSpeed))
                 return;
             currentTimeChangeMove = 0f;
-            StopMovementCourotines();
+            StopMovementCoroutines();
             speedEnumerator = GetLerpMove(agent.speed, minSpeed, true);
             accelerationEnumerator = GetLerpMove(agent.acceleration, minAcceleration, false);
-            StartMovementCourotines();
+            StartMovementCoroutines();
             ZoomInOutCamera();
             return;
         }
@@ -149,10 +151,10 @@ public class AIChase : MonoBehaviour
             if (CheckIfSameValue(agent.speed, maxSpeed))
                 return;
             currentTimeChangeMove = 0f;
-            StopMovementCourotines();
+            StopMovementCoroutines();
             speedEnumerator = GetLerpMove(agent.speed, maxSpeed, true);
             accelerationEnumerator = GetLerpMove(agent.acceleration, maxAcceleration, false);
-            StartMovementCourotines();
+            StartMovementCoroutines();
             ZoomInOutCamera();
             return;
         }
@@ -161,11 +163,11 @@ public class AIChase : MonoBehaviour
         {
             if (CheckIfSameValue(agent.speed, normalSpeed))
                 return;
-            StopMovementCourotines();
+            StopMovementCoroutines();
             //It's in the ideal distance
             speedEnumerator = GetLerpMove(agent.speed, normalSpeed, true);
             accelerationEnumerator = GetLerpMove(agent.acceleration, normalAcceleration, false);
-            StartMovementCourotines();
+            StartMovementCoroutines();
             ZoomInOutCamera();
         }
     }
@@ -173,7 +175,7 @@ public class AIChase : MonoBehaviour
     {
         return avalue == bvalue;
     }
-    private void StopMovementCourotines()
+    private void StopMovementCoroutines()
     {
         if(accelerationEnumerator != null)
         {
@@ -184,13 +186,13 @@ public class AIChase : MonoBehaviour
             StopCoroutine(accelerationEnumerator);
         }
     }
-    private void StartMovementCourotines()
+    private void StartMovementCoroutines()
     {
         //Start move related courotines
         StartCoroutine(speedEnumerator);
         StartCoroutine(accelerationEnumerator);
     }
-    private IEnumerator GetLerpMove(float startvalue, float targetvalue, bool isSpeed)
+    private IEnumerator GetLerpMove(float startValue, float targetValue, bool isSpeed)
     {
         //Need to make a way to prevent being called multiple times
         isonMovementCourotine = true;
@@ -199,32 +201,32 @@ public class AIChase : MonoBehaviour
         {
             if (isSpeed)
             {
-                agent.speed = Mathf.Lerp(startvalue, targetvalue, timeElapsed / speedLerpDuration);
+                agent.speed = Mathf.Lerp(startValue, targetValue, timeElapsed / speedLerpDuration);
             }
             else
             {
-                agent.acceleration = Mathf.Lerp(startvalue, targetvalue, timeElapsed / speedLerpDuration);
+                agent.acceleration = Mathf.Lerp(startValue, targetValue, timeElapsed / speedLerpDuration);
             }
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         if (isSpeed)
         {
-            agent.speed = targetvalue;
+            agent.speed = targetValue;
         }
         else
         {
-            agent.acceleration = targetvalue;
+            agent.acceleration = targetValue;
         }
         isonMovementCourotine = false;
     }
-    private IEnumerator FovLerp(float startvalue, float endValue)
+    private IEnumerator FOVLerp(float startValue, float endValue)
     {
         isfovLerpHappening = true;
         float fovTimeElapsed = 0f;
         while (fovTimeElapsed < fovLerpDuration)
         {
-            vcam.m_Lens.FieldOfView = Mathf.Lerp(startvalue, endValue, fovTimeElapsed / fovLerpDuration);
+            vcam.m_Lens.FieldOfView = Mathf.Lerp(startValue, endValue, fovTimeElapsed / fovLerpDuration);
             fovTimeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -235,6 +237,7 @@ public class AIChase : MonoBehaviour
     {
         return agentState == AgentState.Idle;
     }
+
     private float GetRemainingDistance()
     {
         //See distance between agent and player
@@ -272,7 +275,7 @@ public class AIChase : MonoBehaviour
     }
     private bool IsCopycatSeeingPlayer()
     {
-        Vector3 playerSeeOffsetUp = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y + 1f, playerMovement.transform.position.z);
+        Vector3 playerSeeOffsetUp = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y, playerMovement.transform.position.z);
         Vector3 playerSeeOffsetLeft = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y + 1f, playerMovement.transform.position.z - 0.3f);
         Vector3 playerSeeOffsetRight = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y + 0.5f, playerMovement.transform.position.z + 0.3f);
         bool IsBlockingVisionUp = Physics.Linecast(agent.transform.position, playerSeeOffsetUp, seeTargetMask);
@@ -328,12 +331,12 @@ public class AIChase : MonoBehaviour
     }
     private void SetVectorDestination()
     {
-        Vector3 auxdestinationTarget = IsCopycatSeeingPlayer() ? playerMovement.transform.position : target.position;
-        if (destinationTarget != null && auxdestinationTarget == destinationTarget)
+        Vector3 auxDestinationTarget = IsCopycatSeeingPlayer() ? playerMovement.transform.position : target.position;
+        if (destinationTarget != null && auxDestinationTarget == destinationTarget)
         {
             return;
         }
-        destinationTarget = auxdestinationTarget;
+        destinationTarget = auxDestinationTarget;
         //Move to destination
         agent.ResetPath();
         agent.SetDestination(destinationTarget);
@@ -351,15 +354,15 @@ public class AIChase : MonoBehaviour
                 return;
             }
             //Gameover
-            PrepareGameover(player);
+            PrepareGameOver(player);
         }
     }
-    private void PrepareGameover(PlayerMovement player)
+    private void PrepareGameOver(PlayerMovement player)
     {
         agentState = AgentState.Finished;
         agent.velocity = Vector3.zero;
         agent.ResetPath();
-        chaseManager.SetEnableDisableSecondPersonRotatee(false);
+        chaseManager.SetEnableDisableSecondPersonRotate(false);
         PlayerProperties.FreezeMovement = true;
         player.enabled = false;              
         StopAllCoroutines();
@@ -391,7 +394,7 @@ public class AIChase : MonoBehaviour
     {
         float angle = Vector3.Angle(playerRotate.transform.forward, playerRotate.transform.position - vcam.transform.position);
         // square the distance we compare with
-        bool state = angle > CopycatPlayerAngleLimit ? true : false;
+        bool state = angle > copycatPlayerAngleLimit ? true : false;
         return state;
     }
 }

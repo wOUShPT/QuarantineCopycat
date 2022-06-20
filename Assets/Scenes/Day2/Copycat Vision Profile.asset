@@ -14,14 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   m_AdvancedMode: 0
+  redChannel:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+    max: 1
+  greenChannel:
+    m_OverrideState: 1
+    m_Value: 0.2
+    min: 0
+    max: 1
+  blueChannel:
+    m_OverrideState: 1
+    m_Value: 0.2
+    min: 0
+    max: 1
   ghostingIntensity:
     m_OverrideState: 1
-    m_Value: 0.647
+    m_Value: 0.272
     min: 0
     max: 1
   distortionIntensity:
     m_OverrideState: 1
-    m_Value: 0.409
+    m_Value: 0.445
     min: 0
     max: 1
   distortionSpeed:
@@ -31,12 +46,12 @@ MonoBehaviour:
     max: 1
   vignetteIntensity:
     m_OverrideState: 1
-    m_Value: 0.994
+    m_Value: 0.111
     min: 0
     max: 1
   noiseIntensity:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.186
     min: 0
     max: 1
 --- !u!114 &11400000

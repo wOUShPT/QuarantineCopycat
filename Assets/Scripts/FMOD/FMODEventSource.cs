@@ -21,7 +21,10 @@ public class FMODEventSource : MonoBehaviour
          return;
       }
       _eventInstance = FMODUnity.RuntimeManager.CreateInstance(FMODEvent);
-      _eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(sourceGameObject));
+      if (currentTypeIndex == 1)
+      {
+         _eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(sourceGameObject));
+      }
    }
 
    public void PlayEvent()

@@ -30,9 +30,9 @@ Shader "Hidden/Shader/CopycatVisionPostProcessing"
     // List of properties to control your post process effect
     TEXTURE2D_X( _MainTex);
     SamplerState sampler_MainTex;
-    static float _RedChannel = 1;
-    static float _GreenChannel = 0.2;
-    static float _BlueChannel = 0.2;
+    float _RedChannel = 1;
+    float _GreenChannel = 0.2;
+    float _BlueChannel = 0.2;
     static float _Gamma = 0.5;
     float _Intensity;
     float _CurvatureIntensity;

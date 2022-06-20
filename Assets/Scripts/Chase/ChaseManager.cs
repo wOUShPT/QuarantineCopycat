@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ChaseManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class ChaseManager : MonoBehaviour
     [SerializeField] private CameraFunctions playerCameraFunctions;
     [SerializeField] private GameEvent dollyEvent;
     [SerializeField] private CinemachineVirtualCamera firstVirtualCamera;
+    private FPCameraHandler _fpCameraHandler;
     private float initialFOVVirtualCamera;
     [SerializeField] private CinemachineVirtualCamera secondVirtualCamera;
     private float fpInitialFrustumHeight;
@@ -31,6 +33,7 @@ public class ChaseManager : MonoBehaviour
     [SerializeField] private float FadeCameraPassToSecondPersonTime = 0.9f;
     private delegate void DollyZoomEffect();
     private DollyZoomEffect zoomEffect;
+    [SerializeField] private Volume copycatVisionVolume;
     private void Awake()
     {
         //Need to put in inspector
@@ -39,11 +42,13 @@ public class ChaseManager : MonoBehaviour
         cameraManager = FindObjectOfType<CameraManager>();
         triggerChaseArray = FindObjectsOfType<TriggerChase>();
         playerRotate = FindObjectOfType<PlayerSPRotate>();
+        _fpCameraHandler = firstVirtualCamera.GetComponent<FPCameraHandler>();
     }
     private void Start()
     {
+        copycatVisionVolume.enabled = false;
         savedLayerMask = Camera.main.cullingMask;
-        SetEnableDisableSecondPersonRotatee(false);
+        SetEnableDisableSecondPersonRotate(false);
         initialFOVVirtualCamera = firstVirtualCamera.m_Lens.FieldOfView;
         foreach (var trigger in triggerChaseArray)
         {
@@ -77,6 +82,7 @@ public class ChaseManager : MonoBehaviour
         Camera.main.cullingMask = chaseMask;
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.SecondPerson);
         UIManager.Instance.ToggleReticle(false);
+        copycatVisionVolume.enabled = true;
         yield return new WaitForSeconds(waitJellyEffectSeconds);
         zoomEffect -= DollyZoom;
         //Reset
@@ -94,7 +100,7 @@ public class ChaseManager : MonoBehaviour
         yield return new WaitForSeconds(waitSetupSeconds);
         aiChase.Agent.enabled = true;
         aiChase.Agent.isStopped = false; // Copycat starts moving
-        SetEnableDisableSecondPersonRotatee(true);
+        SetEnableDisableSecondPersonRotate(true);
         SetFreezePlayerProprities(true, true, false);
         aiChase.SetWaypoint();
         aiChase.SetCurrentTimeToChangeMoveMax();
@@ -139,9 +145,11 @@ public class ChaseManager : MonoBehaviour
     {
         SetFreezePlayerProprities(true, true, true);
         playerRotate.transform.rotation = playerMovement.transform.rotation;
-        SetEnableDisableSecondPersonRotatee(false);
+        SetEnableDisableSecondPersonRotate(false);
         dollyEvent.Raise();
+        _fpCameraHandler.MoveCameraOnYaw(0, 0);
         yield return new WaitForSeconds(waitFadeInSeconds);
+        copycatVisionVolume.enabled = false;
         firstVirtualCamera.m_Lens.FieldOfView = initialFOVVirtualCamera;
         Camera.main.cullingMask = savedLayerMask;
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.FirstPerson);
@@ -157,7 +165,7 @@ public class ChaseManager : MonoBehaviour
         firstVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(fpInitialFrustumHeight, currDistance);
         secondVirtualCamera.m_Lens.FieldOfView = ComputeFieldOfView(spInitialFrustumHeight, currDistance);
     }
-    public void SetEnableDisableSecondPersonRotatee(bool state)
+    public void SetEnableDisableSecondPersonRotate(bool state)
     {
         playerRotate.enabled = state;
     }

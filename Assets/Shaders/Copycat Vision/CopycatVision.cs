@@ -9,15 +9,13 @@ public sealed class CopycatVision : CustomPostProcessVolumeComponent, IPostProce
 {
     //[Tooltip("Controls the intensity of the effect.")]
     //public ClampedFloatParameter blurIntensity = new ClampedFloatParameter(0f, 0f, 1f);
-    [Tooltip("Controls the intensity of the effect.")]
+    public ClampedFloatParameter redChannel = new ClampedFloatParameter(0f, 0f, 1f);
+    public ClampedFloatParameter greenChannel = new ClampedFloatParameter(0f, 0f, 1f);
+    public ClampedFloatParameter blueChannel = new ClampedFloatParameter(0f, 0f, 1f);
     public ClampedFloatParameter ghostingIntensity = new ClampedFloatParameter(0f, 0f, 1f);
-    [Tooltip("Controls the intensity of the effect.")]
     public ClampedFloatParameter distortionIntensity = new ClampedFloatParameter(0f, 0f, 1f);
-    [Tooltip("Controls the intensity of the effect.")]
     public ClampedFloatParameter distortionSpeed = new ClampedFloatParameter(0f, 0f, 1f);
-    [Tooltip("Controls the intensity of the effect.")]
     public ClampedFloatParameter vignetteIntensity = new ClampedFloatParameter(0f, 0f, 1f);
-    [Tooltip("Controls the intensity of the effect.")]
     public ClampedFloatParameter noiseIntensity = new ClampedFloatParameter(0f, 0f, 1f);
 
     Material _material;
@@ -38,7 +36,9 @@ public sealed class CopycatVision : CustomPostProcessVolumeComponent, IPostProce
             return;
 
         _material.SetTexture("_MainTex", source);
-        //m_Material.SetFloat("_BlurIntensity", blurIntensity.value);
+        _material.SetFloat("_RedChannel", redChannel.value);
+        _material.SetFloat("_GreenChannel", greenChannel.value);
+        _material.SetFloat("_BlueChannel", blueChannel.value);
         _material.SetFloat("_GhostingIntensity", ghostingIntensity.value);
         _material.SetFloat("_DistortionIntensity", distortionIntensity.value);
         _material.SetFloat("_DistortionSpeed", distortionSpeed.value);
