@@ -40,15 +40,15 @@ MonoBehaviour:
       slot13: 0
       slot14: 0
       slot15: 0
-  eventLength: 0
+  eventLength: 10
   eventName: 
   eventReference:
     Guid:
-      Data1: 67766521
-      Data2: 1270581050
-      Data3: -249999942
-      Data4: -1161065389
-    Path: event:/Dialogue/DAY1/Tv - The Virus
+      Data1: -1628413996
+      Data2: 1334719530
+      Data3: -377223257
+      Data4: 2090613924
+    Path: event:/Dialogue/DAY1/Tv NEW!
   stopType: 0
   parameters: []
 --- !u!114 &-242865350692035402
@@ -76,7 +76,7 @@ MonoBehaviour:
     m_Start: 1.5
     m_ClipIn: 0
     m_Asset: {fileID: -6942712122096390712}
-    m_Duration: 10.6
+    m_Duration: 10
     m_TimeScale: 1
     m_ParentTrack: {fileID: -242865350692035402}
     m_EaseInDuration: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: Tv - The Virus
+    m_DisplayName: Tv NEW!
   m_Markers:
     m_Objects: []
   template:

@@ -1,8 +1,11 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Rendering;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class ChaseManager : MonoBehaviour
 {
@@ -24,6 +27,8 @@ public class ChaseManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera secondVirtualCamera;
     private float fpInitialFrustumHeight;
     private float spInitialFrustumHeight;
+    public EventReference copycatAmbient;
+    private EventInstance _copycatEventInstance;
     [SerializeField] private CanvasGroup gameoverGroup;
     [SerializeField] private float waitJellyEffectSeconds = 4f;
     [SerializeField] private float waitFadeInSeconds = 1f;
@@ -50,6 +55,7 @@ public class ChaseManager : MonoBehaviour
         savedLayerMask = Camera.main.cullingMask;
         SetEnableDisableSecondPersonRotate(false);
         initialFOVVirtualCamera = firstVirtualCamera.m_Lens.FieldOfView;
+        _copycatEventInstance = FMODUnity.RuntimeManager.CreateInstance(copycatAmbient);
         foreach (var trigger in triggerChaseArray)
         {
             trigger.OnPlayerInsideTrigger += ColliderTrigger_OnPlayerEnterTrigger;
@@ -101,6 +107,7 @@ public class ChaseManager : MonoBehaviour
         aiChase.Agent.enabled = true;
         aiChase.Agent.isStopped = false; // Copycat starts moving
         SetEnableDisableSecondPersonRotate(true);
+        _copycatEventInstance.start();
         SetFreezePlayerProprities(true, true, false);
         aiChase.SetWaypoint();
         aiChase.SetCurrentTimeToChangeMoveMax();
@@ -149,6 +156,7 @@ public class ChaseManager : MonoBehaviour
         dollyEvent.Raise();
         _fpCameraHandler.MoveCameraOnYaw(0, 0);
         yield return new WaitForSeconds(waitFadeInSeconds);
+        _copycatEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
         copycatVisionVolume.enabled = false;
         firstVirtualCamera.m_Lens.FieldOfView = initialFOVVirtualCamera;
         Camera.main.cullingMask = savedLayerMask;
