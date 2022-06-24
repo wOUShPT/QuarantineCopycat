@@ -115,7 +115,7 @@ MonoBehaviour:
       slot13: 0
       slot14: 0
       slot15: 0
-  eventLength: 0
+  eventLength: 7
   eventName: 
   eventReference:
     Guid:
