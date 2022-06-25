@@ -28,8 +28,8 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         _animator.SetFloat("Velocity", PlayerProperties.FreezeMovement ? 0f : _movement.currentVelocity);
-        _animator.SetFloat("Horizontal", _movement.CurrentMoveDirection.x);
-        _animator.SetFloat("Vertical", _movement.CurrentMoveDirection.z);
+        _animator.SetFloat("Horizontal", InputManager.Instance.PlayerInput.Movement.x);
+        _animator.SetFloat("Vertical", InputManager.Instance.PlayerInput.Movement.z);
         _animator.SetBool("isRunning", PlayerProperties.FreezeMovement ? false : _movement.GetIsSprinting());
         if (_movement.currentVelocity == 0)
         {

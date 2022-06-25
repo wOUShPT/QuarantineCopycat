@@ -64,7 +64,8 @@ public class ChaseManager : MonoBehaviour
         gameoverGroup.alpha = 0f;
         gameoverGroup.interactable = false;
         gameoverGroup.blocksRaycasts = false;
-        SetupFirstPersonAgain();
+        SetFreezePlayerProperties(false, false, false);
+        //SetupFirstPersonAgain();
     }
     private void ColliderTrigger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
     {
@@ -78,7 +79,7 @@ public class ChaseManager : MonoBehaviour
     {
         Camera.main.cullingMask = seeCopycatMask;
         //Stop player
-        SetFreezePlayerProprities(true, true, true);
+        SetFreezePlayerProperties(true, true, true);
         playerCameraFunctions.ResetCameraTransform();
         yield return new WaitForSeconds(waitTimeToSwitchCamera);
         dollyEvent.Raise();
@@ -108,12 +109,12 @@ public class ChaseManager : MonoBehaviour
         aiChase.Agent.isStopped = false; // Copycat starts moving
         SetEnableDisableSecondPersonRotate(true);
         _copycatEventInstance.start();
-        SetFreezePlayerProprities(true, true, false);
+        SetFreezePlayerProperties(true, true, false);
         aiChase.SetWaypoint();
         aiChase.SetCurrentTimeToChangeMoveMax();
         aiChase.State = AIChase.AgentState.Chase;
     }
-    private void SetFreezePlayerProprities(bool stateAim, bool stateInteraction, bool stateMovement)
+    private void SetFreezePlayerProperties(bool stateAim, bool stateInteraction, bool stateMovement)
     {
         PlayerProperties.FreezeAim = stateAim;
         PlayerProperties.FreezeInteraction = stateInteraction;
@@ -150,18 +151,19 @@ public class ChaseManager : MonoBehaviour
     }
     IEnumerator SetupFirstPersonAgain()
     {
-        SetFreezePlayerProprities(true, true, true);
+        SetFreezePlayerProperties(true, true, true);
         playerRotate.transform.rotation = playerMovement.transform.rotation;
         SetEnableDisableSecondPersonRotate(false);
         dollyEvent.Raise();
         _fpCameraHandler.MoveCameraOnYaw(0, 0);
         yield return new WaitForSeconds(waitFadeInSeconds);
         _copycatEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
+        UIManager.Instance.ToggleReticle(true);
         copycatVisionVolume.enabled = false;
         firstVirtualCamera.m_Lens.FieldOfView = initialFOVVirtualCamera;
         Camera.main.cullingMask = savedLayerMask;
         cameraManager.SwitchCamera(CameraManager.CinemachineStateSwitcher.FirstPerson);
-        SetFreezePlayerProprities(false, false, false);
+        SetFreezePlayerProperties(false, false, false);
     }
     private void Update()
     {
