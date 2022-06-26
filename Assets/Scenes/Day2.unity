@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.007955621, g: 0.017591674, b: 0.047590215, a: 1}
+  m_IndirectSpecularColor: {r: 0.007964593, g: 0.017605651, b: 0.04762198, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -941,6 +941,21 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2606465489549903264, guid: 45b5bb5b1c5283148be9dff8e9d6cecc, type: 3}
   m_PrefabInstance: {fileID: 2606465489442311476}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &107595924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107595922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae17bccbeb767fe45bc801ccda34b50b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2096439
 --- !u!1 &113792901
 GameObject:
   m_ObjectHideFlags: 0
@@ -28231,7 +28246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7e944c3f1321f43862a4e20d87f45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMaterial: {fileID: 2100000, guid: 9a6016cee60ad8647b1b96b70feac25b, type: 2}
   maxValue: 5
   lerpDuration: 0.1
 --- !u!1 &996001519
@@ -29400,7 +29414,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085753132}
-  m_LocalRotation: {x: 0.000017202425, y: 0.99998236, z: -0.003681413, w: 0.004672696}
+  m_LocalRotation: {x: 0.000017202457, y: 0.99998236, z: -0.003681393, w: 0.0046727303}
   m_LocalPosition: {x: 1.15, y: -8.359, z: -3.292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -58476,6 +58490,150 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -1071152504487647734, guid: 34b77a5f06a0c714eb68d86008164503, type: 3}
   m_PrefabInstance: {fileID: 1623609022}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623609111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2220090192488634080, guid: 34b77a5f06a0c714eb68d86008164503, type: 3}
+  m_PrefabInstance: {fileID: 1623609022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623609112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3346744340266656872, guid: 34b77a5f06a0c714eb68d86008164503, type: 3}
+  m_PrefabInstance: {fileID: 1623609022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623609113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2830578769647426001, guid: 34b77a5f06a0c714eb68d86008164503, type: 3}
+  m_PrefabInstance: {fileID: 1623609022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623609114 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5285927126667268888, guid: 34b77a5f06a0c714eb68d86008164503, type: 3}
+  m_PrefabInstance: {fileID: 1623609022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623609115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7310524266852593841, guid: 34b77a5f06a0c714eb68d86008164503, type: 3}
+  m_PrefabInstance: {fileID: 1623609022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623609116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7347640864497122067, guid: 34b77a5f06a0c714eb68d86008164503, type: 3}
+  m_PrefabInstance: {fileID: 1623609022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1623609117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623609111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376a9575d5a10714a9489f5b9f9994e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorEventReference:
+    Guid:
+      Data1: -998526547
+      Data2: 1289231112
+      Data3: -1582815080
+      Data4: 2054006816
+    Path: event:/SFX/FootSteps/FootstepsCeramic
+--- !u!114 &1623609118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623609112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376a9575d5a10714a9489f5b9f9994e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorEventReference:
+    Guid:
+      Data1: -1942413885
+      Data2: 1321351204
+      Data3: 808780694
+      Data4: -123531648
+    Path: event:/SFX/FootSteps/FootstepsWood
+--- !u!114 &1623609119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623609113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376a9575d5a10714a9489f5b9f9994e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorEventReference:
+    Guid:
+      Data1: 137445111
+      Data2: 1258075480
+      Data3: 615703190
+      Data4: 371742934
+    Path: event:/SFX/FootSteps/FootstepsCarpet
+--- !u!114 &1623609120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623609114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376a9575d5a10714a9489f5b9f9994e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorEventReference:
+    Guid:
+      Data1: -1942413885
+      Data2: 1321351204
+      Data3: 808780694
+      Data4: -123531648
+    Path: event:/SFX/FootSteps/FootstepsWood
+--- !u!114 &1623609121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623609115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376a9575d5a10714a9489f5b9f9994e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorEventReference:
+    Guid:
+      Data1: -998526547
+      Data2: 1289231112
+      Data3: -1582815080
+      Data4: 2054006816
+    Path: event:/SFX/FootSteps/FootstepsCeramic
+--- !u!114 &1623609122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623609116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376a9575d5a10714a9489f5b9f9994e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorEventReference:
+    Guid:
+      Data1: -1942413885
+      Data2: 1321351204
+      Data3: 808780694
+      Data4: -123531648
+    Path: event:/SFX/FootSteps/FootstepsWood
 --- !u!1001 &1629915586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71313,7 +71471,7 @@ BoxCollider:
   m_GameObject: {fileID: 2048178062}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 34.634747, y: 3.4103048, z: 18.75507}
   m_Center: {x: -8.090952, y: -1.6990587, z: -0.7558303}
@@ -109036,7 +109194,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2606465489549903265, guid: 45b5bb5b1c5283148be9dff8e9d6cecc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 45b5bb5b1c5283148be9dff8e9d6cecc, type: 3}
 --- !u!1001 &6922703606317262125
 PrefabInstance:
@@ -109051,7 +109210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6922703605222463040, guid: 96774e28b45f72744af1b9e4d500a72f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6922703605222463042, guid: 96774e28b45f72744af1b9e4d500a72f, type: 3}
       propertyPath: m_Events.m_Events.Array.size

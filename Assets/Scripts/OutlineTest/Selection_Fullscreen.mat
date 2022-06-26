@@ -167,7 +167,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 81810837cfbbde0488134e76f55f5cff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ThicknessMap:
@@ -208,7 +208,7 @@ Material:
     - _AlphaToMaskInspectorValue: 0
     - _Anisotropy: 0
     - _AxF_BRDFType: 0
-    - _BehindFactor: 0.15
+    - _BehindFactor: 0
     - _BlendMode: 1
     - _CarPaint2_BRDFColorMapScale: 1
     - _CarPaint2_BTFFlakeMapScale: 1
@@ -266,7 +266,7 @@ Material:
     - _NormalMapSpace: 0
     - _NormalScale: 1
     - _OpaqueCullMode: 2
-    - _OutlineWidth: 3
+    - _OutlineWidth: 5
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
     - _PPDMinSamples: 5
@@ -283,6 +283,7 @@ Material:
     - _SVBRDF_HeightMapMaxMM: 0
     - _SVBRDF_SpecularLobeMapScale: 1
     - _SamplePrecision: 3
+    - _ScrollSpeed: 1
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
@@ -338,7 +339,7 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
-    - _InnerColor: {r: 1, g: 1, b: 1, a: 0.19607843}
+    - _InnerColor: {r: 1, g: 1, b: 1, a: 0}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _MappingMask: {r: 1, g: 0, b: 0, a: 0}

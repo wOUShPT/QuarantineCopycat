@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FadeOutline : Singleton<FadeOutline>
 {
-    [SerializeField] private Material outlineMaterial;
-    private static Material OutlineMaterial;
     private float minvalue = 0f;
     [SerializeField]private float maxValue = 5f;
     [SerializeField]private float lerpDuration = .5f;
@@ -13,11 +11,14 @@ public class FadeOutline : Singleton<FadeOutline>
     private static IEnumerator FadeOutCourotine;
     private delegate void FadeAction(float startvalue, float endvalue);
     private FadeAction fadeAction;
+    private int outlinePropertyID;
     // Start is called before the first frame update
     void Start()
     {
-        OutlineMaterial = outlineMaterial;
-        outlineMaterial.SetFloat("_OutlineWidth", 3f);
+        //OutlineMaterial = outlineMaterial;
+        outlinePropertyID = Shader.PropertyToID("_OutlineWidth");
+        Shader.SetGlobalFloat(outlinePropertyID, 3f);
+        //.SetFloat("_OutlineWidth", 3f);
         FadeOutCourotine = FadeOutlineInObject(maxValue, minvalue); // to fade out
     }
     public void FadeInOutline()
@@ -43,17 +44,20 @@ public class FadeOutline : Singleton<FadeOutline>
         
         float timeElapsed = 0f;
         float valueToLerp = startValue;
-        OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
+        Shader.SetGlobalFloat(outlinePropertyID, valueToLerp);
+        //OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
         yield return null;
         while (timeElapsed < lerpDuration)
         {
             valueToLerp = Mathf.Lerp(startValue, endValue, timeElapsed / lerpDuration);
-            OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
+            Shader.SetGlobalFloat(outlinePropertyID, valueToLerp);
+            //OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         valueToLerp = endValue;
-        OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
+        Shader.SetGlobalFloat(outlinePropertyID, valueToLerp);
+        //OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
 
     }
 
@@ -61,17 +65,20 @@ public class FadeOutline : Singleton<FadeOutline>
     {
         float timeElapsed = 0f;
         float valueToLerp = startValue;
-        OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
+        Shader.SetGlobalFloat(outlinePropertyID, valueToLerp);
+        //OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
         yield return null;
         while (timeElapsed < lerpDuration)
         {
             valueToLerp = Mathf.Lerp(startValue, endValue, timeElapsed / lerpDuration);
-            OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
+            Shader.SetGlobalFloat(outlinePropertyID, valueToLerp);
+            //OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         valueToLerp = endValue;
-        OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
+        Shader.SetGlobalFloat(outlinePropertyID, valueToLerp);
+        //OutlineMaterial.SetFloat("_OutlineWidth", valueToLerp);
 
     }
 }

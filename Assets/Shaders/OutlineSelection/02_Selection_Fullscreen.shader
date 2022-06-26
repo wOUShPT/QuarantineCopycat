@@ -8,6 +8,7 @@
         _InnerColor ("Inner Color", Color) = (1, 1, 0, 0.5)
         _OuterColor( "Outer Color", Color ) = (1, 1, 0, 1)
         _Texture ("Texture", 2D ) = "black" {}
+        _ScrollSpeed("ScrollSpeed", Float) = 0.5
         _TextureSize("Texture Pixels Size", Vector) = (64,64,0,0)
         
         _BehindFactor("Behind Factor", Range(0,1)) = 0.2
@@ -72,7 +73,8 @@
     };
     
     int _SamplePrecision;
-    float _OutlineWidth;
+    uniform float _OutlineWidth;
+    float _ScrollSpeed;
     
     float4 _InnerColor;
     float4 _OuterColor;
@@ -111,6 +113,8 @@
         {
             outline =  max( SampleCustomColor( posInput.positionNDC + uvOffsetPerPixel * _OutlineWidth * offsets[i] ), outline );
         }
+
+        outline = outline/0.5 * SAMPLE_TEXTURE2D(_Texture, s_trilinear_repeat_sampler, posInput.positionSS / _TextureSize * _Time.y * _ScrollSpeed);
 
         float4 o = float4(0,0,0,0);
         

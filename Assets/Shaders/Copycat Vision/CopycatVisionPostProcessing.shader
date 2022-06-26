@@ -142,16 +142,17 @@ Shader "Hidden/Shader/CopycatVisionPostProcessing"
     	
     	//DISTORTION
 		float x =  sin(0.1 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.y * 21.0) * sin(0.23 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.y * 29.0) * sin(0.3 + 0.11 * MAP(_DistortionSpeed, 0, 1, 0, 100) + _Time.y + input.texcoord.y * 31.0) * MAP(_DistortionIntensity, 0, 1, 0, 10);
+    	float y =  sin(0.1 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.x * 21.0) * sin(0.23 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.x * 29.0) * sin(0.3 + 0.11 * MAP(_DistortionSpeed, 0, 1, 0, 100) + _Time.y + input.texcoord.x * 31.0) * MAP(_DistortionIntensity, 0, 1, 0, 10);
 		float o = 2.0 * MOD(input.texcoord.y, 2.0) / input.positionCS.x;
 		x += o;
     	
         ////BLUR
-		col.r = 1.0 * blur(_MainTex,float2(x + uv.x + 0.0009, uv.y + 0.0009), input.positionCS, 0).x + 0.005;
-		col.g = 1.0 * blur(_MainTex,float2(x + uv.x + 0.000, uv.y - 0.0015), input.positionCS, 0).y + 0.005;
-		col.b = 1.0 * blur(_MainTex,float2(x + uv.x - 0.0015, uv.y + 0.000), input.positionCS, 0).z + 0.005;
-		col.r += 0.2 * blur(_MainTex,float2(x + uv.x + 0.0009, uv.y + 0.0009),input.positionCS,0).x - 0.005;
-		col.g += 0.2 * blur(_MainTex,float2(x + uv.x + 0.000, uv.y - 0.0015), input.positionCS, 0).y - 0.005;
-		col.b += 0.2 * blur(_MainTex,float2(x + uv.x - 0.0015, uv.y + 0.000), input.positionCS,0).z - 0.005;
+		col.r = 1.0 * blur(_MainTex,float2(x + uv.x + 0.0009, y + uv.y + 0.0009), input.positionCS, 0).x + 0.005;
+		col.g = 1.0 * blur(_MainTex,float2(x + uv.x + 0.000, y + uv.y - 0.0015), input.positionCS, 0).y + 0.005;
+		col.b = 1.0 * blur(_MainTex,float2(x + uv.x - 0.0015, y + uv.y + 0.000), input.positionCS, 0).z + 0.005;
+		col.r += 0.2 * blur(_MainTex,float2(x + uv.x + 0.0009, y + uv.y + 0.0009),input.positionCS,0).x - 0.005;
+		col.g += 0.2 * blur(_MainTex,float2(x + uv.x + 0.000, y + uv.y - 0.0015), input.positionCS, 0).y - 0.005;
+		col.b += 0.2 * blur(_MainTex,float2(x + uv.x - 0.0015, y + uv.y + 0.000), input.positionCS,0).z - 0.005;
     	
         //GHOSTING
     	float ghs = MAP(_GhostingIntensity, 0, 1, 0, 10);
