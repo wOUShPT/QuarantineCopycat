@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -11,7 +12,6 @@ public class PlayerPhone : MonoBehaviour
     private PhoneMessageManager messageManager;
     private ChangePhoneUI phoneUI;
     [SerializeField]private Button defaultSelectedButton;
-    //make alpha 1 and 0
     [SerializeField] private Camera phoneCanvasCamera;
     [SerializeField] private CanvasGroup phoneCanvasGroup;
     [SerializeField] private GameObject phoneModel;
@@ -27,6 +27,8 @@ public class PlayerPhone : MonoBehaviour
     [SerializeField] private FPCameraHandler _fpCameraHandler;
     [SerializeField]
     private Animator _fpRigAnimator;
+    [SerializeField] private UnityEvent onEnter;
+    [SerializeField] private UnityEvent onExit;
 
     private void Awake()
     {
@@ -64,33 +66,44 @@ public class PlayerPhone : MonoBehaviour
             phoneDelegate?.Invoke();
         }
     }
-    private void SendMessage()
+    public void SendMessage()
     {
-        if (phoneUI.CurrentMenu != null && phoneUI.CurrentMenu.IsChatMessage)
+        if (phoneUI.CurrentMenu == null || !phoneUI.CurrentMenu.IsChatMessage)
         {
-            if (EventSystem.current.currentSelectedGameObject.TryGetComponent(out Scrollbar scrollbar) && EventSystem.current.currentSelectedGameObject.transform.parent.TryGetComponent(out ScrollRect scrollRect))
+            return;
+        }
+        
+        if (EventSystem.current.currentSelectedGameObject.TryGetComponent(out Scrollbar scrollbar) && EventSystem.current.currentSelectedGameObject.transform.parent.TryGetComponent(out ScrollRect scrollRect))
+        {
+            //Send Message
+            switch (phoneUI.CurrentMenu.whoMessages)
             {
-                //Send Message
-                switch (phoneUI.CurrentMenu.whoMessages)
-                {
-                    case PhoneMessageManager.MessageGuys.Doctor:
-                        messageManager.SentMessageFromDoctor?.Invoke();
-                        break;
-                    case PhoneMessageManager.MessageGuys.Agent:
-                        messageManager.SentMessageFromAgent?.Invoke();
-                        break;
-                    case PhoneMessageManager.MessageGuys.Mister:
-                        messageManager.SentMessageFromMister?.Invoke();
-                        break;
-                    default:
-                        break;
-                }
-                //Change Scrollbar thing
-                phoneUI.ScrollbarToTop(scrollRect);
+                case PhoneMessageManager.MessageGuys.Doctor:
+                    messageManager.SentMessageFromDoctor?.Invoke();
+                    break;
+                case PhoneMessageManager.MessageGuys.Agent:
+                    messageManager.SentMessageFromAgent?.Invoke();
+                    break;
+                case PhoneMessageManager.MessageGuys.Mister:
+                    messageManager.SentMessageFromMister?.Invoke();
+                    break;
             }
+            //Change Scrollbar thing
+            phoneUI.ScrollbarToTop(scrollRect);
+        }
+
+    }
+
+    public void ForceButtonPress()
+    {
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        if(EventSystem.current.currentSelectedGameObject.TryGetComponent(out Button button))
+        {
+            button.onClick.Invoke();
         }
     }
-    private void RetrocedeMenu()
+    
+    private void GoBackCurrentMenu()
     {
         hasClicked = true;
         int currentMenuIndex = 0;
@@ -135,6 +148,7 @@ public class PlayerPhone : MonoBehaviour
         phoneDelegate = DisplayPhone;
         phoneUI.ResetPhoneLayers();
         phoneCanvasCamera.gameObject.SetActive(false);
+        onExit.Invoke();
     }
     public void ToggleHasPhoneToTrue()
     {
@@ -143,6 +157,7 @@ public class PlayerPhone : MonoBehaviour
 
     IEnumerator DisplayPhoneSequence()
     {
+        onEnter.Invoke();
         phoneCanvasCamera.gameObject.SetActive(true);
         InputManager.Instance.TogglePlayerControls(false);
         UIManager.Instance.ToggleReticle(false);
@@ -173,13 +188,13 @@ public class PlayerPhone : MonoBehaviour
                 if (phoneUI.IsTyping)
                     yield return null;
             
-                if(phoneUI.Menus[0].Menu.alpha == 1f)
+                if(phoneUI.Menus[0].Menu.alpha == 1f && CanExit())
                 {
-                    //phoneDelegate?.Invoke(); // Turn Off
+                    phoneDelegate?.Invoke(); // Turn Off
                     yield return null;
                 }
             
-                RetrocedeMenu();
+                GoBackCurrentMenu();
             }
         
             if (InputManager.Instance.PhoneInput.Send && !hasClicked)
@@ -199,7 +214,20 @@ public class PlayerPhone : MonoBehaviour
                     hasClicked = !hasClicked;
                 }
             }
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
+    }
+
+    public bool CanExit()
+    {
+        foreach (var messageComponent in phoneUI.MessageComponentsArray)
+        {
+            if (!messageComponent.GetRead())
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

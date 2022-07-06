@@ -49,14 +49,17 @@ public class AIChase : MonoBehaviour
     [SerializeField] private Transform cameraPivot;
     private Vector3 _startHeadPosition;
     private Vector3 _currentHeadPosition;
+    private float _currentHeadDutch;
     [Range(0f, 3f)] [SerializeField] private float headPositionMultiplier = 0.3f;
     [SerializeField, Range(0, 1.5f)]
     private float headBobIntensity;
+    [SerializeField] private float dutchAmount;
     [SerializeField]
     private Vector3 destinationTarget;
     [SerializeField] private float copycatPlayerAngleLimit = 45f; // Force to copycat to stop if it's too close
     [SerializeField] private float waitForAnimationRunningTime = 3f;
     [SerializeField] private float waitAfterDeathAnimation = 2f;
+    [SerializeField] private Animator fpCopycatAnimator;
     private void Awake()
     {
         waypointsList = new List<Waypoint>();
@@ -87,6 +90,7 @@ public class AIChase : MonoBehaviour
                 CheckNeedToChangeWaypoint();
                 IsPlayerLookingAtCopyCat();
                 UpdateHeadPosition();
+                fpCopycatAnimator.SetFloat("Velocity", agent.velocity.magnitude);
                 break;
         }
     }
@@ -374,12 +378,11 @@ public class AIChase : MonoBehaviour
         agent.ResetPath();
         agent.velocity = Vector3.zero;
         agent.enabled = false;
+        fpCopycatAnimator.SetTrigger("Catch");
         yield return new WaitForSeconds(waitForAnimationRunningTime);
         //Animator maybe
         // Visual feedback
         yield return new WaitForSeconds(waitAfterDeathAnimation);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
         chaseManager.EnableGameOverScreen();
     }
     void UpdateHeadPosition()
@@ -388,6 +391,11 @@ public class AIChase : MonoBehaviour
             _startHeadPosition.y - Mathf.PingPong(Time.time * agent.speed * (headBobIntensity * headPositionMultiplier), headBobIntensity * 0.1f)
             : Mathf.Lerp(cameraPivot.transform.localPosition.y, _startHeadPosition.y, Time.deltaTime * 20f);
         cameraPivot.transform.localPosition = _currentHeadPosition;
+        
+        _currentHeadDutch = agent.velocity.x != 0 || agent.velocity.z != 0 ?
+            Mathf.PingPong(Time.time * agent.speed * dutchAmount, dutchAmount * 2) - dutchAmount
+            : Mathf.Lerp(_currentHeadDutch, 0, Time.deltaTime * 20f);
+        vcam.m_Lens.Dutch = _currentHeadDutch;
     }
     //Prevent Copycat seeing bryan's face
     private bool IsPlayerOnAngleWatch()

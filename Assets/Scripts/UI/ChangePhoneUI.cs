@@ -18,6 +18,7 @@ public class ChangePhoneUI : MonoBehaviour
         public string Name;
         public CanvasGroup Menu;
         public Button firstButtonSelected;
+        public Button backButton;
         public bool IsChatMessage; // Know if it's for chatting with someone else or not
         public PhoneMessageManager.MessageGuys whoMessages;
     }
@@ -33,6 +34,15 @@ public class ChangePhoneUI : MonoBehaviour
         public VerticalLayoutGroup VerticalLayout;
         public Button ButtonSend;
         public TextMeshProUGUI Text;
+        [SerializeField] private bool _isRead = false;
+        public void SetRead()
+        {
+            _isRead = true;
+        }
+        public bool GetRead()
+        {
+            return _isRead;
+        }
     }
     private int messageChatIndex;
     [Header("Text Write Effect")]
@@ -48,7 +58,7 @@ public class ChangePhoneUI : MonoBehaviour
     {
         typeEffectCourotine = DisplayTextOnMessage();
     }
-    public void RecieveMessageOnThePhone(PhoneChatInfo phoneChats) //Recieve message
+    public void ReceiveMessageOnThePhone(PhoneChatInfo phoneChats) //Recieve message
     {
         string text = phoneChats.OtherMessageArray.Dequeue();
         
@@ -64,6 +74,12 @@ public class ChangePhoneUI : MonoBehaviour
         StartCoroutine(typeEffectCourotine);
         phoneChats.CanReply = false;
     }
+
+    public void SetReadMessage(PhoneChatInfo phoneChats)
+    {
+        MessageComponentsArray[phoneChats.ChatIndex].SetRead();
+    }
+
     public void SetSelectButton(Button primaryButton) //For button be already selected by button clicker
     {
         if (isTyping)
@@ -97,20 +113,24 @@ public class ChangePhoneUI : MonoBehaviour
     }
     public void BackFromCurrentMenu(int index)
     {
-        if(index >= 2 && index <= 4)
+        if (menuInfos[index].backButton)
         {
-            DisablePhoneMenu(menuInfos[index].Menu);
-            EnablePhoneMenu(menuInfos[1].Menu); // Show all messages
-            SetSelectButton(menuInfos[1].firstButtonSelected);
-            currentMenuDisplayed = menuInfos[1];
+            menuInfos[index].backButton.onClick.Invoke(); 
         }
-        else if(index == 1)
-        {
-            DisablePhoneMenu(menuInfos[index].Menu);
-            EnablePhoneMenu(menuInfos[0].Menu); //Show the main one
-            SetSelectButton(menuInfos[0].firstButtonSelected);
-            currentMenuDisplayed = menuInfos[0];
-        }
+        //if(index >= 2 && index <= 4)
+        //{
+        //    DisablePhoneMenu(menuInfos[index].Menu);
+        //    EnablePhoneMenu(menuInfos[1].Menu); // Show all messages
+        //    SetSelectButton(menuInfos[1].firstButtonSelected);
+        //    currentMenuDisplayed = menuInfos[1];
+        //}
+        //else if(index == 1)
+        //{
+        //    DisablePhoneMenu(menuInfos[index].Menu);
+        //    EnablePhoneMenu(menuInfos[0].Menu); //Show the main one
+        //    SetSelectButton(menuInfos[0].firstButtonSelected);
+        //    currentMenuDisplayed = menuInfos[0];
+        //}
     }
     public void DisablePhoneMenu(CanvasGroup _canvasGroup) // by button clicker
     {

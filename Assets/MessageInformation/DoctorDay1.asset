@@ -12,18 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f660f055408f7f4dad5961d97bcd8e1, type: 3}
   m_Name: DoctorDay1
   m_EditorClassIdentifier: 
-  name: Dr
+  name: Doctor
   otherMessageArray:
-  - 'Hello Mr Canella. I''m here to inform you that everything at the clinic is a
-    mess. No one can decide how online therapies are going to happen. They can''t
-    make up their minds. Meetings on this subject will take place next week. Until
-    then, take care. you can contact me anytime.      And remember... if things get
-    ugly. take your pills. '
-  - 'Hello Mr Canella. I''m here to inform you that everything at the clinic is a
-    mess. No one can decide how online therapies are going to happen. They can''t
-    make up their minds. Meetings on this subject will take place next week. Until
-    then, take care. you can contact me anytime.      And remember... if things get
-    ugly. take your pills. '
   - 'Hello Mr Canella. I''m here to inform you that everything at the clinic is a
     mess. No one can decide how online therapies are going to happen. They can''t
     make up their minds. Meetings on this subject will take place next week. Until
@@ -31,6 +21,5 @@ MonoBehaviour:
     ugly. take your pills. '
   brainMessageArray:
   - "Uhh\u2026 I hope it will be quick. I will be fine."
-  - 
-  canReply: 0
+  canReply: 1
   chatIndex: 0

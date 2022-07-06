@@ -51,7 +51,7 @@ PlayerSettings:
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
   m_MTRendering: 1
-  mipStripping: 0
+  mipStripping: 1
   numberOfMipsStripped: 0
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
@@ -139,6 +139,7 @@ PlayerSettings:
   bundleVersion: 0.5
   preloadedAssets:
   - {fileID: 11400000, guid: 9f589267f774fb14d951f8723b554cdc, type: 2}
+  - {fileID: 11400000, guid: e0597927d67b4fa44a2cc5d58425c252, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1

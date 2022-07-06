@@ -30,6 +30,7 @@ Shader "Hidden/Shader/CopycatVisionPostProcessing"
     // List of properties to control your post process effect
     TEXTURE2D_X( _MainTex);
     SamplerState sampler_MainTex;
+    float _Blend;
     float _RedChannel = 1;
     float _GreenChannel = 0.2;
     float _BlueChannel = 0.2;
@@ -134,15 +135,13 @@ Shader "Hidden/Shader/CopycatVisionPostProcessing"
         UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
     	uint2 uv = input.positionCS;
     	float3 col;
+    	float4 inCol = LOAD_TEXTURE2D_X(_MainTex, uv).rgba;
 
     	col = LOAD_TEXTURE2D_X(_MainTex, uv).rgb;
     	
-    	////CURVATURE
-    	//uv = lerp( curve( uv ), uv, MAP(_CurvatureIntensity, 0, 1, 2, 0));
-    	
     	//DISTORTION
 		float x =  sin(0.1 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.y * 21.0) * sin(0.23 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.y * 29.0) * sin(0.3 + 0.11 * MAP(_DistortionSpeed, 0, 1, 0, 100) + _Time.y + input.texcoord.y * 31.0) * MAP(_DistortionIntensity, 0, 1, 0, 10);
-    	float y =  sin(0.1 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.x * 21.0) * sin(0.23 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.x * 29.0) * sin(0.3 + 0.11 * MAP(_DistortionSpeed, 0, 1, 0, 100) + _Time.y + input.texcoord.x * 31.0) * MAP(_DistortionIntensity, 0, 1, 0, 10);
+    	float y =  cos(0.1 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.x * 21.0) * cos(0.23 * MAP(_DistortionSpeed, 0, 1, 0, 100) * _Time.y + input.texcoord.x * 29.0) * cos(0.3 + 0.11 * MAP(_DistortionSpeed, 0, 1, 0, 100) + _Time.y + input.texcoord.x * 31.0) * MAP(_DistortionIntensity, 0, 1, 0, 10);
 		float o = 2.0 * MOD(input.texcoord.y, 2.0) / input.positionCS.x;
 		x += o;
     	
@@ -170,11 +169,6 @@ Shader "Hidden/Shader/CopycatVisionPostProcessing"
     	col *= float3(_RedChannel, _GreenChannel, _BlueChannel);
 		col = lerp( col, col * col, 0.3) * 3.8;
     	
-    	////SCANLINES
-		//float scans = clamp( 0.35 + 0.15 * sin(3.5 * (_Time.y * _ScanlinesScrollSpeed) + uv.y * _ScreenParams.y * 1.5), 0.0, 1.0);
-		//float s = pow(scans, MAP(_ScanlinesIntensity, 0, 1, 0, 5));
-		//col = col * s;
-    	
     	//Film Grain
     	col *= 1.0 + 0.0015 * sin(300.0 * _Time);
 		col *= 1.0 - 0.15 * clamp((MOD(input.texcoord.x + o, 2.0) - 1.0) * 2.0, 0.0, 1.0);
@@ -183,11 +177,10 @@ Shader "Hidden/Shader/CopycatVisionPostProcessing"
     	//GAMMA CORRECTION
 		col = pow(col, 0.4);
 
-    	////FILL BLACK OUTSIDE CURVATURE
-		//if (uv.x < 0.0 || uv.x > 1.0)
-		//	col *= 0.0;
-		//if (uv.y < 0.0 || uv.y > 1.0)
-		//	col *= 0.0;
+    	col = float4(Luminance(col), Luminance(col), Luminance(col), 1);
+
+    	col = lerp(inCol, col, _Blend);
+    	
     	return float4(col , 1);
     }
 

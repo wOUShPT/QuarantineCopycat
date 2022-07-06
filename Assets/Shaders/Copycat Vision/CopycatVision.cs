@@ -9,6 +9,7 @@ public sealed class CopycatVision : CustomPostProcessVolumeComponent, IPostProce
 {
     //[Tooltip("Controls the intensity of the effect.")]
     //public ClampedFloatParameter blurIntensity = new ClampedFloatParameter(0f, 0f, 1f);
+    public ClampedFloatParameter blend = new ClampedFloatParameter(0f, 0f, 1f);
     public ClampedFloatParameter redChannel = new ClampedFloatParameter(0f, 0f, 1f);
     public ClampedFloatParameter greenChannel = new ClampedFloatParameter(0f, 0f, 1f);
     public ClampedFloatParameter blueChannel = new ClampedFloatParameter(0f, 0f, 1f);
@@ -36,6 +37,7 @@ public sealed class CopycatVision : CustomPostProcessVolumeComponent, IPostProce
             return;
 
         _material.SetTexture("_MainTex", source);
+        _material.SetFloat("_Blend", blend.value);
         _material.SetFloat("_RedChannel", redChannel.value);
         _material.SetFloat("_GreenChannel", greenChannel.value);
         _material.SetFloat("_BlueChannel", blueChannel.value);

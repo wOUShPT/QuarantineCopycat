@@ -24,9 +24,10 @@ public class FMODFootstepsEmitter : MonoBehaviour
         {
             _eventReference = fmodFloor.GetEventReference();
             
-            if (!_instance.isValid() || _lastEventReference.Path != _eventReference.Path)
+            if (!_instance.isValid() || _lastEventReference.Guid != _eventReference.Guid)
             {
                 _instance = RuntimeManager.CreateInstance(_eventReference);
+                _instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
                 _lastEventReference = _eventReference;
             }
             

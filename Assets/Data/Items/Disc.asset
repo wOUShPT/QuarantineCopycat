@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Disc
   m_EditorClassIdentifier: 
   type: Disc
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: cff57214e91629a49bb4ac36c4b9b06f, type: 3}

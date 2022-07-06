@@ -8,32 +8,32 @@ public class PhoneChatInfo : ScriptableObject
     public string Name => name;
     [TextArea(2, 8)]
     [SerializeField]private string[] otherMessageArray;
-    Queue<string> otherMessageQueu;
-    public Queue<string> OtherMessageArray => otherMessageQueu;
+    Queue<string> otherMessageQueue;
+    public Queue<string> OtherMessageArray => otherMessageQueue;
     [TextArea(2, 8)]
     [SerializeField] private string[] brainMessageArray; //arrays to convert t queues
-    private Queue<string> brainMessagequeue; // protagonist's message
-    public Queue<string> BrainMessages => brainMessagequeue;
+    private Queue<string> brainMessageQueue; // protagonist's message
+    public Queue<string> BrainMessages => brainMessageQueue;
     [SerializeField] private bool canReply;
     public bool CanReply { get { return canReply; } set { canReply = value; } }
     [SerializeField] private int chatIndex;
     public int ChatIndex => chatIndex;
     private void OnEnable()
     {
-        otherMessageQueu = new Queue<string>();
-        brainMessagequeue = new Queue<string>();
+        otherMessageQueue = new Queue<string>();
+        brainMessageQueue = new Queue<string>();
         foreach (string stringFromArray in otherMessageArray)
         {
-            otherMessageQueu.Enqueue(stringFromArray);
+            otherMessageQueue.Enqueue(stringFromArray);
         }
         foreach (string stringFromArray in brainMessageArray)
         {
-            brainMessagequeue.Enqueue(stringFromArray);
+            brainMessageQueue.Enqueue(stringFromArray);
         }
     }
     private void OnDisable()
     {
-        otherMessageQueu.Clear();
-        brainMessagequeue.Clear();
+        otherMessageQueue.Clear();
+        brainMessageQueue.Clear();
     }
 }

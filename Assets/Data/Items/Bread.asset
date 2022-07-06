@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   type: Bread
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: a5b7a22e9296cef4db82240576e2f8e9, type: 3}

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e142152b23fd004dbaa1d45de8df316, type: 3}
   m_Name: UI_Disk
   m_EditorClassIdentifier: 
-  objectType: 2
-  sprite: {fileID: 7482667652216324306, guid: 23a43a93649ac9a49a290637793f181a, type: 3}
+  _itemType: {fileID: 0}
+  sprite: {fileID: 21300000, guid: cff57214e91629a49bb4ac36c4b9b06f, type: 3}

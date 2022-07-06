@@ -35,9 +35,9 @@ public class PhoneMessageManager : MonoBehaviour // Messagee manager
     }
     public void RemoveSendButtonListeners() //make the callback buttons empty
     {
-        for (int i = 0; i < phoneUI.MessageComponentsArray.Length; i++)
+        foreach (var messageComponent in phoneUI.MessageComponentsArray)
         {
-            phoneUI.MessageComponentsArray[i].ButtonSend.onClick.RemoveAllListeners();
+            messageComponent.ButtonSend.onClick.RemoveAllListeners();
         }
     }
     public void AddListenersToSendButtonListeners() // add send listener to the specific day to send it
@@ -59,8 +59,6 @@ public class PhoneMessageManager : MonoBehaviour // Messagee manager
                     buttonCalback = () => phoneUI.SendMessageOnThePhone(messageperdayArray[currentDay].Mister);
                     SentMessageFromMister = () => phoneUI.SendMessageOnThePhone(messageperdayArray[currentDay].Mister);
                     break;
-                default:
-                    break;
             }
             //Add calback to button
             phoneUI.MessageComponentsArray[i].ButtonSend.onClick.AddListener(buttonCalback);
@@ -75,21 +73,21 @@ public class PhoneMessageManager : MonoBehaviour // Messagee manager
                 {
                     return; //Queue is empty
                 }
-                phoneUI.RecieveMessageOnThePhone(messageperdayArray[currentDay].Doctor);
+                phoneUI.ReceiveMessageOnThePhone(messageperdayArray[currentDay].Doctor);
                 break;
             case 1: // For Agent
                 if (messageperdayArray[currentDay].Agent.OtherMessageArray.Count == 0)
                 {
                     return; //Queue is empty
                 }
-                phoneUI.RecieveMessageOnThePhone(messageperdayArray[currentDay].Agent);
+                phoneUI.ReceiveMessageOnThePhone(messageperdayArray[currentDay].Agent);
                 break;
-            case 2: //For Mister
+            case 2: //For MrWilfred
                 if (messageperdayArray[currentDay].Mister.OtherMessageArray.Count == 0)
                 {
                     return; //Queue is empty
                 }
-                phoneUI.RecieveMessageOnThePhone(messageperdayArray[currentDay].Mister);
+                phoneUI.ReceiveMessageOnThePhone(messageperdayArray[currentDay].Mister);
                 break;
         }
     }

@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class LogoScreenPress : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public CanvasGroup mainMenuCanvasGroup;
+    
+    public void EnableMainMenu()
     {
-        
+        StartCoroutine(EnableMainMenuAnimation());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator EnableMainMenuAnimation()
     {
-        
+        while (mainMenuCanvasGroup.alpha != 1)
+        {
+            mainMenuCanvasGroup.alpha = Mathf.MoveTowards(mainMenuCanvasGroup.alpha, 1, 2 * Time.deltaTime);
+            yield return null;
+        }
+        mainMenuCanvasGroup.interactable = true;
+        mainMenuCanvasGroup.blocksRaycasts = true;
     }
 }
+
+

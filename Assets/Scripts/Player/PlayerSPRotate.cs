@@ -26,8 +26,8 @@ public class PlayerSPRotate : MonoBehaviour
     {
         Vector3 cameraForward = Camera.main.transform.forward;
         Vector3 cameraRight = Camera.main.transform.right;
-        lookDirection = ((cameraForward * Mathf.Clamp01(InputManager.Instance.PlayerInput.Movement.z)) + (cameraRight * InputManager.Instance.PlayerInput.Movement.x)).normalized;
-
+        lookDirection = ((cameraForward * InputManager.Instance.PlayerInput.Movement.z) + (cameraRight * InputManager.Instance.PlayerInput.Movement.x)).normalized;
+        
         if (lookDirection.sqrMagnitude >= 0.1f)
         {
             // Usually you use transform.LookAt for this.

@@ -21,14 +21,17 @@ public class GoalsManager : Singleton<GoalsManager>
     private List<bool> _currentGoalsMet;
     private bool _canProgress;
     private int _goalsMetCounter;
+    private bool _canTransitionNextScene;
     public ScenesEnum nextScene;
 
     public enum ScenesEnum
     {
-        Menu,
+        MainMenu,
         Day1,
         Day2,
-        Labyrinth
+        Labyrinth,
+        Ending,
+        Credits
     }
 
 
@@ -128,8 +131,24 @@ public class GoalsManager : Singleton<GoalsManager>
         currentEvent.Invoke();
     }
 
+    public void LoadNextSceneAsync()
+    {
+        StartCoroutine(LoadSceneAsync());
+    }
+
+    IEnumerator LoadSceneAsync()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene.ToString());
+        asyncLoad.allowSceneActivation = false;
+        while (!asyncLoad.isDone && !_canTransitionNextScene)
+        {
+            yield return null;
+        }
+        asyncLoad.allowSceneActivation = true;
+    }
+
     public void EndGame()
     {
-        SceneManager.LoadScene(nextScene.ToString());
+        _canTransitionNextScene = true;
     }
 }

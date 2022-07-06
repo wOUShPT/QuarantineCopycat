@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CoffeeCup
   m_EditorClassIdentifier: 
   type: Coffee Cup
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: bfe4a230214269c44bedc8fd68d8178b, type: 3}

@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private float headBobIntensity;
     [SerializeField] 
     private float headBobSpeed;
-    [SerializeField] private bool canSprint = false;
+    public bool canSprint = false;
     [SerializeField] private CameraManager cameraManager;
     private Camera _camera;
     public bool isOnActionPivot;
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if(CameraManager.CinemachineCameraState == CameraManager.CinemachineStateSwitcher.SecondPerson)
         {
-            _currentMoveDirection = (Camera.main.transform.forward * Mathf.Clamp01(InputManager.Instance.PlayerInput.Movement.z)) + (Camera.main.transform.right * InputManager.Instance.PlayerInput.Movement.x);
+            _currentMoveDirection = (Camera.main.transform.forward * InputManager.Instance.PlayerInput.Movement.z) + (Camera.main.transform.right * InputManager.Instance.PlayerInput.Movement.x);
             if (_currentMoveDirection == Vector3.zero)
             {
                 return;
@@ -90,10 +90,12 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        
         if(CameraManager.CinemachineCameraState != CameraManager.CinemachineStateSwitcher.FirstPerson)
         {
             return;
         }
+        
         transform.localRotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, _camera.transform.localRotation.eulerAngles.y, 0)), _turnSpeed * Time.deltaTime);
     }
 

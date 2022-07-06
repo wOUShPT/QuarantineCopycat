@@ -8,10 +8,23 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     public CanvasGroup reticle;
+    public CanvasGroup mouseHint;
+    private Animator _mouseHintAnimator;
     public CanvasGroup crosshair;
     public CanvasGroup interactionPrompt;
     public Subtitle subtitle;
     public UI_Inventory _uiInventory;
+    public GameObject phoneHint;
+
+    private void Awake()
+    {
+        _mouseHintAnimator = mouseHint.GetComponent<Animator>();
+        if (phoneHint != null)
+        {
+            phoneHint.SetActive(false);
+        }
+        
+    }
     
 
     public void ToggleInteractionPrompt(bool state)
@@ -38,6 +51,23 @@ public class UIManager : Singleton<UIManager>
         }
     }
     
+    public void ToggleMouseHint(bool state)
+    {
+        if (state)
+        {
+            if (mouseHint.alpha == 0)
+            {
+                _mouseHintAnimator.Rebind();
+                _mouseHintAnimator.Update(0);
+            }
+            mouseHint.alpha = 1;
+        }
+        else
+        {
+            mouseHint.alpha = 0;
+        }
+    }
+    
     public void ToggleCrosshair(bool state)
     {
         if (state)
@@ -60,6 +90,11 @@ public class UIManager : Singleton<UIManager>
         {
             subtitle.canvasGroup.alpha = 0;
         }
+    }
+
+    public void EnablePhoneHint()
+    {
+        phoneHint.SetActive(true);
     }
 
     public void SetSubtitle(string charName, string lineOfDialogue, int sizeOfDialogue)

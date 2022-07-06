@@ -64,6 +64,7 @@ public class InteractableBehaviour: MonoBehaviour
     {
         FadeOutline.FadeOutOutline();
         //gameObject.layer = interactionLayer;
+        UIManager.Instance.ToggleMouseHint(false);
         if (gameObjectsOutlinedArray.Length == 0)
             return;
         foreach (var outlineObject in gameObjectsOutlinedArray)
@@ -77,6 +78,7 @@ public class InteractableBehaviour: MonoBehaviour
         if (gameObject.layer == _outlineLayer || !CanInteract)
             return;
         FadeOutline.Instance.FadeInOutline();
+        UIManager.Instance.ToggleMouseHint(true);
         //gameObject.layer = outlineLayer;
         if (gameObjectsOutlinedArray.Length == 0)
             return;

@@ -30,7 +30,7 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetFloat("Velocity", PlayerProperties.FreezeMovement ? 0f : _movement.currentVelocity);
         _animator.SetFloat("Horizontal", InputManager.Instance.PlayerInput.Movement.x);
         _animator.SetFloat("Vertical", InputManager.Instance.PlayerInput.Movement.z);
-        _animator.SetBool("isRunning", PlayerProperties.FreezeMovement ? false : _movement.GetIsSprinting());
+        _animator.SetBool("isRunning", PlayerProperties.FreezeMovement ? false : _movement.GetIsSprinting() && _movement.canSprint);
         if (_movement.currentVelocity == 0)
         {
             _footIndex = Mathf.Pow(-1, Random.Range(2, 4));

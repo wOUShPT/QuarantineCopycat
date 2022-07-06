@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Events;
+
 public class TriggerChase : MonoBehaviour
 {
     public EventHandler OnPlayerInsideTrigger;
@@ -16,9 +18,10 @@ public class TriggerChase : MonoBehaviour
     [Range(0f,1f)]
     [SerializeField] private float triggerPercentage = 0.3f;
     [SerializeField] private bool playerWillLookAtCopycat = true;
-    [SerializeField] private float reactCopycatTime = 5.0f;
+    [SerializeField] private float reactCopycatTime = 10.0f;
     [SerializeField] private ChaseManager chaseManager;
     [SerializeField]private Transform targetLook;
+    [SerializeField] private UnityEvent effect;
     private void Awake()
     {
         targetLook = GameObject.Find("TargetLook").transform;
@@ -65,14 +68,14 @@ public class TriggerChase : MonoBehaviour
                 }
                 else
                 {
-                    targetLook.position = 2 * transform.position - aIChase.transform.position;
+                    targetLook.position = 2 * (transform.position - aIChase.transform.position).normalized;
                     Vector3 auxPosition = targetLook.transform.position;
                     auxPosition.y = Camera.main.transform.position.y;
                     targetLook.transform.position = auxPosition;
                 }
                 //Rotate forward
                 playerMovement.transform.LookAt(targetLook);
-                playerMovement.transform.rotation= Quaternion.Euler(new Vector3(0f, playerMovement.transform.rotation.eulerAngles.y, 0f));
+                playerMovement.transform.rotation = Quaternion.Euler(0f, playerMovement.transform.rotation.eulerAngles.y, 0f);
                 //Force player avoid "floating"
                 OnPlayerInsideTrigger?.Invoke(this, EventArgs.Empty);
                 this.gameObject.SetActive(false);

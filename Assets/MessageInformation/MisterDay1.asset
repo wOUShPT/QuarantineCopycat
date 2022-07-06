@@ -12,19 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f660f055408f7f4dad5961d97bcd8e1, type: 3}
   m_Name: MisterDay1
   m_EditorClassIdentifier: 
-  name: Mister
+  name: Mr Wilfred
   otherMessageArray:
   - "Greetings Mr. Canella. Let\u2019s discuss your rent. I\u2019ll need it now.
     You know, Mr, Canella. This quarantine will be rough and I need some financial
     security, as some of my businesses will be closed during this turmoil. Best regards
     Mr. \u2026 ."
-  - 
   brainMessageArray:
-  - "Wha\u2026 WHAT!?.... This old fart can\u2019t be serious\u2026 \u201CI need
-    some financial security\u201D. FINANCIAL SECURITY MY ASS. I WILL PAY MY RENT
-    ON THE SPECIFIED DATE. And you can\u2019t do anything about it. \u2026.What a
-    cheeky old man. Wait and see Mr\u2026.. as soon as this pandemic ends,\r\nI will
-    dedicate 10 minutes of my next show to jokes about you.\r\n"
   - 
   canReply: 0
-  chatIndex: 1
+  chatIndex: 2
